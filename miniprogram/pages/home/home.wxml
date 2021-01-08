@@ -1,0 +1,73 @@
+<!-- 探索start -->
+<view class="text72" style="margin-left: 40rpx;margin-top: 40rpx;">探索</view>
+<view class="line" style="margin-top: 20rpx;"></view>
+<view class="special-view">
+  <scroll-view class="special-scroll" scroll-x="true" bindscroll="scroll" style="width: 100%">
+    <block wx:for="{{specialArray}}" wx:key="true">
+      <image data-id="{{item.id}}" class="special-scroll-image scroll-image" src="{{item.picture}}" bindtap="toSpecial"/>
+    </block>        
+  </scroll-view>
+</view>
+<view class="special-recommend" bindtap="goThirdWeb" data-url="{{recommend.url}}">
+  <image class="special-recommend-image" src="{{recommend.picture}}"></image>
+  <view data-id="{{recommend.id}}" class="special-recommend-view-1">
+    <view class="special-recommend-view-2">
+      <text class="text60">{{recommend.title}}</text>
+      <text class="text28">{{recommend.decribe}}</text>
+    </view>
+    <view class="button-success" style="width: 206rpx;height: 84rpx;float: right;line-height:84rpx;margin-right: 32rpx;margin-top: 40rpx;"><text style="font-size:24rpx">¥</text>{{recommend.price}}</view>
+  </view>
+</view>
+<!-- 分享在后续版本 -->
+<view class="special-share" bindtap="go" data-page="share">
+  <view class="text52" style="margin-left: 32rpx;margin-top: 40rpx;float:left"><text style="line-height:74rpx">加入健康合伙人
+    分享健康赚佣金</text></view>
+  <view class="text28" style="color:#F78500;float:left;margin-left:32rpx">双重现金礼 轻松拿到手</view>
+  <image class="special-share-image-1" src="../../images/share@2x.png"></image>
+  
+  <view class="button-arrow-white" style="float: left;margin-top: 30rpx;margin-left: 32rpx;width:210rpx">
+    <image src="../../images/arrow-blue@2x.png" />
+    <view>进一步了解</view>
+  </view>  
+</view>
+<view class="line" style="margin-top: 48rpx;"></view>
+<view class="text40" style="margin-left: 40rpx;margin-top: 60rpx;">精选</view>
+<view class="select-list">
+  <view class="text60" style="text-align: center;width:100%;margin-top: 40rpx;float:left">琳瑯满目，必有所爱</view>
+  <text class="text28" style="margin-top: 8rpx;float: left;width:100%;text-align: center; ">健康管理是一件快乐的事情</text>
+  <view class="select-list-view">
+    <block wx:for="{{carefullyChosen1}}" wx:key="true">
+      <image class="select-list-image" src="{{item.picture}}" data-url="{{item.url}}" bindtap="goThirdWeb"></image>
+    </block>
+  </view>
+</view>
+<view class="select-scroll-view">
+  <scroll-view class="select-scroll" scroll-x="true" bindscroll="scroll" style="width: 100%">
+    <block wx:for="{{carefullyChosen2}}" wx:key="true">
+      <image class="select-scroll-image scroll-image" src="{{item.picture}}" data-url="{{item.url}}" bindtap="goThirdWeb"/>
+    </block>
+  </scroll-view>
+</view>
+<view class="line" style="margin-top: 30rpx;"></view>
+<view class="text40" style="margin-left: 40rpx;margin-top: 60rpx;">更多为您推荐</view>
+<image class="more-image-1" src="{{moreRecommend.picture}}" data-url="{{moreRecommend.url}}" bindtap="goThirdWeb"/>
+<!-- 去关注组件 -->
+<wechat-subscription style="margin-top:30rpx;float:left"></wechat-subscription>
+<!-- 探索end -->
+<!-- 底部导航start -->
+<bottom-navigate id="bottom-navigate"></bottom-navigate>
+<!-- 底部导航end -->
+<!-- 重要通知start -->
+<view class="pop-alert" hidden="{{showImportantNotice == 1 ? '' : 'true'}}">
+  <view class="pop-alert-view">
+    <image class="pop-alert-view-image" src="../../images/logo-alert@2x.png" />
+    <view class="pop-alert-view-text">重要通知</view>
+    <view class="pop-alert-view-line"></view>
+    <view class="pop-alert-view-title">{{importantNotice.title}}</view>
+    <text class="pop-alert-view-content">{{importantNotice.content}}
+    </text>
+    <view class="pop-alert-view-button" bindtap="goThirdWeb" data-url="{{importantNotice.url}}">赶紧抢购</view>
+  </view>
+  <image class="pop-alert-image" bindtap="closeNotice" src="../../images/cancel-circle@2x.png" />
+</view>
+<!-- 重要通知end -->

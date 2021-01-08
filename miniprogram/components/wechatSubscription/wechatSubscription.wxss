@@ -1,0 +1,54 @@
+.wechatSubscription{
+  width: 670rpx;
+  height: 160rpx;
+  background: white;
+  margin-left: 40rpx;
+  box-shadow: 0rpx 22rpx 20rpx 0rpx rgba(0, 0, 0, 0.04), 0rpx 4rpx 28rpx -20rpx rgba(0, 0, 0, 0.024);
+  border-radius: 30rpx;
+  float: left;
+}
+.wechatSubscription-image{
+  width: 80rpx;
+  height: 80rpx;
+  float: left;
+  margin-left: 40rpx;
+  margin-top: 40rpx;
+}
+.wechatSubscription-text{
+  width: 240rpx;
+  height: 80rpx;
+  font-size: 26rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
+  line-height: 40rpx;
+  float: left;
+  margin-left: 30rpx;
+}
+.wechatSubscription-view{
+  width: 160rpx;
+  height: 68rpx;
+  background: #009591;
+  border-radius: 34rpx;
+  float: right;
+  margin-top: 46rpx;
+  margin-right: 30rpx;
+}
+.wechatSubscription-view-text{
+  width: 72rpx;
+  height: 68rpx;
+  font-size: 24rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  float: left;
+  line-height: 68rpx;
+  margin-left: 32rpx;
+}
+.wechatSubscription-view-image{
+  width: 32rpx;
+  height: 32rpx;
+  float: left;
+  margin-top: 20rpx;
+  margin-left: 10rpx;
+}

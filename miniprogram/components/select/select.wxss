@@ -1,0 +1,29 @@
+.select{
+  width: 100%;
+  height: 132rpx;
+  background: white;
+  font-size: 36rpx;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
+  line-height: 132rpx;
+  margin-top: 40rpx;
+}
+.select-title{
+  width: 160rpx;
+  height: 132rpx;
+  margin-left: 40rpx;
+  float: left;
+}
+.select-option{
+  width: 400rpx;
+  height: 132rpx;
+  margin-left: 40rpx;
+  float: left;
+}
+.select-arrow{
+  width: 48rpx;
+  height: 48rpx;
+  float: right;
+  margin-right: 40rpx;
+  margin-top: 42rpx;
+}

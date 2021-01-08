@@ -1,0 +1,18 @@
+.mobile-input-1{
+  float: left;
+  height: 132rpx;
+  margin-left: 40rpx;
+  width: 68rpx;
+  font-size: 36rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: black;
+  line-height: 132rpx;
+}
+.mobile-image{
+  width: 48rpx;
+  height: 48rpx;
+  float: left;
+  margin-top: 42rpx;
+  margin-left: 8rpx;
+}

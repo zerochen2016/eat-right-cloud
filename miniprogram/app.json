@@ -1,5 +1,10 @@
 {
   "pages": [
+    "pages/home/home",
+    "pages/login/login",
+    "pages/login-mobile/login-mobile",
+    "pages/login-password/login-password",
+    "pages/login-forget/login-forget",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",

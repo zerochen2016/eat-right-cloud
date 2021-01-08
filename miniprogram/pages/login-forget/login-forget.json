@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "手机验证",
+  "usingComponents": {
+    "select-mobile": "../../components/select-mobile/select-mobile"
+  }
+}

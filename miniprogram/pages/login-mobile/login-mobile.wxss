@@ -1,0 +1,129 @@
+page{
+  width: 100%;
+  height: 1624rpx;
+  background: #FFFFFF;
+}
+.logo-view{
+    width: 50%;
+    height: 84rpx;
+    margin: 0 auto;
+    margin-top: 172rpx;
+}
+.logo-view image{
+    width: 100%;
+    height: 84rpx;
+}
+.mobile-view {
+  margin-top: 124rpx;
+  width: 100%;
+  height: 132rpx;
+  align-content: center;
+  vertical-align: middle;
+}
+.mobile-input-2{
+  float: left;
+  width: 220rpx;
+  font-size: 36rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: black;
+  height: 132rpx;
+  margin-left: 40rpx;
+}
+.verify-view{
+  width: 100%;
+  height: 132rpx;
+  background: #FFFFFF;
+}
+.verify-input{
+  width: 182px;
+  height: 132rpx;
+  font-size: 36rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: black;
+  margin-left: 40rpx;
+  float: left;
+}
+.verify-button{
+  border-radius: 34rpx;
+  border: 2rpx solid #009591;
+  float: right;
+  margin-right: 40rpx;
+  line-height: 68rpx;
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #009591;
+  width:182rpx;
+  height:68rpx;
+  text-align: center;
+  margin-top: 32rpx;
+}
+.verify-button-grey{
+  border-radius: 34rpx;
+  border: 2rpx solid rgba(0, 0, 0, 0.4);
+  float: right;
+  margin-right: 40rpx;
+  line-height: 68rpx;
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.4);
+  width:182rpx;
+  height:68rpx;
+  text-align: center;
+  margin-top: 32rpx;  
+}
+.login-button {
+  background: rgba(0, 0, 0, 0.24);
+  border-radius: 60rpx;
+  margin: 0 auto;
+  margin-top: 60rpx;
+  font-size: 40rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 80rpx;
+  
+}
+.login-button-success{
+  background: linear-gradient(360deg, #00A29E 0%, #65E1C5 100%) #009591;
+  border-radius: 60rpx;
+  margin: 0 auto;
+  margin-top: 60rpx; 
+  font-size: 40rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 80rpx; 
+}
+.password-view{
+  width: 100%;
+  height: 44rpx;
+  margin-top: 40rpx;
+}
+.password-text-1{
+  font-size: 32rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #009591;
+  line-height: 44rpx;
+  height: 44rpx;
+  width: 100%;
+  float: left;
+  text-align: center;
+}
+.service-text{
+  width: 100%;
+  height: 92rpx;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.54);
+  float: left;
+  text-align: center;
+  position: absolute;
+  bottom: 120rpx;
+
+}

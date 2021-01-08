@@ -2,7 +2,7 @@
   "miniprogramRoot": "miniprogram/",
   "cloudbaseRoot": "cloudbase/",
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "es6": true,
     "enhance": true,
     "postcss": true,
@@ -41,20 +41,42 @@
   "projectname": "eat-right-cloud",
   "libVersion": "2.14.1",
   "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
-      "list": []
-    },
     "plugin": {
       "list": []
     },
     "game": {
       "list": []
     },
-    "miniprogram": {
+    "gamePlugin": {
       "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/login/login",
+          "pathName": "pages/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/login-mobile/login-mobile",
+          "pathName": "pages/login-mobile/login-mobile",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/login-password/login-password",
+          "pathName": "pages/login-password/login-password",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/login-forget/login-forget",
+          "pathName": "pages/login-forget/login-forget",
+          "query": "",
+          "scene": null
+        }
+      ]
     }
   }
 }

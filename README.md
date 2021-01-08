@@ -10,3 +10,27 @@
 
 - [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
 
+## Language
+LANGUAGE_INVALID	0	
+无效的语言
+LANGUAGE_UNSET	1	
+未设置语言
+LANGUAGE_SIMPLIFIED_CHINESE	2	
+简体中文
+LANGUAGE_TRADITIONAL_CHINESE	3	
+繁体中文
+LANGUAGE_ENGLISH	4	
+英文
+
+## TemplateAction 短信验证码类型.
+Name	Number	Description
+TEMPLATE_ACTION_INVALID	0	
+无效的类型
+TEMPLATE_ACTION_UNSET	1	
+未设置类型
+TEMPLATE_ACTION_SIGNUP	2	
+登陆模版
+TEMPLATE_ACTION_RESET_PASSWORD	3	
+重置密码模版
+TEMPLATE_ACTION_RESET_PHONE	4	
+修改手机号

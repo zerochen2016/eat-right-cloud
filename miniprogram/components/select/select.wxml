@@ -1,0 +1,12 @@
+
+<view class="select">
+  <view class="select-title">
+    {{title}}
+  </view>
+  <picker class="select-option" bindchange="bindPickerChange"  range="{{option}}" 	>{{defaultValue}}</picker>
+  <block wx:if="{{showArrow}}">
+    <image class="select-arrow" src="../../images/arrow@2x.png"></image>
+  </block>
+  
+</view>
+
