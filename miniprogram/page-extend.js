@@ -116,6 +116,7 @@ const pageExtend = Page => {
             wx.getUserInfo({
               success: res => {
                 const userInfo = res.userInfo
+                let gender =
                 that.setData({
                   avatarUrl: userInfo.avatarUrl,
                   nickName: userInfo.nickName,

@@ -63,13 +63,18 @@ Page({
   resolveMessage: function(e){
     console.log(e)
     const messageId = this.data.firstMessage.message_id
+    const type = e.currentTarget.dataset.type
     this.removeCurrentMessage()
-    if(e.currentTarget.dataset.type == 1){
+    if(type == 1){
       console.log("接受")
       this.acceptCurrentMessage(messageId)
-    }else{
+    }else if(type == 2){
       console.log("拒绝")
       this.refuseCurrentMessage(messageId)
+    }else{
+      this.setData({
+        showMessage: false
+      })
     }
     
   },

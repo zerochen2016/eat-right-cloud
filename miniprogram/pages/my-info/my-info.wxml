@@ -61,12 +61,18 @@
       </view>
       <view class="finger-view" bindtap="handChange" data-hand="HAND_RIGHT" style="float:right">右食指</view>
     </block>
-    <block wx:else>
+    <block wx:elif="{{userProfile.hand == 'HAND_RIGHT'}}">
       <view class="finger-view" bindtap="handChange" data-hand="HAND_LEFT"  style="float:left">
         <text class="finger-view-text">左食指</text>
         <image class="finger-view-image" src="../../images/my/recommend@3x.png" />
       </view>
       <view class="finger-view" bindtap="handChange" data-hand="HAND_RIGHT"  style="float:right;background-color: #009591;color: white">右食指</view>
     </block>
-
+    <block wx:else>
+      <view class="finger-view" bindtap="handChange" data-hand="HAND_LEFT"  style="float:left">
+        <text class="finger-view-text">左食指</text>
+        <image class="finger-view-image" src="../../images/my/recommend@3x.png" />
+      </view>
+      <view class="finger-view" bindtap="handChange" data-hand="HAND_RIGHT"  style="float:right;">右食指</view>
+    </block>
 </view>
