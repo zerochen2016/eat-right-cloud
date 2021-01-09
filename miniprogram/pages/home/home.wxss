@@ -15,7 +15,6 @@ page{
   border-radius: 16rpx;
 }
 .special-scroll-image{
-  display: inline-block;
   width: 280rpx;
   height: 140rpx;
   border-radius: 16rpx;

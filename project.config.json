@@ -111,6 +111,12 @@
           "pathName": "pages/message/message",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/my-update-password/my-update-password",
+          "pathName": "pages/my-update-password/my-update-password",
+          "query": "",
+          "scene": null
         }
       ]
     }

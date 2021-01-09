@@ -10,6 +10,8 @@ Page({
     heightIndex: 20,
     weightArray: ['35KG', '36KG', '37KG', '38KG', '39KG', '40KG', '41KG', '42KG', '43KG', '44KG', '45KG', '46KG', '47KG', '48KG', '49KG', '50KG', '51KG', '52KG', '53KG', '54KG', '55KG', '56KG', '57KG', '58KG', '59KG', '60KG', '61KG', '62KG', '63KG', '64KG', '65KG', '66KG', '67KG', '68KG', '69KG', '70KG', '71KG', '72KG', '73KG', '74KG', '75KG', '76KG', '77KG', '78KG', '79KG', '80KG', '81KG', '82KG', '83KG', '84KG', '85KG', '86KG', '87KG', '88KG', '89KG', '90KG', '91KG', '92KG', '93KG', '94KG', '95KG', '96KG', '97KG', '98KG', '99KG', '100KG', '101KG', '102KG', '103KG', '104KG', '105KG', '106KG', '107KG', '108KG', '109KG', '110KG', '111KG', '112KG', '113KG', '114KG', '115KG', '116KG', '117KG', '118KG', '119KG', '120KG', '121KG', '122KG', '123KG', '124KG', '125KG', '126KG', '127KG', '128KG', '129KG', '130KG', '131KG', '132KG', '133KG', '134KG', '135KG', '136KG', '137KG', '138KG', '139KG', '140KG', '141KG', '142KG', '143KG', '144KG', '145KG', '146KG', '147KG', '148KG', '149KG', '150KG'],
     weightIndex: 25,
+    genderArr: ['男','女'],
+    genderIndex: 0
   },
 
   /**
@@ -61,6 +63,19 @@ Page({
    */
   onReachBottom: function () {
 
+  },
+  genderChange: function(e){
+    console.log(e)
+    const value = e.detail.value
+    let userProfile = this.data.userProfile
+    if(value == 0){
+      userProfile.gender = 'GENDER_MALE'
+    }else if(value == 1){
+      userProfile.gender = 'GENDER_FEMALE'
+    }
+    this.setData({
+      userProfile: userProfile
+    },this.updateUserProfile(["gender"]))
   },
   handChange: function(e){
     console.log(e)
@@ -179,7 +194,7 @@ Page({
         "service": "com.jt-health.api.app",
         "request": {
          "user_id": app.getUser().id,
-         "user_profile_id": app.getUser().userProfileId
+         "user_profile_id": app.getUser().id
         }
         
        }),

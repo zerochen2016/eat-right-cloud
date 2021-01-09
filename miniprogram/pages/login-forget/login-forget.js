@@ -36,7 +36,14 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoaded: function (options) {
+    //从修改密码的忘记密码进入
+    if(options.mobile){
+      this.setData({
+        inputMobile: options.mobile,
+        nextStyle: true
+      })
+    }
 
   },
 

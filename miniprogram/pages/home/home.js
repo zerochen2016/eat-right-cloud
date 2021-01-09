@@ -34,18 +34,20 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    //获取弹窗公共
-    this.getVersionUpdateInfo()
-    //获取专题数据
-    this.listSpecial()
-    //获取大图推荐
-    this.getRecommend()
-    //获取精选
-    this.listCareFullyChosen()
-    //获取更多为您推荐
-    this.getMoreRecommend()
-    //导航选中
-    this.selectComponent("#bottom-navigate").changeActiveIndex(0)
+    let user = app.getUser()
+    if(user && user.id){
+      //获取弹窗公共
+      this.getVersionUpdateInfo()
+      //获取专题数据
+      this.listSpecial()
+      //获取大图推荐
+      this.getRecommend()
+      //获取精选
+      this.listCareFullyChosen()
+      //获取更多为您推荐
+      this.getMoreRecommend()
+    }
+
   },
 
   /**
@@ -306,4 +308,8 @@ Page({
       showImportantNotice: 0
     })
   },
+  initData: function(){
+    //导航选中
+    this.selectComponent("#bottom-navigate").changeActiveIndex(0)
+  }
 })

@@ -104,9 +104,7 @@ Page({
       })
     }
   },
-  /**
-   * TODO 登录接口修改
-   */
+  
   doLogin: function(e){
     console.log(e)
     var that = this

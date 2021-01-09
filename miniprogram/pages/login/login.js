@@ -29,20 +29,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that = this;
-    // 查看是否授权
-    wx.getSetting({
-        success(res) {
-            if (res.authSetting['scope.userInfo']) {
-                console.info("已经授权");
-                that.setData({
-                  hasAuth: true
-                })
-            } else {
-              console.info("没有授权");
-            }
-        }
-    })
   },
 
   /**

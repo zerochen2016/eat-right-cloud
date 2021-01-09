@@ -25,6 +25,8 @@ const pageExtend = Page => {
             url: '../login/login',
           })
         }else{
+          console.log('-----user----')
+          console.log(user)
           this.setData({
             user: user
           })
@@ -67,6 +69,7 @@ const pageExtend = Page => {
           }
           paramsStr += '&' + key + '=' + value
         }
+        console.log('go--' + paramsStr)
       }
       wx.navigateTo({
         url: '../' + page + '/' + page + paramsStr
@@ -94,7 +97,8 @@ const pageExtend = Page => {
       })
     }
     object.loginout = (e) => {
-      // wx.clearStorageSync()
+      wx.clearStorageSync()
+      getApp().updateRequestSign('')
       wx.redirectTo({
         url: '../login/login',
       })

@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    showMessage: false,
   },
 
   /**
@@ -57,6 +57,120 @@ Page({
   onReachBottom: function () {
 
   },
+  /**
+   * 处理当前消息
+   */
+  resolveMessage: function(e){
+    console.log(e)
+    const messageId = this.data.firstMessage.message_id
+    this.removeCurrentMessage()
+    if(e.currentTarget.dataset.type == 1){
+      console.log("接受")
+      this.acceptCurrentMessage(messageId)
+    }else{
+      console.log("拒绝")
+      this.refuseCurrentMessage(messageId)
+    }
+    
+  },
+  /**
+   * 点击接受
+   */
+  acceptCurrentMessage: function(messageId){
+    const that = this
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "NotificationAPI.ConfirmOnSiteMessage",
+        "service": "com.jt-health.api.app",
+        "request": {
+         "message_id": messageId,
+         "user_id": app.getUser().id
+        }
+        
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log(res)
+        if(res.statusCode == 200){
+          if(res.data.reason){
+            app.alert("温馨提示",res.data.reason)
+          }
+        }
+
+      },
+    })     
+
+  },
+  /**
+   * 点击拒绝
+   */
+  refuseCurrentMessage: function(messageId){
+    let that = this
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "NotificationAPI.SendRefuseInvitationMessage",
+        "service": "com.jt-health.api.app",
+        "request": {
+         "message_id": messageId,
+        }
+        
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log(res)
+        if(res.statusCode == 200){
+          if(res.data.reason){
+            app.alert("温馨提示",res.data.reason)
+          }
+        }
+
+      },
+    })     
+  },
+  /**
+   * 移除第一条消息
+   */
+  removeCurrentMessage: function(){
+    let familyMessageArray = this.data.familyMessageArray
+    if(familyMessageArray.length > 1){
+      familyMessageArray = familyMessageArray.slice(1,familyMessageArray.length)
+      let firstMessage = this.data.firstMessage
+      let unReadCount = this.data.unReadCount
+      this.setData({
+        familyMessageArray: familyMessageArray,
+        firstMessage: familyMessageArray[0],
+        unReadCount: unReadCount - 1,
+        showMessage: false
+      })
+    }else{
+      this.setData({
+        familyMessageArray: [],
+        firstMessage: {},
+        unReadCount: 0,
+        showMessage: false
+      })
+    }
+  },
+  showMessage: function(e){
+    this.setData({
+      showMessage: true
+    })
+  },
+  //TODO 怎么知道哪些消息未读
   listNotification: function(){
     let that = this
     wx.request({
@@ -81,32 +195,21 @@ Page({
         if(res.statusCode == 200){
            let unReadCount = 0
            let familyMessageArray = []
-           if(res.data.unread_messages_size){
+           let firstMessage = {}
+          if(res.data.unread_messages_size){
             unReadCount = res.data.unread_messages_size
-           }else if(res.data.unread_messages_size > 99){
+          }else if(res.data.unread_messages_size > 99){
             unReadCount = 99
-           }
-           if(res.data.on_site_messages[0]){
-             familyMessageArray = res.data.on_site_messages
-           }
-           that.setData({
+          }
+          if(res.data.on_site_messages[0]){
+            familyMessageArray = res.data.on_site_messages,
+            firstMessage = res.data.on_site_messages[0]
+          }
+          that.setData({
             unReadCount: unReadCount,
-            familyMessageArray: familyMessageArray
-           })
-//            on_site_messages: Array(3)
-// 0:
-// create_time: "2021-01-09T07:02:29Z"
-// message_content: "邀请你加入他的家庭"
-// message_id: "bvsla1avooe859pl0a0g"
-// message_title: "家庭邀请通知"
-// plugins: (2) [{…}, {…}]
-// recipient_id: "bvrjq4qvooebjhs7u0i0"
-// sender_avatar: "ON_SITE_MESSAGE_AVATAR_MALE"
-// sender_id: "bvrivqavooebjhs7u0gg"
-// sender_nickname: "d"
-// __proto__: Object
-// 1: {sender_id: "bvrivqavooebjhs7u0gg", sender_nickname: "d", sender_avatar: "ON_SITE_MESSAGE_AVATAR_MALE", recipient_id: "bvrjq4qvooebjhs7u0i0", message_content: "邀请你加入他的家庭", …}
-// 2: {sender_id: "bvrivqavooebjhs7u0gg", sender_nickname: "d", sender_a
+            familyMessageArray: familyMessageArray,
+            firstMessage: firstMessage
+          })
         }
 
       },

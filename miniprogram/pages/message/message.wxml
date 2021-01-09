@@ -1,7 +1,25 @@
-<view class="content-tab" bindtap="go" data-page="message">
+<view class="message" hidden="{{showMessage?'':true}}">
+  <view class="message-back">
+    <view class="text80" style="margin-top:96rpx;margin-left:40rpx;color: #009591;">{{firstMessage.sender_nickname}}</view>
+    <view class="text60" style="margin-top:40rpx;margin-left:40rpx">{{firstMessage.message_content}}</view>
+    <view class="line" style="margin-top:60rpx;margin-left:40rpx;width:710rpx"></view>
+    <!-- <view class="text36" style="margin-top:40rpx;margin-left:40rpx">我将获得</view>
+    <view class="text30" style="margin-top:22rpx;margin-left:40rpx">·共享邀请人的VIP会员部分权益</view>
+    <view class="text30" style="margin-top:8rpx;margin-left:40rpx;">·随时了解家人健康状态</view> -->
+  </view>
+  <block wx:for="{{firstMessage.plugins}}" wx:key="true">
+    <block wx:if="{{item.action == 'acknowledge'}}">
+      <view class="button-success" style="float:left;margin-top:60rpx;margin-left:72rpx" bindtap="resolveMessage" data-type="1" >知道了</view>
+    </block>
+  </block>
+  
+  <!-- <view class="text30" style="color: #009591;width:100%;margin-top:40rpx;float:left;text-align:center" bindtap="resolveMessage" data-type="2">残忍拒绝</view> -->
+</view>
+<block wx:if="{{familyMessageArray.length}}">
+<view class="content-tab" bindtap="showMessage">
   <view class="content-tab-text-1">
-    <view class="content-tab-text-1-view-1">家庭成员邀请</view>
-    <view class="content-tab-text-1-view-2">张华 邀请你加入他的家庭</view>
+    <view class="content-tab-text-1-view-1">{{firstMessage.message_title}}</view>
+    <view class="content-tab-text-1-view-2">{{firstMessage.sender_nickname}} {{firstMessage.message_content}}</view>
   </view>
   <image class="content-tab-arrow" src="../../images/arrow@2x.png" />
   <block wx:if="{{unReadCount}}">
@@ -25,3 +43,4 @@
   <image class="content-tab-arrow" src="../../images/arrow@2x.png" />
   <view class="content-tab-text-3"></view>
 </view> -->
+</block>

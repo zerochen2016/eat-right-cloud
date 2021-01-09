@@ -9,14 +9,17 @@
 </view>
 <view class="info-view">
   <view class="text36 info-text-1">性别</view>
-  <view class="info-text-2">
+  
     <block wx:if="{{userProfile.gender == 'GENDER_MALE'}}">
-      男
+      <view class="info-text-2">男</view>
     </block>
     <block wx:elif="{{userProfile.gender == 'GENDER_FEMALE'}}">
-      女
+      <view class="info-text-2">女</view>
     </block>
-  </view>
+    <block wx:else>
+      <picker class="info-text-2" range="{{genderArr}}" value="{{genderIndex}}" bindchange="genderChange" style="color: rgba(0, 0, 0, 0.4);">请选择</picker>
+    </block>
+  
   <view class="line" style="float:left;margin-left:40rpx;width:710rpx"></view>
 </view>
 <view class="info-view">
@@ -50,13 +53,19 @@
 </view>
 <view class="text32" style="margin-top:60rpx;color: rgba(0, 0, 0, 0.54);margin-left:40rpx">测量偏好</view>
 <view class="finger">
-  <!-- TODO 推荐角标 -->
+  
     <block wx:if="{{userProfile.hand == 'HAND_LEFT'}}">
-      <view class="finger-view" bindtap="handChange" data-hand="HAND_LEFT" style="float:left;background-color: #009591;color: white">左食指</view>
+      <view class="finger-view" bindtap="handChange" data-hand="HAND_LEFT" style="float:left;background-color: #009591;color: white">
+        <text class="finger-view-text">左食指</text>
+        <image class="finger-view-image" src="../../images/my/recommend@3x.png" />
+      </view>
       <view class="finger-view" bindtap="handChange" data-hand="HAND_RIGHT" style="float:right">右食指</view>
     </block>
     <block wx:else>
-      <view class="finger-view" bindtap="handChange" data-hand="HAND_LEFT"  style="float:left">左食指</view>
+      <view class="finger-view" bindtap="handChange" data-hand="HAND_LEFT"  style="float:left">
+        <text class="finger-view-text">左食指</text>
+        <image class="finger-view-image" src="../../images/my/recommend@3x.png" />
+      </view>
       <view class="finger-view" bindtap="handChange" data-hand="HAND_RIGHT"  style="float:right;background-color: #009591;color: white">右食指</view>
     </block>
 

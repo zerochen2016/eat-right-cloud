@@ -7,6 +7,7 @@
     "pages/my-family/my-family",
     "pages/my-family-add/my-family-add",
     "pages/my-family-member/my-family-member",
+    "pages/my-update-password/my-update-password",
     "pages/setup/setup",
     "pages/message/message",
     "pages/share/share",

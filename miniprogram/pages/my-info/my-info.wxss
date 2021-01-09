@@ -32,3 +32,15 @@
   line-height: 132rpx;
   border: 2rpx solid #009591;
 }
+
+.finger-view-text{
+  float: left;
+  width: 130rpx;
+  margin-left: 98rpx;
+}
+.finger-view-image{
+  width:48rpx;
+  height:28rpx;
+  float:left;
+  margin-top: 52rpx;
+}

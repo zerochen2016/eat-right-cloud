@@ -5,7 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    mobile: ''
+    languageArray: ['简体中文'],
+    languageIndex: 0,
+    musicArray: ['Auid Lang Syne'],
+    musicIndex: 0
   },
 
   /**
@@ -56,5 +59,10 @@ Page({
   onReachBottom: function () {
 
   },
-
+  languageChange: function(e){
+    console.log(e)
+  },
+  musicChange: function(e){
+    console.log(e)
+  }
 })
