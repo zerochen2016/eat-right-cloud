@@ -1,0 +1,60 @@
+/* 内容条1start */
+.content-tab{
+  width: 100%;
+  height: 172rpx;
+  background: #FFFFFF;
+  margin-top: 24rpx;
+}
+.content-tab-text-1-view-1{
+  width: 400rpx;
+  font-size: 38rpx;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.87);
+  line-height: 38rpx;
+  margin-left: 40rpx;
+  margin-top: 50rpx;
+  float: left;
+}
+.content-tab-text-1-view-2{
+  width: 200px;
+  height: 34rpx;
+  font-size: 24rpx;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.4);
+  line-height: 34rpx;
+  margin-left: -400rpx;
+  margin-top: 94rpx;
+  float: left;
+}
+.content-tab-text-2{
+  height: 40rpx;
+  font-size: 28rpx;
+  font-weight: 400;
+  color: #FF3B30;
+  line-height: 40rpx;
+  float: right;
+  margin-top: 66rpx;
+  margin-right: 8rpx;
+}
+.content-tab-text-3{
+  height: 20rpx;
+  width: 20rpx;
+  border-radius: 50%;
+  font-size: 28rpx;
+  font-weight: 400;
+  background-color: #FF3B30;
+  color: white;
+  line-height: 20rpx;
+  float: right;
+  margin-top: 76rpx;
+  margin-right: 8rpx;
+  text-align: center;
+}
+.content-tab-arrow{
+  width: 48rpx;
+  height: 48rpx;
+  float: right;
+  margin-right: 30rpx;
+  margin-top: 62rpx;
+}
+/* 内容条1end */

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "我的家庭",
+  "usingComponents": {
+    "select-mobile": "../../components/select-mobile/select-mobile"
+  }
+}

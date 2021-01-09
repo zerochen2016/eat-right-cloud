@@ -75,6 +75,42 @@
           "pathName": "pages/login-forget/login-forget",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/test/test",
+          "pathName": "pages/test/test",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/my/my",
+          "pathName": "pages/my/my",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/my-info/my-info",
+          "pathName": "pages/my-info/my-info",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/my-family/my-family",
+          "pathName": "pages/my-family/my-family",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/setup/setup",
+          "pathName": "pages/setup/setup",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/message/message",
+          "pathName": "pages/message/message",
+          "query": "",
+          "scene": null
         }
       ]
     }

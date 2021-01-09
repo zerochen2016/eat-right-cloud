@@ -63,10 +63,8 @@
     <image class="pop-alert-view-image" src="../../images/logo-alert@2x.png" />
     <view class="pop-alert-view-text">重要通知</view>
     <view class="pop-alert-view-line"></view>
-    <view class="pop-alert-view-title">{{importantNotice.title}}</view>
-    <text class="pop-alert-view-content">{{importantNotice.content}}
-    </text>
-    <view class="pop-alert-view-button" bindtap="goThirdWeb" data-url="{{importantNotice.url}}">赶紧抢购</view>
+    <rich-text nodes="{{updateInfo}}" class="pop-alert-view-content"></rich-text>
+    <view class="pop-alert-view-button" bindtap="closeNotice" data-url="{{importantNotice.url}}">立即更新</view>
   </view>
   <image class="pop-alert-image" bindtap="closeNotice" src="../../images/cancel-circle@2x.png" />
 </view>

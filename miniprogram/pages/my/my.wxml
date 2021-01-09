@@ -1,0 +1,59 @@
+<view class="myinfo">
+  <image class="myinfo-avatar" src="{{avatarUrl}}" />
+  <view class="myinfo-view">
+    <view class="myinfo-name">{{nickName}}</view>
+    
+    <block wx:if="{{user.isVip}}">
+      <view class="myinfo-member">VIP会员剩余天数：{{vipRemainDay}}天</view>
+    </block>
+    <block wx:else>
+      <view class="myinfo-member">未开通会员，更多权益等你解锁</view>
+    </block>
+    <view bindtap="go" data-page="my-info" class="myinfo-update">编辑档案</view>
+  </view>
+  <view class="myinfo-list">
+    <view bindtap="go" data-page="my-family"><image src="../../images/my/family@2x.png"/><text>我的家庭</text></view>
+    <view bindtap="goThirdWeb" data-url="{{myOrderUrl}}"><image src="../../images/my/order@2x.png"/><text>订单信息</text></view>
+    <view bindtap="go" data-page="my-store"><image src="../../images/my/store@2x.png"/><text>我的收藏</text></view>
+  </view>
+</view>
+<view class="content-tab" data-page="member" bindtap="go">
+  <view class="content-tab-text-1" >
+    <view class="content-tab-text-1-view-1">会员中心</view>
+    <view class="content-tab-text-1-view-2">购买小阶感测器</view>
+  </view>
+  <image class="content-tab-arrow" src="../../images/arrow@2x.png" />
+  <view class="content-tab-text-2">新户1.00元</view>
+</view>
+<view class="content-tab" bindtap="go" data-page="message">
+  <view class="content-tab-text-1">
+    <view class="content-tab-text-1-view-1">消息通知</view>
+    <view class="content-tab-text-1-view-2">查看消息</view>
+  </view>
+  <image class="content-tab-arrow" src="../../images/arrow@2x.png" />
+  <block wx:if="{{unReadCount}}">
+    <view  class="content-tab-text-3">{{unReadCount}}</view>
+  </block>
+</view>
+<!-- 去关注组件 -->
+<view style="background-color:white;height:240rpx;width:100%;margin-top:24rpx">
+  <wechat-subscription style="float:left;margin-top:40rpx"></wechat-subscription>
+</view>
+<view class="content-tab-2">
+  <view class="content-tab-2-view" bindtap="go" data-page="help-feedback">
+    <view>帮助与反馈</view>
+    <image src="../../images/arrow@2x.png"/>
+  </view>
+  <view class="content-tab-2-view" data-url="https://jt-health.cn/about_us.html" bindtap="goThirdWeb">
+    <view>关于我们</view>
+    <image src="../../images/arrow@2x.png"/>
+  </view>
+  <view class="content-tab-2-view" bindtap="go" data-page="setup">
+    <view>设置</view>
+    <image src="../../images/arrow@2x.png"/>
+  </view>
+</view>
+
+<!-- 底部导航start -->
+<bottom-navigate id="bottom-navigate"></bottom-navigate>
+<!-- 底部导航end -->

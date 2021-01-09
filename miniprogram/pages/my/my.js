@@ -1,0 +1,144 @@
+const app = getApp()
+const dateUtil = require("../../utils/date-util.js")
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    avatarUrl: '',
+    nickName: '',
+    resourcesHost: '',
+    unReadCount: 0
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoaded: function (options) {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    //获取有赞我的订单页面
+    this.getMyOrderUrl()
+    //获取站内信
+    this.listNotification()
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+  listNotification: function(){
+    let that = this
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "NotificationAPI.ListOnSiteMessages",
+        "service": "com.jt-health.api.app",
+        "request": {
+         "user_id": app.getUser().id,
+        }
+        
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log(res)
+        if(res.statusCode == 200){
+           let unReadCount = 0
+           if(res.data.unread_messages_size){
+            unReadCount = res.data.unread_messages_size
+           }else if(res.data.unread_messages_size > 99){
+            unReadCount = 99
+           }
+           that.setData({
+            unReadCount: unReadCount
+           })
+        }
+
+      },
+    })     
+  },
+  getMyOrderUrl: function(){
+    let that = this
+    //TODO 订单路径无法打开
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "MallAPI.GetMyOrderUrl",
+        "service": "com.jt-health.api.app",
+        "request": {
+         "user_id": app.getUser().id,
+        }
+        
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log(res)
+        if(res.statusCode == 200){
+          that.setData({
+            myOrderUrl: res.data.yz_order_url
+          })
+        }
+
+      },
+    })     
+  },
+  initData: function(){
+    this.selectComponent("#bottom-navigate").changeActiveIndex(4)
+    let user = app.getUser()
+    let vipRemainDay = 0
+    if(user.isVip){
+      const vipRemainDay = dateUtil.dateDiffDay(new Date(), user.vipTime)          
+    }             
+    this.setData({
+      vipRemainDay: vipRemainDay
+    })
+  }
+})

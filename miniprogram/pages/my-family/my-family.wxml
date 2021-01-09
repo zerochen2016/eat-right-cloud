@@ -1,0 +1,52 @@
+<view class="head">
+  <image class="head-avatar" src="{{avatarUrl}}"/>
+  <view class="head-info">
+    <text class="text52" style="display:block">我的名字</text>
+    <block wx:if="{{familyVipRemaimDay > 0}}">
+      <image class="head-info-image-1" src="../../images/my/vip-family@2x.png" />
+    </block>
+    <block wx:else>
+      <text class="text24">未开通VIP家庭包</text>
+    </block>
+    <block wx:if="{{vipRemainDay > 0}}">
+      <image class="head-info-image-2" src="../../images/my/vip@2x.png" />
+    </block>
+  </view>
+</view>
+<view class="invite" >
+  <block wx:if="{{familyVipRemaimDay > 0}}">
+    <block wx:if="{{familys.length > 0}}">
+      <view class="text36 invite-text-1" bindtap="dismissFamily" >解散</view>
+      <view class="line-v invite-line"></view>
+      <view class="text36 invite-text-2" bindtap="go" data-page="my-family-add" data-familyid="{{familyId}}"><image class="invite-image-1" src="../../images/add@2x.png"/>邀请成员</view>      
+    </block>
+    <block wx:else>
+      <view class="text36 invite-text" bindtap="go" data-page="my-family-add" data-familyid="{{familyId}}"><image class="invite-image" src="../../images/add@2x.png"/>邀请成员</view>
+    </block>
+    
+  </block>
+  <block wx:else>
+    <view class="text36" style="width:100%;height:100%;text-align:center;line-height:110rpx;color:rgba(0, 149, 145, 1)" bindtap="go" data-page="member">立即开通VIP家庭包</view>
+  </block>
+</view>
+<block wx:if="{{familys.length > 0 && familyVipRemaimDay > 0}}" wx:key="true">
+<block wx:for="{{familys}}" wx:key="true">
+  <view class="family-view" bindtap="go" data-page="family-member" data-id="{{item.familyId}}">
+    <image class="family-view-avatar" src="{{item.avatarUrl}}" />
+    <view class="family-view-text">
+      <text class="text38">{{item.familyName}}</text>
+      <text class="text24" style="margin-top:10rpx;display: block">最近检测 {{item.lastCheckTime}}</text>
+    </view>
+    <image class="family-view-arrow" src="../../images/arrow@2x.png" />
+  </view>
+</block> 
+</block>
+<block wx:else>
+<view class="text36" style="color: rgba(0, 0, 0, 0.24);margin-top:100rpx">
+  <image src="../../images/tips@2x.png" style="width:32rpx;height:32rpx;margin-top:2rpx;float:left;margin-right:8rpx;margin-left:40rpx"/>
+  成员将获得
+</view>
+<view class="text30" style="color: rgba(0, 0, 0, 0.4);margin-top:30rpx;margin-left:40rpx">1、报告保管、改善对比、周报告、月报告。</view>
+<view class="text30" style="color: rgba(0, 0, 0, 0.4);margin-top:16rpx;margin-left:40rpx">2、随时了解家人健康状态</view>
+
+</block>

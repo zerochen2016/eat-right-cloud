@@ -1,5 +1,6 @@
 // pages/login/login.js
 const app = getApp()
+const dateUtil = require("../../utils/date-util.js")
 Page({
 
   /**
@@ -7,7 +8,7 @@ Page({
    */
   data: {
     hasAuth: false,
-    mobile: ''
+    inputMobile: ''
   },
 
   /**
@@ -75,14 +76,12 @@ Page({
   //授权获取用户信息
   getUserInfo: function(e) {
     console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
+    let userInfo = e.detail.userInfo
+    app.globalData.userInfo = userInfo
     const loginType = e.currentTarget.dataset.logintype//1微信登录2手机号登录
-    if(app.globalData.userInfo){
-      this.setData({
-        hasAuth: true
-      })
-      if(loginType == 1 && this.data.mobile){
-        this.wechatLogin()
+    if(userInfo){
+      if(loginType == 1){
+        this.getUnionId()
       }else if(loginType == 2){
         wx.navigateTo({
           url: '../login-mobile/login-mobile',
@@ -93,23 +92,21 @@ Page({
       console.info(app.globalData.userInfo);
     }
   },
-  //TODO 微信登录API
-  wechatLogin: function(){
+  getUnionId: function(){
     let that = this
-    // 登录 TODO
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         const code = res.code
+        console.log(code)
         wx.request({
-          url: that.globalData.apiHost, 
+          url: app.globalData.apiHost, 
           data: 
           JSON.stringify({
-            "method": "UserAPI.SignInByCode",
+            "method": "UserAPI.SignInByWechatMiniProgram",
             "service": "com.jt-health.api.app",
             "request": {
-             "code": code,
-             "language_code": "zh-Hans",
+             "code": code
             }
             
            }),
@@ -117,14 +114,44 @@ Page({
           method: "POST",
           header: {
             'content-type': 'application/json',
-            "Accept-Language": "zh-Hans",
-            "Authorization": 'Bearer ' + sign
+            "Authorization": 'Bearer ' + app.getRequestSign()
           },
           success(res) {
             console.log(res)
-            wx.redirectTo({
-              url: '../home/home',
-            })
+            if(res.statusCode == 200){
+              if(res.data.signed_in_context){
+                let userInfo = res.data.signed_in_context
+                app.setUser({
+                  id: userInfo.user_id,
+                  accessToken: userInfo.access_token.token,
+                  refreshToken: userInfo.refresh_token.token,
+                  yzCookieKey: userInfo.yz_cookie_key,
+                  yzCookieValue: userInfo.yz_cookie_value,
+                  yzOpenId: userInfo.yz_open_id,
+                  userProfile: userInfo.user_profile,
+                  mobile: userInfo.phone_mask,
+                  trialVipTime: dateUtil.utcToBeiJing(userInfo.subscription_summary.trial_timeline.expired_time),
+                  vipTimeBegin: dateUtil.utcToBeiJing(userInfo.subscription_summary.personal_timeline.available_begin_time),
+                  vipTime: dateUtil.utcToBeiJing(userInfo.subscription_summary.personal_timeline.expired_time),
+                  isVip: userInfo.subscription_summary.personal_subscription_expired ? false : true,
+                  vipFamilyTimeBegin: dateUtil.utcToBeiJing(userInfo.subscription_summary.family_timeline.available_begin_time),
+                  vipFamilyTime: dateUtil.utcToBeiJing(userInfo.subscription_summary.family_timeline.expired_time),
+                  isVipFamily: userInfo.subscription_summary.family_subscription_expired ? false : true
+                })
+                app.updateRequestSign(userInfo.access_token.token)
+                wx.navigateTo({
+                  url: '../home/home',
+                })
+              }else{
+                app.setUnionId(res.data.union_id)
+                that.setData({
+                  hasAuth: true
+                })
+              }
+              
+
+            }
+            
           }
         })
       }
@@ -135,37 +162,92 @@ Page({
     let that = this
     if(e.detail.encryptedData){
       console.log(e)
-      //TODO API进行手机号绑定
-      // wx.request({
-      //   url: getApp().data.server + 'user-bindmobile',
-      //   data: {
-      //     shareId: app.getShareId(),
-      //     encryptedData: e.detail.encryptedData,
-      //     iv: e.detail.iv,
-      //     openid: app.getUser().openid
-      //   },
-      //   dataType: 'json',
-      //   header: {
-      //     'content-type': 'application/x-www-form-urlencoded' // 默认值
-      //   },
-      //   method: 'POST',
-      //   success: function (res) {
-      //     if (res.statusCode == 200) {
-      //       var result = res.data;
-      //       console.info(result);
-      //       if (result.code == 0) {
-      //         app.setUser(result.data);
-      //         that.wechatLogin()
-      //           
-      //       } 
-      //     } else {
-      //       return;
-      //     }
-      //   },
-      // })      
+      wx.request({
+        url: app.globalData.apiHost, 
+        data: 
+        JSON.stringify({
+          "method": "UserAPI.GetWechatPhone",
+          "service": "com.jt-health.api.app",
+          "request": {
+           "encrypted_data": e.detail.encryptedData,
+           "v1": e.detail.iv,
+           "union_id": app.getUnionId()
+          }
+          
+         }),
+        dataType: 'json',
+        method: "POST",
+        header: {
+          'content-type': 'application/json',
+          "Authorization": 'Bearer ' + app.getRequestSign()
+        },
+        success(res) {
+          console.log(res)
+          if(res.statusCode == 200){
+            app.setWechatMobile(res.data.phone)
+            app.setWechatNationCode('+'+res.data.nation_code)
+            that.doWechatLogin()
+          }
+          
+        }
+      })  
     }else{
       console.log("拒绝获取手机号")
     }
   },
+  doWechatLogin: function(){
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "UserAPI.BindWechatPhone",
+        "service": "com.jt-health.api.app",
+        "request": {
+          "nation_code": app.getWechatNationCode(),
+          "phone": app.getWechatMobile(),
+          "union_id": app.getUnionId(),
+          "sms_code": "",
+          "avatar_url": app.globalData.userInfo.avatarUrl,
+          "nickname": app.globalData.userInfo.nickname,
+          "gender": app.globalData.userInfo.gender == 1 ? 'GENDER_MALE' : 'GENDER_FEMALE'
+        }
+        
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log(res)
+        if(res.statusCode == 200){
+          let userInfo = res.data.signed_in_context
+          app.setUser({
+            id: userInfo.user_id,
+            accessToken: userInfo.access_token.token,
+            refreshToken: userInfo.refresh_token.token,
+            yzCookieKey: userInfo.yz_cookie_key,
+            yzCookieValue: userInfo.yz_cookie_value,
+            yzOpenId: userInfo.yz_open_id,
+            userProfile: userInfo.user_profile,
+            mobile: userInfo.phone_mask,
+            trialVipTime: dateUtil.utcToBeiJing(userInfo.subscription_summary.trial_timeline.expired_time),
+            vipTimeBegin: dateUtil.utcToBeiJing(userInfo.subscription_summary.personal_timeline.available_begin_time),
+            vipTime: dateUtil.utcToBeiJing(userInfo.subscription_summary.personal_timeline.expired_time),
+            isVip: userInfo.subscription_summary.personal_subscription_expired ? false : true,
+            vipFamilyTimeBegin: dateUtil.utcToBeiJing(userInfo.subscription_summary.family_timeline.available_begin_time),
+            vipFamilyTime: dateUtil.utcToBeiJing(userInfo.subscription_summary.family_timeline.expired_time),
+            isVipFamily: userInfo.subscription_summary.family_subscription_expired ? false : true
+          })
+          app.updateRequestSign(userInfo.access_token.token)
+          wx.navigateTo({
+            url: '../home/home',
+          })
+        }
+        
+      }
+    })  
+  }
   
 })

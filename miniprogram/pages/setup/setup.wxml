@@ -1,0 +1,35 @@
+<view>
+    
+</view>
+<view class="content-tab-3">  
+    <view class="content-tab-3-view" >
+        <view class="text36">手机号</view>
+        <view class="content-tab-3-view-text-2">{{mobile}}</view>
+        <image class="content-tab-3-view-image" src="../../images/arrow@2x.png"/>
+    </view>
+    <view class="content-tab-3-view" bindtap="go" data-page="update-password" >
+        <view class="content-tab-3-view-text-1">修改密码</view>
+        <view class="content-tab-3-view-text-2"></view>
+        <image class="content-tab-3-view-image" src="../../images/arrow@2x.png"/>
+    </view>
+</view>
+
+<view class="content-tab-3" style="margin-top:24rpx;border:none">  
+    <view class="content-tab-3-view" >
+        <view class="content-tab-3-view-text-1">检测音乐</view>
+        <view class="content-tab-3-view-text-2">Auid Lang Syne</view>
+        <image class="content-tab-3-view-image" src="../../images/arrow@2x.png"/>
+    </view>
+    <view class="content-tab-3-view" >
+        <view class="content-tab-3-view-text-1">设置语言</view>
+        <view class="content-tab-3-view-text-2">简体中文</view>
+        <image class="content-tab-3-view-image" src="../../images/arrow@2x.png"/>
+    </view>
+</view>
+<view class="content-tab-3" style="height: 128rpx;margin-top:24rpx;border:none" >  
+    <view class="content-tab-3-view" >
+        <view class="content-tab-3-view-text-1">服务条款</view>
+        <image class="content-tab-3-view-image" src="../../images/arrow@2x.png"/>
+    </view>
+</view>
+<view class="login-out" bindtap="loginout">退出登录</view>

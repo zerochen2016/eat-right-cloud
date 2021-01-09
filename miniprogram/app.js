@@ -18,35 +18,13 @@ App({
       apiHost: "https://dev-api.jt-health.cn:18088/rpc",//接口前缀，需要https
       // apiHost: "https://api.jt-health.cn:18088/rpc",//接口前缀，需要https
       resourcesHost: "https://jtfile.pingfangli.com/",//图片等资源前缀，需要https
+      signHost: "http://jt.pingfangli.com/",//TODO 云托管
       userInfo: null,//微信授权后获取用户昵称和头像,
     }
 
-    this.getWechatUserInfo()//微信授权信息   
     this.timedTaskRefreshToken()
   },
   
-
-  getWechatUserInfo: function(){
-    // 获取用户信息，
-    // 1. 已经授权获取手机号的去主页
-    // 2. 已经授权未获取手机号的去登录页
-    // 3. 未授权的去登录页面
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              this.globalData.userInfo = res.userInfo
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
-              }
-            }
-          })
-        }
-      }
-    })
-  },
   /**
    * 检测时播放的音乐链接
    */
@@ -124,17 +102,17 @@ App({
   setShareId: function(shareId){
     wx.setStorageSync("shareId", shareId);
   },  
-    /**
-   * 首页重要通知版本号，标记是否展示过
+  /**
+   * 版本号
    */
-  getImportantNoticeVersion: function(){
-    return wx.getStorageSync("importantNoticeVersion");
+  getAppVersion: function(){
+    return wx.getStorageSync("version");
   },
   /**
-   * 首页重要通知版本号，标记是否展示过
+   * 版本号
    */
-  setImportantNoticeVersion: function(version){
-    wx.setStorageSync("importantNoticeVersion", version);
+  setAppVersion: function(version){
+    wx.setStorageSync("version", version);
   },
   /**
    * 加载框
@@ -161,17 +139,24 @@ App({
       showCancel: false,
     })
   },
-  getAccessToken: function(){
-    return wx.getStorageSync("accessToken")
+  
+  getWechatNationCode: function(){
+    return wx.getStorageSync("wechatNationCode");
   },
-  setAccessToken: function(accessToken){
-    wx.setStorageSync("accessToken", accessToken);
+  setWechatNationCode: function(wechatNationCode){
+    wx.setStorageSync("wechatNationCode", wechatNationCode);
   },
-  getRefreshToken: function(){
-    return wx.getStorageSync("refreshToken");
+  getWechatMobile: function(){
+    return wx.getStorageSync("wechatMobile");
   },
-  setRefreshToken: function(refreshToken){
-    wx.setStorageSync("refreshToken", refreshToken);
+  setWechatMobile: function(wechatMobile){
+    wx.setStorageSync("wechatMobile", wechatMobile);
+  },
+  getUnionId: function(){
+    return wx.getStorageSync("unionId");
+  },
+  setUnionId: function(unionId){
+    wx.setStorageSync("unionId", unionId);
   },
   getRequestSign: function(){
     return wx.getStorageSync("requestSign");
@@ -179,32 +164,127 @@ App({
   setRequestSign: function(requestSign){
     wx.setStorageSync("requestSign", requestSign);
   },
-  timedTaskRefreshToken: function(accessToken){
+  updateRequestSign: function(accessToken){
+    let that = this
+    //TODO 云托管
+    wx.request({
+      url: that.globalData.signHost + "sign", 
+      data: {
+        accessToken: accessToken,
+        key: "jtutil_sign"
+      },
+    
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+      },
+      success: function(res){
+        let token = res.data.info
+        that.setRequestSign(token)
+      }
+    })                          
+  },
+  timedTaskRefreshToken: function(){
     let that = this
     console.log("-------6分钟定时任务 刷新token-----")
-    if(that.getAccessToken()){
-      console.log("-----has accessToken----")
-    }else{
-      console.log("-----no accessToken----")
-      //TODO 云托管
-      wx.request({
-        url: "http://jt.pingfangli.com/sign", 
-        data: {
-          accessToken: accessToken,
-          key: "jtutil_sign"
-        },
-      
-        dataType: 'json',
-        method: "POST",
-        header: {
-          'content-type': 'application/x-www-form-urlencoded',
-        },
-        success(res) {
-          that.setRequestSign(res.data.info)
+    //TODO 云托管
+    wx.request({
+      url: that.globalData.signHost + "sign", 
+      data: {
+        accessToken: "",
+        key: "jtutil_sign"
+      },
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+      },
+      success(res) {
+        let user = that.getUser()
+        let token = res.data.info
+        if(user && user.refreshToken){
+          console.log("-----has refreshToken----")
+          console.log(user.refreshToken)
+          wx.request({
+            url: that.globalData.apiHost, 
+            data: 
+            JSON.stringify({
+              "method": "UserAPI.RefreshRefreshToken",
+              "service": "com.jt-health.api.app",
+              "request": {
+               "user_id": user.id,
+               "refresh_token": user.refreshToken
+              }
+             }),
+            dataType: 'json',
+            method: "POST",
+            header: {
+              'content-type': 'application/json',
+              "Authorization": 'Bearer ' + token
+            },
+            success(res) {
+              console.log(res)
+              if(res.statusCode == 200){
+                const refreshToken = res.data.refresh_token.token
+                if(refreshToken){
+                  wx.request({
+                    url: that.globalData.apiHost, 
+                    data: 
+                    JSON.stringify({
+                      "method": "UserAPI.RefreshAccessToken",
+                      "service": "com.jt-health.api.app",
+                      "request": {
+                       "user_id": user.id,
+                       "refresh_token": user.refreshToken
+                      }
+                     }),
+                    dataType: 'json',
+                    method: "POST",
+                    header: {
+                      'content-type': 'application/json',
+                      "Authorization": 'Bearer ' + token
+                    },
+                    success(res) {
+                      console.log(res)
+                      if(res.statusCode == 200){
+                        const accessToken = res.data.access_token.token
+                        if(refreshToken){
+                          user.refreshToken = refreshToken
+                          user.accessToken = accessToken
+                          that.setUser(user)
+                          //TODO 云托管
+                          wx.request({
+                            url: that.globalData.signHost + "sign", 
+                            data: {
+                              accessToken: accessToken,
+                              key: "jtutil_sign"
+                            },
+                          
+                            dataType: 'json',
+                            method: "POST",
+                            header: {
+                              'content-type': 'application/x-www-form-urlencoded',
+                            },
+                            success: function(res){
+                              let token = res.data.info
+                              that.setRequestSign(token)
+                            }
+                          })
+                        }
+                      }
+                    },
+                  }) 
+                }
+              }
+            },
+          })   
+        }else{
+          console.log("-----no refreshToken----")
+          that.setRequestSign(token)
         }
-      })
-    }
-
+      }
+    })
     //8分钟定时器
     setTimeout(that.timedTaskRefreshToken,480000)
     

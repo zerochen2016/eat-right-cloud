@@ -1,0 +1,11 @@
+<rich-text>
+  <html>
+    <head>
+      
+    </head>
+    <body>
+      {{content}}    
+    </body>
+  </html>
+  
+</rich-text>

@@ -2,7 +2,8 @@
 const app = getApp()
 var verifyCodeLock = 0 //防止连续点击获取验证码
 var loginLock = 0 //防止连续点击登录
-var util = require("../../utils/util.js")
+const dateUtil = require("../../utils/date-util.js")
+const util = require("../../utils/util.js")
 Page({
 
   /**
@@ -109,20 +110,19 @@ Page({
   doLogin: function(e){
     console.log(e)
     var that = this
+    console.log(this.data.verifyCode)
     if(util.isMobile(this.data.inputMobile) && this.data.verifyCode.length == 6 && loginLock == 0){
       loginLock = 1
       wx.request({
         url: app.globalData.apiHost, 
         data: 
         JSON.stringify({
-          "method": "UserAPI.SignUpByPhone",
+          "method": "UserAPI.SignInByPhoneCode",
           "service": "com.jt-health.api.app",
           "request": {
            "phone": that.data.inputMobile,
-           "sms_verification_code": that.data.verifyCode,
+           "sms_code": that.data.verifyCode,
            "nation_code": that.data.areaCode,
-           "language_code": "zh_Hans",
-           "plain_password": 'jt' + that.data.inputMobile
           }
           
          }),
@@ -134,20 +134,30 @@ Page({
           "Authorization": 'Bearer ' + app.getRequestSign()
         },
         success(res) {
+          console.log(res)
           if(res.statusCode == 200){
-            let user = app.getUser()
-            if(user){
-              user.id = res.data.user_profile_id
-              // user.access_token = res.data.access_token
-              // user.refresh_token = res.data.refresh_token
-              app.setUser(user)
-            }else{
-              app.setUser({
-                id: res.data.user_profile_id,
-                // access_token: res.data.access_token,
-                // refresh_token: res.data.refresh_token
-              })
-            }
+            let userInfo = res.data.signed_in_context
+            app.setUser({
+              id: userInfo.user_id,
+              accessToken: userInfo.access_token.token,
+              refreshToken: userInfo.refresh_token.token,
+              yzCookieKey: userInfo.yz_cookie_key,
+              yzCookieValue: userInfo.yz_cookie_value,
+              yzOpenId: userInfo.yz_open_id,
+              userProfile: userInfo.user_profile,
+              mobile: userInfo.phone_mask,
+              trialVipTime: dateUtil.utcToBeiJing(userInfo.subscription_summary.trial_timeline.expired_time),
+              vipTimeBegin: dateUtil.utcToBeiJing(userInfo.subscription_summary.personal_timeline.available_begin_time),
+              vipTime: dateUtil.utcToBeiJing(userInfo.subscription_summary.personal_timeline.expired_time),
+              isVip: userInfo.subscription_summary.personal_subscription_expired ? false : true,
+              vipFamilyTimeBegin: dateUtil.utcToBeiJing(userInfo.subscription_summary.family_timeline.available_begin_time),
+              vipFamilyTime: dateUtil.utcToBeiJing(userInfo.subscription_summary.family_timeline.expired_time),
+              isVipFamily: userInfo.subscription_summary.family_subscription_expired ? false : true
+            })
+            app.updateRequestSign(userInfo.access_token.token)
+            wx.navigateTo({
+              url: '../home/home',
+            })
           }
         
         },

@@ -1,10 +1,22 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/my/my",
+    "pages/my-info/my-info",
+    "pages/my-store/my-store",
+    "pages/my-family/my-family",
+    "pages/my-family-add/my-family-add",
+    "pages/my-family-member/my-family-member",
+    "pages/setup/setup",
+    "pages/message/message",
+    "pages/share/share",
     "pages/login/login",
     "pages/login-mobile/login-mobile",
     "pages/login-password/login-password",
     "pages/login-forget/login-forget",
+    "pages/third-webview/third-webview",
+    "pages/special/special",
+    "pages/article/article",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
@@ -17,7 +29,9 @@
     "pages/openapi/callback/callback",
     "pages/openapi/cloudid/cloudid",
     "pages/im/im",
-    "pages/im/room/room"
+    "pages/im/room/room",
+    "pages/test/test"
+
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

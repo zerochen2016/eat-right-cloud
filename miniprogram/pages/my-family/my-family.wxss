@@ -1,0 +1,101 @@
+.head{
+  width: 100%;
+  height: 230rpx;
+  background-color: white;
+}
+.head-avatar{
+  border-radius: 50%;
+  width: 112rpx;
+  height: 112rpx;
+  margin-left: 40rpx;
+  margin-top: 60rpx;
+  float: left;
+}
+.head-info{
+  margin-left: 16rpx;
+  margin-top: 60rpx;
+  float: left;
+}
+.head-info-image-1{
+  width: 82rpx;
+  height: 36rpx;
+}
+.head-info-image-2{
+  width: 54rpx;
+  height: 34rpx;
+  margin-left: 8rpx;
+}
+.invite{
+  width: 100%;
+  height: 110rpx;
+  background-color: white;
+  border-top: 2rpx solid rgba(223, 230, 233, 1);
+}
+.invite-image{
+  width: 40rpx;
+  height: 40rpx;
+  margin-top: 35rpx;
+  float: left;
+  margin-left: 280rpx;
+  margin-right: 10rpx;
+}
+.invite-text{
+  float: left;
+  width: 750rpx;
+  color:rgba(0, 149, 145, 1);
+  line-height: 110rpx;
+}
+.invite-text-1{
+  color:rgba(0,0,0,0.24);
+  float: left;
+  line-height: 110rpx;
+  width: 220rpx;
+  text-align: center;
+}
+.invite-line{
+  float: left;
+  height: 72rpx;
+  margin-top: 19rpx;
+}
+.invite-image-1{
+  width: 40rpx;
+  height: 40rpx;
+  float: left;
+  margin-top: 35rpx;
+  margin-left: 180rpx;
+  margin-right: 10rpx;
+}
+.invite-text-2{
+  line-height: 110rpx;
+  width: 530;
+  color:rgba(0, 149, 145, 1);
+  text-align: left;
+}
+.family-view{
+  width: 100%;
+  height: 192rpx;
+  background-color: white;
+  margin-top: 24rpx;
+}
+.family-view-avatar{
+  width: 100rpx;
+  height: 100rpx;
+  margin-top: 46rpx;
+  margin-left: 40rpx;
+  border-radius: 50%;
+  float: left;
+}
+.family-view-text{
+  width: 500rpx;
+  height: 92rpx;
+  float: left;
+  margin-left: 20rpx;
+  margin-top: 50rpx;
+}
+.family-view-arrow{
+  float: right;
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 30rpx;
+  margin-top: 72rpx;
+}

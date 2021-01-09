@@ -35,7 +35,7 @@ Page({
    */
   onShow: function () {
     //获取弹窗公共
-    this.getImportantNotice()
+    this.getVersionUpdateInfo()
     //获取专题数据
     this.listSpecial()
     //获取大图推荐
@@ -44,6 +44,8 @@ Page({
     this.listCareFullyChosen()
     //获取更多为您推荐
     this.getMoreRecommend()
+    //导航选中
+    this.selectComponent("#bottom-navigate").changeActiveIndex(0)
   },
 
   /**
@@ -240,55 +242,68 @@ Page({
           }
         })
     },
-  //TODO 重要通知API
-  getImportantNotice: function(){
-    var that = this
-    // wx.request({
-    //   url: getApp().data.server + 'getImportantNotice',
-    //   data: {
-
-    //   },
-    //   dataType: 'json',
-    //   header: {
-    //     'content-type': 'application/x-www-form-urlencoded' 
-    //   },
-    //   method: 'POST',
-    //   success: function (res) {
-    //     if (res.statusCode == 200) {
-    //       var result = res.data;
-    //       if (result.code == 0) {
-    //         if(app.getImportantNoticeVersion() != result.version){
-    //           that.setData({
-    //             showImportantNotice: 1,
-    //             importantNotice: result.importantNotice
-    //           })
-    //           app.setImportantNoticeVersion(result.version)
-    //         }
-
-    //       } 
-    //     } else {
-    //       return;
-    //     }
-    //   },
-    // })    
-    //TODELETE 测试用数据
-    if(app.getImportantNoticeVersion() != 2){
-      that.setData({
-        showImportantNotice: 1,
-        importantNotice: {
-          title: "小阶感测器10.1节日大促", url: "http://www.baidu.com", content: "*节日当天买一送一，送父母送长辈*节日当天购买赠送一年保修期"
-        }
-      })
-      app.setImportantNoticeVersion(2)
+  getVersionUpdateInfo: function(){
+    let that = this
+    console.log(wx.getSystemInfoSync())   
+    const system = wx.getSystemInfoSync().system.toLowerCase().toString()
+    console.log(system)
+    let method = "UserAPI.GetAndroidUpdateInfo"
+    let isIos = false
+    if(system.indexOf('ios') != -1 || system.indexOf('macos') != -1){
+      method = "UserAPI.GetIOSUpdateInfo"
+      isIos = true
     }
-  },
-  
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": method,
+        "service": "com.jt-health.api.app",
+        "request": {}
+        
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log(res)
+        if(res.statusCode == 200){
+          let appLink, appSize, updateInfo, version = ''
+          let showImportantNotice = 0
+          if(isIos){
+            appLink = res.data.app_store_link,
+            appSize = res.data.app_size,
+            updateInfo = res.data.update_info,
+            version = res.data.version
+          }else{
+            appLink = res.data.apk_link,
+            appSize = res.data.apk_size,
+            updateInfo = res.data.update_info,
+            version = res.data.version
+          }
+          if(app.getAppVersion() != version){
+            showImportantNotice = 1
+          }
+           that.setData({
+            appLink: appLink,
+            appSize: appSize,
+            updateInfo: updateInfo,
+            version: version,
+            showImportantNotice: showImportantNotice
+          })
+
+        }
+
+      },
+    })  
+  },    
   closeNotice: function(e){
+    app.setAppVersion(this.data.version)
     this.setData({
       showImportantNotice: 0
     })
   },
-  initData: function(){
-    this.selectComponent("#bottom-navigate").changeActiveIndex(0)
-  }
 })

@@ -1,7 +1,8 @@
 const app = getApp()
 let loginLock = 0 //防止连续点击登录
-let util = require("../../utils/util.js")
-let sha256 = require("../../utils/sha256.js")
+const util = require("../../utils/util.js")
+const sha256 = require("../../utils/sha256.js")
+const dateUtil = require("../../utils/date-util.js")
 
 Page({
 
@@ -125,29 +126,23 @@ Page({
               id: res.data.user_id,
               accessToken: res.data.access_token.token,
               refreshToken: res.data.refresh_token.token,
-              subscriptionSummary: res.data.subscription_summary
+              yzCookieKey: res.data.yz_cookie_key,
+              yzCookieValue: res.data.yz_cookie_value,
+              yzOpenId: res.data.yz_open_id,
+              userProfile: res.data.user_profile,
+              mobile: that.data.inputMobile,
+              trialVipTime: dateUtil.utcToBeiJing(res.data.subscription_summary.trial_timeline.expired_time),
+              vipTimeBegin: dateUtil.utcToBeiJing(res.data.subscription_summary.personal_timeline.available_begin_time),
+              vipTime: dateUtil.utcToBeiJing(res.data.subscription_summary.personal_timeline.expired_time),
+              isVip: res.data.subscription_summary.personal_subscription_expired ? false : true,
+              vipFamilyTimeBegin: dateUtil.utcToBeiJing(res.data.subscription_summary.family_timeline.available_begin_time),
+              vipFamilyTime: dateUtil.utcToBeiJing(res.data.subscription_summary.family_timeline.expired_time),
+              isVipFamily: res.data.subscription_summary.family_subscription_expired ? false : true
             })
+            app.updateRequestSign(res.data.access_token.token)
             wx.navigateTo({
               url: '../home/home',
             })
-            // data:
-            // access_token: {token: "1522ab53-fcd1-4695-846d-f3ffe4289285", expired_time: "2021-01-07T17:18:44.416327211Z"}
-            // refresh_token: {token: "2b10d41a-7817-4f1f-a79b-ea167d9fc65a", expired_time: "2021-01-14T17:03:44.417511837Z"}
-            // subscription_summary:
-            // family_subscription_expired: true
-            // family_timeline: {available_begin_time: "1980-01-01T00:00:00Z", expired_time: "1980-01-01T00:00:00Z"}
-            // gender: "GENDER_MALE"
-            // personal_subscription_expired: true
-            // personal_timeline: {available_begin_time: "1980-01-01T00:00:00Z", expired_time: "1980-01-01T00:00:00Z"}
-            // trial_timeline: {available_begin_time: "1980-01-01T00:00:00Z", expired_time: "1980-01-01T00:00:00Z"}
-            // __proto__: Object
-            // user_id: "bvrjq4qvooebjhs7u0i0"
-            // user_profile: {user_profile_id: "bvrjq4qvooebjhs7u0i0", birthday: {…}, hand: "HAND_LEFT", gender: "GENDER_MALE"}
-            // yz_cookie_key: "open_cookie_b2cd851af6edb4421d"
-            // yz_cookie_value: "YZ796906956870049792YZO2ihdozU"
-            // yz_open_id: "Tavm5DhN796906956752199680"
-            
-            
           }
         
         },

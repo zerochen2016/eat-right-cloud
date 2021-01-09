@@ -1,0 +1,34 @@
+.info-view{
+  background-color: white;
+  width:100%;
+  height:120rpx
+}
+.info-text-1{
+  margin-left: 40rpx;
+  height:120rpx;
+  line-height:120rpx;
+  width: 100rpx;
+  float: left;
+}
+.info-text-2{
+  margin-left: 100rpx;
+  height:120rpx;
+  line-height:120rpx;
+  width: 300rpx;
+  float: left;
+}
+.finger{
+  width: 100%;
+  height: 132rpx;
+  background: #FFFFFF;
+  text-align: center;
+  margin-top: 20rpx;
+}
+.finger-view{
+  width: 374rpx;
+  font-size: 36rpx;
+  font-weight: 500;
+  color: #009591;
+  line-height: 132rpx;
+  border: 2rpx solid #009591;
+}
