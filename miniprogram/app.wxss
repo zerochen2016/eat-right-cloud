@@ -62,6 +62,12 @@ page{
   color: rgba(0, 0, 0, 0.87);
   line-height: 52rpx;
 }
+.text56{
+  font-size: 56rpx;
+  font-weight: 800;
+  color: rgba(0, 0, 0, 0.87);
+  line-height: 56rpx;
+}
 .text60{
   font-size: 60rpx;
   font-weight: 800;
@@ -102,6 +108,7 @@ page{
   height: 96rpx;
   background:#DFE6E9;
 }
+
 /* 按钮灰色 */
 .button-grey{
   width: 606rpx;

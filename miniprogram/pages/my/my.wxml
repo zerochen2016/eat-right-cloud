@@ -1,7 +1,8 @@
 <view class="myinfo">
+<!-- TODO头像 -->
   <image class="myinfo-avatar" src="{{avatarUrl}}" />
   <view class="myinfo-view">
-    <view class="myinfo-name">{{nickName}}</view>
+    <view class="myinfo-name">{{userProfile.nickname}}</view>
     
     <block wx:if="{{vipInfo.isVip}}">
       <view class="myinfo-member">VIP会员剩余天数：{{vipInfo.vipRemainDay}}天</view>

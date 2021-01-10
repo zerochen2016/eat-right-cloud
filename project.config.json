@@ -139,6 +139,25 @@
         {
           "name": "pages/my-family/my-family",
           "pathName": "pages/my-family/my-family",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/check/check",
+          "pathName": "pages/check/check",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/checktest/checktest",
+          "pathName": "pages/checktest/checktest",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/check-device/check-device",
+          "pathName": "pages/check-device/check-device",
+          "query": "",
           "scene": null
         }
       ]

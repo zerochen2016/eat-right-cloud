@@ -1,19 +1,19 @@
 <!-- 检测start -->
 <view class="head">
   <view class="text72 head-text">欢迎回来！</view>
-  <image class="avatar head-avatar" src="{{avatarUrl}}"></image>
+  <image class="avatar90 head-avatar" src="{{avatarUrl}}"></image>
 </view>
 
 <view class="new">
   <view class="text30 new-text-1">
-    <image class="new-image" src="../images/check/notice@2x.png"/>新手必读
+    <image class="new-image" src="../../images/check/notice@2x.png"/>新手必读
   </view>
-  <view class="text26 new-text-2">王唯工《气血共振理论》</view>
+  <view class="text26 new-text-2" bindtap="nTo" data-path="article/theory-wangweigong">王唯工《气血共振理论》</view>
 </view>
 <view class="check-link">
   <view class="check-link-equip text24">
       <view style="{{connectStatus == 1 ? 'background-color: #00B567' : 'background-color: #E86452'}}"></view>
-      <image src="../images/check/equip@2x.png" />
+      <image src="../../images/check/equip@2x.png" />
       <text style="line-height: 66rpx;margin-left: 8rpx;">{{connectStatus == 1 ? '已连接': '未连接'}}</text>  
   </view>
   <view class="check-link-text" style=" float: left;width: 260rpx;height: 200rpx;margin-left: 32rpx;margin-top: 32rpx;">
@@ -28,25 +28,25 @@
 </view>
 <!-- 后续版本 -->
 <!-- <view class="content-view">
-  <image class="content-image" src="../images/check/apple@2x.png" style="border-radius:50%" />
+  <image class="content-image" src="../../images/check/apple@2x.png" style="border-radius:50%" />
   <view class="content-text">
     <text class="text38">午餐吃什么</text>
     <text class="text24" style="margin-top:10rpx;display: block">测一下看看今天应该吃什么</text>
   </view>
 </view>
 <view class="content-view">
-  <image class="content-image" src="../images/check/challenge@2x.png" />
+  <image class="content-image" src="../../images/check/challenge@2x.png" />
   <view class="content-text">
     <text class="text38">发起挑战</text>
     <text class="text24" style="margin-top:10rpx;display: block">TA的健康我一直很在乎</text>
   </view>
 </view> -->
 <button class="share-button" style="width: 670rpx;height: 184rpx;margin-top: 30rpx;margin-left: 40rpx;float:left" open-type="share">
-  <image class="share-image" src="../images/check/invite@2x.png" />
+  <image class="share-image" src="../../images/check/invite@2x.png" />
   <view class="share-view">
     <text class="text38" style="float: left;">邀请好友</text>
     <!-- 后续版本 -->
-    <image class="share-text-image" src="../images/check/member@2x.png" />
+    <image class="share-text-image" src="../../images/check/member@2x.png" />
     <text class="text24" style="margin-top:10rpx;float: left;display: block">分享快乐与传递健康同等重要</text>
   </view>
 </button>

@@ -39,7 +39,8 @@ const pageExtend = Page => {
       }
       
       this.setData({
-        resourcesHost: app.globalData.resourcesHost
+        resourcesHost: app.globalData.resourcesHost,
+        userProfile: app.getUserProfile()
       })
       //允许分享按钮
       wx.showShareMenu({
@@ -55,7 +56,7 @@ const pageExtend = Page => {
     object.onShareAppMessage = () => {
       return{
         title: "健康生活 从吃开始",
-        path: "/pages/home/home?shareid=" + app.getUser().id
+        path: "/pages/home/home?shareid=" + getApp().getUser().id
       }
     }
     
@@ -73,6 +74,38 @@ const pageExtend = Page => {
       }
       wx.navigateTo({
         url: '../' + page + '/' + page + paramsStr
+      })
+    }
+    object.nTo = (e) => {
+      var path = e.currentTarget.dataset.path;
+      let paramsStr = '?nTo=1'
+      if(e.currentTarget.dataset){
+        for (let [key, value] of Object.entries(e.currentTarget.dataset)) {
+          if(key == 'path'){
+            continue
+          }
+          paramsStr += '&' + key + '=' + value
+        }
+        console.log('go--' + paramsStr)
+      }
+      wx.navigateTo({
+        url: '../' + path + paramsStr
+      })
+    }
+    object.rTo = (e) => {
+      var path = e.currentTarget.dataset.path;
+      let paramsStr = '?rTo=1'
+      if(e.currentTarget.dataset){
+        for (let [key, value] of Object.entries(e.currentTarget.dataset)) {
+          if(key == 'path'){
+            continue
+          }
+          paramsStr += '&' + key + '=' + value
+        }
+        console.log('go--' + paramsStr)
+      }
+      wx.redirectTo({
+        url: '../' + path + paramsStr
       })
     }
     object.redirectTo = (e) => {

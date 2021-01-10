@@ -1,0 +1,17 @@
+<view class="text56 title">王唯工《气血共振理论》</view>
+<!-- TODO -->
+<image class="image-1" src="../../images/test/1.png"/>
+<view class="text32 title-little" bindtap="nTo" data-path="article/wangweigong">
+  <image src="../../images/test/1.png" style="width:32rpx;height:32rpx;float:left" />
+  <text>王唯工介绍</text>
+</view>
+<view class="line-d"></view>
+<view class="text56 title-left">气血共振理论</view>
+<view class="text30 content">
+  <text>
+  “气血共振理论” 是一种关于人体血液循环的理论，由台湾中央研究院物理所的王唯工教授(Wei-Kung Wang)提出。此理论解释了一些现代循环生理学无法解释的现象，比如：心脏的收缩功率只有1.7瓦，如果只靠心脏收缩，是达不到将血液送往头部或者全身的。
+  「心脏」是我们身体血液分布的「核心」，心脏所挤射出的血液撞击在主动脉弓上，产生振动，并以压力波的形式沿着主动脉等大血管往远心端传送。
+  在胚胎发育上，如肝、肾等等器官供血动脉的血管生成是透过动脉的振动与心脏跳动频率呈现动脉波形，压力波的输送因为共振而容易抵达器官，因此我们的理论被称为 “气血共振” 。
+  我们透过王唯工教授提出的【气血共振理论】为基础，通过科学脉诊的4个步骤：精准采脉、波形数字化、实验验证和临床数据；综合分析评估人体18项潜在风险，并针对个人情况给出具体的膳食建议。
+  </text>
+</view>

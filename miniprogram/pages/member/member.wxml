@@ -1,8 +1,9 @@
 <view class="head">
+<!-- TODO头像 -->
   <image class="head-avatar" src="{{avatarUrl}}" />
   <view class="head-info">
     <view class="head-name">
-      <view>张华</view>
+      <view>{{userProfile.nickname}}</view>
       <block wx:if="{{vipInfo.isVipFamily}}">
         <image class="image-vip-family" src="../../images/my/vip-family@2x.png"/>
       </block>
@@ -98,7 +99,7 @@
   <view class="rights-head">
     <view class="rights-head-view-1">VIP权益</view>
     <!-- TODO 箭头颜色 权益对吧 -->
-    <image class="rights-head-image" src="../../images/arrow-grey@2x.png"/>
+    <image class="rights-head-image" src="../../images/arrow-grey@3x.png"/>
     <view class="rights-head-view-2" bindtap="go" data-page="member-contrast">查看权益对比</view>
   </view>
   <view class="right-body">

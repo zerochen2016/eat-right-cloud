@@ -1,0 +1,46 @@
+page{
+  height:1800rpx;
+  background-color: white;
+}
+.title{
+  width:100%;
+  text-align:center;
+  margin-top:60rpx
+}
+.title-left{
+  width: 710rpx;
+  text-align: left;
+  margin-top: 40rpx;
+  margin-left: 30rpx;
+}
+.image-1{
+  width:670rpx;
+  height:480rpx;
+  margin-top:20rpx;
+  margin-left:40rpx
+}
+.title-little{
+  margin-top: 30rpx;
+  margin-left: 40rpx;
+  color: rgba(0, 149, 145, 1);
+}
+.title-left-little{
+  margin-top: 20rpx;
+  margin-left: 30rpx;
+  font-weight: 600;
+}
+.line-d{
+  margin-top: 30rpx;
+  margin-left: 40rpx;
+  border-top: 2rpx dotted rgba(223, 230, 233, 1);
+  width: 670rpx;
+  height: 1rpx;
+}
+.content{
+  color:rgba(0, 0, 0, 0.54);
+  width: 690rpx;
+  margin-left: 30rpx;
+  text-align: left;
+  line-height: 60rpx;
+  margin-top: -40rpx;
+}

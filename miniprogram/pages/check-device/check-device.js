@@ -22,8 +22,7 @@ Page({
     measure_width: 0,
     measure_value: 0,
     dots: '',
-    devices: [{name:'test1',deviceId:'test1',advertisServiceUUIDs:['test','test']},
-    {name:'test',deviceId:'test',advertisServiceUUIDs:['test','test']},{name:'test',deviceId:'test',advertisServiceUUIDs:['test','test']},{name:'test',deviceId:'test',advertisServiceUUIDs:['test','test']}],
+    devices: [],
     deviceConnected: {
       deviceId: '',
       deviceName: '',
@@ -181,13 +180,6 @@ Page({
    */
   checkResult: function(){
     let checkPercentage = this.data.checkPercentage
-    // //TODELETE 测试数据
-    // let length = Math.floor(Math.random() * 9966 + 1)
-    // for(let i = 0;i<length;i++){
-    //   total_data.push(1)
-    // }
-    // console.log('-------checkResult dataCount------')
-    // console.log(total_data.length)
     if(checkPercentage < 99){
       let totalLength = total_data.length
       if(totalLength <= 0){
@@ -757,6 +749,36 @@ Page({
         that.setData({
           deviceBuyUrl: 'http://www.baidu.com'
         })
+    },    
+    submitCheckData: function(){
+      wx.request({
+        url: app.globalData.apiHost, 
+        data: 
+        JSON.stringify({
+          "method": "ReportAPI.SubmitPulseTest",
+          "service": "com.jt-health.api.app",
+          "request": {
+            "user_id": app.getUser().id,
+            "payload": {
+              "hand": app.getUserProfile().hand,
+              "geo_location":"",
+            }
+          }
+         }),
+        dataType: 'json',
+        method: "POST",
+        header: {
+          'content-type': 'application/json',
+          "Authorization": 'Bearer ' + app.getRequestSign()
+        },
+        success(res) {
+          console.log(res)
+          if(res.statusCode == 200){
+  
+          }
+          
+        },
+      })     
     },    
 })
 
