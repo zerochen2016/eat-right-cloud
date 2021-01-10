@@ -1,0 +1,10 @@
+<block wx:for="{{articleArray}}" wx:key="true">
+  <view class="article-content" data-id="{{item.articleId}}" bindtap="go" data-page="article" >
+    <image class="article-content-image" src="{{item.articlePicture}}" />
+    <view class="article-content-view">
+      <text >{{item.articleTitle}}</text>
+      <text>{{item.articleContent}}</text>
+    </view>
+    <view class="line" style="width: 720rpx;margin-left: 30rpx;"></view>
+  </view>
+</block>

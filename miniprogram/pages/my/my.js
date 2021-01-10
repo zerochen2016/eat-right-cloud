@@ -1,5 +1,6 @@
 const app = getApp()
 const dateUtil = require("../../utils/date-util.js")
+
 Page({
 
   /**
@@ -34,6 +35,8 @@ Page({
     this.getMyOrderUrl()
     //获取站内信
     this.listNotification()
+    //用户VIP信息
+    this.getVipInfo()
   },
 
   /**
@@ -132,13 +135,47 @@ Page({
   },
   initData: function(){
     this.selectComponent("#bottom-navigate").changeActiveIndex(4)
-    let user = app.getUser()
-    let vipRemainDay = 0
-    if(user.isVip){
-      const vipRemainDay = dateUtil.dateDiffDay(new Date(), user.vipTime)          
-    }             
-    this.setData({
-      vipRemainDay: vipRemainDay
-    })
+  },
+  getVipInfo: function(){
+    const that = this
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "SubscriptionAPI.GetSubscriptionSummary",
+        "service": "com.jt-health.api.app",
+        "request": {
+          "user_id": app.getUser().id
+        }
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log(res)
+        if(res.statusCode == 200){
+          const subscriptionSummary = res.data.subscription_summary
+          const vipTime = dateUtil.utcToBeiJing(subscriptionSummary.personal_timeline.expired_time)
+          const vipFamilyTime = dateUtil.utcToBeiJing(subscriptionSummary.family_timeline.expired_time)
+
+          let vipInfo = {
+            vipTimeBegin: dateUtil.utcToBeiJing(subscriptionSummary.personal_timeline.available_begin_time),
+            vipTime: vipTime,
+            isVip: subscriptionSummary.personal_subscription_expired ? false : true,
+            vipFamilyTimeBegin: dateUtil.utcToBeiJing(subscriptionSummary.family_timeline.available_begin_time),
+            vipFamilyTime: vipFamilyTime,
+            isVipFamily: subscriptionSummary.family_subscription_expired ? false : true,
+            vipRemainDay: dateUtil.dateDiffDay(new Date(), vipTime),
+            vipFamilyRemainDay: dateUtil.dateDiffDay(new Date(), vipFamilyTime),
+          }
+          that.setData({vipInfo: vipInfo})
+          console.log(vipInfo)
+        }
+        
+      },
+    })     
   }
 })

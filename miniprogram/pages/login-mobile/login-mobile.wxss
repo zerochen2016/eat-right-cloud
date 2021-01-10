@@ -36,7 +36,7 @@ page{
   background: #FFFFFF;
 }
 .verify-input{
-  width: 182px;
+  width: 364rpx;
   height: 132rpx;
   font-size: 36rpx;
   font-family: PingFangSC-Regular, PingFang SC;

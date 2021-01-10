@@ -1,0 +1,158 @@
+<view class="head">
+  <image class="head-avatar" src="{{avatarUrl}}" />
+  <view class="head-info">
+    <view class="head-name">
+      <view>张华</view>
+      <block wx:if="{{vipInfo.isVipFamily}}">
+        <image class="image-vip-family" src="../../images/my/vip-family@2x.png"/>
+      </block>
+      <block wx:if="{{vipInfo.isVip}}">
+        <image class="image-vip" src="../../images/my/vip@2x.png" />
+      </block>            
+    </view>
+    <block wx:if="{{vipInfo.isVipFamily}}">
+      <view class="head-text-family">
+        VIP家庭包有效期至：{{vipInfo.vipFamilyRemainDay}}
+      </view>
+    </block>
+    <block wx:if="{{vipInfo.isVip}}">
+      <view class="head-text-vip">VIP会员剩余天数：{{vipInfo.vipRemainDay}}天
+        <!-- TODO问号有什么左右 -->
+        <image src="../../images/my/question@3x.png" />
+      </view>
+    </block>      
+  </view>
+</view>
+<!-- TODO购买页面 -->
+<view class="goods-card" bindtap="goThirdWeb" data-url="{{deviceBuyUrl}}">
+      <image class="goods-card-image" src="../../images/check/device-sell.png" />
+      <view class="goods-card-text-1">小阶感测器</view>
+      <view class="goods-card-text-2">弹指之间 健康可见</view>
+      <view class="button-arrow-main" style="float: right;margin-top: 46rpx;margin-right: 30rpx;">
+        <image src="../../images/arrow-white@3x.png" />
+        <text>立即拥有</text>
+      </view>
+</view>
+
+<view class="vip">
+  <view class="vip-head">
+    <block wx:if="{{vipList == 1}}">
+      <view class="vip-head-view" bindtap="changeVipList" data-viplist="2">VIP家庭包</view>
+      <view class="vip-head-view-select" bindtap="changeVipList" data-viplist="1">VIP会员</view>
+    </block>
+    <block wx:elif="{{vipList == 2}}">
+      <view class="vip-head-view-select" bindtap="changeVipList" data-viplist="2">VIP家庭包</view>
+      <view class="vip-head-view" bindtap="changeVipList" data-viplist="1">VIP会员</view>      
+    </block>
+
+  </view>
+  <view class="vip-buy">
+  <block wx:if="{{vipList == 1}}">
+    <block wx:for="{{vipArray}}" wx:key="true">
+      <view class="vip-buy-view" style="{{item.renew_days == vipSelectDay ? 'border: 2rpx solid rgba(230, 177, 40, 1)' : ''}}" bindtap="changeSelect" data-viplist="1" data-days="{{item.renew_days}}">
+        <view class="vip-buy-text-1">{{item.product_title}}</view>
+        <view class="vip-buy-text-2" style="{{item.renew_days == vipSelectDay ? 'color:rgba(230, 177, 40, 1)' : ''}}"><text>¥</text>{{item.price / 10000}}</view>
+        <block wx:if="{{item.discount_brief}}">
+          <view class="vip-buy-text-3">{{item.discount_brief}}</view>
+        </block>
+      </view>
+    </block>
+  </block>
+  <block wx:elif="{{vipList == 2}}">
+    <block wx:for="{{familyVipArray}}" wx:key="true">
+      <view class="vip-buy-view" style="{{item.renew_days == familyVipSelectDay ? 'border: 2rpx solid rgba(230, 177, 40, 1)' : ''}}" bindtap="changeSelect" data-viplist="2" data-days="{{item.renew_days}}">
+        <view class="vip-buy-text-1">{{item.product_title}}</view>
+        <view class="vip-buy-text-2" style="{{item.renew_days == familyVipSelectDay ? 'color:rgba(230, 177, 40, 1)' : ''}}"><text>¥</text>{{item.price / 10000}}</view>
+        <block wx:if="{{item.discount_brief}}">
+          <view class="vip-buy-text-3">{{item.discount_brief}}</view>
+        </block>
+      </view>
+    </block>
+  </block>
+  </view>
+  <view class="button-gold" bindtap="buyVip" style="margin-top:40rpx;float:left">立即以{{currentPrice}}元续费</view>
+  <!-- TODO -->
+  <view class="member-policy">阅读并同意<text bindtap="go" data-page="policy-member">《会员服务协议》</text>和<text bindtap="go" data-page="policy-autobuy">《自动续费服务声明》</text></view>
+</view>
+
+<view class="goods-card" bindtap="go" data-page="member-exchange">
+      <image class="goods-card-image" src="../../images/check/device-sell.png" />
+      <view class="goods-card-text-1">卡密兑换</view>
+      <view class="goods-card-text-2">输入密码或扫码进行兑换</view>
+      <view class="button-arrow-white" style="float: right;margin-top: 46rpx;margin-right: 30rpx;width:160rpx">
+        <image src="../../images/arrow-blue@2x.png" />
+        <view>去兑换</view>
+      </view>
+</view>
+
+<button class="goods-card" open-type="share" style="width: 100%;height: 160rpx;" bindtap="goThirdWeb" data-url="{{deviceBuyUrl}}">
+      <image class="goods-card-image" style="margin-top:0;margin-left:-40rpx" src="../../images/check/device-sell.png" />
+      <view class="goods-card-text-1" style="margin-left: -16rpx;margin-top: 17rpx;">邀请好友</view>
+      <view class="goods-card-text-2" style="margin-top: 73rpx;margin-left: -168rpx;">TA的健康我一直很在乎</view>
+      <view class="button-arrow-white" style="float: right;margin-top: 29rpx;margin-right: -30rpx;width:160rpx">
+        <image src="../../images/arrow-blue@2x.png" />
+        <view>领会员</view>
+      </view>
+</button>
+<view class="rights">
+  <view class="rights-head">
+    <view class="rights-head-view-1">VIP权益</view>
+    <!-- TODO 箭头颜色 权益对吧 -->
+    <image class="rights-head-image" src="../../images/arrow-grey@2x.png"/>
+    <view class="rights-head-view-2" bindtap="go" data-page="member-contrast">查看权益对比</view>
+  </view>
+  <view class="right-body">
+    <view class="right-body-per">
+      <image class="right-body-image" src="../../images/member/family@2x.png" />
+      <view class="text28" style="color:rgba(81, 53, 8, 1);width:192rpx;margin-top:16rpx;float:left">家庭成员</view>
+      <view class="text24" style="color:rgba(122, 101, 68, 0.6);width:192rpx;margin-top:16rpx;float:left">（家庭包专享受）</view>
+    </view>
+    <view class="right-body-per">
+      <image class="right-body-image" src="../../images/member/vs@2x.png" />
+      <view class="text28" style="color:rgba(81, 53, 8, 1);width:192rpx;margin-top:16rpx;float:left">改善对比</view> 
+    </view>
+    <view class="right-body-per">
+      <image class="right-body-image" src="../../images/member/week@2x.png" />
+      <view class="text28" style="color:rgba(81, 53, 8, 1);width:192rpx;margin-top:16rpx;float:left">周分析</view>
+    </view>
+    <view class="right-body-per">
+      <image class="right-body-image" src="../../images/member/month@2x.png" />
+      <view class="text28" style="color:rgba(81, 53, 8, 1);width:192rpx;margin-top:16rpx;float:left">月分析</view>
+    </view>
+    <view class="right-body-per">
+      <image class="right-body-image" src="../../images/member/report@2x.png" />
+      <view class="text28" style="color:rgba(81, 53, 8, 1);width:192rpx;margin-top:16rpx;float:left">报告保管</view>
+      <view class="text24" style="color:rgba(122, 101, 68, 0.6);width:192rpx;margin-top:16rpx;float:left">（1年）</view>
+    </view>                
+    <view class="right-body-per">
+      <image class="right-body-image" src="../../images/member/eat@2x.png" />
+      <view class="text28" style="color:rgba(81, 53, 8, 1);width:192rpx;margin-top:16rpx;float:left">膳食建议</view>
+    </view>   
+    <view class="right-body-per">
+      <image class="right-body-image" src="../../images/member/health-danger@2x.png" />
+      <view class="text28" style="color:rgba(81, 53, 8, 1);width:192rpx;margin-top:16rpx;float:left">健康风险评估</view>
+    </view>         
+    <view class="right-body-per">
+      <image class="right-body-image" src="../../images/member/health-special@2x.png" />
+      <view class="text28" style="color:rgba(81, 53, 8, 1);width:192rpx;margin-top:16rpx;float:left">健康专题</view>
+    </view>         
+    <view class="right-body-per">
+      <image class="right-body-image" src="../../images/member/vip-goods@2x.png" />
+      <view class="text28" style="color:rgba(81, 53, 8, 1);width:192rpx;margin-top:16rpx;float:left">VIP专享商品</view>
+    </view>         
+    <view class="right-body-per">
+      <image class="right-body-image" src="../../images/member/vip@2x.png" />
+      <view class="text28" style="color:rgba(81, 53, 8, 1);width:192rpx;margin-top:16rpx;float:left">尊贵身份标识</view>
+    </view>         
+    <view class="right-body-per">
+      <image class="right-body-image" src="../../images/member/more@2x.png" />
+      <view class="text28" style="color:rgba(81, 53, 8, 1);width:192rpx;margin-top:16rpx;float:left">更多权益</view>
+      <view class="text24" style="color:rgba(122, 101, 68, 0.6);width:192rpx;margin-top:16rpx;float:left">（敬请期待）</view>
+    </view>                                              
+  </view>
+</view>
+<!-- TODO -->
+<view class="member-explain" bindtap="go" data-page="member-explain">
+    <view>会员服务说明</view>
+    <image src="../../images/arrow@2x.png"/>
+</view>

@@ -1,0 +1,30 @@
+.card{
+  width: 710rpx;
+  height: 400rpx;
+  margin-top: 120rpx;
+  margin-left: 20rpx;
+}
+.exchange-view{
+  width: 500rpx;
+  height: 44rpx;
+  margin-top: 70rpx;
+  margin-left: 125rpx;
+  color:rgba(0, 0, 0, 0.4);
+}
+.exchange-view-2{
+  height: 44rpx;
+  width: 180rpx;
+  margin-left: 45rpx;
+  float: left;
+}
+.exchange-view-2 image{
+  margin-top: 2rpx;
+  margin-left: 4rpx;
+  float: left;
+}
+.exchange-view-2 text{
+  margin-top: 6rpx;
+  margin-left: 8rpx;
+  float: left;
+  width: 130rpx;
+}

@@ -1,0 +1,22 @@
+<!-- TODO -->
+<view class="content">
+  <view class="content-text-1">
+    <view class="content-text-1-view-1">如何正确使用检测仪如何正确使用检测仪如何正确使用检测仪</view>
+    <view class="content-text-1-view-2">如何正确使用检测仪如何正确使用检测仪如何正确使用检测仪</view>
+  </view>
+  <image class="content-arrow" src="../../images/arrow@2x.png" />
+</view>
+<view class="content">
+  <view class="content-text-1">
+    <view class="content-text-1-view-1">如何正确使用检测仪</view>
+    <view class="content-text-1-view-2">如何正确使用检测仪</view>
+  </view>
+  <image class="content-arrow" src="../../images/arrow@2x.png" />
+</view>
+<view class="content">
+  <view class="content-text-1">
+    <view class="content-text-1-view-1">如何正确使用检测仪</view>
+    <view class="content-text-1-view-2">如何正确使用检测仪</view>
+  </view>
+  <image class="content-arrow" src="../../images/arrow@2x.png" />
+</view>

@@ -3,8 +3,8 @@
   <view class="myinfo-view">
     <view class="myinfo-name">{{nickName}}</view>
     
-    <block wx:if="{{user.isVip}}">
-      <view class="myinfo-member">VIP会员剩余天数：{{vipRemainDay}}天</view>
+    <block wx:if="{{vipInfo.isVip}}">
+      <view class="myinfo-member">VIP会员剩余天数：{{vipInfo.vipRemainDay}}天</view>
     </block>
     <block wx:else>
       <view class="myinfo-member">未开通会员，更多权益等你解锁</view>

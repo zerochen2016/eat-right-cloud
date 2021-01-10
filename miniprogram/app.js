@@ -66,6 +66,18 @@ App({
   setUser: function(user){
     wx.setStorageSync("user", user);
   },
+  /**
+   * 获取缓存中的用户档案
+   */
+  getUserProfile: function(){
+    return wx.getStorageSync("userProfile");
+  },
+  /**
+   * 更新缓存中的用户档案
+   */
+  setUserProfile: function(userProfile){
+    wx.setStorageSync("userProfile", userProfile);
+  },  
     /**
    * 上次连接的设备
    */

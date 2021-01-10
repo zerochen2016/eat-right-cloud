@@ -46,34 +46,35 @@ page{
 
 
 .forget-view-1{
-  width: 576rpx;
-  margin: 0 auto;
+  width: 705rpx;
   margin-top: 80rpx;
-  height: 120rpx;
+  height: 96rpx;
+  margin-left: 45rpx;
 }
 .forget-view-2{
-  height: 100%;
-  width: 25%;
+  height: 96rpx;
+  width: 96rpx;
   float: left;
   vertical-align: middle;
+  margin-left: 12rpx;
 }
 .forget-view-2-input-grey{
-  width: 120rpx;
-  height: 120rpx;
+  width: 96rpx;
+  height: 96rpx;
   background: white;
-  border-radius: 8px;
+  border-radius: 16rpx;
   border: 2rpx solid rgba(0, 0, 0, 0.24);
   float: left;
+  
 }
 .forget-view-2-input {
-  width: 120rpx;
-  height: 120rpx;
+  width: 96rpx;
+  height: 96rpx;
   background: white;
-  border-radius: 8px;
+  border-radius: 16rpx;
   border: 2rpx solid #009591;
   box-shadow: 0rpx 0rpx 4rpx 0rpx #009591;
   float: left;
-
 }
 .forget-text-2 {
   width: 650rpx;

@@ -39,7 +39,7 @@ page{
   margin: 0 auto;
   margin-top: 30rpx;
   border-radius:60rpx;
-  border: 1px solid #009591;
+  border: 2rpx solid #009591;
   font-size: 40rpx;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;

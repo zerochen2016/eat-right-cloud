@@ -129,16 +129,9 @@ Page({
               yzCookieKey: res.data.yz_cookie_key,
               yzCookieValue: res.data.yz_cookie_value,
               yzOpenId: res.data.yz_open_id,
-              userProfile: res.data.user_profile,
-              mobile: that.data.inputMobile,
-              trialVipTime: dateUtil.utcToBeiJing(res.data.subscription_summary.trial_timeline.expired_time),
-              vipTimeBegin: dateUtil.utcToBeiJing(res.data.subscription_summary.personal_timeline.available_begin_time),
-              vipTime: dateUtil.utcToBeiJing(res.data.subscription_summary.personal_timeline.expired_time),
-              isVip: res.data.subscription_summary.personal_subscription_expired ? false : true,
-              vipFamilyTimeBegin: dateUtil.utcToBeiJing(res.data.subscription_summary.family_timeline.available_begin_time),
-              vipFamilyTime: dateUtil.utcToBeiJing(res.data.subscription_summary.family_timeline.expired_time),
-              isVipFamily: res.data.subscription_summary.family_subscription_expired ? false : true
+              mobile: that.data.inputMobile
             })
+            app.setUserProfile(userInfo.user_profile)
             app.updateRequestSign(res.data.access_token.token)
             wx.navigateTo({
               url: '../home/home',

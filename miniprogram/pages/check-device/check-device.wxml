@@ -1,0 +1,122 @@
+<!-- 搜索设备start -->
+<block wx:if="{{status == 0}}">
+  <view class="check-search-title">正在搜索附近设备{{dots}}</view>
+  <image class="check-linking-image-1" src="../images/check/circle-search@3x.png"/>
+  <view class="check-search-image-0"></view>
+  <image class="check-search-pointer-image" src="../images/check/pointer@3x.png" style="transform: rotateZ({{pointerAnger}}deg)"/>
+
+  <view class="check-linking-image-2"></view>
+  <view class="check-linking-image-3"></view>
+  <view class="check-linking-image-4"></view>
+  <image class="check-search-close" src="../images/check/close@2x.png" bindtap="go" data-page="check"/>
+</block>
+<!-- 搜索设备end -->
+<!-- 选择设备start -->
+<block wx:elif="{{status == 1}}">
+  <view class="check-search-title">选择设备</view>
+  <view style="margin:0 auto;margin-top:24rpx;float:left;width:100%">
+  <block wx:for="{{devices}}" wx:key="true">
+    <view class="check-search-device" data-devicename="{{item.name}}" data-deviceid="{{item.deviceId}}" data-services="{{item.advertisServiceUUIDs}}" bindtap="selectDevice">
+      <image class="check-search-device-image-1" src="../images/check/equip@2x.png"/>
+      <text class="check-search-device-text">MAC: {{item.deviceId}}</text>
+      <image class="check-search-device-image-2" src="../images/arrow@2x.png"/>
+    </view>
+  </block>
+</view>
+</block>
+<!-- 选择设备end -->
+<!-- 连接中start -->
+<block wx:elif="{{status == 2}}">
+  <view class="check-search-title">正在连接中{{dots}}</view>
+  <view class="check-search-title-2">不要离开，确保小阶屏幕亮起！</view>
+  <image class="check-linking-image-1" src="../images/check/circle-linking@2x.png"/>
+  <view class="check-linking-image-2"></view>
+  <view class="check-linking-image-3"></view>
+  <view class="check-linking-image-4"></view>
+  <image class="check-search-close" src="../images/check/close@2x.png" bindtap="go" data-page="check"/>
+</block>
+<!-- 连接中end -->
+<!-- 检测中start -->
+<block wx:elif="{{status == 3}}">
+  <view class="check-search-title">检测中{{dots}}<image src="{{volumnStatus == 1 ? '../images/check/volume@2x.png' : '../images/check/close_volume@2x.png'}}" style="width:110rpx;height:110rpx;float:right;background-color:white;border-radius:50%;margin-top:-14rpx" bindtap="changeVolumnStatus" data-mstatus="{{volumnStatus == 1 ? 0 : 1}}"/></view>
+  <view class="check-search-title-2">呼吸平稳，放松心情～</view>
+  <view class="check-search-title-2" style="margin-top:0">双手静置桌面</view>
+  <view class="check-linking-image-1" style="background-image: conic-gradient(#23B8AC 0%,#C1F3E8 {{checkPercentage}}%,rgba(0, 0, 0, 0.2) {{checkPercentage}}% 100%);border-radius: 50%;" ></view>
+  <image class="check-checking-image-1" src="../images/check/circel-search-3@2x.png" />
+  <view class="check-checking-text-1">{{checkPercentage}}%</view>
+  <view class="check-checking-text-2">检测进度</view>
+  <view class="check-linking-image-2"></view>
+  <view class="check-linking-image-3"></view>
+  <view class="check-linking-image-4"></view>
+  <view class="check-checking-tips">
+    <view class="check-checking-tips-text-1"><image src="../images/check/tips@2x.png"/>小提示提醒您</view>
+    <view class="check-checking-tips-text-2">{{tipsText}}</view>
+  </view>
+  <image class="check-search-close" style="margin-top: 1000rpx" src="../images/check/close@2x.png" bindtap="go" data-page="check"/>
+</block>
+<!-- 检测中end -->
+<!-- 检测完成start -->
+<block wx:elif="{{status == 4}}">
+  <view class="check-search-title">检测完成<image src="{{volumnStatus == 1 ? '../images/check/volume@2x.png' : '../images/check/close_volume@2x.png'}}" style="width:110rpx;height:110rpx;float:right;background-color:white;border-radius:50%;margin-top:-14rpx" bindtap="changeVolumnStatus" data-mstatus="{{volumnStatus == 1 ? 0 : 1}}"/></view>
+  <view class="check-search-title-2">呼吸平稳，放松心情～</view>
+  <view class="check-search-title-2" style="margin-top:0">双手静置桌面</view>
+  <view class="check-linking-image-1" style="background-image: conic-gradient(#23B8AC 0%,#C1F3E8 {{checkPercentage}}%,rgba(0, 0, 0, 0.2) {{checkPercentage}}% 100%);border-radius: 50%;" ></view>
+  <image class="check-checking-image-1" src="../images/check/circel-search-3@2x.png" />
+  <image class="check-checking-image-tick" src="../images/check/tick@2x.png"/>
+  <view class="check-linking-image-2"></view>
+  <view class="check-linking-image-3"></view>
+  <view class="check-linking-image-4"></view>
+  <view class="check-checking-tips">
+    <view class="check-checking-tips-text-1"><image src="../images/check/tips@2x.png"/>小提示提醒您</view>
+    <view class="check-checking-tips-text-2">{{tipsText}}</view>
+  </view>
+  <image class="check-search-close" style="margin-top: 1000rpx" src="../images/check/close@2x.png" bindtap="go" data-page="check"/>
+</block>
+<!-- 检测完成end -->
+<!-- 连接错误重新选择start -->
+<block wx:elif="{{status == 5}}">
+  <view class="check-search-title">选择设备</view>
+  <view style="margin:0 auto;margin-top:24rpx;float:left;width:100%">
+    <view class="check-search-device" data-devicename="{{deviceConnected.name}}" data-deviceid="{{deviceConnected.deviceId}}" data-services="{{deviceConnected.services}}" >
+      <image class="check-search-device-image-1" src="../images/check/equip@2x.png"/>
+      <text class="check-search-device-text-connected" >当前已连接</text>
+      <text class="check-search-device-text" style="margin-top: -16rpx;margin-left: -120rpx">MAC: {{deviceConnected.deviceId}}</text>
+      <image class="check-search-device-image-2" src="../images/arrow@2x.png"/>
+    </view>
+  </view>
+  <view class="check-search-title-choose">选择在用设备</view>
+  <view style="margin:0 auto;float:left;width:100%">
+  <block wx:for="{{devices}}" wx:key="true">
+    <block wx:if="{{item.deviceId != deviceConnected.deviceId}}">
+      <view class="check-search-device" data-devicename="{{item.name}}" data-deviceid="{{item.deviceId}}" data-services="{{item.advertisServiceUUIDs}}" bindtap="reconnectDevice">
+      <image class="check-search-device-image-1" src="../images/check/equip@2x.png"/>
+      <text class="check-search-device-text">MAC: {{item.deviceId}}</text>
+      <image class="check-search-device-image-2" src="../images/arrow@2x.png"/>
+    </view>
+    </block>
+  </block>
+  </view>
+</block>
+<!-- 连接错误重新选择end -->
+<!-- 找不到设备start -->
+<block wx:elif="{{status == 6}}">
+  <view style="width:100%;height:1600rpx;background-color:white;position: absolute;left:0;top:0">
+    <view class="check-search-title">未发现可用设备</view>
+    <image class="check-search-notfind" src="../images/check/device.png" />
+    <view class="check-search-notfind-text">
+      <image src="../images/check/warning-circle-fill@2x.png" />
+      <text>检查需要查找的小阶感测器是否开启！</text>
+    </view>
+    <view class="button-success" bindtap="research" data-status="0" style="margin-top:120rpx;float:left;margin-left:72rpx">再次搜索</view>
+    <view class="goods-card" style="float:left;margin-top:310rpx" bindtap="goThirdWeb" data-url="{{deviceBuyUrl}}">
+      <image class="goods-card-image" src="../images/check/device-sell.png" />
+      <view class="goods-card-text-1">小阶感测器</view>
+      <view class="goods-card-text-2">弹指之间 健康可见</view>
+      <view class="goods-card-button">
+        <view>立即拥有</view>
+        <image src="../images/arrow-white@3x.png" />
+      </view>
+    </view>
+  </view>
+</block>
+<!-- 找不到设备end -->

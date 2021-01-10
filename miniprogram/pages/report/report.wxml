@@ -1,0 +1,56 @@
+<view class="text72" style="margin-top:40rpx;margin-left:40rpx">健康报告</view>
+<image class="avatar" style="float: right;margin-top: -82rpx;margin-right: 40rpx;" src="{{avatarUrl}}"/>
+<view class="content-view" style="margin-top:72rpx" bindtap="go" data-page="family">
+  <image class="content-image" src="../images/report/family@2x.png" />
+  <view class="content-text">
+    <text class="text38">我的家庭</text>
+    <text class="text24" style="margin-top:10rpx;display: block">随时随地，了解家人的健康状</text>
+  </view>
+</view>
+<view class="content-view" bindtap="go" data-page="report-record">
+  <image class="content-image" src="../images/report/report@2x.png" />
+  <view class="content-text">
+    <text class="text38">报告记录</text>
+    <text class="text24" style="margin-top:10rpx;display: block">一年的记录保存，全面掌握健康变化</text>
+  </view>
+</view>
+<view class="content-view">
+  <image class="content-image" src="../images/report/analysis-week@2x.png" />
+  <view class="content-text">
+    <text class="text38">周分析</text>
+    <text class="text24" style="margin-top:10rpx;display: block">让健康管理成为习惯</text>
+  </view>
+</view>
+<view class="content-view">
+  <image class="content-image" src="../images/report/analysis-month@2x.png" />
+  <view class="content-text">
+    <text class="text38">月分析</text>
+    <text class="text24" style="margin-top:10rpx;display: block">点点滴滴，每一份报告都重要</text>
+  </view>
+</view>
+<!-- 后续版本 -->
+<!-- <view class="content-view" style="height:374rpx">
+  <image class="content-image" src="../images/report/analysis-month@2x.png" />
+  <view class="content-text">
+    <text class="text38">今日配餐</text>
+  </view>
+  <view class="content-sub">
+    <view class="content-sub-view">
+      <text class="text24" style="display:block;margin-bottom:10rpx">早餐主食</text>
+      <text class="text40" style="color: rgba(0, 0, 0, 0.24);">玉米</text>
+    </view>
+    <view class="line-v" style="float:left;margin-top:32rpx"></view>
+    <view class="content-sub-view">
+      <text class="text24" style="display:block;margin-bottom:10rpx">午餐主食</text>
+      <text class="text40" style="color: rgba(0, 0, 0, 0.24);">未获取</text>
+    </view>
+    <view class="line-v" style="float:left;margin-top:32rpx"></view>
+    <view class="content-sub-view">
+      <text class="text24" style="display:block;margin-bottom:10rpx">晚餐主食</text>
+      <text class="text40" style="color: rgba(0, 0, 0, 0.24);">未获取</text>
+    </view>        
+  </view>
+</view> -->
+<!-- 底部导航start -->
+<bottom-navigate id="bottom-navigate"></bottom-navigate>
+<!-- 底部导航end -->

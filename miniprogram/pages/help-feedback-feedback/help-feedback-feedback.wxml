@@ -1,0 +1,7 @@
+<view class="feedback-head">
+  <image src="../../images/logo-home@2x.png"/>
+  <view>感谢您使用本公司产品 您的反馈将让我们做的更好</view>
+</view>
+<view class="content" ><view>联系邮箱：sales@jt-healthech.com</view></view>
+<view class="content" ><view>客服电话：400-8235-998</view></view>
+<view class="content" ><view>官方网站：www.jt-healthtech.com</view></view>

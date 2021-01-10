@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    step: 1,
+    step: 2,
     inputMobile: "",
     nextStyle: false,
     areaCode: '+86',

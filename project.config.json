@@ -117,6 +117,24 @@
           "pathName": "pages/my-update-password/my-update-password",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/help-feedback/help-feedback",
+          "pathName": "pages/help-feedback/help-feedback",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/member/member",
+          "pathName": "pages/member/member",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/member-exchange/member-exchange",
+          "pathName": "pages/member-exchange/member-exchange",
+          "query": "",
+          "scene": null
         }
       ]
     }

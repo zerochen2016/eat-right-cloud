@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "报告记录",
+  "usingComponents": {
+    "calendar": "../../components/calendar/calendar"
+  }
+}

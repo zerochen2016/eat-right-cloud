@@ -15,7 +15,6 @@
 </block>
 <block wx:if="{{step == 2}}">
 <view>
-  <!-- TODO 修改验证码样式 -->
   <view class="forget-text-top">请输入您收到的短信验证码</view>
   <view class="forget-view-1">
     <view class="forget-view-2"><input class="{{focus1 == 1 ? 'forget-view-2-input' : 'forget-view-2-input-grey'}}" maxlength="1" type="number" value="{{verifyCode1}}" bindinput="verifyCodeChange" focus="{{focus1 == 1 ? true : false}}" id="input1" bindfocus="inputFocus" /></view>
