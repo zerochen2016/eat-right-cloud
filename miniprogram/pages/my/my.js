@@ -37,6 +37,7 @@ Page({
     this.listNotification()
     //用户VIP信息
     this.getVipInfo()
+    
   },
 
   /**
@@ -177,5 +178,6 @@ Page({
         
       },
     })     
-  }
+  },
+
 })

@@ -30,38 +30,7 @@ Page({
     this.test6()
   },
 
-  test4: function(){
-    wx.request({
-      url: app.globalData.apiHost, 
-      data: 
-      JSON.stringify({
-        "method": "MallAPI.ListDeviceProducts",
-        "service": "com.jt-health.api.app",
-        "request": {}
-       }),
-      dataType: 'json',
-      method: "POST",
-      header: {
-        'content-type': 'application/json',
-        "Authorization": 'Bearer ' + app.getRequestSign()
-      },
-      success(res) {
-        console.log(res)
-        if(res.statusCode == 200){
-//           data:
-// device_products: Array(1)
-// 0:
-// brief: "守护全家健康的好帮手"
-// is_promotion_product: true
-// original_price: 12990000
-// price: 9990000
-// product_id: "btk6433ipt3c236duk70"
-// product_name: "小阶感测器"
-        }
-        
-      },
-    })     
-  },
+  
   test3: function(){
     wx.request({
       url: app.globalData.apiHost, 

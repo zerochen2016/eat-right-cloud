@@ -23,8 +23,7 @@
     </block>      
   </view>
 </view>
-<!-- TODO购买页面 -->
-<view class="goods-card" bindtap="goThirdWeb" data-url="{{deviceBuyUrl}}">
+<view class="goods-card" bindtap="buyProduct" data-productid="{{deviceProduct.product_id}}">
       <image class="goods-card-image" src="../../images/check/device-sell.png" />
       <view class="goods-card-text-1">小阶感测器</view>
       <view class="goods-card-text-2">弹指之间 健康可见</view>
@@ -70,7 +69,8 @@
     </block>
   </block>
   </view>
-  <view class="button-gold" bindtap="buyVip" style="margin-top:40rpx;float:left">立即以{{currentPrice}}元续费</view>
+  <!-- TODO 跳转显示登录错误 -->
+  <view class="button-gold" bindtap="buyProduct" data-productid="{{currentProductId}}" data-price="{{currentPrice}}" style="margin-top:40rpx;float:left">立即以{{currentPrice}}元续费</view>
   <!-- TODO -->
   <view class="member-policy">阅读并同意<text bindtap="go" data-page="policy-member">《会员服务协议》</text>和<text bindtap="go" data-page="policy-autobuy">《自动续费服务声明》</text></view>
 </view>

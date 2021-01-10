@@ -185,7 +185,6 @@ Page({
       },
     })  
   },
-
   getUserProfile: function(){
     let that = this
     wx.request({

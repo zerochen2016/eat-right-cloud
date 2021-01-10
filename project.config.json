@@ -135,6 +135,11 @@
           "pathName": "pages/member-exchange/member-exchange",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/my-family/my-family",
+          "pathName": "pages/my-family/my-family",
+          "scene": null
         }
       ]
     }

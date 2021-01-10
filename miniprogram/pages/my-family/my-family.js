@@ -1,4 +1,5 @@
 const app = getApp()
+const dateUtil = require("../../utils/date-util.js")
 Page({
 
   /**
@@ -27,11 +28,7 @@ Page({
    */
   onShow: function () {
     this.listFamilyMembers()
-    //TODELETE
-    this.setData({
-      familyVipRemaimDay: 10,
-      vipRemainDay: 10
-    })
+    this.getVipInfo()
   },
 
   /**
@@ -199,19 +196,46 @@ Page({
 
       
   },     
-  initData: function(){
-    let user = app.getUser()
-    let vipRemainDay = 0
-    let familyVipRemaimDay = 0
-    if(user.isVip){
-      const vipRemainDay = dateUtil.dateDiffDay(new Date(), user.vipTime)          
-    }    
-    if(user.isVipFamily){
-      const familyVipRemaimDay = dateUtil.dateDiffDay(new Date(), user.vipFamilyTime)          
-    }         
-    this.setData({
-      vipRemainDay: vipRemainDay,
-      familyVipRemaimDay: familyVipRemaimDay
-    })
-  }   
+  getVipInfo: function(){
+    const that = this
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "SubscriptionAPI.GetSubscriptionSummary",
+        "service": "com.jt-health.api.app",
+        "request": {
+          "user_id": app.getUser().id
+        }
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log(res)
+        if(res.statusCode == 200){
+          const subscriptionSummary = res.data.subscription_summary
+          const vipTime = dateUtil.utcToBeiJing(subscriptionSummary.personal_timeline.expired_time)
+          const vipFamilyTime = dateUtil.utcToBeiJing(subscriptionSummary.family_timeline.expired_time)
+
+          let vipInfo = {
+            vipTimeBegin: dateUtil.utcToBeiJing(subscriptionSummary.personal_timeline.available_begin_time),
+            vipTime: vipTime,
+            isVip: subscriptionSummary.personal_subscription_expired ? false : true,
+            vipFamilyTimeBegin: dateUtil.utcToBeiJing(subscriptionSummary.family_timeline.available_begin_time),
+            vipFamilyTime: vipFamilyTime,
+            isVipFamily: subscriptionSummary.family_subscription_expired ? false : true,
+            vipRemainDay: dateUtil.dateDiffDay(new Date(), vipTime),
+            vipFamilyRemainDay: dateUtil.dateDiffDay(new Date(), vipFamilyTime),
+          }
+          that.setData({vipInfo: vipInfo})
+          console.log(vipInfo)
+        }
+        
+      },
+    })     
+  }  
 })

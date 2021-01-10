@@ -11,7 +11,7 @@ Page({
     resourcesHost: '',
     vipRemainDay: 0,
     familyVipTime: '',
-    vipList: 1,
+    vipList: 2,
     vipSelectDay: 30,
     familyVipSelectDay: 30,
   },
@@ -39,7 +39,9 @@ Page({
     //个人版VIP
     this.listFamilyVipGoods()
     //用户VIP信息
-    this.getVipInfo()
+    this.getVipInfo(),
+    //获取感测器购买链接
+    this.getDeviceGoods()
   },
 
   /**
@@ -74,37 +76,75 @@ Page({
     const viplist = e.currentTarget.dataset.viplist
     const days = e.currentTarget.dataset.days
     let currentPrice = this.data.currentPrice
+    let currentProductId = this.data.currentProductId
     if(viplist == 1){
       this.setData({
         vipSelectDay: days,
       })
       if(days == 30){
-        currentPrice = this.data.vipArray[0].price / 10000
+        currentPrice = this.data.vipArray[0].price / 10000,
+        currentProductId = this.data.vipArray[0].product_id
       }else if(days == 90){
-        currentPrice = this.data.vipArray[1].price / 10000
+        currentPrice = this.data.vipArray[1].price / 10000,
+        currentProductId = this.data.vipArray[1].product_id
       }else if(days == 365){
-        currentPrice = this.data.vipArray[2].price / 10000
+        currentPrice = this.data.vipArray[2].price / 10000,
+        currentProductId = this.data.vipArray[2].product_id
       }
     }else if(viplist == 2){
       this.setData({
         familyVipSelectDay: days
       })
       if(days == 30){
-        currentPrice = this.data.familyVipArray[0].price / 10000
+        currentPrice = this.data.familyVipArray[0].price / 10000,
+        currentProductId = this.data.familyVipArray[0].product_id
       }else if(days == 90){
-        currentPrice = this.data.familyVipArray[1].price / 10000
+        currentPrice = this.data.familyVipArray[1].price / 10000,
+        currentProductId = this.data.familyVipArray[1].product_id
       }else if(days == 365){
-        currentPrice = this.data.familyVipArray[2].price / 10000
+        currentPrice = this.data.familyVipArray[2].price / 10000,
+        currentProductId = this.data.familyVipArray[2].product_id
       }
     }
     this.setData({
-      currentPrice: currentPrice
+      currentPrice: currentPrice,
+      currentProductId: currentProductId
     })
 
     
   },
-  buyVip: function(e){
+  buyProduct: function(e){
     console.log(e)
+    const that = this
+    const productId = e.currentTarget.dataset.productid
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "MallAPI.GetOrderLink",
+        "service": "com.jt-health.api.app",
+        "request": {
+         "product_id": productId,
+        }
+        
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log(res)
+        if(res.statusCode == 200){
+          if(res.data.yz_place_order_url){
+            wx.navigateTo({
+              url: '../third-webview/third-webview?thirdUrl=' + res.data.yz_place_order_url,
+            })
+          }
+        }
+      },
+    })     
   },
   changeVipList: function(e){
     this.setData({
@@ -136,7 +176,9 @@ Page({
         console.log(res)
         if(res.statusCode == 200){
           that.setData({
-            familyVipArray: res.data.family_renewal_products
+            familyVipArray: res.data.family_renewal_products,
+            currentPrice: res.data.family_renewal_products[0].price / 10000,
+            currentProductId: res.data.family_renewal_products[0].product_id
           })
         }
       },
@@ -166,7 +208,6 @@ Page({
         if(res.statusCode == 200){
           that.setData({
             vipArray: res.data.personal_products,
-            currentPrice: res.data.personal_products[0].price / 10000
           })
         }
       
@@ -209,10 +250,46 @@ Page({
             vipFamilyRemainDay: dateUtil.dateDiffDay(new Date(), vipFamilyTime),
           }
           that.setData({vipInfo: vipInfo})
-          console.log(vipInfo)
         }
       },
     })     
   },
-  
+  getDeviceGoods: function(){
+    const that = this
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "MallAPI.ListDeviceProducts",
+        "service": "com.jt-health.api.app",
+        "request": {}
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log(res)
+        if(res.statusCode == 200){
+          if(res.data.device_products[0]){
+            that.setData({
+              deviceProduct: res.data.device_products[0]
+            },)
+          }
+//           data:
+// device_products: Array(1)
+// 0:
+// brief: "守护全家健康的好帮手"
+// is_promotion_product: true
+// original_price: 12990000
+// price: 9990000
+// product_id: "btk6433ipt3c236duk70"
+// product_name: "小阶感测器"
+        }
+        
+      },
+    })     
+  },
 })

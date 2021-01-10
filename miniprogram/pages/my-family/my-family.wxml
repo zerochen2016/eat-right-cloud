@@ -2,19 +2,19 @@
   <image class="head-avatar" src="{{avatarUrl}}"/>
   <view class="head-info">
     <text class="text52" style="display:block">我的名字</text>
-    <block wx:if="{{familyVipRemaimDay > 0}}">
+    <block wx:if="{{vipInfo.isVipFamily}}">
       <image class="head-info-image-1" src="../../images/my/vip-family@2x.png" />
     </block>
     <block wx:else>
       <text class="text24">未开通VIP家庭包</text>
     </block>
-    <block wx:if="{{vipRemainDay > 0}}">
+    <block wx:if="{{vipInfo.isVip}}">
       <image class="head-info-image-2" src="../../images/my/vip@2x.png" />
     </block>
   </view>
 </view>
 <view class="invite" >
-  <block wx:if="{{familyVipRemaimDay > 0}}">
+  <block wx:if="{{vipInfo.isVipFamily}}">
     <block wx:if="{{familys.length > 0}}">
       <view class="text36 invite-text-1" bindtap="dismissFamily" >解散</view>
       <view class="line-v invite-line"></view>
