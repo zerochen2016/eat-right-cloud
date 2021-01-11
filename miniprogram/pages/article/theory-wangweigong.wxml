@@ -1,8 +1,7 @@
 <view class="text56 title">王唯工《气血共振理论》</view>
-<!-- TODO -->
-<image class="image-1" src="../../images/test/1.png"/>
+<image class="image-1" src="../../images/article/wangweigong1.png"/>
 <view class="text32 title-little" bindtap="nTo" data-path="article/wangweigong">
-  <image src="../../images/test/1.png" style="width:32rpx;height:32rpx;float:left" />
+  <image src="../../images/article/people@3x.png" style="width:32rpx;height:32rpx;float:left;margin-right:8rpx" />
   <text>王唯工介绍</text>
 </view>
 <view class="line-d"></view>
