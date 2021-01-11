@@ -5,10 +5,10 @@
     <view class="head-name">
       <view>{{userProfile.nickname}}</view>
       <block wx:if="{{vipInfo.isVipFamily}}">
-        <image class="image-vip-family" src="../../images/my/vip-family@2x.png"/>
+        <image class="image-vip-family" src="{{imageVipFamily}}"/>
       </block>
       <block wx:if="{{vipInfo.isVip}}">
-        <image class="image-vip" src="../../images/my/vip@2x.png" />
+        <image class="image-vip" src="{{imageVip}}" />
       </block>            
     </view>
     <block wx:if="{{vipInfo.isVipFamily}}">
@@ -19,17 +19,17 @@
     <block wx:if="{{vipInfo.isVip}}">
       <view class="head-text-vip">VIP会员剩余天数：{{vipInfo.vipRemainDay}}天
         <!-- TODO问号有什么左右 -->
-        <image src="../../images/my/question@3x.png" />
+        <image src="{{imageQuestion}}" />
       </view>
     </block>      
   </view>
 </view>
 <view class="goods-card" bindtap="buyProduct" data-productid="{{deviceProduct.product_id}}">
-      <image class="goods-card-image" src="../../images/check/device-sell.png" />
+      <image class="goods-card-image" src="{{imageDeviceSell}}" />
       <view class="goods-card-text-1">小阶感测器</view>
       <view class="goods-card-text-2">弹指之间 健康可见</view>
       <view class="button-arrow-main" style="float: right;margin-top: 46rpx;margin-right: 30rpx;">
-        <image src="../../images/arrow-white@3x.png" />
+        <image src="{{imageArrowWhite}}" />
         <text>立即拥有</text>
       </view>
 </view>
@@ -73,25 +73,25 @@
   <!-- TODO 跳转显示登录错误 -->
   <view class="button-gold" bindtap="buyProduct" data-productid="{{currentProductId}}" data-price="{{currentPrice}}" style="margin-top:40rpx;float:left">立即以{{currentPrice}}元续费</view>
   <!-- TODO -->
-  <view class="member-policy">阅读并同意<text bindtap="go" data-page="policy-member">《会员服务协议》</text>和<text bindtap="go" data-page="policy-autobuy">《自动续费服务声明》</text></view>
+  <view class="member-policy">阅读并同意<text bindtap="nTo" data-path="policy/policy-member">《会员服务协议》</text>和<text bindtap="nTo" data-path="policy/policy-autobuy">《自动续费服务声明》</text></view>
 </view>
 
-<view class="goods-card" bindtap="go" data-page="member-exchange">
-      <image class="goods-card-image" src="../../images/check/device-sell.png" />
+<view class="goods-card" bindtap="nTo" data-path="member/member-exchange">
+      <image class="goods-card-image" src="{{imageDeviceSell}}" />
       <view class="goods-card-text-1">卡密兑换</view>
       <view class="goods-card-text-2">输入密码或扫码进行兑换</view>
       <view class="button-arrow-white" style="float: right;margin-top: 46rpx;margin-right: 30rpx;width:160rpx">
-        <image src="../../images/arrow-blue@2x.png" />
+        <image src="{{imageArrowBlue}}" />
         <view>去兑换</view>
       </view>
 </view>
 
 <button class="goods-card" open-type="share" style="width: 100%;height: 160rpx;" bindtap="goThirdWeb" data-url="{{deviceBuyUrl}}">
-      <image class="goods-card-image" style="margin-top:0;margin-left:-40rpx" src="../../images/check/device-sell.png" />
+      <image class="goods-card-image" style="margin-top:0;margin-left:-40rpx" src="{{imageDeviceSell}}" />
       <view class="goods-card-text-1" style="margin-left: -16rpx;margin-top: 17rpx;">邀请好友</view>
       <view class="goods-card-text-2" style="margin-top: 73rpx;margin-left: -168rpx;">TA的健康我一直很在乎</view>
       <view class="button-arrow-white" style="float: right;margin-top: 29rpx;margin-right: -30rpx;width:160rpx">
-        <image src="../../images/arrow-blue@2x.png" />
+        <image src="{{imageArrowBlue}}" />
         <view>领会员</view>
       </view>
 </button>
@@ -99,61 +99,61 @@
   <view class="rights-head">
     <view class="rights-head-view-1">VIP权益</view>
     <!-- TODO 箭头颜色 权益对吧 -->
-    <image class="rights-head-image" src="../../images/arrow-grey@3x.png"/>
-    <view class="rights-head-view-2" bindtap="go" data-page="member-contrast">查看权益对比</view>
+    <image class="rights-head-image" src="{{imageArrowGrey}}"/>
+    <view class="rights-head-view-2" bindtap="nTo" data-path="member/member-contrast">查看权益对比</view>
   </view>
   <view class="right-body">
     <view class="right-body-per">
-      <image class="right-body-image" src="../../images/member/family@2x.png" />
+      <image class="right-body-image" src="{{imageFamily}}" />
       <view class="text28" style="color:rgba(81, 53, 8, 1);width:192rpx;margin-top:16rpx;float:left">家庭成员</view>
       <view class="text24" style="color:rgba(122, 101, 68, 0.6);width:192rpx;margin-top:16rpx;float:left">（家庭包专享受）</view>
     </view>
     <view class="right-body-per">
-      <image class="right-body-image" src="../../images/member/vs@2x.png" />
+      <image class="right-body-image" src="{{imageVs}}" />
       <view class="text28" style="color:rgba(81, 53, 8, 1);width:192rpx;margin-top:16rpx;float:left">改善对比</view> 
     </view>
     <view class="right-body-per">
-      <image class="right-body-image" src="../../images/member/week@2x.png" />
+      <image class="right-body-image" src="{{imageWeek}}" />
       <view class="text28" style="color:rgba(81, 53, 8, 1);width:192rpx;margin-top:16rpx;float:left">周分析</view>
     </view>
     <view class="right-body-per">
-      <image class="right-body-image" src="../../images/member/month@2x.png" />
+      <image class="right-body-image" src="{{imageMonth}}" />
       <view class="text28" style="color:rgba(81, 53, 8, 1);width:192rpx;margin-top:16rpx;float:left">月分析</view>
     </view>
     <view class="right-body-per">
-      <image class="right-body-image" src="../../images/member/report@2x.png" />
+      <image class="right-body-image" src="{{imageReport}}" />
       <view class="text28" style="color:rgba(81, 53, 8, 1);width:192rpx;margin-top:16rpx;float:left">报告保管</view>
       <view class="text24" style="color:rgba(122, 101, 68, 0.6);width:192rpx;margin-top:16rpx;float:left">（1年）</view>
     </view>                
     <view class="right-body-per">
-      <image class="right-body-image" src="../../images/member/eat@2x.png" />
+      <image class="right-body-image" src="{{imageEat}}" />
       <view class="text28" style="color:rgba(81, 53, 8, 1);width:192rpx;margin-top:16rpx;float:left">膳食建议</view>
     </view>   
     <view class="right-body-per">
-      <image class="right-body-image" src="../../images/member/health-danger@2x.png" />
+      <image class="right-body-image" src="{{imageHealthDanger}}" />
       <view class="text28" style="color:rgba(81, 53, 8, 1);width:192rpx;margin-top:16rpx;float:left">健康风险评估</view>
     </view>         
     <view class="right-body-per">
-      <image class="right-body-image" src="../../images/member/health-special@2x.png" />
+      <image class="right-body-image" src="{{imageHealthSpecial}}" />
       <view class="text28" style="color:rgba(81, 53, 8, 1);width:192rpx;margin-top:16rpx;float:left">健康专题</view>
     </view>         
     <view class="right-body-per">
-      <image class="right-body-image" src="../../images/member/vip-goods@2x.png" />
+      <image class="right-body-image" src="{{imageVipGoods}}" />
       <view class="text28" style="color:rgba(81, 53, 8, 1);width:192rpx;margin-top:16rpx;float:left">VIP专享商品</view>
     </view>         
     <view class="right-body-per">
-      <image class="right-body-image" src="../../images/member/vip@2x.png" />
+      <image class="right-body-image" src="{{imageVip2}}" />
       <view class="text28" style="color:rgba(81, 53, 8, 1);width:192rpx;margin-top:16rpx;float:left">尊贵身份标识</view>
     </view>         
     <view class="right-body-per">
-      <image class="right-body-image" src="../../images/member/more@2x.png" />
+      <image class="right-body-image" src="{{imageMore}}" />
       <view class="text28" style="color:rgba(81, 53, 8, 1);width:192rpx;margin-top:16rpx;float:left">更多权益</view>
       <view class="text24" style="color:rgba(122, 101, 68, 0.6);width:192rpx;margin-top:16rpx;float:left">（敬请期待）</view>
     </view>                                              
   </view>
 </view>
 <!-- TODO -->
-<view class="member-explain" bindtap="go" data-page="member-explain">
+<view class="member-explain" bindtap="nTo" data-path="member/member-explain">
     <view>会员服务说明</view>
-    <image src="../../images/arrow@2x.png"/>
+    <image src="{{imageArrow}}"/>
 </view>

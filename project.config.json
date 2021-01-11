@@ -53,74 +53,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/login/login",
-          "pathName": "pages/login/login",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/login-mobile/login-mobile",
-          "pathName": "pages/login-mobile/login-mobile",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/login-password/login-password",
-          "pathName": "pages/login-password/login-password",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/login-forget/login-forget",
-          "pathName": "pages/login-forget/login-forget",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/test/test",
-          "pathName": "pages/test/test",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/my/my",
-          "pathName": "pages/my/my",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/my-info/my-info",
-          "pathName": "pages/my-info/my-info",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/my-family/my-family",
-          "pathName": "pages/my-family/my-family",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/setup/setup",
-          "pathName": "pages/setup/setup",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/message/message",
-          "pathName": "pages/message/message",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/my-update-password/my-update-password",
-          "pathName": "pages/my-update-password/my-update-password",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/help-feedback/help-feedback",
-          "pathName": "pages/help-feedback/help-feedback",
+          "name": "pages/login/login-password",
+          "pathName": "pages/login/login-password",
           "query": "",
           "scene": null
         },
@@ -131,32 +65,32 @@
           "scene": null
         },
         {
-          "name": "pages/member-exchange/member-exchange",
-          "pathName": "pages/member-exchange/member-exchange",
+          "name": "pages/message/message",
+          "pathName": "pages/message/message",
           "query": "",
           "scene": null
         },
         {
-          "name": "pages/my-family/my-family",
-          "pathName": "pages/my-family/my-family",
+          "name": "pages/my/my-family/my-family",
+          "pathName": "pages/my/my-family/my-family",
           "query": "",
           "scene": null
         },
         {
-          "name": "pages/check/check",
-          "pathName": "pages/check/check",
+          "name": "pages/my/my",
+          "pathName": "pages/my/my",
           "query": "",
           "scene": null
         },
         {
-          "name": "pages/checktest/checktest",
-          "pathName": "pages/checktest/checktest",
+          "name": "pages/report/report",
+          "pathName": "pages/report/report",
           "query": "",
           "scene": null
         },
         {
-          "name": "pages/check-device/check-device",
-          "pathName": "pages/check-device/check-device",
+          "name": "pages/special/special",
+          "pathName": "pages/special/special",
           "query": "",
           "scene": null
         }

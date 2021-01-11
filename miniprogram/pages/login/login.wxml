@@ -1,8 +1,8 @@
-<image class="logo-view" src="../../images/logo-login@2x.png"></image>
+<image class="logo-view" src="{{imageLogoLogin}}"></image>
 <block  wx:if="{{hasAuth==false}}">
   <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"
 class="wechat" data-logintype="1" style="width: 606rpx;height: 120rpx;" >
-    <image src="../../images/logo-wechat@2x.png"></image>
+    <image src="{{imageLogoWechat}}"></image>
     <text>微信快捷登陆</text>
   </button>
 
@@ -10,7 +10,7 @@ class="wechat" data-logintype="1" style="width: 606rpx;height: 120rpx;" >
 </block>
 <block wx:else>
   <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class="wechat" style="width: 606rpx;height: 120rpx;">
-    <image src="../../images/logo-wechat@2x.png"></image>
+    <image src="{{imageLogoWechat}}"></image>
     <text>微信快捷登陆</text>
   </button>
   <button open-type="getUserInfo" data-logintype="2" bindgetuserinfo="getUserInfo" class="mobile" style="width: 606rpx;height: 120rpx;">使用手机号登陆/注册</button>

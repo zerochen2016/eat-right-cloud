@@ -12,7 +12,18 @@ Page({
     activeIndex: 0,
     showImportantNotice: 0,
     importantNotice: {},
-    resourcesHost: ''
+    resourcesHost: '',
+
+    imageShare: app.globalData.resourcesHost + 'share@2x.png',
+    imageArrowBlue: app.globalData.resourcesHost + 'arrow-blue@2x.png',
+    imageLogoAlert: app.globalData.resourcesHost + 'logo-alert@2x.png',
+    imageCancelCircle: app.globalData.resourcesHost + 'cancel-circle@2x.png',
+    imageTest1: app.globalData.resourcesHost + 'test/1.png',
+    imageTest2: app.globalData.resourcesHost + 'test/2.png',
+    imageTest3: app.globalData.resourcesHost + 'test/3.png',
+    imageTest4: app.globalData.resourcesHost + 'test/4.png',
+    imageTest5: app.globalData.resourcesHost + 'test/5.png',
+    imageTest6: app.globalData.resourcesHost + 'test/6.png',
   },
   
   
@@ -34,6 +45,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    //导航选中
+    this.selectComponent("#bottom-navigate").changeActiveIndex(0)
     let user = app.getUser()
     if(user && user.id){
       //获取弹窗公共
@@ -117,10 +130,10 @@ Page({
       //TODELETE 测试用数据
       that.setData({
         specialArray: [
-          {id: "special1", picture:"../../images/test/1.png"},
-          {id: "special2", picture:"../../images/test/2.png"},
-          {id: "special3", picture:"../../images/test/3.png"},
-          {id: "special4", picture:"../../images/test/4.png"},
+          {id: "special1", picture: that.data.imageTest1},
+          {id: "special2", picture: that.data.imageTest2},
+          {id: "special3", picture: that.data.imageTest3},
+          {id: "special4", picture: that.data.imageTest4},
           ]
       })
   },
@@ -154,7 +167,7 @@ Page({
       //TODELETE 测试用数据
       that.setData({
         recommend: 
-          {id: "special1", picture:"../../images/test/1.png", title: "小阶感测器", decribe: "弹指之间 健康可见", price: "999.00", url: "https://www.baidu.com/"}
+          {id: "special1", picture:that.data.imageTest1, title: "小阶感测器", decribe: "弹指之间 健康可见", price: "999.00", url: "https://www.baidu.com/"}
       })
   },
   toSpecial: function(e){
@@ -193,20 +206,20 @@ Page({
       //TODELETE 测试用数据
       that.setData({
         carefullyChosen1: [
-          {picture: "../../images/test/1.png", url: "http://www.baidu.com"},
-          {picture: "../../images/test/2.png", url: "http://www.baidu.com"},
-          {picture: "../../images/test/3.png", url: "http://www.baidu.com"},
-          {picture: "../../images/test/4.png", url: "http://www.baidu.com"},
-          {picture: "../../images/test/5.png", url: "http://www.baidu.com"},
-          {picture: "../../images/test/6.png", url: "http://www.baidu.com"}
+          {picture: that.data.imageTest1, url: "http://www.baidu.com"},
+          {picture: that.data.imageTest2, url: "http://www.baidu.com"},
+          {picture: that.data.imageTest3, url: "http://www.baidu.com"},
+          {picture: that.data.imageTest4, url: "http://www.baidu.com"},
+          {picture: that.data.imageTest5, url: "http://www.baidu.com"},
+          {picture: that.data.imageTest6, url: "http://www.baidu.com"}
         ],
         carefullyChosen2: [
-          {picture: "../../images/test/1.png", url: "http://www.baidu.com"},
-          {picture: "../../images/test/2.png", url: "http://www.baidu.com"},
-          {picture: "../../images/test/3.png", url: "http://www.baidu.com"},
-          {picture: "../../images/test/4.png", url: "http://www.baidu.com"},
-          {picture: "../../images/test/5.png", url: "http://www.baidu.com"},
-          {picture: "../../images/test/6.png", url: "http://www.baidu.com"}
+          {picture: that.data.imageTest1, url: "http://www.baidu.com"},
+          {picture: that.data.imageTest2, url: "http://www.baidu.com"},
+          {picture: that.data.imageTest3, url: "http://www.baidu.com"},
+          {picture: that.data.imageTest4, url: "http://www.baidu.com"},
+          {picture: that.data.imageTest5, url: "http://www.baidu.com"},
+          {picture: that.data.imageTest6, url: "http://www.baidu.com"}
         ]
       })
   },
@@ -240,7 +253,7 @@ Page({
         //TODELETE 测试用数据
         that.setData({
           moreRecommend: {
-            picture: "../../images/test/6.png", url: "http://www.baidu.com"
+            picture: that.data.imageTest6, url: "http://www.baidu.com"
           }
         })
     },
@@ -308,8 +321,4 @@ Page({
       showImportantNotice: 0
     })
   },
-  initData: function(){
-    //导航选中
-    this.selectComponent("#bottom-navigate").changeActiveIndex(0)
-  }
 })

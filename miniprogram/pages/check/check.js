@@ -22,7 +22,13 @@ Page({
     checkData: {
       compositeIndex: 0,
       lastCheckDate: "--"
-    }
+    },
+    imageNotice: app.globalData.resourcesHost + 'check/notice@2x.png',
+    imageEquip: app.globalData.resourcesHost + 'check/equip@2x.png',
+    imageApple: app.globalData.resourcesHost + 'check/apple@2x.png',
+    imageChallenge: app.globalData.resourcesHost + 'check/challenge@2x.png',
+    imageInvite: app.globalData.resourcesHost + 'check/invite@2x.png',
+    imageShare: app.globalData.resourcesHost + 'check/member@2x.png'
   },
 
   /**
@@ -45,7 +51,8 @@ Page({
   onShow: function () {
     this.checkConnected()
     this.getCheckData()
-    
+    //底部导航选中
+    this.selectComponent("#bottom-navigate").changeActiveIndex(1)
   },
 
   /**
@@ -172,9 +179,6 @@ Page({
         console.log(res)
       }
     })
-  },
-  initData: function(){
-    this.selectComponent("#bottom-navigate").changeActiveIndex(1)
   },
     //TODO 获取检测数据
     getCheckData: function(){

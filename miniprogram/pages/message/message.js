@@ -6,6 +6,7 @@ Page({
    */
   data: {
     showMessage: false,
+    imageArrow: app.globalData.resourcesHost + 'arrow@2x.png'
   },
 
   /**

@@ -1,17 +1,17 @@
-// pages/article/wangweigong.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    imageWangweigong2: app.globalData.resourcesHost + 'article/wangweigong2.png'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoaded: function (options) {
 
   },
 
@@ -57,10 +57,4 @@ Page({
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

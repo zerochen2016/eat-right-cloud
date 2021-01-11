@@ -1,11 +1,11 @@
 <view class="wechatSubscription" bindtap="goThirdWeb" data-url="https://mp.weixin.qq.com/s/4DxWt4CUe78cqbk9cy38Ng">
-  <image src="../../images/wechatSubscription@2x.png" class="wechatSubscription-image"></image>
+  <image src="{{imageWechatSubscription}}" class="wechatSubscription-image"></image>
   <text class="wechatSubscription-text">
     关注阶梯健康公众号
     了解更多健康咨询
   </text>
   <view class="wechatSubscription-view">
     <text class="wechatSubscription-view-text">去关注</text>
-    <image class="wechatSubscription-view-image" src="../../images/arrow-white@3x.png"></image>
+    <image class="wechatSubscription-view-image" src="{{imageArrowWhite}}"></image>
   </view>
 </view>  

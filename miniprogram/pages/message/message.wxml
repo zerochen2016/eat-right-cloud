@@ -28,18 +28,18 @@
     <view class="content-tab-text-1-view-1">{{firstMessage.message_title}}</view>
     <view class="content-tab-text-1-view-2">{{firstMessage.sender_nickname}} {{firstMessage.message_content}}</view>
   </view>
-  <image class="content-tab-arrow" src="../../images/arrow@2x.png" />
+  <image class="content-tab-arrow" src="{{imageArrow}}" />
   <block wx:if="{{unReadCount}}">
     <view class="content-tab-text-3" ></view>
   </block>
 </view>
 <!-- TODO  -->
-<!-- <view class="content-tab" bindtap="go" data-page="message">
+<view class="content-tab" bindtap="go" data-page="message">
   <view class="content-tab-text-1">
     <view class="content-tab-text-1-view-1">重要更新</view>
     <view class="content-tab-text-1-view-2">新VIP家庭包上架，邀请体验</view>
   </view>
-  <image class="content-tab-arrow" src="../../images/arrow@2x.png" />
+  <image class="content-tab-arrow" src="{{imageArrow}}" />
   <view class="content-tab-text-3"></view>
 </view>
 <view class="content-tab" bindtap="go" data-page="message">
@@ -47,7 +47,7 @@
     <view class="content-tab-text-1-view-1">春节到了，普天同乐</view>
     <view class="content-tab-text-1-view-2">吃对了么春节特惠</view>
   </view>
-  <image class="content-tab-arrow" src="../../images/arrow@2x.png" />
+  <image class="content-tab-arrow" src="{{imageArrow}}" />
   <view class="content-tab-text-3"></view>
-</view> -->
+</view>
 </block>

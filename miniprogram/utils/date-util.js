@@ -57,12 +57,12 @@ function dateDiffDay(beginDate, endDate){
 
 function dateDiffMinute(beginDate, endDate){
   let time = new Date(endDate).getTime() - new Date(beginDate).getTime()
-  let diffTime = parseInt(time / 86400000);
+  let diffTime = parseInt(time / 60000);
   return diffTime > 0 ? diffTime : 0;
 }
 
 function dateDiffSecond(beginDate, endDate){
   let time = new Date(endDate).getTime() - new Date(beginDate).getTime()
-  let diffTime = parseInt(time / 86400000);
+  let diffTime = parseInt(time / 1000);
   return diffTime > 0 ? diffTime : 0;
 }

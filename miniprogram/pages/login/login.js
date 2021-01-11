@@ -8,7 +8,9 @@ Page({
    */
   data: {
     hasAuth: false,
-    inputMobile: ''
+    inputMobile: '',
+    imageLogoLogin: app.globalData.resourcesHost + 'logo-login@2x.png',
+    imageLogoWechat: app.globalData.resourcesHost + 'logo-wechat@2x.png',
   },
 
   /**
@@ -70,7 +72,7 @@ Page({
         this.getUnionId()
       }else if(loginType == 2){
         wx.navigateTo({
-          url: '../login-mobile/login-mobile',
+          url: '../login/login-mobile',
         })
       }
     }else{
@@ -220,6 +222,6 @@ Page({
         
       }
     })  
-  }
+  },
   
 })

@@ -1,36 +1,52 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/my/my",
-    "pages/my-info/my-info",
-    "pages/my-store/my-store",
-    "pages/my-family/my-family",
-    "pages/my-family-add/my-family-add",
-    "pages/my-family-member/my-family-member",
-    "pages/my-update-password/my-update-password",
-    "pages/help-feedback/help-feedback",
-    "pages/help-feedback-guide/help-feedback-guide",
-    "pages/help-feedback-feedback/help-feedback-feedback",
-    "pages/member/member",
-    "pages/member-exchange/member-exchange",
-    "pages/member-exchange-input/member-exchange-input",
-    "pages/member-contrast/member-contrast",
-    "pages/member-explain/member-explain",
-    "pages/setup/setup",
-    "pages/message/message",
-    "pages/share/share",
-    "pages/login/login",
-    "pages/login-mobile/login-mobile",
-    "pages/login-password/login-password",
-    "pages/login-forget/login-forget",
-    "pages/check/check",
-    "pages/check-device/check-device",
-    "pages/eatright/eatright",
-    "pages/third-webview/third-webview",
-    "pages/special/special",
+    
     "pages/article/article",
     "pages/article/theory-wangweigong",
     "pages/article/wangweigong",
+
+    "pages/check/check",
+    "pages/check/check-device",
+
+    "pages/eatright/eatright",
+
+    "pages/help-feedback/help-feedback",
+    "pages/help-feedback/help-feedback-guide",
+    "pages/help-feedback/help-feedback-feedback",
+
+    "pages/login/login",
+    "pages/login/login-mobile",
+    "pages/login/login-password",
+    "pages/login/login-forget",
+
+    "pages/member/member",
+    "pages/member/member-exchange",
+    "pages/member/member-exchange-input",
+    "pages/member/member-contrast",
+    "pages/member/member-explain",
+
+    "pages/message/message",
+
+    "pages/my/my",
+    "pages/my/my-info/my-info",
+    "pages/my/my-store/my-store",
+    "pages/my/my-family/my-family",
+    "pages/my/my-family-add/my-family-add",
+    "pages/my/my-family-member/my-family-member",
+    "pages/my/my-update-password/my-update-password",
+
+    "pages/report/report",
+    "pages/report/record/report-record",
+
+    "pages/setup/setup",
+    
+    "pages/share/share",
+
+    "pages/special/special",
+    
+    "pages/third-webview/third-webview",
+    
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",

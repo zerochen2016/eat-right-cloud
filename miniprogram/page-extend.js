@@ -33,13 +33,8 @@ const pageExtend = Page => {
         }
       }
       this.getWechatUserInfo(this)//微信授权信息   
-      //初始化数据
-      if(this.initData){
-        this.initData()
-      }
-      
+
       this.setData({
-        resourcesHost: app.globalData.resourcesHost,
         userProfile: app.getUserProfile()
       })
       //允许分享按钮
@@ -136,6 +131,7 @@ const pageExtend = Page => {
         url: '../login/login',
       })
     }
+
     object.getWechatUserInfo = (that) =>{
       
       // 获取用户信息，

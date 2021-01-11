@@ -1,4 +1,8 @@
 const app = getApp()
+let dateUtil = require("../../utils/date-util.js")
+const sha256 = require("../../utils/sha256.js")
+const md5 = require("../../utils/md5.js")
+const base64 = require("../../utils/base64.js")
 Page({
 
   /**
@@ -26,7 +30,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.listReports(1,0,0)
+    this.checkDeviceIsUsable()
+    
   },
 
   /**
@@ -56,9 +61,7 @@ Page({
   onReachBottom: function () {
 
   },
-  //TODO上报数据
-  // SubmitPulseTest 提交一般形式的采样数据.
-  
+
   //TODO
     // GetSharedReportLink 获取分析报告的链接
     getSharedReportLink: function(reportId){

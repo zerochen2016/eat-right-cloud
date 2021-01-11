@@ -10,7 +10,11 @@ Page({
     avatarUrl: '',
     nickName: '',
     resourcesHost: '',
-    unReadCount: 0
+    unReadCount: 0,
+    imageFamily: app.globalData.resourcesHost + 'my/family@2x.png',
+    imageOrder: app.globalData.resourcesHost + 'my/order@2x.png',
+    imageStore: app.globalData.resourcesHost + 'my/store@2x.png',
+    imageArrow: app.globalData.resourcesHost + 'arrow@2x.png'
   },
 
   /**
@@ -31,6 +35,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    //底部导航选中
+    this.selectComponent("#bottom-navigate").changeActiveIndex(4)
     //获取有赞我的订单页面
     this.getMyOrderUrl()
     //获取站内信
@@ -133,9 +139,6 @@ Page({
 
       },
     })     
-  },
-  initData: function(){
-    this.selectComponent("#bottom-navigate").changeActiveIndex(4)
   },
   getVipInfo: function(){
     const that = this

@@ -1,5 +1,5 @@
 <view class="text56 title-left" style="margin-top:60rpx">王唯工介绍</view>
-<image class="image-1" src="../../images/article/wangweigong2.png"/>
+<image class="image-1" src="{{imageWangweigong2}}"/>
 <view class="text30 content">
   <text>
     王唯工（Wei-Kung-Wang）

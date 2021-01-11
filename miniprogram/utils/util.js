@@ -25,7 +25,8 @@ module.exports = {
   isPositiveFloat: isPositiveFloat,
 	isPrice: isPrice,
 	hasNumberAndLetter: hasNumberAndLetter,
-	isMobile: isMobile
+	isMobile: isMobile,
+	replaceAll: replaceAll
 }
 //是否空
 function isEmpty(param){
@@ -93,4 +94,7 @@ function isMobile(param){
 		return false;
   }
 	return (/^(1[34578]{1}\d{9}$)/.test(param))
+}
+function replaceAll(str,s1,s2){
+	return str.toString().replace(new RegExp(s1,"gm"),s2);
 }

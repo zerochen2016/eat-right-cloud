@@ -1,4 +1,4 @@
-// pages/components/bottom-navigate/bottom-navigate.js
+const app = getApp()
 Component({
   /**
    * 组件的属性列表
@@ -16,32 +16,32 @@ Component({
   data: {
     navData: [{
       title: '探索',
-      icon: '../../images/nav/home-grey@2x.png',
-      iconed: '../../images/nav/home@2x.png',
+      icon: app.globalData.resourcesHost + 'nav/home-grey@2x.png',
+      iconed: app.globalData.resourcesHost + 'nav/home@2x.png',
       page: 'home'
     },
     {
       title: '检测',
-      icon: '../../images/nav/check-grey@2x.png',
-      iconed: '../../images/nav/check@2x.png',
+      icon: app.globalData.resourcesHost + 'nav/check-grey@2x.png',
+      iconed: app.globalData.resourcesHost + 'nav/check@2x.png',
       page: 'check'
     },
     {
       title: '',
-      icon: '../../images/nav/eatright-grey@2x-c.png',
-      iconed: '../../images/nav/eatright@2x-c.png',
+      icon: app.globalData.resourcesHost + 'nav/eatright-grey@2x-c.png',
+      iconed: app.globalData.resourcesHost + 'nav/eatright@2x-c.png',
       page: 'eatright'
     },
     {
       title: '报告',
-      icon: '../../images/nav/report-grey@2x.png',
-      iconed: '../../images/nav/report@2x.png',
+      icon: app.globalData.resourcesHost + 'nav/report-grey@2x.png',
+      iconed: app.globalData.resourcesHost + 'nav/report@2x.png',
       page: 'report'
     },
     {
       title: '我的',
-      icon: '../../images/nav/my-grey@2x.png',
-      iconed: '../../images/nav/my@2x.png',
+      icon: app.globalData.resourcesHost + 'nav/my-grey@2x.png',
+      iconed: app.globalData.resourcesHost + 'nav/my@2x.png',
       page: 'my'
     }
   ]

@@ -1,4 +1,4 @@
-// pages/components/wechatSubscription/wechatSubscription.js
+const app = getApp()
 Component({
   /**
    * 组件的属性列表
@@ -10,7 +10,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    imageWechatSubscription: app.globalData.resourcesHost + 'wechatSubscription@2x.png',
+    imageArrowWhite: app.globalData.resourcesHost + 'arrow-white@3x.png',
   },
 
   /**

@@ -5,11 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    avatarUrl: '',
-    imageFamily: app.globalData.resourcesHost + 'report/family@2x.png',
-    imageReport: app.globalData.resourcesHost + 'report/report@2x.png',
-    imageAnalysisWeek: app.globalData.resourcesHost + 'report/analysis-week@2x.png',
-    imageAnalysisMonth: app.globalData.resourcesHost + 'report/analysis-month@2x.png' 
+    imageCard: app.globalData.resourcesHost + 'my/card@3x.png',
+    imageScan: app.globalData.resourcesHost + 'my/scan@2x.png',
+    imageHandInput: app.globalData.resourcesHost + 'my/handinput@2x.png',
+    imageAlbum: app.globalData.resourcesHost + 'my/album@2x.png'
   },
 
   /**
@@ -30,8 +29,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    //底部导航选中
-    this.selectComponent("#bottom-navigate").changeActiveIndex(3)
+
   },
 
   /**
@@ -61,4 +59,15 @@ Page({
   onReachBottom: function () {
 
   },
+
+  
+  scan: function (e) {
+    // 允许从相机和相册扫码
+    wx.scanCode({
+      success (res) {
+        console.log(res)
+      }
+    })
+  },
+  
 })

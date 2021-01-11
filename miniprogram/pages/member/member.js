@@ -14,6 +14,26 @@ Page({
     vipList: 2,
     vipSelectDay: 30,
     familyVipSelectDay: 30,
+    imageVipFamily: app.globalData.resourcesHost + 'my/vip-family@2x.png',
+    imageVip: app.globalData.resourcesHost + 'images/my/vip@2x.png',
+    imageQuestion: app.globalData.resourcesHost + 'my/question@3x.png',
+    imageDeviceSell: app.globalData.resourcesHost + 'check/device-sell.png',
+    imageArrowWhite: app.globalData.resourcesHost + 'arrow-white@3x.png',
+    imageArrowBlue: app.globalData.resourcesHost + 'arrow-blue@2x.png',
+    imageArrowGrey: app.globalData.resourcesHost + 'arrow-grey@3x.png',
+    imageFamily: app.globalData.resourcesHost + 'member/family@2x.png',
+    imageVs: app.globalData.resourcesHost + 'member/vs@2x.png',
+    imageWeek: app.globalData.resourcesHost + 'member/week@2x.png',
+    imageMonth: app.globalData.resourcesHost + 'member/month@2x.png',
+    imageReport: app.globalData.resourcesHost + 'member/report@2x.png',
+    imageEat: app.globalData.resourcesHost + 'member/eat@2x.png',
+    imageHealthDanger: app.globalData.resourcesHost + 'member/health-danger@2x.png',
+    imageHealthSpecial: app.globalData.resourcesHost + 'member/health-special@2x.png',
+    imageVipGoods: app.globalData.resourcesHost + 'member/vip-goods@2x.png',
+    imageVip2: app.globalData.resourcesHost + 'member/vip@2x.png',
+    imageMore: app.globalData.resourcesHost + 'member/more@2x.png',
+    imageArrow: app.globalData.resourcesHost + 'arrow@2x.png'
+    
   },
 
   /**

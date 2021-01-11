@@ -8,7 +8,8 @@ Page({
     languageArray: ['简体中文'],
     languageIndex: 0,
     musicArray: ['Auid Lang Syne'],
-    musicIndex: 0
+    musicIndex: 0,
+    imageArrow: app.globalData.resourcesHost + 'arrow@2x.png'
   },
 
   /**

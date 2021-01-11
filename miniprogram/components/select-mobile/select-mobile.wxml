@@ -1,2 +1,2 @@
 <picker class="mobile-input-1" bindchange="bindPickerChange" value="{{areaCodeIndex}}" range="{{areaCodeArray}}">{{areaCode}}</picker>
-<image class="mobile-image" src="../../images/arrow@2x.png"></image>
+<image class="mobile-image" src="{{imageArrow}}"></image>

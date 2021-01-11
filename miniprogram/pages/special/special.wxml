@@ -4,7 +4,7 @@
       <view id="{{index}}" data-id="{{item.specialId}}" class="{{activeIndex == index ? 'special-scroll-text' : 'special-scroll-text-grey'}}" bindtap="changeSpecial">{{item.specialTitle}}</view>
     </block>        
   </scroll-view>
-  <image bindtap="chooseSpecial" data-type="1" class="special-scroll-image" src="../../images/more@2x.png"></image>
+  <image bindtap="chooseSpecial" data-type="1" class="special-scroll-image" src="{{imageMore}}"></image>
 </view>
 <view bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
 <block wx:for="{{currentArticles}}" wx:key="true">
@@ -20,7 +20,7 @@
 <view class="pop-choose" hidden="{{showChoose == 1 ? '' : true}}">
   <view class="pop-choose-title">
     <text class="pop-choose-title-text">选择分类</text>
-    <image bindtap="chooseSpecial" data-type="0" class="pop-choose-title-image" src="../../images/cancel@2x.png"/>
+    <image bindtap="chooseSpecial" data-type="0" class="pop-choose-title-image" src="{{imageCancel}}"/>
   </view>
   <view class="pop-choose-option">
     <block wx:for="{{articleArray}}" wx:key="true">

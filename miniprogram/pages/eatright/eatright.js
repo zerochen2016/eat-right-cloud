@@ -26,7 +26,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    //底部导航选中
+    this.selectComponent("#bottom-navigate").changeActiveIndex(2)
   },
 
   /**
@@ -57,7 +58,4 @@ Page({
 
   },
 
-  initData: function(){
-    this.selectComponent("#bottom-navigate").changeActiveIndex(2)
-  }
 })
