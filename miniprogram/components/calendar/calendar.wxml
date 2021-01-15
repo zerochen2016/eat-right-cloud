@@ -1,2 +1,40 @@
-<!--pages/components/calendar/calendar.wxml-->
-<text>pages/components/calendar/calendar.wxml</text>
+<view class="cal" bindtouchstart="headTouchStart" bindtouchmove="headTouchMove" bindtouchend="headTouchEnd" >
+  <view class="cal-head">
+    <image src="{{imageArrowLeft}}" style="margin-left: 107rpx;" bindtap="dateChangeTap" data-ori="0" data-date="{{nowDate}}" />
+    <picker class="cal-head-picker" fields="month" mode="date" value="{{nowDate}}" bindchange="dateChangeTap" >
+    {{nowDateChinese}}
+    </picker>
+    <image src="{{imageArrowRight}}" bindtap="dateChangeTap" data-ori="1" data-date="{{nowDate}}"/>
+  </view>
+  <view class="cal-body">
+    <view>
+      <view class="cal-body-week-head" style="margin-left:25rpx">日</view>
+      <view class="cal-body-week-head">一</view>
+      <view class="cal-body-week-head">二</view>
+      <view class="cal-body-week-head">三</view>
+      <view class="cal-body-week-head">四</view>
+      <view class="cal-body-week-head">五</view>
+      <view class="cal-body-week-head">六</view>
+      <view class="cal-line"></view>
+    </view>
+    <view class="cal-body-week-days" style="height:{{dayHeight}}" animation="{{animationData}}">
+    <block wx:for="{{days}}" wx:key="true">
+      <block wx:if="{{item.type == 0}}">
+        <view class="cal-body-week cal-body-week-grey" style="{{(index % 7 == 0) ? 'margin-left:25rpx' :''}}">{{item.value}}</view>
+      </block>
+      <block wx:elif="{{item.type == 1}}"> 
+        <view class="cal-body-week" style="{{(index % 7 == 0) ? 'margin-left:25rpx' :''}}">{{item.value}}</view>
+      </block>
+      <block wx:elif="{{item.type == 2}}"> 
+        <view class="cal-body-week cal-body-week-report" style="{{(index % 7 == 0) ? 'margin-left:25rpx' :''}}">{{item.value}}</view>
+      </block>
+      <block wx:elif="{{item.type == 3}}"> 
+        <view class="cal-body-week cal-body-week-report" style="{{(index % 7 == 0) ? 'margin-left:25rpx' :''}}">{{item.value}}<text>今天</text></view>
+      </block>
+      <block wx:elif="{{item.type == 4}}"> 
+        <view class="cal-body-week cal-body-week-select" style="{{(index % 7 == 0) ? 'margin-left:25rpx' :''}}">{{item.value}}</view>
+      </block>
+    </block>
+    </view>
+  </view>
+</view>

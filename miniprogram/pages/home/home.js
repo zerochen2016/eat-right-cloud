@@ -1,19 +1,13 @@
 const app = getApp()
+let dataDelayDoInterval = null
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    specialArray: [],
-    recommend: {},
-    carefullyChosen1: [],
-    carefullyChosen2: [],
-    moreRecommend: {},
     activeIndex: 0,
     showImportantNotice: 0,
-    importantNotice: {},
-    resourcesHost: '',
-
+    imageDevice2: app.globalData.resourcesHost + 'device2.png',
     imageShare: app.globalData.resourcesHost + 'share@2x.png',
     imageArrowBlue: app.globalData.resourcesHost + 'arrow-blue@2x.png',
     imageLogoAlert: app.globalData.resourcesHost + 'logo-alert@2x.png',
@@ -24,6 +18,7 @@ Page({
     imageTest4: app.globalData.resourcesHost + 'test/4.png',
     imageTest5: app.globalData.resourcesHost + 'test/5.png',
     imageTest6: app.globalData.resourcesHost + 'test/6.png',
+    imageWangweigong1: app.globalData.resourcesHost + 'article/wangweigong1.png'
   },
   
   
@@ -45,36 +40,41 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    const that = this
     //导航选中
     this.selectComponent("#bottom-navigate").changeActiveIndex(0)
     let user = app.getUser()
     if(user && user.id){
+      dataDelayDoInterval = setTimeout(function(){
       //获取弹窗公共
-      this.getVersionUpdateInfo()
-      //获取专题数据
-      this.listSpecial()
-      //获取大图推荐
-      this.getRecommend()
+      that.getVersionUpdateInfo()
+      //获取专题菜单
+      that.listChannelMenus()
+      //获取感测器链接
+      that.getDeviceGoods()
       //获取精选
-      this.listCareFullyChosen()
-      //获取更多为您推荐
-      this.getMoreRecommend()
+      that.listRecommendations()
+      },500)
+      
     }
 
   },
+
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    console.log("----Home onHide----")
+    clearInterval(dataDelayDoInterval)
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    console.log("----Home onUnload----")
+    clearInterval(dataDelayDoInterval)
   },
 
   /**
@@ -100,163 +100,13 @@ Page({
     console.log(e)
   },
   
-  //TODO 专题列表API
-  listSpecial: function(){
-    var that = this
-      // wx.request({
-      //   url: getApp().data.server + 'listSpecial',
-      //   data: {
-
-      //   },
-      //   dataType: 'json',
-      //   header: {
-      //     'content-type': 'application/x-www-form-urlencoded' 
-      //   },
-      //   method: 'POST',
-      //   success: function (res) {
-      //     if (res.statusCode == 200) {
-      //       var result = res.data;
-      //       console.info(result);
-      //       if (result.code == 0) {
-      //         that.setData({
-      //           specialArrray: result
-      //         })
-      //       } 
-      //     } else {
-      //       return;
-      //     }
-      //   },
-      // })       
-      //TODELETE 测试用数据
-      that.setData({
-        specialArray: [
-          {id: "special1", picture: that.data.imageTest1},
-          {id: "special2", picture: that.data.imageTest2},
-          {id: "special3", picture: that.data.imageTest3},
-          {id: "special4", picture: that.data.imageTest4},
-          ]
-      })
-  },
-  //TODO 获取推荐API
-  getRecommend: function(){
-    var that = this
-      // wx.request({
-      //   url: getApp().data.server + 'getRecommend',
-      //   data: {
-
-      //   },
-      //   dataType: 'json',
-      //   header: {
-      //     'content-type': 'application/x-www-form-urlencoded' 
-      //   },
-      //   method: 'POST',
-      //   success: function (res) {
-      //     if (res.statusCode == 200) {
-      //       var result = res.data;
-      //       console.info(result);
-      //       if (result.code == 0) {
-      //         that.setData({
-      //           recommend: result
-      //         })
-      //       } 
-      //     } else {
-      //       return;
-      //     }
-      //   },
-      // })    
-      //TODELETE 测试用数据
-      that.setData({
-        recommend: 
-          {id: "special1", picture:that.data.imageTest1, title: "小阶感测器", decribe: "弹指之间 健康可见", price: "999.00", url: "https://www.baidu.com/"}
-      })
-  },
+  
   toSpecial: function(e){
     wx.navigateTo({
       url: '../special/special?id=' + e.currentTarget.dataset.id,
     })
   },
-  //TODO 精选API，第三方跳转
-  listCareFullyChosen: function(){
-    var that = this
-      // wx.request({
-      //   url: getApp().data.server + 'listCareFullyChosen',
-      //   data: {
-
-      //   },
-      //   dataType: 'json',
-      //   header: {
-      //     'content-type': 'application/x-www-form-urlencoded' 
-      //   },
-      //   method: 'POST',
-      //   success: function (res) {
-      //     if (res.statusCode == 200) {
-      //       var result = res.data;
-      //       console.info(result);
-      //       if (result.code == 0) {
-      //         that.setData({
-      //           careFullyChosen1: result.careFullyChosen1,
-      //           careFullyChosen2: result.careFullyChosen2
-      //         })
-      //       } 
-      //     } else {
-      //       return;
-      //     }
-      //   },
-      // })    
-      //TODELETE 测试用数据
-      that.setData({
-        carefullyChosen1: [
-          {picture: that.data.imageTest1, url: "http://www.baidu.com"},
-          {picture: that.data.imageTest2, url: "http://www.baidu.com"},
-          {picture: that.data.imageTest3, url: "http://www.baidu.com"},
-          {picture: that.data.imageTest4, url: "http://www.baidu.com"},
-          {picture: that.data.imageTest5, url: "http://www.baidu.com"},
-          {picture: that.data.imageTest6, url: "http://www.baidu.com"}
-        ],
-        carefullyChosen2: [
-          {picture: that.data.imageTest1, url: "http://www.baidu.com"},
-          {picture: that.data.imageTest2, url: "http://www.baidu.com"},
-          {picture: that.data.imageTest3, url: "http://www.baidu.com"},
-          {picture: that.data.imageTest4, url: "http://www.baidu.com"},
-          {picture: that.data.imageTest5, url: "http://www.baidu.com"},
-          {picture: that.data.imageTest6, url: "http://www.baidu.com"}
-        ]
-      })
-  },
-    //TODO 更多为您推荐API
-    getMoreRecommend: function(){
-      var that = this
-        // wx.request({
-        //   url: getApp().data.server + 'getMoreRecommend',
-        //   data: {
   
-        //   },
-        //   dataType: 'json',
-        //   header: {
-        //     'content-type': 'application/x-www-form-urlencoded' 
-        //   },
-        //   method: 'POST',
-        //   success: function (res) {
-        //     if (res.statusCode == 200) {
-        //       var result = res.data;
-        //       console.info(result);
-        //       if (result.code == 0) {
-        //         that.setData({
-        //           moreRecommend: result.moreRecommend
-        //         })
-        //       } 
-        //     } else {
-        //       return;
-        //     }
-        //   },
-        // })    
-        //TODELETE 测试用数据
-        that.setData({
-          moreRecommend: {
-            picture: that.data.imageTest6, url: "http://www.baidu.com"
-          }
-        })
-    },
   getVersionUpdateInfo: function(){
     let that = this
     console.log(wx.getSystemInfoSync())   
@@ -320,5 +170,118 @@ Page({
     this.setData({
       showImportantNotice: 0
     })
+  },
+  listChannelMenus: function(){
+    const that = this
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "MarketingAPI.ListChannelMenus",
+        "service": "com.jt-health.api.app",
+        "request": {}
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log(res)
+        if(res.statusCode == 200){
+          if(res.data.channel_menus){
+            that.setData({
+              channelMenus: res.data.channel_menus
+            })
+          }
+        }
+        
+      },
+    })     
+  },
+  getDeviceGoods: function(){
+    const that = this
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "MallAPI.ListDeviceProducts",
+        "service": "com.jt-health.api.app",
+        "request": {}
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log(res)
+        if(res.statusCode == 200){
+          if(res.data.device_products[0]){
+            that.setData({
+              deviceProduct: res.data.device_products[0]
+            },)
+          }
+        }
+        
+      },
+    })     
+  },
+  listRecommendations: function(){
+    let that = this
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "MarketingAPI.ListRecommendations",
+        "service": "com.jt-health.api.app",
+        "request": {}
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log(res)
+        if(res.statusCode == 200){
+          if(res){
+            if(res.data.feature_pages){
+              that.setData({
+                features: res.data.feature_pages
+              })
+            }
+          }
+        }
+        
+      },
+    })     
+  },
+  listMoreRecommendations: function(){
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "MarketingAPI.MoreRecommendations",
+        "service": "com.jt-health.api.app",
+        "request": {}
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log(res)
+        if(res.statusCode == 200){
+          
+        }
+        
+      },
+    })     
   },
 })

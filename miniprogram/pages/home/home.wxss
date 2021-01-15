@@ -98,6 +98,14 @@ page{
   margin-top: 20rpx;
   float: left;
 }
+.select-list-image-big{
+  width: 610rpx;
+  height: 524rpx;
+  border-radius: 30rpx;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+  float: left;
+}
 .select-scroll-view{
   width: 670rpx;
   height: 570rpx;

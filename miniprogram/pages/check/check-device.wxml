@@ -52,7 +52,7 @@
     <view class="check-checking-tips-text-1"><image src="{{imageTips}}"/>小提示提醒您</view>
     <view class="check-checking-tips-text-2">{{tipsText}}</view>
   </view>
-  <image class="check-search-close" style="margin-top: 1000rpx" src="{{imageClose}}" bindtap="go" data-page="check"/>
+  <image class="check-search-close" style="margin-top: 1000rpx" src="{{imageClose}}" bindtap="reLaunchTo" data-page="check/check"/>
 </block>
 <!-- 检测中end -->
 <!-- 检测完成start -->

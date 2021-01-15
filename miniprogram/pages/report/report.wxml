@@ -1,30 +1,36 @@
 <view class="text72" style="margin-top:40rpx;margin-left:40rpx">健康报告</view>
-<image class="avatar90" style="float: right;margin-top: -82rpx;margin-right: 40rpx;" src="{{avatarUrl}}"/>
+<image class="avatar90" style="float: right;margin-top: -82rpx;margin-right: 40rpx;" src="{{userProfile.avatar_url}}"/>
 <view class="content-view" style="margin-top:72rpx" bindtap="nTo" data-path="my/my-family">
   <image class="content-image" src="{{imageFamily}}" />
-  <view class="content-text">
+  <view class="content-text" bindtap="nTo" data-path="my/my-family">
     <text class="text38">我的家庭</text>
     <text class="text24" style="margin-top:10rpx;display: block">随时随地，了解家人的健康状</text>
   </view>
 </view>
-<view class="content-view" bindtap="nTo" data-path="report/record/report-record">
+<view class="content-view" bindtap="nTo" data-path="report/report-record">
   <image class="content-image" src="{{imageReport}}" />
   <view class="content-text">
     <text class="text38">报告记录</text>
     <text class="text24" style="margin-top:10rpx;display: block">一年的记录保存，全面掌握健康变化</text>
   </view>
 </view>
-<view class="content-view">
+<view class="content-view" bindtap="nTo" data-path="report/report-week">
   <image class="content-image" src="{{imageAnalysisWeek}}" />
   <view class="content-text">
     <text class="text38">周分析</text>
+    <text class="text28" style="float:right;margin-top:12rpx;text-align:right">
+      <text style="color:#009591">{{weeklyDays}}</text>/7
+    </text>
     <text class="text24" style="margin-top:10rpx;display: block">让健康管理成为习惯</text>
   </view>
 </view>
-<view class="content-view">
+<view class="content-view" bindtap="nTo" data-path="report/report-month">
   <image class="content-image" src="{{imageAnalysisMonth}}" />
   <view class="content-text">
     <text class="text38">月分析</text>
+    <text class="text28" style="float:right;margin-top:12rpx;text-align:right">
+      <text style="color:#009591">{{monthlyDays}}</text>/30
+    </text>
     <text class="text24" style="margin-top:10rpx;display: block">点点滴滴，每一份报告都重要</text>
   </view>
 </view>

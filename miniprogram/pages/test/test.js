@@ -1,5 +1,7 @@
 const app = getApp()
 const dateUtil = require("../../utils/date-util.js")
+const base64 = require("../../utils/base64.js")
+const md5 = require("../../utils/md5.js")
 Page({
 
   /**
@@ -27,9 +29,38 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.test6()
+    // console.log(md5.encode("[" + [966675,966675,966675,966675,966675,966675,966675,966675,966675].toString() + "]"))
+    console.log([1,2,3,4,5].toString())
+    console.log("[" + [1,2,3,4,5].toString() + "]")
+    console.log(md5.encode("[" + [1,2,3,4,5].toString() + "]"))
   },
 
+
+
+  getAdvertisement: function(){
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "MarketingAPI.GetAdvertisement",
+        "service": "com.jt-health.api.app",
+        "request": {}
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log(res)
+        if(res.statusCode == 200){
+          
+        }
+        
+      },
+    })     
+  },
   
   test3: function(){
     wx.request({

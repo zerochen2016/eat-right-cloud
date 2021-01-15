@@ -6,8 +6,12 @@
     "pages/article/theory-wangweigong",
     "pages/article/wangweigong",
 
+    "pages/console/console",
     "pages/check/check",
     "pages/check/check-device",
+    "pages/check/search",
+    "pages/check/connect",
+    "pages/check/notfind",
 
     "pages/eatright/eatright",
 
@@ -29,15 +33,17 @@
     "pages/message/message",
 
     "pages/my/my",
-    "pages/my/my-info/my-info",
-    "pages/my/my-store/my-store",
-    "pages/my/my-family/my-family",
-    "pages/my/my-family-add/my-family-add",
-    "pages/my/my-family-member/my-family-member",
-    "pages/my/my-update-password/my-update-password",
+    "pages/my/my-info",
+    "pages/my/my-store",
+    "pages/my/my-family",
+    "pages/my/my-family-add",
+    "pages/my/my-family-member",
+    "pages/my/my-update-password",
 
     "pages/report/report",
-    "pages/report/record/report-record",
+    "pages/report/report-record",
+    "pages/report/report-month",
+    "pages/report/report-week",
 
     "pages/setup/setup",
     
@@ -61,8 +67,8 @@
     "pages/im/im",
     "pages/im/room/room",
     "pages/test/test",
-    "pages/checktest/checktest"
-
+    "pages/test2/test2",
+    "pages/test3/test3"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

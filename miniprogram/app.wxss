@@ -56,6 +56,12 @@ page{
   color: rgba(0, 0, 0, 0.87);
   line-height: 40rpx;
 }
+.text48{
+  font-size: 48rpx;
+  font-weight: 800;
+  color: rgba(0, 0, 0, 0.87);
+  line-height: 48rpx;
+}
 .text52{
   font-size: 52rpx;
   font-weight: 800;
@@ -82,11 +88,16 @@ page{
 }
 .text80{
   font-size: 80rpx;
-  color: rgba(0, 0, 0, 0.87);
+  color: rgba(0, 0, 0, 0.24);
   font-weight: 800;
   line-height: 80rpx;
 }
-
+.text136{
+  font-size: 136rpx;
+  color: rgba(0, 0, 0, 0.87);
+  font-weight: bold;
+  line-height: 136rpx;
+}
 .avatar90{
   border-radius: 50%;
   width: 90rpx;
@@ -120,7 +131,6 @@ page{
   text-align: center;
   line-height: 120rpx;  
   font-size: 40rpx;
-  font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
 }
 /* 按钮主色 */
@@ -134,7 +144,6 @@ page{
   text-align: center;
   line-height: 120rpx;  
   font-size: 40rpx;
-  font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
 }
 /* 按钮金色渐变 */
@@ -245,7 +254,7 @@ page{
   margin-top: 50rpx;  
 }
 .content-text{
-  width: 400rpx;
+  width: 508rpx;
   height: 96rpx;
   float: left;
   margin-left: 16rpx;

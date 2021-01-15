@@ -7,19 +7,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    specialId: null,
-    articleArray: [],
-    currentArticles: [],
     activeIndex: 0,
     showChoose: 0,
     imageMore: app.globalData.resourcesHost + 'more@2x.png',
     imageCancel: app.globalData.resourcesHost + 'cancel@2x.png',
-    imageTest1: app.globalData.resourcesHost + 'test/1.png',
-    imageTest2: app.globalData.resourcesHost + 'test/2.png',
-    imageTest3: app.globalData.resourcesHost + 'test/3.png',
-    imageTest4: app.globalData.resourcesHost + 'test/4.png',
-    imageTest5: app.globalData.resourcesHost + 'test/5.png',
-    imageTest6: app.globalData.resourcesHost + 'test/6.png'
   },
 
   /**
@@ -27,11 +18,11 @@ Page({
    */
   onLoaded: function (options) {
     var that = this
-    this.setData({
-      specialId: options.id
-    },function(){
-      that.getSpecialData()
+    console.log(options)
+    wx.setNavigationBarTitle({
+      title: options.title,
     })
+    this.listEntryMenus(options.id)
   },
 
   /**
@@ -76,100 +67,18 @@ Page({
 
   },
 
-  //TODO 专题数据API
-  getSpecialData: function(){
-    var that = this
-      // wx.request({
-      //   url: getApp().data.server + 'getSpecialData',
-      //   data: {
-      //     specialId: that.data.specialId 
-      //   },
-      //   dataType: 'json',
-      //   header: {
-      //     'content-type': 'application/x-www-form-urlencoded' 
-      //   },
-      //   method: 'POST',
-      //   success: function (res) {
-      //     if (res.statusCode == 200) {
-      //       var result = res.data;
-      //       console.info(result);
-      //       if (result.code == 0) {
-      //         wx.setNavigationBarTitle({
-      //           title: '测试标题',
-      //         })
-      //         var articleArray = result.data
-      //         var currentArticles = result.data[0].articles
-      //         that.setData({
-      //           articleArray: articleArray
-      //         })
-      //       } 
-      //     } else {
-      //       return;
-      //     }
-      //   },
-      // })    
-      //TODELETE 测试用数据
-      wx.setNavigationBarTitle({
-        title: '测试标题',
-      })
-      var articleArray = [
-        {specialId: "specialId1", specialTitle: '测试数据1',
-          articles: [
-            {articleId: 'articleId1', articlePicture: that.data.imageTest1, articleTitle: '吃巧克力能变聪明？还能促进脑血管修复？吃巧克力能变聪明？还能促进脑血管修复？', articleContent: '根据最近根据最近一项研究，科学家们指出…根据最近一项研究，根据最近一项研究，科学家们指出…根据最近一项研究，一项研究，科学家们指出…根据最近一项研究，科学家们指出…', articleUrl:'httpw://www.baidu.com'},
-            {articleId: 'articleId2', articlePicture: that.data.imageTest2, articleTitle: '吃巧克力能变聪明？还能促进脑血管修复？', articleContent: '根据最近一项研究，科学家们指出…根据最近一项研究，科学家们指出…', articleUrl:'httpw://www.baidu.com'},
-            {articleId: 'articleId3', articlePicture: that.data.imageTest3, articleTitle: '吃巧克力能变聪明？还能促进脑血管修复？', articleContent: '根据最近一项研究，科学家们指出…根据最近一项研究，根据最近一项研究，科学家们指出…根据最近一项研究，根据最近一项研究，科学家们指出…根据最近一项研究，科学家们指出…', articleUrl:'httpw://www.baidu.com'},
-            {articleId: 'articleId1', articlePicture: that.data.imageTest4, articleTitle: '吃巧克力能变聪明？还能促进脑血管修复？吃巧克力能变聪明？还能促进脑血管修复？', articleContent: '根据最近根据最近一项研究，科学家们指出…根据最近一项研究，根据最近一项研究，科学家们指出…根据最近一项研究，一项研究，科学家们指出…根据最近一项研究，科学家们指出…', articleUrl:'httpw://www.baidu.com'},
-            {articleId: 'articleId2', articlePicture: that.data.imageTest6, articleTitle: '吃巧克力能变聪明？还能促进脑血管修复？', articleContent: '根据最近一项研究，科学家们指出…根据最近一项研究，科学家们指出…', articleUrl:'httpw://www.baidu.com'},
-            {articleId: 'articleId3', articlePicture: that.data.imageTest5, articleTitle: '吃巧克力能变聪明？还能促进脑血管修复？', articleContent: '根据最近一项研究，科学家们指出…根据最近一项研究，根据最近一项研究，科学家们指出…根据最近一项研究，根据最近一项研究，科学家们指出…根据最近一项研究，科学家们指出…', articleUrl:'httpw://www.baidu.com'},
-            {articleId: 'articleId1', articlePicture: that.data.imageTest1, articleTitle: '吃巧克力能变聪明？还能促进脑血管修复？吃巧克力能变聪明？还能促进脑血管修复？', articleContent: '根据最近根据最近一项研究，科学家们指出…根据最近一项研究，根据最近一项研究，科学家们指出…根据最近一项研究，一项研究，科学家们指出…根据最近一项研究，科学家们指出…', articleUrl:'httpw://www.baidu.com'},
-            {articleId: 'articleId2', articlePicture: that.data.imageTest2, articleTitle: '吃巧克力能变聪明？还能促进脑血管修复？', articleContent: '根据最近一项研究，科学家们指出…根据最近一项研究，科学家们指出…', articleUrl:'httpw://www.baidu.com'},
-            {articleId: 'articleId3', articlePicture: that.data.imageTest3, articleTitle: '吃巧克力能变聪明？还能促进脑血管修复？', articleContent: '根据最近一项研究，科学家们指出…根据最近一项研究，根据最近一项研究，科学家们指出…根据最近一项研究，根据最近一项研究，科学家们指出…根据最近一项研究，科学家们指出…', articleUrl:'httpw://www.baidu.com'},            
-          
-        ]},
-        {specialId: "specialId2", specialTitle: '测试数据2',
-        articles: [
-          {articleId: 'articleId2', articlePicture: that.data.imageTest4, articleTitle: '吃巧克力能变聪s明dd？还能促进脑血管修复？', articleContent: '根据最近一项dd研究，科学家们指出…根据最近一项研究，科学家们指出…', articleUrl:'httpw://www.baidu.com'},
-          {articleId: 'articleId2', articlePicture: that.data.imageTest5, articleTitle: '吃巧克力能变ee聪明？还能促进脑血管修复？', articleContent: '根据最近一项研究，科学cck家们指出…根据最近一项研究，科学家们指出…', articleUrl:'httpw://www.baidu.com'},
-          {articleId: 'articleId3', articlePicture: that.data.imageTest6, articleTitle: '吃巧克力能变dd聪明？还能促进脑血管修复？', articleContent: '根据最近一项研究，科ss学c家们指出…根据最近一项研究，科学家们指出…', articleUrl:'httpw://www.baidu.com'},
-          {articleId: 'articleId2', articlePicture: that.data.imageTest1, articleTitle: '吃巧克力能变聪s明dd？还能促进脑血管修复？', articleContent: '根据最近一项dd研究，科学家们指出…根据最近一项研究，科学家们指出…', articleUrl:'httpw://www.baidu.com'},
-          {articleId: 'articleId2', articlePicture: that.data.imageTest2, articleTitle: '吃巧克力能变ee聪明？还能促进脑血管修复？', articleContent: '根据最近一项研究，科学cck家们指出…根据最近一项研究，科学家们指出…', articleUrl:'httpw://www.baidu.com'},
-          {articleId: 'articleId3', articlePicture: that.data.imageTest3, articleTitle: '吃巧克力能变dd聪明？还能促进脑血管修复？', articleContent: '根据最近一项研究，科ss学c家们指出…根据最近一项研究，科学家们指出…', articleUrl:'httpw://www.baidu.com'},
-          {articleId: 'articleId2', articlePicture: that.data.imageTest4, articleTitle: '吃巧克力能变聪s明dd？还能促进脑血管修复？', articleContent: '根据最近一项dd研究，科学家们指出…根据最近一项研究，科学家们指出…', articleUrl:'httpw://www.baidu.com'},
-          {articleId: 'articleId2', articlePicture: that.data.imageTest5, articleTitle: '吃巧克力能变ee聪明？还能促进脑血管修复？', articleContent: '根据最近一项研究，科学cck家们指出…根据最近一项研究，科学家们指出…', articleUrl:'httpw://www.baidu.com'},
-          {articleId: 'articleId3', articlePicture: that.data.imageTest6, articleTitle: '吃巧克力能变dd聪明？还能促进脑血管修复？', articleContent: '根据最近一项研究，科ss学c家们指出…根据最近一项研究，科学家们指出…', articleUrl:'httpw://www.baidu.com'},                    
-        
-      ]},
-      {specialId: "specialId1", specialTitle: '测试数ddddddd据1',
-      articles: [
-        {articleId: 'articleId1', articlePicture: that.data.imageTest1, articleTitle: '吃巧qq克力能变聪明？还能促进脑血管修复？', articleContent: '根据最近qq一项研究，科学家们指出…根据最近一项研究，科学家们指出…', articleUrl:'httpw://www.baidu.com'},
-        {articleId: 'articleId2', articlePicture: that.data.imageTest2, articleTitle: '吃巧克力ww能变聪明？还能促进脑血管修复？', articleContent: '根q据最近一项研究，科学家们指出…根据最近一项研究，科学家们指出…', articleUrl:'httpw://www.baidu.com'},
-        {articleId: 'articleId3', articlePicture: that.data.imageTest3, articleTitle: '吃巧c克力能变聪明？还能促进脑血管修复？', articleContent: '根据最近一项b研究，科学家们指出…根据最近一项研究，科学家们指出…', articleUrl:'httpw://www.baidu.com'},
-        {articleId: 'articleId1', articlePicture: that.data.imageTest4, articleTitle: '吃巧qq克力能变聪明？还能促进脑血管修复？', articleContent: '根据最近qq一项研究，科学家们指出…根据最近一项研究，科学家们指出…', articleUrl:'httpw://www.baidu.com'},
-        {articleId: 'articleId2', articlePicture: that.data.imageTest5, articleTitle: '吃巧克力ww能变聪明？还能促进脑血管修复？', articleContent: '根q据最近一项研究，科学家们指出…根据最近一项研究，科学家们指出…', articleUrl:'httpw://www.baidu.com'},
-        {articleId: 'articleId3', articlePicture: that.data.imageTest6, articleTitle: '吃巧c克力能变聪明？还能促进脑血管修复？', articleContent: '根据最近一项b研究，科学家们指出…根据最近一项研究，科学家们指出…', articleUrl:'httpw://www.baidu.com'},
-        {articleId: 'articleId1', articlePicture: that.data.imageTest1, articleTitle: '吃巧qq克力能变聪明？还能促进脑血管修复？', articleContent: '根据最近qq一项研究，科学家们指出…根据最近一项研究，科学家们指出…', articleUrl:'httpw://www.baidu.com'},
-        {articleId: 'articleId2', articlePicture: that.data.imageTest2, articleTitle: '吃巧克力ww能变聪明？还能促进脑血管修复？', articleContent: '根q据最近一项研究，科学家们指出…根据最近一项研究，科学家们指出…', articleUrl:'httpw://www.baidu.com'},
-        {articleId: 'articleId3', articlePicture: that.data.imageTest3, articleTitle: '吃巧c克力能变聪明？还能促进脑血管修复？', articleContent: '根据最近一项b研究，科学家们指出…根据最近一项研究，科学家们指出…', articleUrl:'httpw://www.baidu.com'},
-      
-    ]},]
-      var currentArticles = articleArray[0].articles
-      console.log(currentArticles)
-      that.setData({
-        articleArray: articleArray,
-        currentArticles: currentArticles
-      })
-  },
   scroll(e) {
     
   },
   changeSpecial: function(e){
-    var index = e.currentTarget.id
-    var currentArticles = this.data.articleArray[index].articles
+    const index = e.currentTarget.id
+    const currentMenuId = e.currentTarget.dataset.id
     this.setData({
       activeIndex: index,
-      currentArticles: currentArticles,
-      showChoose: 0
-    })
+      showChoose: 0,
+      currentMenuId: currentMenuId
+    },this.listEntryPages(currentMenuId,1))
+    
   },
   chooseSpecial: function(e){
     this.setData({
@@ -212,19 +121,102 @@ Page({
   slideSpecial: function(direct){
     var that = this
     if(direct == 0 && that.data.activeIndex > 0){
+      const currentActiveIndex = that.data.activeIndex - 1
+      const currentMenuId = that.data.menus[currentActiveIndex].menu_id
       this.setData({
-        activeIndex: that.data.activeIndex - 1,
-        currentArticles: that.data.articleArray[that.data.activeIndex - 1].articles,
+        activeIndex: currentActiveIndex,
+        currentMenuId: currentMenuId,
         showChoose: 0
-      })
+      },this.listEntryPages(currentMenuId,1))
     }
-    if(direct == 1 && (that.data.activeIndex + 1) < that.data.articleArray.length){
+    if(direct == 1 && (that.data.activeIndex + 1) < that.data.menus.length){
+      const currentActiveIndex = that.data.activeIndex + 1
+      const currentMenuId = that.data.menus[currentActiveIndex].menu_id
       this.setData({
-        activeIndex: that.data.activeIndex + 1,
-        currentArticles: that.data.articleArray[that.data.activeIndex + 1].articles,
+        activeIndex: currentActiveIndex,
+        currentMenuId: currentMenuId,
         showChoose: 0
-      })
+      },this.listEntryPages(currentMenuId,1))
     }
+    
   },
   //页面左右滑动end
+  /**
+   * 菜单内容
+   */
+  listEntryMenus: function(channelId){
+    const that = this
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "MarketingAPI.ListEntryMenus",
+        "service": "com.jt-health.api.app",
+        "request": {
+          "channel_id": channelId,
+        }
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log(res)
+        if(res.statusCode == 200){
+          if(res.data.entry_menus){
+            that.setData({
+              menus: res.data.entry_menus,
+              currentMenuId: res.data.entry_menus[0].menu_id
+            },that.listEntryPages(res.data.entry_menus[0].menu_id,1))
+            
+          }
+        }
+        
+      },
+    })     
+  },
+  /**
+   * 文章
+   */
+  listEntryPages: function(menuId,page){
+    const that = this
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "MarketingAPI.ListEntryPages",
+        "service": "com.jt-health.api.app",
+        "request": {
+          "menu_id": menuId,
+          "pagination": {
+            offset: page,
+            size: 20
+          }
+        }
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log(res)
+        if(res.statusCode == 200){
+          if(res.data.entry_pages){
+            that.setData({
+              articles: res.data.entry_pages
+            })
+          }else{
+            that.setData({
+              articles: []
+            })
+          }
+        }
+        
+      },
+    })     
+  },
 })

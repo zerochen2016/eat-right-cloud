@@ -1,6 +1,5 @@
 <view class="head">
-<!-- TODO头像 -->
-  <image class="head-avatar" src="{{avatarUrl}}" />
+  <image class="head-avatar" src="{{userProfile.avatar_url}}" />
   <view class="head-info">
     <view class="head-name">
       <view>{{userProfile.nickname}}</view>

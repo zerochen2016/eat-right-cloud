@@ -1,11 +1,11 @@
 <!-- 检测start -->
 <view class="head">
   <view class="text72 head-text">欢迎回来！</view>
-  <image class="avatar90 head-avatar" src="{{avatarUrl}}"></image>
+  <image class="avatar90 head-avatar" src="{{userProfile.avatar_url}}"></image>
 </view>
 
 <view class="new">
-  <view class="text30 new-text-1">
+  <view class="text30 new-text-1" bindtap="showNewBook" data-status="1">
     <image class="new-image" src="{{imageNotice}}"/>新手必读
   </view>
   <view class="text26 new-text-2" bindtap="nTo" data-path="article/theory-wangweigong">王唯工《气血共振理论》</view>
@@ -18,13 +18,13 @@
   </view>
   <view class="check-link-text" style=" float: left;width: 260rpx;height: 200rpx;margin-left: 32rpx;margin-top: 32rpx;">
       <view class="text28" style="margin-top: 32rpx;line-height: 36rpx;">今天综合指数</view>
-      <view class="text72" style="line-height: 92rpx;">{{checkData.compositeIndex}}</view>
+      <view class="text52" style="line-height: 92rpx;">{{compositeIndex}}</view>
   </view>
   <view class="check-link-text" style=" float: right;width: 334rpx;height: 200rpx;margin-right: 32rpx;margin-top: 32rpx;">
     <view class="text28" style="margin-top: 32rpx;line-height: 36rpx;">最近一次检测</view>
-    <view class="text72" style="line-height: 92rpx;">{{checkData.lastCheckDate}}</view>
+    <view class="text52" style="line-height: 92rpx;">{{lastCheckDate}}</view>
   </view>    
-  <view class="button-success" style="float: left;margin-left: 32rpx;margin-top: 40rpx" bindtap="nTo" data-status="{{connectStatus == 1 ? 7 : 0}}" data-path="check/check-device">{{connectStatus == 1 ? '开始检测' : '连接小阶'}}</view>  
+  <view class="button-success" style="float: left;margin-left: 32rpx;margin-top: 40rpx" bindtap="reLaTo" data-device="{{connectStatus == 1 ? deviceConnectedJson : ''}}" data-path="{{connectStatus == 1 ? 'check/connect' : 'check/search'}}">{{connectStatus == 1 ? '开始检测' : '连接小阶'}}</view>  
 </view>
 <!-- 后续版本 -->
 <!-- <view class="content-view">
@@ -54,3 +54,195 @@
 <!-- 底部导航start -->
 <bottom-navigate id="bottom-navigate"></bottom-navigate>
 <!-- 底部导航end -->
+<!-- 新手必读start -->
+<view class="new-book" hidden="{{showNewBook?'':'false'}}">
+  <view class="new-book-main">
+    <block wx:if="{{step == 1}}">
+      <view class="text48 new-book-title">补充基本信息</view>
+      <view class="text24 new-book-title-little">性别涉及到检测的准确性，请填写使用者准备性别</view>
+      <view class="new-book-step">
+        <view class="new-book-step-circle" style="margin-left:60rpx;background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-line"></view>
+        <view class="new-book-step-circle"></view>
+        <view class="new-book-step-line"></view>
+        <view class="new-book-step-circle"></view>
+        <view class="new-book-step-line"></view>
+        <view class="new-book-step-circle"></view>
+      </view>
+      <view class="new-book-step-text">
+        <text>检测</text>
+        <text style="margin-left:20rpx">生日</text>
+        <text>身高体重</text>
+        <text style="margin-left:25rpx">检测偏好</text>
+      </view>
+      <view class="new-book-gender" >
+        <view bindtap="changeGender" data-gender="GENDER_MALE" style="{{userProfile.gender == 'GENDER_MALE' ? 'border: 2rpx solid rgba(0, 149, 145, 1);background-color:rgba(0, 149, 145, 0.06);' : ''}}">
+          <image src="{{userProfile.gender == 'GENDER_MALE' ? imageGender1 : imageGender1Grey}}" />
+          <text style="{{userProfile.gender == 'GENDER_MALE' ? 'color:rgba(0, 149, 145, 1)' : ''}}">男</text>
+        </view>
+        <view bindtap="changeGender" data-gender="GENDER_FEMALE" style="{{userProfile.gender == 'GENDER_FEMALE' ? 'border: 2rpx solid rgba(0, 149, 145, 1);background-color:rgba(0, 149, 145, 0.06);' : ''}}">
+          <image src="{{userProfile.gender == 'GENDER_FEMALE' ? imageGender2 : imageGender2Grey}}" />
+          <text style="{{userProfile.gender == 'GENDER_FEMALE' ? 'color:rgba(0, 149, 145, 1)' : ''}}">女</text>
+        </view>
+      </view>
+      <block wx:if="{{userProfile.gender == 'GENDER_FEMALE'}}">
+        <view class="step-button-success" data-step="{{step}}" bindtap="nextStep" >下一步</view>
+      </block>
+      <block wx:elif="{{userProfile.gender == 'GENDER_MALE'}}">
+        <view class="step-button-success" data-step="{{step}}" bindtap="nextStep" >下一步</view>
+      </block>
+      <block wx:else>
+        <view class="step-button-grey" >下一步</view>
+      </block>
+    </block>
+    <block wx:elif="{{step == 2}}">
+      <!-- 生日 -->
+      <view class="text48 new-book-title">完善信息使检测更精确</view>
+      <view class="text24 new-book-title-little"></view>
+      <view class="new-book-step">
+        <view class="new-book-step-circle" style="margin-left:60rpx;background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-line" style="background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-circle" style="background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-line" ></view>
+        <view class="new-book-step-circle" ></view>
+        <view class="new-book-step-line"></view>
+        <view class="new-book-step-circle"></view>
+      </view>
+      <view class="new-book-step-text">
+        <text>检测</text>
+        <text style="margin-left:20rpx">生日</text>
+        <text>身高体重</text>
+        <text style="margin-left:25rpx">检测偏好</text>
+      </view>
+      <view class="new-book-select" >
+        <view class="new-book-select-view-1">生日</view>
+        <picker class="new-book-select-picker" mode="date" value="{{userProfile.birthday.year}}-{{userProfile.birthday.month}}-{{userProfile.birthday.day}}" bindchange="birthdayChange" >{{userProfile.birthday.year}}-{{userProfile.birthday.month}}-{{userProfile.birthday.day}}</picker>
+        <view class="line" style="width:544rpx;margin-left:48rpx;float:left;margin-top:24rpx"></view>
+      </view>
+      <view class="step-button-last" data-step="{{step}}" style="width:256rpx" bindtap="lastStep" >上一步</view>
+      <view class="step-button-success" style="width:256rpx" data-step="{{step}}" bindtap="nextStep" >下一步</view>
+    </block>
+    <!-- 体重身高 -->
+    <block wx:elif="{{step == 3}}">
+      <view class="text48 new-book-title">完成大半了</view>
+      <view class="text24 new-book-title-little"></view>
+      <view class="new-book-step">
+        <view class="new-book-step-circle" style="margin-left:60rpx;background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-line" style="background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-circle" style="background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-line" style="background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-circle" style="background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-line"></view>
+        <view class="new-book-step-circle"></view>
+      </view>
+      <view class="new-book-step-text">
+        <text>检测</text>
+        <text style="margin-left:20rpx">生日</text>
+        <text>身高体重</text>
+        <text style="margin-left:25rpx">检测偏好</text>
+      </view>
+      <view class="new-book-select" >
+        <view class="new-book-select-view-1">身高</view>
+        <picker class="new-book-select-picker"  bindchange="heightChange" value="{{heightIndex}}" range="{{heightArray}}" style="{{userProfile.height?userProfile.height:'color: rgba(0, 0, 0, 0.4);'}}">
+          <block wx:if="{{userProfile.height}}">{{userProfile.height}} CM</block>
+          <block wx:else="{{userProfile.height}}">请选择</block>
+        </picker>
+        <view class="line" style="width:544rpx;margin-left:48rpx;float:left;margin-top:24rpx"></view>
+      <view class="new-book-select" style="margin-top:24rpx">
+        <view class="new-book-select-view-1" >体重</view>
+        <picker class="new-book-select-picker"  bindchange="weightChange" value="{{weightIndex}}" range="{{weightArray}}" style="{{userProfile.weight?userProfile.weight:'color: rgba(0, 0, 0, 0.4);'}}">
+          <block wx:if="{{userProfile.weight}}">{{userProfile.weight}} KG</block>
+          <block wx:else="{{userProfile.weight}}">请选择</block>
+        </picker>
+        <view class="line" style="width:544rpx;margin-left:48rpx;float:left;margin-top:24rpx"></view>
+      </view>
+      </view>
+      <view class="step-button-last" data-step="{{step}}" style="width:256rpx" bindtap="lastStep" >上一步</view>
+      <block wx:if="{{userProfile.weight && userProfile.height}}">
+        <view class="step-button-success" style="width:256rpx" data-step="{{step}}" bindtap="nextStep" >下一步</view>
+      </block>
+      <block wx:else>
+        <view class="step-button-grey" style="width:256rpx"  >下一步</view>
+      </block>
+    </block>
+    <!-- 食指 -->
+    <block wx:if="{{step == 4}}">
+      <view class="text48 new-book-title">最后一步</view>
+      <view class="text24 new-book-title-little"></view>
+      <view class="new-book-step">
+        <view class="new-book-step-circle" style="margin-left:60rpx;background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-line" style="background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-circle" style="background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-line" style="background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-circle" style="background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-line" style="background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-circle" style="background-color:rgba(0, 149, 145, 1)"></view>
+      </view>
+      <view class="new-book-step-text">
+        <text>检测</text>
+        <text style="margin-left:20rpx">生日</text>
+        <text>身高体重</text>
+        <text style="margin-left:25rpx">检测偏好</text>
+      </view>
+      <view class="new-book-hand" >
+        <view bindtap="changeHand" data-hand="HAND_LEFT" style="{{userProfile.hand == 'HAND_LEFT' ? 'border: 2rpx solid rgba(0, 149, 145, 1);background-color: rgba(0, 149, 145, 0.06);' : ''}}">
+          <text style="{{userProfile.hand == 'HAND_LEFT' ? 'color:rgba(0, 149, 145, 1)' : ''}}">左食指</text>
+          <image src="{{imageRecommend}}"/>
+        </view>
+        <view bindtap="changeHand" data-hand="HAND_RIGHT" style="{{userProfile.hand == 'HAND_RIGHT' ? 'border: 2rpx solid rgba(0, 149, 145, 1);background-color: rgba(0, 149, 145, 0.06);' : ''}}">
+          <text style="{{userProfile.hand == 'HAND_RIGHT' ? 'color:rgba(0, 149, 145, 1)' : ''}}">右食指</text>
+        </view>
+      </view>
+      <view class="step-button-last" data-step="{{step}}" bindtap="lastStep" style="width:256rpx" >上一步</view>
+      <block wx:if="{{userProfile.hand == 'HAND_LEFT' || userProfile.hand == 'HAND_RIGHT'}}">
+        <view class="step-button-success" style="width:256rpx" data-step="{{step}}" bindtap="nextStep" >完成</view>
+      </block>
+      <block wx:else>
+        <view class="step-button-grey" style="width:256rpx"  >完成</view>
+      </block>
+    </block>    
+  </view>
+  <block wx:if="{{hasGuide == 1}}">
+    <image class="new-book-close" src="{{imageCancelCircle}}" bindtap="showNewBook" data-status="0"/>
+  </block>
+</view>
+<!-- 新手必读end -->
+<!-- 新手必读 设备start -->
+<view class="new-book" hidden="{{showDeviceGuide?'':'false'}}">
+  <view class="new-book-main" style="height:850rpx">
+    <block wx:if="{{step2 == 0}}">
+      <view class="new-device-title-l text40"><text style="color:rgba(0, 149, 145, 1)">3</text>步正确使用</view>
+      <view class="new-device-title text80">小阶感测器</view>
+      <image class="new-device-image" src="{{imageDevice}}"/>
+      <view class="step-button-success" bindtap="nextStep2" data-step="{{step2}}">开始学习</view>
+    </block>
+  <block wx:if="{{step2 == 1}}">
+    <view class="new-device-title-d text48">
+      ①将设置的左手食指充分置入感测器尽头
+    </view>
+    <image class="new-device-step1-image" src="{{imageStep1}}" />
+    <view class="step-button-success" style="margin-top:60rpx" bindtap="nextStep2" data-step="{{step2}}">下一步{{step2}}/3</view>
+  </block>
+  <block wx:if="{{step2 == 2}}">
+    <view class="new-device-title-d text48">
+      ②将手平稳放置桌面上
+    </view>
+    <image class="new-device-step1-image" src="{{userProfile.gender == 'GENDER_MALE' ? imageStep2G1 : imageStep2G2}}" />
+    <view class="step-button-success" style="margin-top:60rpx" bindtap="nextStep2" data-step="{{step2}}">下一步{{step2}}/3</view>
+    <view class="text36" style="width:100%;float:left;color:rgba(0, 149, 145, 1);margin-top:36rpx;text-align:center" bindtap="lastStep2" data-step="{{step2}}">上一步</view>
+  </block>  
+  <block wx:if="{{step2 == 3}}">
+    <view class="new-device-title-d text48">
+      ③端正坐姿 双手双脚放平
+    </view>
+    <image class="new-device-step1-image" src="{{userProfile.gender == 'GENDER_MALE' ? imageStep3G1 : imageStep3G2}}" />
+    <view class="step-button-success" style="margin-top:60rpx" bindtap="nextStep2" data-step="{{step2}}">我会了{{step2}}/3</view>
+    <view class="step-button-last" style="margin-top:20rpx" bindtap="nTo" data-path="article/theory-wangweigong" >了解气血共振理论</view>
+    <view class="text36" style="width:100%;float:left;color:rgba(0, 149, 145, 1);margin-top:36rpx;text-align:center" bindtap="lastStep2" data-step="{{step2}}">上一步</view>
+  </block>    
+  </view>
+  <block wx:if="{{hasGuide == 1}}">
+    <image class="new-book-close" src="{{imageCancelCircle}}" bindtap="showNewBook" data-status="0"/>
+  </block>
+</view>
+<!-- 新手必读 设备end -->

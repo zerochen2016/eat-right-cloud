@@ -1,0 +1,29 @@
+<!-- <view hidden="{{reportCount > 0 ? '' :true}}"> -->
+  <calendar bind:dateChange="dateChangeTap" id="calendar"></calendar>
+  <block wx:if="{{vipInfo.isVip}}">
+    <block wx:for="{{reports}}" wx:key="true">
+      <view class="report">
+        <view class="text40 report-text-1">{{item.time}}</view>
+        <image src="{{imageArrow}}" class="report-image"/>
+        <view class="text28 report-text-2"><text>综合风险指数：{{item.riskIndex}}｜心率：{{item.heartRate}}</text></view>
+      </view>
+    </block>
+  </block>
+  <block wx:else>
+    <block wx:for="{{reports}}" wx:key="true">
+      <block wx:if="{{index < 1}}">
+        <view class="report">
+        <view class="text40 report-text-1">{{item.time}}</view>
+        <image src="{{imageArrow}}" class="report-image"/>
+        <view class="text28 report-text-2"><text>综合风险指数：{{item.riskIndex}}｜心率：{{item.heartRate}}</text></view>
+      </view>
+      </block>
+    </block>
+  </block>
+  <block wx:if="{{!(vipInfo.isVip)}}">
+    <view class="lock" bindtap="nTo" data-path="member/member" >
+      <image class="lock-image" src="{{imageLock}}" />
+      <view class="lock-text-1 text40">解锁所有报告记录</view>
+      <view class="lock-text-2 text28">您可以查看一年内产生的所有报告</view>
+    </view>
+  </block>

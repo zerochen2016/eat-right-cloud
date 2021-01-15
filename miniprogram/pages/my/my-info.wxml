@@ -1,0 +1,79 @@
+<view style="width:100%;background-color:white;height:350rpx;">
+<!-- TODO头像 -->
+  <image class="avatar180" style="margin-top: 40rpx;margin-left: 285rpx" src="{{avatarUrl}}" />
+  <view class="text30" style="color: #009591;text-align: center;margin-top:20rpx" bindtap="chooseAvatar">更换头像</view>
+</view>
+<view class="info-view" style="margin-top: 24rpx">
+  <view class="text36 info-text-1">名字</view>
+  <input class="info-text-2" style="{{userProfile.nickname?userProfile.nickname:'color: rgba(0, 0, 0, 0.4);'}}" value="{{userProfile.nickname?userProfile.nickname:''}}" bindblur="nicknameChange" placeholder="请输入" />
+  <view class="line" style="float:left;margin-left:40rpx;width:710rpx"></view>
+</view>
+<view class="info-view">
+  <view class="text36 info-text-1">性别</view>
+  
+    <block wx:if="{{userProfile.gender == 'GENDER_MALE'}}">
+      <view class="info-text-2">男</view>
+    </block>
+    <block wx:elif="{{userProfile.gender == 'GENDER_FEMALE'}}">
+      <view class="info-text-2">女</view>
+    </block>
+    <block wx:else>
+      <picker class="info-text-2" range="{{genderArr}}" value="{{genderIndex}}" bindchange="genderChange" style="color: rgba(0, 0, 0, 0.4);">请选择</picker>
+    </block>
+  
+  <view class="line" style="float:left;margin-left:40rpx;width:710rpx"></view>
+</view>
+<view class="info-view">
+  <view class="text36 info-text-1">生日</view>
+  <picker class="info-text-2"  mode="date" value="{{nowDate}}" bindchange="birthdayChange" >
+    {{userProfile.birthday.year}}-{{userProfile.birthday.month}}-{{userProfile.birthday.day}}
+  </picker>
+</view>
+<view class="info-view" style="margin-top: 24rpx">
+  <view class="text36 info-text-1">身高</view>
+  <picker class="info-text-2"  bindchange="heightChange" value="{{heightIndex}}" range="{{heightArray}}" style="{{userProfile.height?userProfile.height:'color: rgba(0, 0, 0, 0.4);'}}">
+    <block wx:if="{{userProfile.height}}">
+      {{userProfile.height}}CM
+    </block>
+    <block wx:else="{{userProfile.height}}">
+      请选择
+    </block>
+  </picker>
+  <view class="line" style="float:left;margin-left:40rpx;width:710rpx"></view>
+</view>
+<view class="info-view">
+  <view class="text36 info-text-1">体重</view>
+  <picker class="info-text-2"  bindchange="weightChange" value="{{weightIndex}}" range="{{weightArray}}" style="{{userProfile.weight?userProfile.weight:'color: rgba(0, 0, 0, 0.4);'}}">
+    <block wx:if="{{userProfile.weight}}">
+      {{userProfile.weight}}KG
+    </block>
+    <block wx:else="{{userProfile.weight}}">
+      请选择
+    </block>
+  </picker>
+</view>
+<view class="text32" style="margin-top:60rpx;color: rgba(0, 0, 0, 0.54);margin-left:40rpx">测量偏好</view>
+<view class="finger">
+  
+    <block wx:if="{{userProfile.hand == 'HAND_LEFT'}}">
+      <view class="finger-view" bindtap="handChange" data-hand="HAND_LEFT" style="float:left;background-color: #009591;color: white">
+        <text class="finger-view-text">左食指</text>
+        <image class="finger-view-image" src="{{imageRecommend}}" />
+      </view>
+      <view class="finger-view" bindtap="handChange" data-hand="HAND_RIGHT" style="float:right">右食指</view>
+    </block>
+    <block wx:elif="{{userProfile.hand == 'HAND_RIGHT'}}">
+      <view class="finger-view" bindtap="handChange" data-hand="HAND_LEFT"  style="float:left">
+        <text class="finger-view-text">左食指</text>
+        <image class="finger-view-image" src="{{imageRecommend}}" />
+      </view>
+      <view class="finger-view" bindtap="handChange" data-hand="HAND_RIGHT"  style="float:right;background-color: #009591;color: white">右食指</view>
+    </block>
+    <block wx:else>
+      <view class="finger-view" bindtap="handChange" data-hand="HAND_LEFT"  style="float:left">
+        <text class="finger-view-text">左食指</text>
+        <image class="finger-view-image" src="{{imageRecommend}}" />
+      </view>
+      <view class="finger-view" bindtap="handChange" data-hand="HAND_RIGHT"  style="float:right;">右食指</view>
+    </block>
+</view>

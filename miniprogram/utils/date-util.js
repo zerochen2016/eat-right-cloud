@@ -1,12 +1,103 @@
 
 module.exports = {
   utcToBeiJing: utcToBeiJing,
-  dateToString: dateToString,
-  dateToString2: dateToString2,
+  getUtcDateYYMMDD_hhmmss: getUtcDateYYMMDD_hhmmss,
+  dateToStringYYMMDD_hhmmss: dateToStringYYMMDD_hhmmss,
+  dateToStringYYMMDD: dateToStringYYMMDD,
   dateDiffDay: dateDiffDay,
   dateDiffMinute: dateDiffMinute,
-  dateDiffSecond: dateDiffSecond
+  dateDiffSecond: dateDiffSecond,
+  dateToYYMM: dateToYYMM,
+  dateToYYMMDD: dateToYYMMDD,
+  dateToYYMMToday: dateToYYMMToday,
+  dateToYYMMDDToday: dateToYYMMDDToday,
+  getEndTime: getEndTime,
+  getEndTimeSecond: getEndTimeSecond,
+  getLastMonthYYMM: getLastMonthYYMM,
+  getNextMonthYYMM: getNextMonthYYMM,
+  getMonday: getMonday,
+  getSunday: getSunday
 }
+
+function getMonday(inputDate){
+  let date = new Date(inputDate)
+  let week = date.getDay()
+  let diff = week ? week - 1 : 6
+  date = date.getTime() - 86400000 * diff
+  date = new Date(date)
+
+  date.setHours(0)
+  date.setMinutes(0)
+  date.setSeconds(0)
+  return date
+}
+
+function getSunday(inputDate){
+  let date = new Date(inputDate)
+  let week = date.getDay()
+  let diff = week ? 7 - week : 0
+  date = date.getTime() + 86400000 * diff
+  date = new Date(date)
+  date.setHours(23)
+  date.setMinutes(59)
+  date.setSeconds(59)
+  return date
+}
+
+function getLastMonthYYMM(inputDate){
+  let date = new Date(inputDate)
+  var y = date.getFullYear();
+  var m = date.getMonth() + 1;
+  if(m == 1){
+    return (y - 1) + '-12';
+  }else{
+    m -= 1
+    return y + '-' + m;
+  }
+  
+}
+function getNextMonthYYMM(inputDate){
+  let date = new Date(inputDate)
+  var y = date.getFullYear();
+  var m = date.getMonth() + 1;
+  if(m == 12){
+    return (y + 1) + '-01';
+  }else{
+    m += 1
+    return y + '-' + m;
+  }
+  
+
+}
+/**
+ * 当天结束时间
+ */
+function getEndTime(inputDate){
+  let date = new Date(inputDate);
+  var y = date.getFullYear();
+  var m = date.getMonth() + 1;
+  m = m < 10 ? ('0' + m) : m;
+  var d = date.getDate();
+  d = d < 10 ? ('0' + d) : d;
+  return y + '-' + m + '-' + d + " 23:59:59";
+}
+
+/**
+ * 当天结束时间
+ */
+function getEndTimeSecond(inputDate){
+  let date = new Date(inputDate);
+  var y = date.getFullYear();
+  var m = date.getMonth() + 1;
+  var d = date.getDate();
+  return new Date(y + '-' + m + '-' + d + " 23:59:59").getTime()/1000
+}
+
+function getUtcDateYYMMDD_hhmmss(inputDate){
+  let date = new Date(inputDate)
+  return date.getUTCFullYear() + '-' + (date.getUTCMonth() + 1) + '-' + date.getUTCDate() + 'T' + date.getUTCHours() + ':' + date.getUTCMinutes() + ':' + date.getUTCSeconds() + '.' + date.getUTCMilliseconds() + 'Z'
+}
+
 function utcToBeiJing(utc_datetime) {
     // 转为正常的时间格式 年-月-日 时:分:秒
     var T_pos = utc_datetime.indexOf('T');
@@ -25,7 +116,49 @@ function utcToBeiJing(utc_datetime) {
     return new Date(parseInt(timestamp) * 1000);
 } 
 
-function dateToString(date) {
+function dateToYYMMToday(language){
+  var date = new Date()
+  var y = date.getFullYear();
+  var m = date.getMonth() + 1;
+  if(language == 'chinese'){
+    return y + '年' + m + '月';
+  }else{
+    return y + '-' + m;
+  }
+  
+}
+
+function dateToYYMMDDToday(language){
+  var date = new Date()
+  var y = date.getFullYear();
+  var m = date.getMonth() + 1;
+  var d = date.getDate();
+  if(language == 'chinese'){
+    return y + '年' + m + '月' + d + '日';
+  }else{
+    return y + '-' + m + '-' + d;
+  }
+}
+
+function dateToYYMM(date){
+  var date = new Date(date)
+  var y = date.getFullYear();
+  var m = date.getMonth() + 1;
+  m = m < 10 ? ('0' + m) : m;
+  return y + '-' + m;
+}
+
+function dateToYYMMDD(date){
+  var date = new Date(date)
+  var y = date.getFullYear();
+  var m = date.getMonth() + 1;
+  m = m < 10 ? ('0' + m) : m;
+  var d = date.getDate();
+  d = d < 10 ? ('0' + d) : d;
+  return y + '-' + m + '-' + d;
+}
+
+function dateToStringYYMMDD_hhmmss(date) {
   var y = date.getFullYear();
   var m = date.getMonth() + 1;
   m = m < 10 ? ('0' + m) : m;
@@ -40,7 +173,7 @@ function dateToString(date) {
   return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;
 }
 
-function dateToString2(date) {
+function dateToStringYYMMDD(date) {
   var y = date.getFullYear();
   var m = date.getMonth() + 1;
   m = m < 10 ? ('0' + m) : m;
@@ -66,3 +199,4 @@ function dateDiffSecond(beginDate, endDate){
   let diffTime = parseInt(time / 1000);
   return diffTime > 0 ? diffTime : 0;
 }
+

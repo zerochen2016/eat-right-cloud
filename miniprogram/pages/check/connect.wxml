@@ -1,0 +1,48 @@
+<!-- 连接中start -->
+<block wx:if="{{status == 2}}">
+  <view class="check-search-title">正在连接中{{dots}}</view>
+  <view class="check-search-title-2">不要离开，确保小阶屏幕亮起！</view>
+  <image class="check-linking-image-1" src="{{imageCircleLinking}}"/>
+  <view class="check-linking-image-2"></view>
+  <view class="check-linking-image-3"></view>
+  <view class="check-linking-image-4"></view>
+  <image class="check-search-close" src="{{imageClose}}" bindtap="go" data-page="check"/>
+</block>
+<!-- 连接中end -->
+<!-- 检测中start -->
+<block wx:elif="{{status == 3}}">
+  <view class="check-search-title">检测中{{dots}}<image src="{{volumnStatus == 1 ? imageVolume : imageCloseVolume}}" style="width:110rpx;height:110rpx;float:right;background-color:white;border-radius:50%;margin-top:-14rpx" bindtap="changeVolumnStatus" data-mstatus="{{volumnStatus == 1 ? 0 : 1}}"/></view>
+  <view class="check-search-title-2">呼吸平稳，放松心情～</view>
+  <view class="check-search-title-2" style="margin-top:0">双手静置桌面</view>
+  <view class="check-linking-image-1" style="background-image: conic-gradient(#23B8AC 0%,#C1F3E8 {{checkPercentage}}%,rgba(0, 0, 0, 0.2) {{checkPercentage}}% 100%);border-radius: 50%;" ></view>
+  <image class="check-checking-image-1" src="{{imageCircleSearch3}}" />
+  <view class="check-checking-text-1">{{checkPercentage}}%</view>
+  <view class="check-checking-text-2">检测进度</view>
+  <view class="check-linking-image-2"></view>
+  <view class="check-linking-image-3"></view>
+  <view class="check-linking-image-4"></view>
+  <view class="check-checking-tips">
+    <view class="check-checking-tips-text-1"><image src="{{imageTips}}"/>小提示提醒您</view>
+    <view class="check-checking-tips-text-2">{{tipsText}}</view>
+  </view>
+  <image class="check-search-close" style="margin-top: 1000rpx" src="{{imageClose}}" bindtap="reLaunchTo" data-page="check/check"/>
+</block>
+<!-- 检测中end -->
+<!-- 检测完成start -->
+<block wx:elif="{{status == 4}}">
+  <view class="check-search-title">检测完成<image src="{{volumnStatus == 1 ? imageVolume : imageCloseVolume}}" style="width:110rpx;height:110rpx;float:right;background-color:white;border-radius:50%;margin-top:-14rpx" bindtap="changeVolumnStatus" data-mstatus="{{volumnStatus == 1 ? 0 : 1}}"/></view>
+  <view class="check-search-title-2">呼吸平稳，放松心情～</view>
+  <view class="check-search-title-2" style="margin-top:0">双手静置桌面</view>
+  <view class="check-linking-image-1" style="background-image: conic-gradient(#23B8AC 0%,#C1F3E8 {{checkPercentage}}%,rgba(0, 0, 0, 0.2) {{checkPercentage}}% 100%);border-radius: 50%;" ></view>
+  <image class="check-checking-image-1" src="{{imageCircleSearch3}}" />
+  <image class="check-checking-image-tick" src="{{imageTick}}"/>
+  <view class="check-linking-image-2"></view>
+  <view class="check-linking-image-3"></view>
+  <view class="check-linking-image-4"></view>
+  <view class="check-checking-tips">
+    <view class="check-checking-tips-text-1"><image src="{{imageTips}}"/>小提示提醒您</view>
+    <view class="check-checking-tips-text-2">{{tipsText}}</view>
+  </view>
+  <image class="check-search-close" style="margin-top: 1000rpx" src="{{imageClose}}" bindtap="go" data-page="check"/>
+</block>
+<!-- 检测完成end -->

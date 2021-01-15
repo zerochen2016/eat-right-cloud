@@ -135,7 +135,7 @@ Page({
         success(res) {
           console.log(res)
           if(res.statusCode == 200){
-            let userInfo = res.data.signed_in_context
+            let userInfo = res.data
             app.setUser({
               id: userInfo.user_id,
               accessToken: userInfo.access_token.token,

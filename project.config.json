@@ -93,6 +93,83 @@
           "pathName": "pages/special/special",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/test/test",
+          "pathName": "pages/test/test",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/special/special",
+          "pathName": "pages/special/special",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/test2/test2",
+          "pathName": "pages/test2/test2",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/check/check-device",
+          "pathName": "pages/check/check-device",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/check/check",
+          "pathName": "pages/check/check",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/check/search",
+          "pathName": "pages/check/search",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/check/connect",
+          "pathName": "pages/check/connect",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/console/console",
+          "pathName": "pages/console/console",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/report/report",
+          "pathName": "pages/report/report",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/report/report-record",
+          "pathName": "pages/report/report-record",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/test3/test3",
+          "pathName": "pages/test3/test3",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/report/report-month",
+          "pathName": "pages/report/report-month",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/report/report-week",
+          "pathName": "pages/report/report-week",
+          "scene": null
         }
       ]
     }

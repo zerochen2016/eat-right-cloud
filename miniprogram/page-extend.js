@@ -33,9 +33,11 @@ const pageExtend = Page => {
         }
       }
       this.getWechatUserInfo(this)//微信授权信息   
-
+      let userProfile = app.getUserProfile()
+      console.log('-----userProfile----')
+      console.log(userProfile)
       this.setData({
-        userProfile: app.getUserProfile()
+        userProfile: userProfile
       })
       //允许分享按钮
       wx.showShareMenu({
@@ -65,7 +67,6 @@ const pageExtend = Page => {
           }
           paramsStr += '&' + key + '=' + value
         }
-        console.log('go--' + paramsStr)
       }
       wx.navigateTo({
         url: '../' + page + '/' + page + paramsStr
@@ -97,7 +98,6 @@ const pageExtend = Page => {
           }
           paramsStr += '&' + key + '=' + value
         }
-        console.log('go--' + paramsStr)
       }
       wx.redirectTo({
         url: '../' + path + paramsStr
@@ -116,6 +116,21 @@ const pageExtend = Page => {
       }
       wx.redirectTo({
         url: '../' + page + '/' + page + paramsStr
+      })
+    }
+    object.reLaTo = (e) => {
+      var path = e.currentTarget.dataset.path;
+      let paramsStr = '?reLaTo=1'
+      if(e.currentTarget.dataset){
+        for (let [key, value] of Object.entries(e.currentTarget.dataset)) {
+          if(key == 'path'){
+            continue
+          }
+          paramsStr += '&' + key + '=' + value
+        }
+      }
+      wx.redirectTo({
+        url: '../' + path + paramsStr
       })
     }
     object.goThirdWeb = (e) => {

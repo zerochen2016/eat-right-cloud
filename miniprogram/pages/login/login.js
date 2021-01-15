@@ -107,8 +107,8 @@ Page({
           success(res) {
             console.log(res)
             if(res.statusCode == 200){
-              if(res.data.signed_in_context){
-                let userInfo = res.data.signed_in_context
+              if(res.data){
+                let userInfo = res.data
                 app.setUser({
                   id: userInfo.user_id,
                   accessToken: userInfo.access_token.token,
@@ -203,7 +203,7 @@ Page({
       success(res) {
         console.log(res)
         if(res.statusCode == 200){
-          let userInfo = res.data.signed_in_context
+          let userInfo = res.data
           app.setUser({
             id: userInfo.user_id,
             accessToken: userInfo.access_token.token,

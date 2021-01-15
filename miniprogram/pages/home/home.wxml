@@ -3,23 +3,23 @@
 <view class="line" style="margin-top: 20rpx;"></view>
 <view class="special-view">
   <scroll-view class="special-scroll" scroll-x="true" bindscroll="scroll" style="width: 100%">
-    <block wx:for="{{specialArray}}" wx:key="true">
-      <image data-id="{{item.id}}" class="special-scroll-image scroll-image" src="{{item.picture}}" bindtap="toSpecial"/>
+    <block wx:for="{{channelMenus}}" wx:key="true">
+      <image data-id="{{item.channel_id}}" data-title="{{item.topic}}" class="special-scroll-image scroll-image" src="{{item.image.public_access_url}}" bindtap="nTo" data-path="special/special" />
     </block>        
   </scroll-view>
 </view>
 <view class="special-recommend" bindtap="goThirdWeb" data-url="{{recommend.url}}">
   <image class="special-recommend-image" src="{{recommend.picture}}"></image>
-  <view data-id="{{recommend.id}}" class="special-recommend-view-1">
+  <view data-id="{{deviceProduct.product_id}}" class="special-recommend-view-1">
     <view class="special-recommend-view-2">
-      <text class="text60">{{recommend.title}}</text>
-      <text class="text28">{{recommend.decribe}}</text>
+      <text class="text60">小阶感测器</text>
+      <text class="text28">弹指之间 健康可见</text>
     </view>
-    <view class="button-success" style="width: 206rpx;height: 84rpx;float: right;line-height:84rpx;margin-right: 32rpx;margin-top: 40rpx;"><text style="font-size:24rpx">¥</text>{{recommend.price}}</view>
+    <view class="button-success" style="width: 206rpx;height: 84rpx;float: right;line-height:84rpx;margin-right: 32rpx;margin-top: 40rpx;"><text style="font-size:24rpx">¥</text>{{deviceProduct.price / 10000}}.00</view>
   </view>
 </view>
 <!-- 分享在后续版本 -->
-<view class="special-share" bindtap="go" data-page="share">
+<!-- <view class="special-share" bindtap="go" data-page="share">
   <view class="text52" style="margin-left: 32rpx;margin-top: 40rpx;float:left"><text style="line-height:74rpx">加入健康合伙人
     分享健康赚佣金</text></view>
   <view class="text28" style="color:#F78500;float:left;margin-left:32rpx">双重现金礼 轻松拿到手</view>
@@ -29,28 +29,36 @@
     <image src="{{imageArrowBlue}}" />
     <view>进一步了解</view>
   </view>  
-</view>
+</view> -->
 <view class="line" style="margin-top: 48rpx;"></view>
 <view class="text40" style="margin-left: 40rpx;margin-top: 60rpx;">精选</view>
 <view class="select-list">
   <view class="text60" style="text-align: center;width:100%;margin-top: 40rpx;float:left">琳瑯满目，必有所爱</view>
   <text class="text28" style="margin-top: 8rpx;float: left;width:100%;text-align: center; ">健康管理是一件快乐的事情</text>
   <view class="select-list-view">
-    <block wx:for="{{carefullyChosen1}}" wx:key="true">
+    <!-- <block wx:for="{{carefullyChosen1}}" wx:key="true">
       <image class="select-list-image" src="{{item.picture}}" data-url="{{item.url}}" bindtap="goThirdWeb"></image>
+    </block> -->
+
+    <block wx:for="{{features}}" wx:key="true">
+      <block wx:if="{{item.is_heading}}">
+        <image class="select-list-image-big" src="{{item.image.public_access_url}}" />
+      </block>
     </block>
   </view>
 </view>
 <view class="select-scroll-view">
   <scroll-view class="select-scroll" scroll-x="true" bindscroll="scroll" style="width: 100%">
-    <block wx:for="{{carefullyChosen2}}" wx:key="true">
-      <image class="select-scroll-image scroll-image" src="{{item.picture}}" data-url="{{item.url}}" bindtap="goThirdWeb"/>
+    <block wx:for="{{features}}" wx:key="true">
+      <block wx:if="{{!item.is_heading}}">
+        <image class="select-scroll-image scroll-image" src="{{item.image.public_access_url}}" data-url="{{item.page.public_access_url}}" bindtap="goThirdWeb"/>
+      </block>
     </block>
   </scroll-view>
 </view>
 <view class="line" style="margin-top: 30rpx;"></view>
 <view class="text40" style="margin-left: 40rpx;margin-top: 60rpx;">更多为您推荐</view>
-<image class="more-image-1" src="{{moreRecommend.picture}}" data-url="{{moreRecommend.url}}" bindtap="goThirdWeb"/>
+<image class="more-image-1" src="{{imageWangweigong1}}" bindtap="nTo" data-path="article/theory-wangweigong"/>
 <!-- 去关注组件 -->
 <wechat-subscription style="margin-top:30rpx;float:left"></wechat-subscription>
 <!-- 探索end -->
