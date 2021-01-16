@@ -44,6 +44,7 @@
     "pages/report/report-record",
     "pages/report/report-month",
     "pages/report/report-week",
+    "pages/report/report-report",
 
     "pages/setup/setup",
     

@@ -224,7 +224,7 @@ Page({
         "request": {
           "user_profile_id": app.getUser().id,
           "user_id": app.getUser().id,
-          "language_code": "LANGUAGE_SIMPLIFIED_CHINESE",
+          "language_code": "zh-Hans",
           "time_zone": "Asia/Shanghai",
           "end_time": endTimeReq
         }

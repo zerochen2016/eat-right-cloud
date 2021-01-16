@@ -15,6 +15,8 @@ App({
     }
     //全局数据
     this.globalData = {
+      h5Host: "https://res.jt-health.cn/app-dev/v1/index.html#/",
+      // h5Host: "https://res.jt-health.cn/app/v1/index.html#/",
       apiHost: "https://dev-api.jt-health.cn:18088/rpc",//接口前缀，需要https
       // apiHost: "https://api.jt-health.cn:18088/rpc",//接口前缀，需要https
       resourcesHost: "https://jtfile.pingfangli.com/",//图片等资源前缀，需要https

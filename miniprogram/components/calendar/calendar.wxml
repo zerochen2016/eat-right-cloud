@@ -20,19 +20,19 @@
     <view class="cal-body-week-days" style="height:{{dayHeight}}" animation="{{animationData}}">
     <block wx:for="{{days}}" wx:key="true">
       <block wx:if="{{item.type == 0}}">
-        <view class="cal-body-week cal-body-week-grey" style="{{(index % 7 == 0) ? 'margin-left:25rpx' :''}}">{{item.value}}</view>
+        <view class="cal-body-week cal-body-week-grey" data-date="{{item.id}}" bindtap="selectDay" style="{{(index % 7 == 0) ? 'margin-left:25rpx' :''}}">{{item.value}}</view>
       </block>
       <block wx:elif="{{item.type == 1}}"> 
-        <view class="cal-body-week" style="{{(index % 7 == 0) ? 'margin-left:25rpx' :''}}">{{item.value}}</view>
+        <view class="cal-body-week" data-date="{{item.id}}" bindtap="selectDay" style="{{(index % 7 == 0) ? 'margin-left:25rpx' :''}}">{{item.value}}</view>
       </block>
       <block wx:elif="{{item.type == 2}}"> 
-        <view class="cal-body-week cal-body-week-report" style="{{(index % 7 == 0) ? 'margin-left:25rpx' :''}}">{{item.value}}</view>
+        <view class="cal-body-week cal-body-week-report" data-date="{{item.id}}" bindtap="selectDay" style="{{(index % 7 == 0) ? 'margin-left:25rpx' :''}}">{{item.value}}</view>
       </block>
       <block wx:elif="{{item.type == 3}}"> 
-        <view class="cal-body-week cal-body-week-report" style="{{(index % 7 == 0) ? 'margin-left:25rpx' :''}}">{{item.value}}<text>今天</text></view>
+        <view class="cal-body-week cal-body-week-report" data-date="{{item.id}}" bindtap="selectDay" style="{{(index % 7 == 0) ? 'margin-left:25rpx' :''}}">{{item.value}}<text>今天</text></view>
       </block>
       <block wx:elif="{{item.type == 4}}"> 
-        <view class="cal-body-week cal-body-week-select" style="{{(index % 7 == 0) ? 'margin-left:25rpx' :''}}">{{item.value}}</view>
+        <view class="cal-body-week cal-body-week-select" data-date="{{item.id}}" bindtap="selectDay" style="{{(index % 7 == 0) ? 'margin-left:25rpx' :''}}">{{item.value}}</view>
       </block>
     </block>
     </view>

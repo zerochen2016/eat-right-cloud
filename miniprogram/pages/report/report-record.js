@@ -30,7 +30,17 @@ Page({
    */
   onShow: function () {
     // this.listMonthlyReport(dateUtil.getEndTime('2020-10-30'))
-    this.listReports(dateUtil.dateToStringYYMMDD(new Date()))
+    let endDate = new Date()
+    endDate.setHours(23)
+    endDate.setMinutes(59)
+    endDate.setSeconds(59)
+    let startDate = new Date()
+    startDate.setDate(1)
+    startDate.setHours(0)
+    startDate.setMinutes(0)
+    startDate.setSeconds(0)
+    
+    this.listReports(startDate,endDate)
     this.getVipInfo()
     
   },
@@ -62,6 +72,18 @@ Page({
   onReachBottom: function () {
 
   },
+  selectDay: function(e){
+    let date = e.detail.date
+    let endDate = new Date(date)
+    endDate.setHours(23)
+    endDate.setMinutes(59)
+    endDate.setSeconds(59)
+    let startDate = new Date(date)
+    startDate.setHours(0)
+    startDate.setMinutes(0)
+    startDate.setSeconds(0)
+    this.listReports(startDate,endDate)
+  },
   dateChangeTap: function(e){
     this.dateChange(e.detail.date)
   },
@@ -79,14 +101,22 @@ Page({
     }else{
       date = dateArr[0] + "-" + dateArr[1] + "-30"
     }
-    this.listReports(new Date(date))
+    
+    let endDate = new Date(date)
+    endDate.setHours(23)
+    endDate.setMinutes(59)
+    endDate.setSeconds(59)
+    let startDate = new Date(date)
+    startDate.setDate(1)
+    startDate.setHours(0)
+    startDate.setMinutes(0)
+    startDate.setSeconds(0)
+    this.listReports(startDate,endDate)
   },
-  listReports: function(endTime){
-    endTime = dateUtil.getEndTimeSecond(endTime)
-    let startTime = endTime - 2592000
+  listReports: function(startDate,endDate){
     let that = this
-    let startTimeReq = new Date(startTime * 1000)
-    let endTimeReq = new Date(endTime * 1000)
+    let startTimeReq = startDate
+    let endTimeReq = endDate
     wx.request({
       url: app.globalData.apiHost, 
       data: 

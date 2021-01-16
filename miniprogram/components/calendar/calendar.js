@@ -23,7 +23,8 @@ Component({
     nowDate: dateUtil.dateToYYMMToday(),
     nowDateChinese: dateUtil.dateToYYMMToday('chinese'),
     dayAll: true,
-    dayHeight: "660rpx"
+    dayHeight: "660rpx",
+    daySelected: {}
   },
   lifetimes: {
     attached: function() {
@@ -38,6 +39,45 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    selectDay: function(e){
+      let selectDay = new Date(e.currentTarget.dataset.date)
+      console.log(selectDay)
+      let days = this.data.days
+      let nowSelectI = 0
+      let nowDate = null
+      for(let i = 0; i < days.length; i++){
+        if(e.currentTarget.dataset.date == days[i].id){
+          nowSelectI = i
+          nowDate = new Date(days[i].id)
+        }
+      }
+      let daySelected = this.data.daySelected
+      console.log(daySelected)
+      //恢复原来的
+      if(daySelected && daySelected.i >= 0){
+        //同一个位置
+        let locationDay = days[daySelected.i]
+        let locationDate = new Date(locationDay.id)
+        //是否同一天
+        if(locationDate.getFullYear() == daySelected.year && locationDate.getMonth() + 1 == daySelected.month && locationDate.getDate() == daySelected.day){
+          days[daySelected.i].type = daySelected.type
+        }
+      }
+      //保存现在选择的
+      daySelected.i = nowSelectI
+      daySelected.type = days[nowSelectI].type
+      daySelected.year = nowDate.getFullYear()
+      daySelected.month = nowDate.getMonth() + 1
+      daySelected.day = nowDate.getDate()
+      //选择
+      days[nowSelectI].type = 4
+      this.setData({
+        days: days,
+        daySelected: daySelected
+      })
+      let item = {date: selectDay}//要传给父组件的参数
+      this.triggerEvent('selectDay',item)//通过triggerEvent将参数传给父组件
+    },
     //页面左右滑动start
     headTouchStart: function (e) {
       headStartX = e.touches[0].pageX; // 获取触摸时的原点
@@ -251,7 +291,10 @@ Component({
             let day = days[j]
             let dayDate = new Date(day.id)
             if(date.getFullYear() == dayDate.getFullYear() && date.getMonth() == dayDate.getMonth() && date.getDate() == dayDate.getDate()){
-              days[j].type = 2
+              if(days[j].type != 4){
+                days[j].type = 2
+              }
+              
             }
           }
         }

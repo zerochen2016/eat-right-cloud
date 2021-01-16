@@ -2,6 +2,8 @@ const app = getApp()
 const dateUtil = require("../../utils/date-util.js")
 import * as echarts from '../../components/ec-canvas/echarts';
 let page = {}
+let chart1 = {}
+let chart2 = {}
 Page({
 
   /**
@@ -10,29 +12,39 @@ Page({
   data: {
     riskIndex: { 
       onInit: function(canvas, width, height, dpr) {
-        app.globalData.chart1 = echarts.init(canvas, null, {
+        chart1 = echarts.init(canvas, null, {
           width: width,
           height: height,
           devicePixelRatio: dpr // new
         });
-        canvas.setChart(app.globalData.chart1);
-        app.globalData.chart1.setOption(getOption1([],[]),true,false);
-        return app.globalData.chart1;
+        canvas.setChart(chart1);
+        let option = getOption1([0,0,0,0],["10-1","10-2","10-3","10-4"])
+        chart1.setOption(option,{
+          notMerge:true,
+          lazyUpdate:true,
+          silent: false
+        });
+        return chart1;
       }
   },
     riskTrend: { onInit: function(canvas, width, height, dpr) {
-      app.globalData.chart2 = echarts.init(canvas, null, {
+      chart2 = echarts.init(canvas, null, {
         width: width,
         height: height,
         devicePixelRatio: dpr // new
       });
-      canvas.setChart(app.globalData.chart2);
-      app.globalData.chart2.setOption(getOption2([],[],{
+      canvas.setChart(chart2);
+      let option = getOption2([0,0,0,0],["10-1","10-2","10-3","10-4"],{
         offset0: '#00A29E',
         offset1: '#65E1C5',
         shadow: '#E2F4F0'
-      }),true,false);
-      return app.globalData.chart2;
+      })
+      chart2.setOption(option,{
+        notMerge:true,
+        lazyUpdate:true,
+        silent: false
+      });
+      return chart2;
     }},
     canvasImage1: '',
     canvasImage2: '',
@@ -87,6 +99,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    let that = this
+
+    
     //获取月报信息
     this.listMonthlyReport(new Date())
     //获取Vip信息
@@ -178,6 +193,10 @@ Page({
     console.log(e)
     const index = e.currentTarget.id
     const currentMenuId = e.currentTarget.dataset.id
+    that.changeMenuDo(currentMenuId,index)
+  },
+  changeMenuDo: function(currentMenuId,index){
+    let that = this
     this.setData({
       activeIndex: index,
       showChoose: 0,
@@ -256,7 +275,7 @@ Page({
         "request": {
           "user_profile_id": app.getUser().id,
           "user_id": app.getUser().id,
-          "language_code": "LANGUAGE_SIMPLIFIED_CHINESE",
+          "language_code": "zh-Hans",
           "time_zone": "Asia/Shanghai",
           "end_time": endTimeReq
         }
@@ -272,13 +291,18 @@ Page({
         if(res.statusCode == 200){
           if(res.data.monthly_report.chart_content){
             let riskArray = res.data.monthly_report.risk
-            
-            for(let i = 0; i < riskArray.length; i++){
+            let healthRisk = res.data.monthly_report.health_risk_index
+            healthRisk.name = that.data.menus[0].menu_name
+            healthRisk.max = healthRisk.max ? healthRisk.max : '--'
+            healthRisk.min = healthRisk.min ? healthRisk.min : '--'
+            healthRisk.avg = healthRisk.avg ? healthRisk.avg.toFixed(1) : "--"
+            for(let i = 1; i < riskArray.length; i++){
               riskArray[i].name = that.data.menus[i].menu_name
               riskArray[i].max = riskArray[i].max ? riskArray[i].max : '--'
               riskArray[i].min = riskArray[i].min ? riskArray[i].min : '--'
               riskArray[i].avg = riskArray[i].avg ? riskArray[i].avg.toFixed(1) : '--'
             }
+            riskArray.unshift(healthRisk)
             that.setData({
               monthlyReport: res.data.monthly_report,
               reportCount: 1,
@@ -304,12 +328,20 @@ function changeRiskIndex(dataArray){
   let riskIndexDate = []
   for(let i = 0; i < dataArray.length; i++){
     let content = dataArray[i]
-    let avg = (content.avg) ? content.avg : 0
+    if(!(content.avg)){
+      continue
+    }
+    let avg = content.avg
     let date = content.date.split("T")[0].split("2020-")[1]
     riskIndexDate.push(date)
     riskIndexData.push(avg)
   }
-  app.globalData.chart1.setOption(getOption1(riskIndexData,riskIndexDate))
+  let option = getOption1(riskIndexData,riskIndexDate)
+  chart1.setOption(option,{
+          notMerge:true,
+          lazyUpdate:true,
+          silent: false
+        })
 }
 
 function changeRiskTrend(dataArray){
@@ -349,12 +381,20 @@ function changeRiskTrend(dataArray){
   }
   for(let i = 0; i < dataArray.length; i++){
     let content = dataArray[i]
-    let avg = (content.avg) ? content.avg : 0
+    if(!(content.avg)){
+      continue
+    }
+    let avg = content.avg
     let date = content.date.split("T")[0].split("2020-")[1]
     riskTrendData.push(avg)
     riskTrendDate.push(date)
   }
-  app.globalData.chart2.setOption(getOption2(riskTrendData,riskTrendDate,color))
+  let option = getOption2(riskTrendData,riskTrendDate,color)
+  chart2.setOption(option,{
+    notMerge:true,
+    lazyUpdate:true,
+    silent: false
+  })
 }
 
 

@@ -18,7 +18,10 @@ const pageExtend = Page => {
       // 在onLoad中执行的代码
       //如果页面需要初始化数据，则执行
       const app = getApp()
-      if(getCurrentPages()[0].route.indexOf('login') == -1){
+      const route = getCurrentPages()[0].route
+      console.log("-----route-----")
+      console.log(route)
+      if(route.indexOf('login') == -1 || route.indexOf('third-webview/third-webview') == -1){
         let user = app.getUser()
         if(!user||!user.id){
           wx.redirectTo({
@@ -48,7 +51,9 @@ const pageExtend = Page => {
         onLoaded.call(this, options)
       }
     }
-
+    
+    console.log("test")
+    console.log(object)
     // 公共的onShareAppMessage事件处理函数
     object.onShareAppMessage = () => {
       return{
@@ -56,6 +61,7 @@ const pageExtend = Page => {
         path: "/pages/home/home?shareid=" + getApp().getUser().id
       }
     }
+
     
     object.go = (e) => {
       var page = e.currentTarget.dataset.page;
