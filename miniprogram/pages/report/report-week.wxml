@@ -11,6 +11,7 @@
 </view>
 <!-- 报告数据start -->
 <block wx:if="{{reportCount > 0}}">
+
 <view style="background-color:white">
   <view class="menu">
     <scroll-view class="menu-scroll" scroll-x="true" bindscroll="scroll">
@@ -29,7 +30,7 @@
   </view>
 <view class="risk-index-title">风险系数</view>
 <view class="risk-index" >
-  <ec-canvas id="riskIndex" canvas-id="riskIndexC" class="risk-canvas" type="2d" ec="{{riskIndex2}}"></ec-canvas>
+  <ec-canvas id="riskIndex2" canvas-id="riskIndexC2" class="risk-canvas" type="2d" ec="{{riskIndex2}}"></ec-canvas>
   <view class="risk-index-background1">
     <block wx:for="{{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36]}}" wx:key="true">
       <view class="risk-index-background-sub1"></view>
@@ -41,7 +42,7 @@
 <!-- 是否会员start1 -->
 <block wx:if="{{vipInfo.isVip}}">
 <view class="risk-index">
-  <ec-canvas id="riskTrend" canvas-id="riskTrendC" type="2d" ec="{{riskTrend2}}"></ec-canvas>
+  <ec-canvas id="riskTrend2" canvas-id="riskTrendC2" type="2d" ec="{{riskTrend2}}"></ec-canvas>
   <view class="risk-index-background">
     <block wx:for="{{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171]}}" wx:key="true">
       <view class="risk-index-background-sub"></view>
@@ -57,7 +58,7 @@
 <block wx:if="{{!(vipInfo.isVip)}}">
     <view class="lock" bindtap="nTo" data-path="member/member" >
       <image class="lock-image" src="{{imageLock}}" />
-      <view class="lock-text-1 text40">解锁完整周分析</view>
+      <view class="lock-text-1 text40">解锁完整月分析</view>
       <view class="lock-text-2 text28">您可以查看一年内产生的所有报告</view>
     </view>
 </block>
@@ -65,7 +66,9 @@
 </view>
   <!-- 是否会员start2 -->
   <block wx:if="{{vipInfo.isVip}}">
-    <view class="text40" style="margin-top:60rpx;margin-left:40rpx;width:100%;text-align:left">指标数据表</view>
+  <view style="width:750;height:120rpx;background-color:rgba(242, 242, 246, 1)">
+    <view class="text40" style="margin-top:60rpx;margin-left:40rpx;width:500rpx;text-align:left;float:left">指标数据表</view>
+  </view>
   <view class="index-view">
     <view class="index-main">
       <view class="text30 index-body" style="color:rgba(0, 149, 145, 1);background-color:rgba(229, 244, 244, 1);border-radius: 8rpx 8rpx 0rpx 0rpx;border-radius: 8rpx;">
@@ -74,10 +77,10 @@
         <view>最小值</view>
         <view>平均值</view>
       </view>
-      <block wx:for="{{riskArray}}" wx:key="true">
+      <block wx:for="{{monthlyReport.risk}}" wx:key="true">
         <block wx:if="{{index == 0 || index % 2 == 0}}">
           <view class="text28 index-body" style="color:rgba(0, 0, 0, 0.87);background-color:white">
-            <view>{{item.name}}</view>
+            <view>{{item.risk_name}}</view>
             <view>{{item.max}}</view>
             <view>{{item.min}}</view>
             <view>{{item.avg}}</view>
@@ -85,7 +88,7 @@
         </block>
         <block wx:else>
           <view class="text28 index-body" style="color:rgba(0, 0, 0, 0.87);background-color:rgba(242, 242, 246, 1)">
-            <view>{{item.name}}</view>
+            <view>{{item.risk_name}}</view>
             <view>{{item.max}}</view>
             <view>{{item.min}}</view>
             <view>{{item.avg}}</view>
@@ -94,10 +97,40 @@
       </block>
     </view>
   </view>
-  <!-- TODO膳食建议 -->
-  <view class="text40" style="margin-top:60rpx;margin-left:40rpx;width:100%;text-align:left">膳食建议</view>  
-  <view class="food"></view>
-  <view class="text24 text-bottom">注：所有报告和数据仅供健康评估参考，不能作为医疗诊断和建议.</view>
+  <view style="width:750;height:120rpx;background-color:rgba(242, 242, 246, 1)">
+    <view class="text40" style="margin-top:60rpx;margin-left:40rpx;width:500rpx;text-align:left;float:left">膳食建议</view>
+  </view>
+  <view class="food">
+    <rich-text class="food-suggest" nodes="{{monthlyReport.meal_suggestion}}"></rich-text>
+    <view class="food-line"></view>
+    <view class="text32" style="margin-top:40rpx;margin-left:40rpx;width:500rpx;text-align:left;float:left">食材建议</view>
+    <view class="food-pur">
+      <block wx:for="{{monthlyReport.ingredients_products.purchasable_products}}" wx:key="true">
+        <view>{{item.product_title}}</view>
+      </block>
+    </view>
+    <view class="food-unpur">
+      <block wx:for="{{monthlyReport.ingredients_products.unpurchasable_products}}" wx:key="true">
+        <view>{{item.product_title}}</view>
+      </block>
+    </view>
+    <view class="food-line"></view>
+    <view class="text32" style="margin-top:40rpx;margin-left:40rpx;width:500rpx;text-align:left;float:left">营养素建议</view>
+    <view class="food-pur">
+      <block wx:for="{{monthlyReport.meal_products.purchasable_products}}" wx:key="true">
+        <view>{{item.product_title}}</view>
+      </block>
+    </view>
+    <view class="food-unpur">
+      <block wx:for="{{monthlyReport.meal_products.unpurchasable_products2}}" wx:key="true">
+        <view>{{item.product_title}}</view>
+      </block>
+    </view>
+
+  </view>
+  <view class="text-bottom">
+    <view>注：所有报告和数据仅供健康评估参考，不能作为医疗诊断和建议.</view>
+  </view>
   </block>
   <!-- 是否会员end2 -->
 </block>
@@ -105,7 +138,7 @@
 <!-- 无报告数据start -->
 <block wx:else>
   <view class="none-text-1 text136"><text style="color:rgba(0, 149, 145, 1)">{{reportCount}}</text>/7</view>
-  <view class="none-text-2 text32" style="margin-top:30rpx">测量天数不足3天</view>
+  <view class="none-text-2 text32" style="margin-top:30rpx">测量天数不足2天</view>
   <view class="none-text-2 text32">无法得出有效分析</view>
   <view class="button-success" style="margin-top:120rpx;float:left;margin-left:72rpx" bindtap="nTo" data-path="check/check">去检测</view>
 </block>

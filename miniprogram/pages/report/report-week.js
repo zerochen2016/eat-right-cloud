@@ -2,6 +2,8 @@ const app = getApp()
 const dateUtil = require("../../utils/date-util.js")
 import * as echarts from '../../components/ec-canvas/echarts';
 let page = {}
+let chart3 = {}
+let chart4 = {}
 Page({
 
   /**
@@ -10,29 +12,29 @@ Page({
   data: {
     riskIndex2: { 
       onInit: function(canvas, width, height, dpr) {
-        app.globalData.chart3 = echarts.init(canvas, null, {
+        chart3 = echarts.init(canvas, null, {
           width: width,
           height: height,
           devicePixelRatio: dpr // new
         });
-        canvas.setChart(app.globalData.chart3);
-        app.globalData.chart3.setOption(getOption1([],[]),true,false);
-        return app.globalData.chart3;
+        canvas.setChart(chart3);
+        chart3.setOption(getOption1([0,0,0,0],[0,0,0,0]),true,false);
+        return chart3;
       }
   },
     riskTrend2: { onInit: function(canvas, width, height, dpr) {
-      app.globalData.chart4 = echarts.init(canvas, null, {
+      chart4 = echarts.init(canvas, null, {
         width: width,
         height: height,
         devicePixelRatio: dpr // new
       });
-      canvas.setChart(app.globalData.chart4);
-      app.globalData.chart4.setOption(getOption2([],[],{
+      canvas.setChart(chart4);
+      chart4.setOption(getOption2([0,0,0,0],[0,0,0,0],{
         offset0: '#00A29E',
         offset1: '#65E1C5',
         shadow: '#E2F4F0'
       }),true,false);
-      return app.globalData.chart4;
+      return chart4;
     }},
     canvasImage1: '',
     canvasImage2: '',
@@ -238,8 +240,8 @@ Page({
       success(res) {
         console.log(res)
         if(res.statusCode == 200){
-          if(res.data.monthly_report.chart_content){
-            let riskArray = res.data.monthly_report.risk
+          if(res.data.weekly_report.chart_content){
+            let riskArray = res.data.weekly_report.risk
             
             for(let i = 0; i < riskArray.length; i++){
               riskArray[i].name = that.data.menus[i].menu_name
@@ -248,12 +250,12 @@ Page({
               riskArray[i].avg = riskArray[i].avg ? riskArray[i].avg.toFixed(1) : '--'
             }
             that.setData({
-              monthlyReport: res.data.monthly_report,
+              monthlyReport: res.data.weekly_report,
               reportCount: 1,
               riskArray: riskArray
             })
-            changeRiskIndex(res.data.monthly_report.chart_content[0].content)
-            changeRiskTrend(res.data.monthly_report.chart_content[19].content.slice(0,2))
+            // changeRiskIndex(res.data.weekly_report.chart_content[0].content)
+            // changeRiskTrend(res.data.weekly_report.chart_content[19].content.slice(0,2))
           }else{
             that.setData({
               reportCount: 0
@@ -277,7 +279,7 @@ function changeRiskIndex(dataArray){
     riskIndexDate.push(date)
     riskIndexData.push(avg)
   }
-  app.globalData.chart3.setOption(getOption1(riskIndexData,riskIndexDate))
+  chart3.setOption(getOption1(riskIndexData,riskIndexDate))
 }
 
 function changeRiskTrend(dataArray){
@@ -322,7 +324,7 @@ function changeRiskTrend(dataArray){
     riskTrendData.push(avg)
     riskTrendDate.push(date)
   }
-  app.globalData.chart4.setOption(getOption2(riskTrendData,riskTrendDate,color))
+  chart4.setOption(getOption2(riskTrendData,riskTrendDate,color))
 }
 
 
