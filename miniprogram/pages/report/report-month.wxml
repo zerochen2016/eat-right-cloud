@@ -11,6 +11,7 @@
 </view>
 <!-- 报告数据start -->
 <block wx:if="{{reportCount > 0}}">
+
 <view style="background-color:white">
   <view class="menu">
     <scroll-view class="menu-scroll" scroll-x="true" bindscroll="scroll">
@@ -65,7 +66,9 @@
 </view>
   <!-- 是否会员start2 -->
   <block wx:if="{{vipInfo.isVip}}">
-    <view class="text40" style="margin-top:60rpx;margin-left:40rpx;width:100%;text-align:left">指标数据表</view>
+  <view style="width:750;height:120rpx;background-color:rgba(242, 242, 246, 1)">
+    <view class="text40" style="margin-top:60rpx;margin-left:40rpx;width:500rpx;text-align:left;float:left">指标数据表</view>
+  </view>
   <view class="index-view">
     <view class="index-main">
       <view class="text30 index-body" style="color:rgba(0, 149, 145, 1);background-color:rgba(229, 244, 244, 1);border-radius: 8rpx 8rpx 0rpx 0rpx;border-radius: 8rpx;">
@@ -74,10 +77,10 @@
         <view>最小值</view>
         <view>平均值</view>
       </view>
-      <block wx:for="{{riskArray}}" wx:key="true">
+      <block wx:for="{{monthlyReport.risk}}" wx:key="true">
         <block wx:if="{{index == 0 || index % 2 == 0}}">
           <view class="text28 index-body" style="color:rgba(0, 0, 0, 0.87);background-color:white">
-            <view>{{item.name}}</view>
+            <view>{{item.risk_name}}</view>
             <view>{{item.max}}</view>
             <view>{{item.min}}</view>
             <view>{{item.avg}}</view>
@@ -85,7 +88,7 @@
         </block>
         <block wx:else>
           <view class="text28 index-body" style="color:rgba(0, 0, 0, 0.87);background-color:rgba(242, 242, 246, 1)">
-            <view>{{item.name}}</view>
+            <view>{{item.risk_name}}</view>
             <view>{{item.max}}</view>
             <view>{{item.min}}</view>
             <view>{{item.avg}}</view>
@@ -94,12 +97,40 @@
       </block>
     </view>
   </view>
-  <!-- TODO膳食建议 -->
-  <view class="text40" style="margin-top:60rpx;margin-left:40rpx;width:100%;text-align:left">膳食建议</view>
+  <view style="width:750;height:120rpx;background-color:rgba(242, 242, 246, 1)">
+    <view class="text40" style="margin-top:60rpx;margin-left:40rpx;width:500rpx;text-align:left;float:left">膳食建议</view>
+  </view>
   <view class="food">
     <rich-text class="food-suggest" nodes="{{monthlyReport.meal_suggestion}}"></rich-text>
+    <view class="food-line"></view>
+    <view class="text32" style="margin-top:40rpx;margin-left:40rpx;width:500rpx;text-align:left;float:left">食材建议</view>
+    <view class="food-pur">
+      <block wx:for="{{monthlyReport.ingredients_products.purchasable_products}}" wx:key="true">
+        <view>{{item.product_title}}</view>
+      </block>
+    </view>
+    <view class="food-unpur">
+      <block wx:for="{{monthlyReport.ingredients_products.unpurchasable_products}}" wx:key="true">
+        <view>{{item.product_title}}</view>
+      </block>
+    </view>
+    <view class="food-line"></view>
+    <view class="text32" style="margin-top:40rpx;margin-left:40rpx;width:500rpx;text-align:left;float:left">营养素建议</view>
+    <view class="food-pur">
+      <block wx:for="{{monthlyReport.meal_products.purchasable_products}}" wx:key="true">
+        <view>{{item.product_title}}</view>
+      </block>
+    </view>
+    <view class="food-unpur">
+      <block wx:for="{{monthlyReport.meal_products.unpurchasable_products2}}" wx:key="true">
+        <view>{{item.product_title}}</view>
+      </block>
+    </view>
+
   </view>
-  <view class="text24 text-bottom">注：所有报告和数据仅供健康评估参考，不能作为医疗诊断和建议.</view>
+  <view class="text-bottom">
+    <view>注：所有报告和数据仅供健康评估参考，不能作为医疗诊断和建议.</view>
+  </view>
   </block>
   <!-- 是否会员end2 -->
 </block>

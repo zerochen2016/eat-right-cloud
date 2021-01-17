@@ -6,33 +6,51 @@ page{
   margin-top: 40rpx;
   width: 670rpx;
   height: 240rpx;
-  z-index: 1;
-  
+  z-index: 3;
+  position: relative;
 }
 .left-back{
-  height: 300rpx;
+  height: 240rpx;
   width: 320rpx;
   float: left;
+  margin-top: -240rpx;
+  position: relative;
+  z-index: 1;
+  margin-left: 40rpx;
 }
 .right-back{
-  height: 295rpx;
+  height: 240rpx;
   width: 320rpx;  
   float: right;
+  margin-top: -240rpx;
+  position: relative;
+  z-index: 1;
+  margin-right: 40rpx;
+}
+.left-back image{
+  width: 344rpx;
+  height: 240rpx;
+  float: left;
+  position: relative;
+  z-index: 1;
+}
+.right-back image{
+  width: 344rpx;
+  height: 240rpx;
+  float: right;
+  position: relative;
+  z-index: 1;
 }  
 .eat-main-left-result{
   text-align: left;
   float: left;
   height: 240rpx;
   width: 320rpx;
-  background: linear-gradient(360deg, #009591 0%, #65E1C5 100%);
   float: left;
   height: 240rpx;
   width: 320rpx;
-  background-color: white;
-  box-shadow: 0rpx 4rpx 24rpx 0rpx rgba(0, 0, 0, 0.12), 0rpx 4rpx 8rpx 0rpx rgba(0, 179, 134, 0.08);
   border-radius: 16rpx;
-  opacity: 0.5;
-  z-index: 1;
+  position: relative;
 }
 .eat-main-left-text1{
   margin-left:20rpx;
@@ -44,6 +62,7 @@ page{
   color: rgba(0, 0, 0, 0.87);
   width: 150rpx;
   float: left;
+  position: relative;
 }
 .eat-main-left-text2-has{
   margin-left:20rpx;
@@ -71,8 +90,6 @@ page{
   float: right;
   height: 240rpx;
   width: 320rpx;
-  background: linear-gradient(360deg, #00A29E 0%, #65E1C5 100%);
-  box-shadow: 0rpx 4rpx 24rpx 0rpx rgba(0, 0, 0, 0.12), 0rpx 4rpx 8rpx 0rpx rgba(0, 179, 134, 0.08);
   border-radius: 16rpx;
 }
 .eat-main-right-text1{
@@ -108,14 +125,6 @@ page{
   width: 100%;
 }
 
-.report-select{
-  background-color: #F2F2F6;
-  position: absolute;
-  z-index: 999;
-  left: 0;
-  top: 0;
-  height: 1800rpx;
-}
 .report{
   width: 750rpx;
   height: 184rpx;

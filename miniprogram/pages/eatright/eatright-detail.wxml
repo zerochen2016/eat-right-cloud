@@ -11,12 +11,13 @@
     <view class="eat-main-right-text3-has" style="{{hasResult ? 'color:white' : ''}}">综合风险指数</view>
     <view class="eat-main-right-text3-has" style="{{hasResult ? 'color:white' : ''}}">{{reportAfter.date}}</view>
   </view>
-  <!-- TODO梯形 -->
-  <!-- <view class="left-back">
+</view>
+  <view class="left-back">
+    <image src="{{imageRectangleLeft}}"/>
   </view>
   <view class="right-back">
-  </view> -->
-</view>
+    <image src="{{imageRectangleRight}}"/>
+  </view>
 <view style="background-color:rgba(242, 242, 246, 1);height:24rpx;width:100%;margin-top:60rpx"></view>
 <!-- 对比结果start -->
 <block wx:if="{{hasResult}}">

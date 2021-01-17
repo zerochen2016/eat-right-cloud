@@ -55,7 +55,7 @@
       </view>
     </block>
     <block wx:if="{{compareReport.resultStatus == 2}}">
-      <image src="{{imageCompareDown}}" class="compare-image" />
+      <image src="{{imageCompare}}" class="compare-image" />
       <view class="compare-title">加油！综合风险指数<text style="color:rgba(0, 149, 145, 1)">改善不明显</text></view>
       <view class="compare-type">
         <view class="compare-type-image"><image src="{{imageCompareArrow}}" style="width: 26rpx;height: 8rpx;margin-left: 9rpx;margin-top: 18rpx;float: left;"/></view>
@@ -69,7 +69,7 @@
       </view>
     </block>
     <block wx:if="{{compareReport.resultStatus == 3}}">
-      <image src="{{imageCompareDown}}" class="compare-image" />
+      <image src="{{imageCompareUp}}" class="compare-image" />
       <view class="compare-title">糟糕！综合风险指数<text style="color:rgba(255, 159, 0, 1)">升高</text>了</view>
       <view class="compare-type">
         <view class="compare-type-image"><image src="{{imageCompareArrowUp}}" style="width: 24rpx;height: 32rpx;margin-left: 10rpx;margin-top: 6rpx;float: left;"/></view>

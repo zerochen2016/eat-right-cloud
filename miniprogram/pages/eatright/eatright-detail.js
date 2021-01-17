@@ -8,7 +8,9 @@ Page({
     showSelect: false,
     imageCompareArrowUp: app.globalData.resourcesHost + 'eat/arrow-up@2x.png',
     imageCompareArrowDown: app.globalData.resourcesHost + 'eat/arrow-down@2x.png',
-    imageCompareArrow: app.globalData.resourcesHost + 'test/1.png',//TODO换图片
+    imageCompareArrow: app.globalData.resourcesHost + 'eat/arrow@2x.png',
+    imageRectangleLeft: app.globalData.resourcesHost + 'eat/rectangle-left@2x.png',
+    imageRectangleRight: app.globalData.resourcesHost + 'eat/rectangle-right@2x.png',
   },
 
   /**

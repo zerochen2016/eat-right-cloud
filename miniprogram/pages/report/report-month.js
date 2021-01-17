@@ -99,9 +99,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let that = this
-
-    
     //获取月报信息
     this.listMonthlyReport(new Date())
     //获取Vip信息
@@ -290,23 +287,14 @@ Page({
         console.log(res)
         if(res.statusCode == 200){
           if(res.data.monthly_report.chart_content){
-            let riskArray = res.data.monthly_report.risk
-            let healthRisk = res.data.monthly_report.health_risk_index
-            healthRisk.name = that.data.menus[0].menu_name
-            healthRisk.max = healthRisk.max ? healthRisk.max : '--'
-            healthRisk.min = healthRisk.min ? healthRisk.min : '--'
-            healthRisk.avg = healthRisk.avg ? healthRisk.avg.toFixed(1) : "--"
-            for(let i = 1; i < riskArray.length; i++){
-              riskArray[i].name = that.data.menus[i].menu_name
-              riskArray[i].max = riskArray[i].max ? riskArray[i].max : '--'
-              riskArray[i].min = riskArray[i].min ? riskArray[i].min : '--'
-              riskArray[i].avg = riskArray[i].avg ? riskArray[i].avg.toFixed(1) : '--'
+            for(let i = 1; i < res.data.monthly_report.risk.length; i++){
+              res.data.monthly_report.risk[i].max = res.data.monthly_report.risk[i].max ? res.data.monthly_report.risk[i].max : '--'
+              res.data.monthly_report.risk[i].min = res.data.monthly_report.risk[i].min ? res.data.monthly_report.risk[i].min : '--'
+              res.data.monthly_report.risk[i].avg = res.data.monthly_report.risk[i].avg ? res.data.monthly_report.risk[i].avg.toFixed(1) : '--'
             }
-            riskArray.unshift(healthRisk)
             that.setData({
               monthlyReport: res.data.monthly_report,
-              reportCount: 1,
-              riskArray: riskArray
+              reportCount: 1
             })
             changeRiskIndex(res.data.monthly_report.chart_content[0].content)
             changeRiskTrend(res.data.monthly_report.chart_content[19].content.slice(0,2))

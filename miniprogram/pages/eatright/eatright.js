@@ -14,12 +14,12 @@ Page({
     imageEatrightDown: app.globalData.resourcesHost + 'eat/eatright-down@2x.png',
     imageTips: app.globalData.resourcesHost + 'tips@2x.png',
     imageArrow: app.globalData.resourcesHost + 'arrow@2x.png',
-    imageCompareUp: app.globalData.resourcesHost + 'test/1.png',//TODO换图片
-    imageCompareDown: app.globalData.resourcesHost + 'test/2.png',//TODO换图片
-    imageCompare: app.globalData.resourcesHost + 'test/3.png',//TODO换图片
+    imageCompareUp: app.globalData.resourcesHost + 'eat/compare-up.png',
+    imageCompareDown: app.globalData.resourcesHost + 'eat/compare-down.png',
+    imageCompare: app.globalData.resourcesHost + 'eat/compare@2x.png',
     imageCompareArrowUp: app.globalData.resourcesHost + 'eat/arrow-up@2x.png',
     imageCompareArrowDown: app.globalData.resourcesHost + 'eat/arrow-down@2x.png',
-    imageCompareArrow: app.globalData.resourcesHost + 'test/1.png',//TODO换图片
+    imageCompareArrow: app.globalData.resourcesHost + 'eat/arrow@2x.png',
     imageArrow: app.globalData.resourcesHost + 'arrow@2x.png',
   },
 
