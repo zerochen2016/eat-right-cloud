@@ -111,7 +111,7 @@ Page({
         console.log(res)
         let message = '邀请失败'
         if(res.statusCode == 200){
-          message = '邀请成功'
+          message = '发送成功'
         }
         wx.showModal({
           title: '温馨提示',

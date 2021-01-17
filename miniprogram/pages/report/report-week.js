@@ -254,8 +254,8 @@ Page({
               reportCount: 1,
               riskArray: riskArray
             })
-            // changeRiskIndex(res.data.weekly_report.chart_content[0].content)
-            // changeRiskTrend(res.data.weekly_report.chart_content[19].content.slice(0,2))
+            changeRiskIndex(res.data.weekly_report.chart_content[0].content)
+            changeRiskTrend(res.data.weekly_report.chart_content[19].content.slice(0,2))
           }else{
             that.setData({
               reportCount: 0

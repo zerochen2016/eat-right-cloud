@@ -26,7 +26,16 @@ module.exports = {
 	isPrice: isPrice,
 	hasNumberAndLetter: hasNumberAndLetter,
 	isMobile: isMobile,
-	replaceAll: replaceAll
+	replaceAll: replaceAll,
+	randomLetterString: randomLetterString
+}
+function randomLetterString(length) {  
+	  length = length || 16;
+	  var t = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+	  a = t.length,
+	  n = "";
+	  for (let i = 0; i < length; i++) n += t.charAt(Math.floor(Math.random() * a));
+	  return n
 }
 //是否空
 function isEmpty(param){

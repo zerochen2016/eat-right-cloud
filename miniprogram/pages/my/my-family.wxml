@@ -18,10 +18,10 @@
     <block wx:if="{{familys.length > 0}}">
       <view class="text36 invite-text-1" bindtap="dismissFamily" >解散</view>
       <view class="line-v invite-line"></view>
-      <view class="text36 invite-text-2" bindtap="nTo" data-path="my/my-family-add/my-family-add" data-familyid="{{familyId}}"><image class="invite-image-1" src="{{imageAdd}}"/>邀请成员</view>      
+      <view class="text36 invite-text-2" bindtap="nTo" data-path="my/my-family-add" data-familyid="{{familyId}}"><image class="invite-image-1" src="{{imageAdd}}"/>邀请成员</view>      
     </block>
     <block wx:else>
-      <view class="text36 invite-text" bindtap="nTo" data-path="my/my-family-add/my-family-add" data-familyid="{{familyId}}"><image class="invite-image" src="{{imageAdd}}"/>邀请成员</view>
+      <view class="text36 invite-text" bindtap="nTo" data-path="my/my-family-add" data-familyid="{{familyId}}"><image class="invite-image" src="{{imageAdd}}"/>邀请成员</view>
     </block>
     
   </block>

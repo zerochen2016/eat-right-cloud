@@ -1,6 +1,6 @@
 <view style="width:100%;background-color:white;height:350rpx;">
 <!-- TODO头像 -->
-  <image class="avatar180" style="margin-top: 40rpx;margin-left: 285rpx" src="{{avatarUrl}}" />
+  <image class="avatar180" style="margin-top: 40rpx;margin-left: 285rpx" src="{{userProfile.avatar_url}}" bindtap="chooseAvatar" />
   <view class="text30" style="color: #009591;text-align: center;margin-top:20rpx" bindtap="chooseAvatar">更换头像</view>
 </view>
 <view class="info-view" style="margin-top: 24rpx">

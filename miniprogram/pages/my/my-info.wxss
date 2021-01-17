@@ -25,7 +25,7 @@
   margin-top: 20rpx;
 }
 .finger-view{
-  width: 374rpx;
+  width: 370rpx;
   font-size: 36rpx;
   font-weight: 500;
   color: #009591;

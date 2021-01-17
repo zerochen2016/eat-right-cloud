@@ -12,13 +12,20 @@ Page({
     imageArrowBlue: app.globalData.resourcesHost + 'arrow-blue@2x.png',
     imageLogoAlert: app.globalData.resourcesHost + 'logo-alert@2x.png',
     imageCancelCircle: app.globalData.resourcesHost + 'cancel-circle@2x.png',
-    imageTest1: app.globalData.resourcesHost + 'test/1.png',
-    imageTest2: app.globalData.resourcesHost + 'test/2.png',
-    imageTest3: app.globalData.resourcesHost + 'test/3.png',
-    imageTest4: app.globalData.resourcesHost + 'test/4.png',
-    imageTest5: app.globalData.resourcesHost + 'test/5.png',
-    imageTest6: app.globalData.resourcesHost + 'test/6.png',
-    imageWangweigong1: app.globalData.resourcesHost + 'article/wangweigong1.png'
+    imageWangweigong1: app.globalData.resourcesHost + 'article/wangweigong1.png',
+    imageJianzhi:  app.globalData.resourcesHost + 'home/jianzhi.jpg',
+    imageJiankang:  app.globalData.resourcesHost + 'home/jiankang.jpg',
+    imageYingyang:  app.globalData.resourcesHost + 'home/yingyang.jpg',
+    imageShanshi:  app.globalData.resourcesHost + 'home/shanshi.jpg',
+    imageDeviceHome:  app.globalData.resourcesHost + 'home/device-home.jpg',
+    imageProductMain:  app.globalData.resourcesHost + 'home/product-main.jpg',
+    imageProduct1:  app.globalData.resourcesHost + 'home/product1.jpg',
+    imageProduct2:  app.globalData.resourcesHost + 'home/product2.jpg',
+    imageProduct3:  app.globalData.resourcesHost + 'home/product3.jpg',
+    imageProduct4:  app.globalData.resourcesHost + 'home/product4.jpg',
+    imageProduct5:  app.globalData.resourcesHost + 'home/product5.jpg',
+    imageProduct6:  app.globalData.resourcesHost + 'home/product6.jpg',
+    imageProduct7:  app.globalData.resourcesHost + 'home/product7.jpg',
   },
   
   
@@ -40,7 +47,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    
     const that = this
+    console.log(that.data.imageProductMain)
     //导航选中
     this.selectComponent("#bottom-navigate").changeActiveIndex(0)
     let user = app.getUser()
@@ -191,8 +200,21 @@ Page({
         console.log(res)
         if(res.statusCode == 200){
           if(res.data.channel_menus){
+            let channelMenus = res.data.channel_menus
+            for(let i = 0; i < channelMenus.length; i++){
+              let image = channelMenus[i].image
+              if(image.title = "健康"){
+                channelMenus[i].image.public_access_url = that.data.imageJiankang
+              }else if(image.title = "减脂"){
+                channelMenus[i].image.public_access_url = that.data.imageJianzhi
+              }else if(image.title = "膳食"){
+                channelMenus[i].image.public_access_url = that.data.imageShanshi
+              }else if(image.title = "营养"){
+                channelMenus[i].image.public_access_url = that.data.imageYingyang
+              }
+            }
             that.setData({
-              channelMenus: res.data.channel_menus
+              channelMenus: channelMenus
             })
           }
         }

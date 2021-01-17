@@ -42,6 +42,8 @@ Page({
     this.listNotification()
     //用户VIP信息
     this.getVipInfo()
+    //获取用户信息
+    this.getUserProfile()
     
   },
 
@@ -71,6 +73,38 @@ Page({
    */
   onReachBottom: function () {
 
+  },
+  getUserProfile: function(){
+    let that = this
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "UserProfileAPI.GetUserProfile",
+        "service": "com.jt-health.api.app",
+        "request": {
+         "user_id": app.getUser().id,
+         "user_profile_id": app.getUser().id
+        }
+        
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log(res)
+        if(res.statusCode == 200){
+          let userProfile = res.data.profile
+          that.setData({
+            userProfile: userProfile
+          })
+        }
+
+      },
+    })     
   },
   listNotification: function(){
     let that = this

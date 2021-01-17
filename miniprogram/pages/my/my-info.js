@@ -1,5 +1,6 @@
 const app = getApp()
 const dateUtil = require("../../utils/date-util.js")
+const util = require("../../utils/util.js")
 Page({
 
   /**
@@ -35,7 +36,6 @@ Page({
   onShow: function () {
     //获取用户档案信息
     this.getUserProfile()
-    
   },
 
   /**
@@ -135,17 +135,29 @@ Page({
   },
   //TODO 上传图片
   chooseAvatar: function (e) {
+    let that = this
     // 选择图片
     wx.chooseImage({
       count: 1,
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
       success: function (res) {
-        wx.showLoading({
-          title: '上传中',
-        })
         console.log(res)
         const filePath = res.tempFilePaths[0]
+        if(res.tempFiles[0].size > 524288){
+          app.alert("温馨提示","图片过大，请上传500K以内图片")
+        }else{
+          wx.showLoading({
+            title: '上传中',
+          })
+          wx.getFileSystemManager().readFile({
+            filePath: filePath,
+            encoding: 'base64',
+            success: res => {
+              that.uploadAvatar(res.data)
+            }
+          })
+        }
         
       },
       fail: e => {
@@ -153,9 +165,51 @@ Page({
       }
     })
   },
+  uploadAvatar: function(imageBase64){
+    let that = this
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "UserAPI.UploadAvatar",
+        "service": "com.jt-health.api.app",
+        "request": {
+         "user_profile_id": app.getUser().id,
+         "avatar": {
+           "mime": "image/png",
+           "image": imageBase64,
+           "filename": util.randomLetterString(16)
+         }
+        }
+        
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log(res)
+        if(res.statusCode == 200){
+          if(res.data.user_profile){
+            app.setUserProfile(res.data.user_profile)
+            that.setData({
+              userProfile: res.data.user_profile
+            })
+          }
+        }
+
+      },
+      complete(res){
+        wx.hideLoading({
+          success: (res) => {},
+        })
+      }
+    })  
+  },
   updateUserProfile: function(paths){
     let that = this
-    console.log(that.data.userProfile)
     wx.request({
       url: app.globalData.apiHost, 
       data: 
@@ -211,6 +265,7 @@ Page({
         if(res.statusCode == 200){
           let userProfile = res.data.profile
           let nowDate = new Date()
+          app.setUserProfile(userProfile)
           if(userProfile.birthday.year){
             let dateStr = userProfile.birthday.year + '-' + userProfile.birthday.month + '-' + userProfile.birthday.day
             nowDate = new Date(dateStr)

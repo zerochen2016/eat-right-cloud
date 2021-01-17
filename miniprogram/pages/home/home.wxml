@@ -8,7 +8,10 @@
     </block>        
   </scroll-view>
 </view>
-<view class="special-recommend" bindtap="goThirdWeb" data-url="{{recommend.url}}">
+<view style="margin-left: 40rpx;margin-top: 30rpx;width: 670rpx;height: 834rpx;">
+  <image src="{{imageDeviceHome}}" style="width: 670rpx;height: 834rpx;border-radius: 30rpx 30rpx 0rpx 0rpx;" />
+</view>
+<!-- <view class="special-recommend" bindtap="goThirdWeb" data-url="{{recommend.url}}">
   <image class="special-recommend-image" src="{{recommend.picture}}"></image>
   <view data-id="{{deviceProduct.product_id}}" class="special-recommend-view-1">
     <view class="special-recommend-view-2">
@@ -17,7 +20,7 @@
     </view>
     <view class="button-success" style="width: 206rpx;height: 84rpx;float: right;line-height:84rpx;margin-right: 32rpx;margin-top: 40rpx;"><text style="font-size:24rpx">¥</text>{{deviceProduct.price / 10000}}.00</view>
   </view>
-</view>
+</view> -->
 <!-- 分享在后续版本 -->
 <!-- <view class="special-share" bindtap="go" data-page="share">
   <view class="text52" style="margin-left: 32rpx;margin-top: 40rpx;float:left"><text style="line-height:74rpx">加入健康合伙人
@@ -32,13 +35,16 @@
 </view> -->
 <view class="line" style="margin-top: 48rpx;"></view>
 <view class="text40" style="margin-left: 40rpx;margin-top: 60rpx;">精选</view>
-<view class="select-list">
+<view style="width: 670rpx;height: 776rpx;background: #FDFDFD;box-shadow: 0rpx 8rpx 20rpx 0rpx rgba(0, 0, 0, 0.02), 0rpx -8rpx 20rpx 0px rgba(0, 0, 0, 0.02);border-radius: 30rpx;margin-left: 40rpx;margin-top: 30rpx;">
+  <image src="{{imageProductMain}}" style="width: 670rpx;height: 776rpx;box-shadow: 0rpx 8rpx 20rpx 0rpx rgba(0, 0, 0, 0.02), 0rpx -8rpx 20rpx 0px rgba(0, 0, 0, 0.02);border-radius: 30rpx;" />
+</view>
+<!-- <view class="select-list">
   <view class="text60" style="text-align: center;width:100%;margin-top: 40rpx;float:left">琳瑯满目，必有所爱</view>
   <text class="text28" style="margin-top: 8rpx;float: left;width:100%;text-align: center; ">健康管理是一件快乐的事情</text>
   <view class="select-list-view">
-    <!-- <block wx:for="{{carefullyChosen1}}" wx:key="true">
+    <block wx:for="{{carefullyChosen1}}" wx:key="true">
       <image class="select-list-image" src="{{item.picture}}" data-url="{{item.url}}" bindtap="goThirdWeb"></image>
-    </block> -->
+    </block>
 
     <block wx:for="{{features}}" wx:key="true">
       <block wx:if="{{item.is_heading}}">
@@ -46,14 +52,21 @@
       </block>
     </block>
   </view>
-</view>
+</view> -->
 <view class="select-scroll-view">
   <scroll-view class="select-scroll" scroll-x="true" bindscroll="scroll" style="width: 100%">
-    <block wx:for="{{features}}" wx:key="true">
+    <image class="select-scroll-image scroll-image" src="{{imageProduct1}}"/>
+    <image class="select-scroll-image scroll-image" src="{{imageProduct2}}"/>
+    <image class="select-scroll-image scroll-image" src="{{imageProduct3}}"/>
+    <image class="select-scroll-image scroll-image" src="{{imageProduct4}}"/>
+    <image class="select-scroll-image scroll-image" src="{{imageProduct5}}"/>
+    <image class="select-scroll-image scroll-image" src="{{imageProduct6}}"/>
+    <image class="select-scroll-image scroll-image" src="{{imageProduct7}}"/>  
+    <!-- <block wx:for="{{features}}" wx:key="true">
       <block wx:if="{{!item.is_heading}}">
         <image class="select-scroll-image scroll-image" src="{{item.image.public_access_url}}" data-url="{{item.page.public_access_url}}" bindtap="goThirdWeb"/>
       </block>
-    </block>
+    </block> -->
   </scroll-view>
 </view>
 <view class="line" style="margin-top: 30rpx;"></view>

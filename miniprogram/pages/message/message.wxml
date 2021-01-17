@@ -34,7 +34,7 @@
   </block>
 </view>
 <!-- TODO  -->
-<view class="content-tab" bindtap="go" data-page="message">
+<!-- <view class="content-tab" bindtap="go" data-page="message">
   <view class="content-tab-text-1">
     <view class="content-tab-text-1-view-1">重要更新</view>
     <view class="content-tab-text-1-view-2">新VIP家庭包上架，邀请体验</view>
@@ -49,5 +49,5 @@
   </view>
   <image class="content-tab-arrow" src="{{imageArrow}}" />
   <view class="content-tab-text-3"></view>
-</view>
+</view> -->
 </block>

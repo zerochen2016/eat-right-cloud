@@ -12,9 +12,9 @@
     <view bindtap="nTo" data-path="my/my-info" class="myinfo-update">编辑档案</view>
   </view>
   <view class="myinfo-list">
-    <view bindtap="nTo" data-path="my/my-family/my-family"><image src="{{imageFamily}}"/><text>我的家庭</text></view>
+    <view bindtap="nTo" data-path="my/my-family"><image src="{{imageFamily}}"/><text>我的家庭</text></view>
     <view bindtap="goThirdWeb" data-url="{{myOrderUrl}}"><image src="{{imageOrder}}"/><text>订单信息</text></view>
-    <view bindtap="nTo" data-path="my/my-store/my-store"><image src="{{imageStore}}"/><text>我的收藏</text></view>
+    <view  data-path="my/my-store"><image src="{{imageStore}}"/><text>我的收藏</text></view>
   </view>
 </view>
 <view class="content-tab" data-path="member/member" bindtap="nTo">

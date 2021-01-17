@@ -4,7 +4,7 @@
         <view class="content-tab-3-view-text-1">手机号</view>
         <view class="content-tab-3-view-text-2">{{user.mobile}}</view>
     </view>
-    <view class="content-tab-3-view" bindtap="nTo" data-path="my/my-update-password/my-update-password" >
+    <view class="content-tab-3-view" bindtap="nTo" data-path="my/my-update-password" >
         <view class="content-tab-3-view-text-1">修改密码</view>
         <view class="content-tab-3-view-text-2">********</view>
     </view>
