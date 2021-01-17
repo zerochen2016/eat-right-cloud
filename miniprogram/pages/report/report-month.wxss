@@ -182,6 +182,11 @@ page{
   margin-top: 20rpx;
   background-color: white;
 }
+.food-suggest{
+  margin-left: 40rpx;
+  margin-top: 40rpx;
+  float: left;
+}
 .text-bottom{
   width: 606rpx;
   margin-left: 72rpx;

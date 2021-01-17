@@ -95,8 +95,10 @@
     </view>
   </view>
   <!-- TODO膳食建议 -->
-  <view class="text40" style="margin-top:60rpx;margin-left:40rpx;width:100%;text-align:left">膳食建议</view>  
-  <view class="food"></view>
+  <view class="text40" style="margin-top:60rpx;margin-left:40rpx;width:100%;text-align:left">膳食建议</view>
+  <view class="food">
+    <rich-text class="food-suggest" nodes="{{monthlyReport.meal_suggestion}}"></rich-text>
+  </view>
   <view class="text24 text-bottom">注：所有报告和数据仅供健康评估参考，不能作为医疗诊断和建议.</view>
   </block>
   <!-- 是否会员end2 -->

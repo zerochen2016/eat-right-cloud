@@ -21,7 +21,7 @@ const pageExtend = Page => {
       const route = getCurrentPages()[0].route
       console.log("-----route-----")
       console.log(route)
-      if(route.indexOf('login') == -1 || route.indexOf('third-webview/third-webview') == -1){
+      if(route.indexOf('login') == -1 && route.indexOf('third-webview/third-webview') == -1){
         let user = app.getUser()
         if(!user||!user.id){
           wx.redirectTo({
@@ -52,8 +52,6 @@ const pageExtend = Page => {
       }
     }
     
-    console.log("test")
-    console.log(object)
     // 公共的onShareAppMessage事件处理函数
     object.onShareAppMessage = () => {
       return{

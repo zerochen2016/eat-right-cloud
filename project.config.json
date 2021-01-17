@@ -169,6 +169,19 @@
         {
           "name": "pages/report/report-week",
           "pathName": "pages/report/report-week",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/eatright/eatright",
+          "pathName": "pages/eatright/eatright",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/eatright/eatright-detail",
+          "pathName": "pages/eatright/eatright-detail",
+          "query": "",
           "scene": null
         }
       ]

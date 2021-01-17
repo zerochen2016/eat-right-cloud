@@ -1,3 +1,171 @@
+<view class="text72 eat-title">吃对了吗</view>
+<view class="eat-main">
+  <view class="{{hasResult ? 'eat-main-left-result' :'eat-main-left'}}" bindtap="openSelectReport" data-ori="1">
+    <block wx:if="{{reportBefore.riskIndex > 0}}">
+      <view class="eat-main-left-text1" style="{{hasResult ? 'color:white' : ''}}">{{reportBefore.dateText}}</view>
+      <view class="eat-main-left-text2-has" style="{{hasResult ? 'color:white' : ''}}">{{reportBefore.riskIndex}}</view>
+      <view class="eat-main-left-text3-has" style="{{hasResult ? 'color:white' : ''}}">综合风险指数({{reportBefore.timeDetail}})</view>
+    </block>
+    <block wx:else>
+      <view class="eat-main-left-text1">吃前</view>
+      <view class="eat-main-left-text2-no">选择报告</view>
+      <view class="eat-main-left-text3-no">获取风险指数</view>
+    </block>
+  </view>
+  <view class="{{hasResult ? 'eat-main-right-result' : 'eat-main-right'}}" bindtap="openSelectReport" data-ori="2">
+    <block wx:if="{{reportAfter.riskIndex > 0}}">
+      <view class="eat-main-right-text1" style="{{hasResult ? 'color:white' : ''}}">{{reportAfter.dateText}}</view>
+      <view class="eat-main-right-text2-has" style="{{hasResult ? 'color:white' : ''}}">{{reportAfter.riskIndex}}</view>
+      <view class="eat-main-right-text3-has" style="{{hasResult ? 'color:white' : ''}}">综合风险指数({{reportAfter.timeDetail}})</view>
+    </block>
+    <block wx:else>
+      <view class="eat-main-right-text1">吃后</view>
+      <view class="eat-main-right-text2-no">选择报告</view>
+      <view class="eat-main-right-text3-no">获取风险指数</view>
+    </block>
+  </view>
+  <block wx:if="{{compareReport.resultStatus == 1}}">
+    <view class="eat-main-image"><image src="{{imageEatrightDown}}" /></view>
+  </block>
+  <block wx:elif="{{compareReport.resultStatus == 2}}">
+    <view class="eat-main-image"><image src="{{imageEatright}}" /></view>
+  </block>
+  <block wx:elif="{{compareReport.resultStatus == 3}}">
+    <view class="eat-main-image"><image src="{{imageEatrightUp}}" /></view>
+  </block>
+  <block wx:else>
+    <view class="eat-main-image"><image src="{{imageEatrightGrey}}" /></view>
+  </block>  
+</view>
+<!-- 对比结果start -->
+<block wx:if="{{hasResult}}">
+  <view class="compare">
+    <block wx:if="{{compareReport.resultStatus == 1}}">
+      <image src="{{imageCompareDown}}" class="compare-image" />
+      <view class="compare-title">真棒！综合风险指数<text style="color:rgba(0, 141, 80, 1)">降低</text>了</view>
+      <view class="compare-type">
+        <view class="compare-type-image"><image src="{{imageCompareArrowDown}}" style="width: 24rpx;height: 32rpx;margin-left: 10rpx;margin-top: 6rpx;float: left;"/></view>
+        <view class="compare-type-text">降低：<text style="color:rgba(0, 141, 80, 1)">{{compareReport.decreased_risks_count}}</text>/18</view>
+      </view>
+      <view class="compare-type-little">
+        <view class="compare-type-image-2"><image src="{{imageCompareArrowUp}}" style="width: 24rpx;height: 32rpx;margin-left: 10rpx;margin-top: 19rpx;float: left;"/></view>
+        <view class="compare-type-text-2" >升高：<text style="color:rgba(255, 159, 0, 1)">{{compareReport.increased_risks_count}}</text>/18</view> 
+        <view class="compare-type-text-3">平衡：<text style="color:rgba(0, 149, 145, 1)">{{compareReport.same_risks_count}}</text>/18</view> 
+        <view class="compare-type-image-3"><image src="{{imageCompareArrow}}" style="width: 26rpx;height: 8rpx;margin-right: 9rpx;margin-top: 31rpx;float: right;"/></view>
+      </view>
+    </block>
+    <block wx:if="{{compareReport.resultStatus == 2}}">
+      <image src="{{imageCompareDown}}" class="compare-image" />
+      <view class="compare-title">加油！综合风险指数<text style="color:rgba(0, 149, 145, 1)">改善不明显</text></view>
+      <view class="compare-type">
+        <view class="compare-type-image"><image src="{{imageCompareArrow}}" style="width: 26rpx;height: 8rpx;margin-left: 9rpx;margin-top: 18rpx;float: left;"/></view>
+        <view class="compare-type-text">平衡：<text style="color:rgba(0, 149, 145, 1)">{{compareReport.same_risks_count}}</text>/18</view>
+      </view>
+      <view class="compare-type-little">
+        <view class="compare-type-image-2"><image src="{{imageCompareArrowUp}}" style="width: 24rpx;height: 32rpx;margin-left: 10rpx;margin-top: 19rpx;float: left;"/></view>
+        <view class="compare-type-text-2" >升高：<text style="color:rgba(255, 159, 0, 1)">{{compareReport.increased_risks_count}}</text>/18</view> 
+        <view class="compare-type-text-3">平衡：<text style="color:rgba(0, 149, 145, 1)">{{compareReport.decreased_risks_count}}</text>/18</view> 
+        <view class="compare-type-image-3"><image src="{{imageCompareArrowDown}}" style="width: 24rpx;height: 32rpx;margin-right: 10rpx;margin-top: 19rpx;float: right;"/></view>
+      </view>
+    </block>
+    <block wx:if="{{compareReport.resultStatus == 3}}">
+      <image src="{{imageCompareDown}}" class="compare-image" />
+      <view class="compare-title">糟糕！综合风险指数<text style="color:rgba(255, 159, 0, 1)">升高</text>了</view>
+      <view class="compare-type">
+        <view class="compare-type-image"><image src="{{imageCompareArrowUp}}" style="width: 24rpx;height: 32rpx;margin-left: 10rpx;margin-top: 6rpx;float: left;"/></view>
+        <view class="compare-type-text">升高：<text style="color:rgba(255, 159, 0, 1)">{{compareReport.increased_risks_count}}</text>/18</view>
+      </view>
+      <view class="compare-type-little">
+        <view class="compare-type-image-2"><image src="{{imageCompareArrowDown}}" style="width: 24rpx;height: 32rpx;margin-left: 10rpx;margin-top: 19rpx;float: left;"/></view>
+        <view class="compare-type-text-2" >降低：<text style="color:rgba(0, 141, 80, 1)">{{compareReport.decreased_risks_count}}</text>/18</view> 
+        <view class="compare-type-text-3">平衡：<text style="color:rgba(0, 149, 145, 1)">{{compareReport.same_risks_count}}</text>/18</view> 
+        <view class="compare-type-image-3"><image src="{{imageCompareArrow}}" style="width: 26rpx;height: 8rpx;margin-right: 9rpx;margin-top: 31rpx;float: right;"/></view>
+      </view>
+    </block>
+    <view class="compare-line"></view>
+    <view class="compare-button" bindtap="nTo"  data-report1="{{reportBeforeJson}}" data-report2="{{reportAfterJson}}" data-path="eatright/eatright-detail"><image src="{{imageArrow}}" /><view>查看18项目风险详细变化</view></view>
+    <!-- 风险改善start -->
+    <view class="text48" style="margin-top:120rpx;margin-left:40rpx;float:left">风险改善</view>
+    <view class="compare-risk">
+      <view class="compare-risk-back">
+        <view class="compare-risk-back-per" style="background-color:rgba(255, 234, 240, 1)"></view>
+        <view class="compare-risk-back-per" style="background-color:rgba(255, 245, 228, 1)"></view>
+        <view class="compare-risk-back-per" style="background-color:rgba(253, 250, 240, 1)"></view>
+        <view class="compare-risk-back-per" style="background-color:rgba(0, 141, 80, 0.08)"></view>
+        <view class="compare-risk-back-per" style="background-color:rgba(0, 141, 80, 0.03)"></view>
+        <view class="compare-risk-back-per" style="background-color:white"></view>
+      </view>
+      <view class="compare-risk-main">
+        <block wx:for="{{compareReport.reducingRisk}}" wx:key="true">
+          <view class="compare-risk-main-per">
+            <view class="compare-risk-main-text">{{item.risk_name}}</view>
+            <block wx:if="{{item.status == 2}}">
+              <view class="compare-risk-main-image"><image style="width:20rpx;height:6rpx;margin-top:13rpx;margin-left:6rpx;float:left" src="{{item.image}}" /></view>
+              
+            </block>
+            <block wx:else>
+              <view class="compare-risk-main-image">
+                <image class="compare-risk-main-image" style="width: 18rpx;height: 24rpx;margin-left: 7rpx;margin-top: 4rpx;float:left" src="{{item.image}}" />
+              </view>
+            </block>
+            <view class="compare-risk-main-chart1"  >
+              <view style="background-color:rgba(151, 220, 216, 1);width:{{item.widthF}}rpx">{{item.former_index_value}} </view>
+            </view>
+            <view class="compare-risk-main-chart2" >
+              <view style="background-color:rgba(0, 149, 145, 1);width:{{item.widthL}}rpx">{{item.later_index_value}} </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <!-- 风险改善end -->
+  </view>
+</block>
+<!-- 对比结果end -->
+<block wx:else>
+  <view class="tips">
+    <image src="{{imageTips}}" class="image-tips" />
+    <view class="text36" style="color: rgba(0, 0, 0, 0.24);float:left;margin-left:10rpx;line-height:50rpx">小贴士提醒您</view>
+    <view class="text32" style="float:left;line-height:46rpx;color: rgba(0, 0, 0, 0.4);">
+      <text>
+        1、吃后报告需距离餐食时间2小时以上；
+        2、保健食材或药物等对人体的作用时间，根据具体产品而定。
+      </text>
+    </view>
+  </view>
+</block>
+<!-- 选择start -->
+<view class="report-select" hidden="{{showSelect?'':true}}">
+  <calendar bind:dateChange="dateChangeTap" bind:selectDay="selectDay" id="calendar"></calendar>
+  <block wx:for="{{reports}}" wx:key="true">
+    <view class="report" data-id="{{item.id}}" data-date="{{item.date}}" data-risk="{{item.riskIndex}}" data-heart="{{item.heartRate}}" bindtap="selectReport">
+      <view class="text40 report-text-1">{{item.time}}</view>
+      <view class="text28 report-text-2"><text>时刻: {{item.time2}}｜综合风险指数: {{item.riskIndex}}｜心率: {{item.heartRate}}</text></view>
+      <block wx:if="{{item.id == reportBefore.id}}">
+        <block wx:if="{{reportAfter}}">
+          <view class="report-button">吃前</view>
+        </block>
+        <block wx:else>
+          <view class="report-button">已选择</view>
+        </block>
+      </block>
+      <block wx:elif="{{item.id == reportAfter.id}}">
+        <block wx:if="{{reportBefore}}">
+          <view class="report-button">吃后</view>
+        </block>
+        <block wx:else>
+          <view class="report-button">已选择</view>
+        </block>
+      </block>
+    </view>
+  </block>
+  <block wx:if="{{reports.length < 1}}">
+    <view class="text48" style="color:rgba(0, 0, 0, 0.4);margin-top:180rpx;width:100%;text-align:center;float:left">当前无报告</view>
+    <view class="button-success" style="float:left;margin-top:60rpx;margin-left:72rpx" bindtap="nTo" data-path="check/check">去检测</view>
+  </block>
+</view>
+<!-- 选择end -->
+
 <!-- 底部导航start -->
 <bottom-navigate id="bottom-navigate"></bottom-navigate>
 <!-- 底部导航end -->

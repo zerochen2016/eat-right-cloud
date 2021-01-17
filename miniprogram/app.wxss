@@ -92,6 +92,12 @@ page{
   font-weight: 800;
   line-height: 80rpx;
 }
+.text84{
+  font-size: 84rpx;
+  color: rgba(53, 52, 61, 1);
+  font-weight: 800;
+  line-height: 84rpx;
+}
 .text136{
   font-size: 136rpx;
   color: rgba(0, 0, 0, 0.87);

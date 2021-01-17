@@ -16,9 +16,68 @@ module.exports = {
   getLastMonthYYMM: getLastMonthYYMM,
   getNextMonthYYMM: getNextMonthYYMM,
   getMonday: getMonday,
-  getSunday: getSunday
+  getSunday: getSunday,
+  getTimeDescritipn: getTimeDescritipn,
+  getTimeDetail: getTimeDetail
 }
-
+function getTimeDetail(inputDate){
+  let date = new Date(inputDate)
+  let h = date.getHours()
+  let result = date.getHours() + ":" + date.getMinutes()
+  let today = new Date()
+  date.setHours(0)
+  date.setMinutes(0)
+  date.setSeconds(0)
+  date.setMilliseconds(0)
+  today.setHours(0)
+  today.setMinutes(0)
+  today.setSeconds(0)
+  today.setMilliseconds(0)
+  if(today.getTime() == date.getTime()){
+    return  result
+  }else {
+    return date.getDate() + "/" +(date.getMonth() + 1)
+  }
+}
+/**
+ * 凌晨：0-6，早上：6-9，上午：9-11，中午：11-14，下午：14-18，傍晚：18-19，晚上：19-24
+ */
+function getTimeDescritipn(inputDate){
+  let date = new Date(inputDate)
+  let h = date.getHours()
+  let result = ''
+  if(h > 0 && h < 6){
+    result = "凌晨"
+  }else if(h < 9){
+    result = "早上"
+  }else if(h < 11){
+    result = "上午"
+  }else if(h < 14){
+    result = "中午"
+  }else if(h < 18){
+    result = "下午"
+  }else if(h < 19){
+    result = "傍晚"
+  }else{
+    result = "晚上"
+  }
+  let today = new Date()
+  date.setHours(0)
+  date.setMinutes(0)
+  date.setSeconds(0)
+  date.setMilliseconds(0)
+  today.setHours(0)
+  today.setMinutes(0)
+  today.setSeconds(0)
+  today.setMilliseconds(0)
+  if(today.getTime() == date.getTime()){
+    return "今天" + result
+  }else if(today.getTime() - date.getTime() == 86400000){
+    return "昨天" + result
+  }else{
+    return ""
+  }
+}
 function getMonday(inputDate){
   let date = new Date(inputDate)
   let week = date.getDay()

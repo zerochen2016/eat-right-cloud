@@ -29,7 +29,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // this.listMonthlyReport(dateUtil.getEndTime('2020-10-30'))
     let endDate = new Date()
     endDate.setHours(23)
     endDate.setMinutes(59)

@@ -14,6 +14,7 @@
     "pages/check/notfind",
 
     "pages/eatright/eatright",
+    "pages/eatright/eatright-detail",
 
     "pages/help-feedback/help-feedback",
     "pages/help-feedback/help-feedback-guide",
