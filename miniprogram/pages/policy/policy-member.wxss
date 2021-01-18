@@ -1,1 +1,34 @@
-/* pages/policy-member/policy-member.wxss */
+.title{
+  font-size: 30rpx;
+  font-weight: 600;
+  color: black;
+  line-height: 30rpx;
+  margin-top: 40rpx;
+  margin-left: 40rpx;
+  width: 670rpx;
+  text-align: center;
+}
+.title-time{
+  font-size: 20rpx;
+  font-weight: 400;
+  color: black;
+  line-height: 20rpx;
+  margin-top: 40rpx;
+  margin-left: 40rpx;
+  width: 670rpx;
+  text-align: right;
+}
+.content-bold{
+  font-weight: 600;
+  color: black;
+}
+.content{
+  font-size: 24rpx;
+  font-weight: 400;
+  color: black;
+  line-height: 48rpx;
+  margin-top: 40rpx;
+  margin-left: 40rpx;
+  width: 670rpx;
+  text-align: left;
+}

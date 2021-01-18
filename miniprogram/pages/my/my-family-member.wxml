@@ -1,12 +1,12 @@
 <view style="width:100%;height:360rpx;background-color:white">
-  <image src="{{familyAvatarUrl}}" style="width:180rpx;height:180rpx;margin-top:40rpx;margin-left:285rpx;border-radius:50%" />
-  <view class="text52" style="margin-top:20rpx;width:100%;text-align:center">{{familyName}}</view>
+  <image src="{{thisInfo.user_profile.avatar_url}}" style="width:180rpx;height:180rpx;margin-top:40rpx;margin-left:285rpx;border-radius:50%" />
+  <view class="text52" style="margin-top:20rpx;width:100%;text-align:center">{{thisInfo.user_profile.nickname}}</view>
 </view>
 <view class="family-view" >
     <image class="family-view-avatar" src="{{imageReport}}" />
     <view class="text38 family-view-text">报告记录</view>
     <image class="family-view-arrow" src="{{imageArrow}}" />
-    <view class="text24 family-view-text-2">最近检测 {{lastCheckTime}}</view>
+    <view class="text24 family-view-text-2">最近检测 {{(thisInfo.measurement_summary.has_record) ? thisInfo.measurement_summary.last_report_time : '未检测'}}</view>
 </view>
 <view class="family-view" >
     <image class="family-view-avatar" src="{{imageAnalysisWeek}}" />
@@ -21,26 +21,28 @@
 <view class="text32" style="color:rgba(0,0,0,0.54);margin-top:60rpx;margin-left:40rpx">他/她的档案</view>
 <view class="family-view-2" style="margin-top:20rpx">
   <text class="text34 family-view-2-text-1" >ID</text>
-  <text class="text30 family-view-2-text-2" >1234564324556</text>
+  <text class="text30 family-view-2-text-2" >{{thisInfo.family_id}}</text>
   <view class="line" style="margin-left:40rpx;width:710rpx;float:left"></view>
 </view>
 <view class="family-view-2">
   <text class="text34 family-view-2-text-1" >性别</text>
-  <text class="text30 family-view-2-text-2" >女</text>
+  <text class="text30 family-view-2-text-2" >{{thisInfo.gender}}</text>
   <view class="line" style="margin-left:40rpx;width:710rpx;float:left"></view>
 </view>
 <view class="family-view-2">
   <text class="text34 family-view-2-text-1" >身高</text>
-  <text class="text30 family-view-2-text-2" >163厘米</text>
+  <text class="text30 family-view-2-text-2" >{{thisInfo.height}}</text>
   <view class="line" style="margin-left:40rpx;width:710rpx;float:left"></view>
 </view>
 <view class="family-view-2">
   <text class="text34 family-view-2-text-1" >体重</text>
-  <text class="text30 family-view-2-text-2" >65千克</text>
+  <text class="text30 family-view-2-text-2" >{{thisInfo.weight}}</text>
   <view class="line" style="margin-left:40rpx;width:710rpx;float:left"></view>
 </view>
 <view class="family-view-2">
   <text class="text34 family-view-2-text-1" >生日</text>
-  <text class="text30 family-view-2-text-2" >1987-02-34</text>
+  <text class="text30 family-view-2-text-2" >{{thisInfo.user_profile.birthday.year}}-{{thisInfo.user_profile.birthday.month}}-{{thisInfo.user_profile.birthday.day}}</text>
 </view>
-<view bindtap="removeFamily" class="text34" style="width:100%;height:112rpx;background-color:white;margin-top:24rpx;text-align:center;color:rgba(244, 102, 74, 1);line-height:112rpx">移除成员</view>
+<block wx:if="{{familyMemberId != userId}}">
+  <view bindtap="removeFamily" class="text34" style="width:100%;height:112rpx;background-color:white;margin-top:24rpx;text-align:center;color:rgba(244, 102, 74, 1);line-height:112rpx">移除成员</view>
+</block>

@@ -13,9 +13,9 @@ var data_pool = [];
 var last_byte='';
 var byte_group=[];
 var total_data = [];
-var total_data = [];
 var min_num = 0;
 var max_num = 0;
+var totalArrayBuffer = []
 Page({
 
   /**
@@ -361,17 +361,14 @@ Page({
    */
   checkResult: function(){
     let that = this
-    console.log("-----total_data-----")
-    // console.log(total_data)
-    console.log(total_data.length)
     let checkPercentage = this.data.checkPercentage
     if(checkPercentage < 99){
       let totalLength = total_data.length
       if(totalLength <= 0){
         this.setData({checkPercentage: 0})  
-      }else if(totalLength > 0 && totalLength < 33000){
-        this.setData({checkPercentage: parseInt(totalLength / 330)})  
-      }else if(totalLength < 33000){
+      }else if(totalLength > 0 && totalLength < 100000){
+        this.setData({checkPercentage: parseInt(totalLength / 1000)})  
+      }else if(totalLength < 100000){
         this.setData({checkPercentage: 99})  
       }else{
         //检测完成，结果取5000-20000的数字
@@ -380,13 +377,48 @@ Page({
           checkPercentage: 100,
         })
         //提交数据
-        that.submitCheckData(total_data.slice(1000,33000),startTime,new Date())
+        let subData = total_data.slice(66000,90000)
+        // let submitData = []
+        // for(let i = 0;i<subData.length;i++){
+        //   submitData.push(parseInt(subData[i],16))
+        // }
+        that.submitCheckData(new Uint8Array(subData).buffer,startTime,new Date())
       }
-      if(total_data.length < 33000){
-        checkResultInterval = setTimeout(that.checkResult,5000)
+      if(total_data.length < 100000){
+        checkResultInterval = setTimeout(that.checkResult,1000)
+        console.log("checkResult:",total_data.length)
       }
     }    
   },      
+  uploadFileForText: function(data){
+    let filePath = wx.env.USER_DATA_PATH + "/" + util.randomLetterString(6) + '.txt'
+    wx.getFileSystemManager().writeFile({
+      filePath: filePath,
+      data: data,
+      encoding: 'utf8',
+      success: res =>{
+        console.log(res)
+        wx.uploadFile({
+          url: 'http://jt.pingfangli.com/file/upload', //仅为示例，非真实的接口地址
+          filePath: filePath,
+          name: 'file',
+          formData: {
+            
+          },
+          success (res){
+            console.log("uploadfile:",res)
+            //do something
+          },
+          complete(res){
+            console.log(res)
+          }
+        })
+      },
+      complete: res=>{
+        console.log(res)
+      }
+    })
+  },
   clearAnyTimeInterval: function(...intervals){
     console.log('----------clearAnyTimeInterfal:' + intervals.toString())
     for(let i = 0;i < intervals.length;i++){
@@ -440,13 +472,13 @@ Page({
   },  
   
   submitCheckData: function(data,startTime,endTime){
-    
+    let base64Data = wx.arrayBufferToBase64(data)
+    this.uploadFileForText(base64Data)
     const that = this
     const timeSecond = dateUtil.dateDiffSecond(new Date(startTime),new Date(endTime))
-    let sampleRate = data.length / 3 / timeSecond
-    if(sampleRate > 200){
-      sampleRate = 200
-    }
+    let sampleRate = parseInt(8000 * 1.1 / timeSecond / 10)
+    console.log("----sampleRate-----",sampleRate)
+    sampleRate = 200
     let hash = md5.create()
     hash.update(data)
     let signature = hash.hex()
@@ -459,7 +491,7 @@ Page({
           "hand": app.getUserProfile().hand,
           "geo_location":{},
           "sample_device":{
-            "sample_rate": parseInt(sampleRate),
+            "sample_rate": sampleRate,
             "device_model": "JM1300",
             "device_mac": util.replaceAll(that.data.deviceConnected.deviceId,":",""),
             "device_params":{}
@@ -467,7 +499,7 @@ Page({
           "sample_data":{
             "codec": "IR",
             "codec_params":{},
-            "data": wx.arrayBufferToBase64(data),
+            "data": base64Data,
             "signature": signature
           },
           "sampling_start_time": startTime,
@@ -475,7 +507,7 @@ Page({
         }
       }
      })
-    let testUrl = '../console/console?sampleRate=' +sampleRate + '&signature=' + signature + '&data=' + wx.arrayBufferToBase64(data) + '&start=' + startTime + '&end=' + endTime + '&device=' + util.replaceAll(that.data.deviceConnected.deviceId,":","")
+    
     wx.request({
       url: app.globalData.apiHost, 
       data: requestData,
@@ -488,9 +520,6 @@ Page({
       success(res) {
         console.log('-----submitCheckData result-----')
         console.log(res)
-        wx.reLaunch({
-          url: testUrl,
-        })
         if(res.statusCode == 200){
 
         }else{
@@ -509,8 +538,19 @@ Page({
         }
         
       },
+      complete(res){
+        that.closeBluetooth()
+      }
     })     
   },      
+  closeBluetooth: function(){
+    wx.closeBluetoothAdapter({
+      success: (res) => {},
+      complete: (res) =>{
+        console.log('-----closeBluetoothAdapter-----')
+      }
+    })
+  },
   startMeasure: function (deviceId,serviceId,characteristics) {
     console.log('-----startMeasure-----')
     console.log(deviceId,serviceId,characteristics)
@@ -520,10 +560,6 @@ Page({
     let characteristicId = '';
     
     for(let i = 0; i < characteristics.length; i++){
-      console.log('-----test-----')
-      console.log(characteristics[i].properties.write)
-      console.log(characteristics[i].uuid.indexOf('79EB6177'))
-      console.log(characteristics[i].uuid)
       if(characteristics[i].properties.write){
         if(characteristics[i].uuid.indexOf('79EB6177') != -1){
           characteristicId = characteristics[i].uuid
@@ -593,7 +629,6 @@ Page({
       total_data.push(parseInt('0x'+data_array[12]+data_array[11]+data_array[10]));
       min_num = min_num + Math.round(min_num*0.01);
       max_num = max_num - Math.round(max_num*0.01);
-  
       that.setData({
         measure_value: parseInt('0x'+data_array[3]+data_array[2]+data_array[1])
       });

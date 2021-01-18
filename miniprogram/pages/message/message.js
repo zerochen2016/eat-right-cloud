@@ -29,6 +29,8 @@ Page({
   onShow: function () {
     //获取站内信
     this.listNotification()
+    // //检测是否加入家庭
+    // this.checkHasJoinedOtherFamily()
   },
 
   /**
@@ -68,7 +70,8 @@ Page({
     this.removeCurrentMessage()
     if(type == 1){
       console.log("接受")
-      this.acceptCurrentMessage(messageId)
+      // this.acceptCurrentMessage(messageId)
+      this.joinFamily(messageId)
     }else if(type == 2){
       console.log("拒绝")
       this.refuseCurrentMessage(messageId)
@@ -78,6 +81,72 @@ Page({
       })
     }
     
+  },
+  checkHasJoinedOtherFamily: function(){
+    const that = this
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "FamilyAPI.CheckHasJoinedOtherFamily",
+        "service": "com.jt-health.api.app",
+        "request": {
+         "user_id": app.getUser().id
+        }
+        
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log(res)
+        if(res.statusCode == 200){
+          
+        }
+
+      },
+    })     
+
+  },  
+    /**
+   * 点击接受
+   */
+  joinFamily: function(messageId){
+    const that = this
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "FamilyAPI.JoinFamily",
+        "service": "com.jt-health.api.app",
+        "request": {
+         "message_id": messageId
+        }
+        
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log(res)
+        if(res.statusCode == 200){
+          if(res.data.ok){
+            app.alert("温馨提示","加入成功")
+          }
+          if(res.data.reason){
+            app.alert("温馨提示",res.data.reason)
+          }
+        }
+
+      },
+    })     
+
   },
   /**
    * 点击接受
@@ -159,7 +228,7 @@ Page({
       this.setData({
         familyMessageArray: familyMessageArray,
         firstMessage: familyMessageArray[0],
-        unReadCount: unReadCount - 1,
+        unReadCount: (unReadCount - 1) >= 0 ? unReadCount - 1 : 0,
         showMessage: false
       })
     }else{

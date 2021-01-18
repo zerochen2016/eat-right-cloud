@@ -1,0 +1,22 @@
+    下载
+    wx.downloadFile({
+      url: 'https://jtfile.pingfangli.com/QNB20210118205006CEu.txt',
+      success:res=>{
+        console.log(res.tempFilePath)
+        let filePath = res.tempFilePath
+        wx.getFileSystemManager().readFile({
+          filePath: filePath,
+          encoding: 'UTF8',
+          success: res => {
+            console.log(res.data)
+            let data = res.data
+            let check = wx.base64ToArrayBuffer(data)
+            let data2 = wx.arrayBufferToBase64(check)
+            console.log(check)
+            // let endTime = new Date()
+            // let startTime = new Date(endTime.getTime() - 50000)
+            // this.submitCheckData(startTime,endTime,data)
+          }
+        })
+      }
+    })

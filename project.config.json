@@ -33,13 +33,21 @@
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
     "userConfirmedBundleSwitch": false,
-    "packNpmManually": false,
-    "packNpmRelationList": [],
+    "packNpmManually": true,
+    "packNpmRelationList": [
+      {
+        "packageJsonPath": "./miniprogram/package.json",
+        "miniprogramNpmDistDir": "./miniprogram/"
+      }
+    ],
     "minifyWXSS": true
   },
-  "appid": "wx32283d30059954f3",
+  "appid": "wxccad73f90581fa17",
   "projectname": "eat-right-cloud",
   "libVersion": "2.14.1",
+  "compileType": "miniprogram",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
   "condition": {
     "plugin": {
       "list": []
@@ -71,8 +79,8 @@
           "scene": null
         },
         {
-          "name": "pages/my/my-family/my-family",
-          "pathName": "pages/my/my-family/my-family",
+          "name": "pages/my/my-family",
+          "pathName": "pages/my/my-family",
           "query": "",
           "scene": null
         },
@@ -181,6 +189,36 @@
         {
           "name": "pages/eatright/eatright-detail",
           "pathName": "pages/eatright/eatright-detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/console/console",
+          "pathName": "pages/console/console",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/message/message",
+          "pathName": "pages/message/message",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/login/login",
+          "pathName": "pages/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/policy/policy-user",
+          "pathName": "pages/policy/policy-user",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/policy/policy-member",
+          "pathName": "pages/policy/policy-member",
           "query": "",
           "scene": null
         }

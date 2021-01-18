@@ -16,7 +16,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoaded: function (options) {
-    this.getFamily(options.id)
+    let info = JSON.parse(options.info)
+    if(info.user_profile.gender == 'GENDER_MALE'){
+      info.gender = '男'
+    }else if(info.user_profile.gender == 'GENDER_FEMALE'){
+      info.gender = '女'
+    }else{
+      info.gender = '未知'
+    }
+    info.height = '未知'
+    if(info.user_profile.height){
+      info.height = info.user_profile.height + '厘米'
+    }
+    if(info.user_profile.weight){
+      info.weight = info.user_profile.weight + '公斤'
+    }
+    console.log(info)
+    this.setData({
+      userId: app.getUser().id,
+      familyMemberId: options.id,
+      thisInfo: info
+    })
   },
 
   /**
@@ -61,48 +81,39 @@ Page({
 
   },
 
-  /**
-   * TODO 获取家庭成员信息API
-   */
-  getFamily: function (familyId) {
-    var that = this
-      // wx.request({
-      //   url: getApp().data.server + 'getFamily',
-      //   data: {
-      //     userId: app.getUser().id,
-      //     familyId: familyId
-      //   },
-      //   dataType: 'json',
-      //   header: {
-      //     'content-type': 'application/x-www-form-urlencoded' 
-      //   },
-      //   method: 'POST',
-      //   success: function (res) {
-      //     if (res.statusCode == 200) {
-      //       var result = res.data;
-      //       console.info(result);
-      //       if (result.code == 0) {
-      //         that.setData({
-      //           familys: result.data.familys
-      //         })
-      //       } 
-      //     } else {
-      //       return;
-      //     }
-      //   },
-      // })    
-      //TODELETE 测试用数据
-      that.setData({
-        familyId: 1,
-        familyAvatarUrl: '../images/report/report@2x.png',
-        familyName: '成员名称',
-        lastCheckTime: '2020-10-10'
-      })
+  doRemoveFamily: function(){
+    let that = this
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "FamilyAPI.DeleteFamilyMember",
+        "service": "com.jt-health.api.app",
+        "request": {
+          "family_id": that.data.thisInfo.family_id,
+          "family_member_id": that.data.thisInfo.family_member_id,
+          "user_id": app.getUser().id,
+        }
+        
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log(res)
+        if(res.statusCode == 200){
+          wx.navigateTo({
+            url: '../my/my-family',
+          })
+        }
+
+      },
+    })     
   },
-      /**
-   * TODO 移除家庭成员API
-   */
-  removeFamily: function(e){
+  removeFamily: function(){
     var that = this
     wx.showModal({
       title: '',
@@ -111,29 +122,7 @@ Page({
       success: function(res){
         if(res.confirm){
           console.log('确定')
-      // wx.request({
-      //   url: getApp().data.server + 'removeFamily',
-      //   data: {
-      //     userId: app.getUser().id,
-      //     familyId, that.data.familyId 
-      //   },
-      //   dataType: 'json',
-      //   header: {
-      //     'content-type': 'application/x-www-form-urlencoded' 
-      //   },
-      //   method: 'POST',
-      //   success: function (res) {
-      //     if (res.statusCode == 200) {
-      //       var result = res.data;
-      //       console.info(result);
-      //       if (result.code == 0) {
-      
-      //       } 
-      //     } else {
-      //       return;
-      //     }
-      //   },
-      // })    
+          that.doRemoveFamily()
         }else{
           console.log('取消')
         }

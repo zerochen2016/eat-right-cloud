@@ -9,10 +9,16 @@ App({
         //   env 参数决定接下来小程序发起的云开发调用（wx.cloud.xxx）会默认请求到哪个云环境的资源
         //   此处请填入环境 ID, 环境 ID 可打开云控制台查看
         //   如不填则使用默认环境（第一个创建的环境）
-        // env: 'my-env-id',
+        env: 'by-mnp-cloud-3gq3pra654ec88ff',
         traceUser: true,
       })
     }
+    // const res = wx.cloud.callContainer({
+    //   path: '/container-by-util/jwt/sign', // 填入容器的访问路径（云托管-服务列表-路径）
+    //   method: 'POST',
+    // })
+  
+  
     //全局数据
     this.globalData = {
       h5Host: "https://res.jt-health.cn/app-dev/v1/index.html#/",
