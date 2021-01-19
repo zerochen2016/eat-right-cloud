@@ -114,8 +114,18 @@ Page({
     
     })
   },
+  getAngle: (x, y) => {
+    var radian = Math.atan(y / x);//弧度
+    var angle = Math.floor(180 / (Math.PI / radian));//弧度转角度
+    if (x < 0) {//x小于0的时候加上180°，即实际角度
+        angle = angle + 180;
+    }
+    return angle;
+  },
   onShow: function () {
-    console.log(sha256.encode('a123456'))
+    // console.log(sha256.encode('a123456'))
+    console.log(this.getAngle(25,24))
+    
     // console.log(new Date().getTime())
     // this.writeFile('d')
     

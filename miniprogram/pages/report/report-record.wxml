@@ -2,7 +2,7 @@
   <calendar bind:dateChange="dateChangeTap" bind:selectDay="selectDay" id="calendar"></calendar>
   <block wx:if="{{vipInfo.isVip}}">
     <block wx:for="{{reports}}" wx:key="true">
-      <view class="report" data-id="{{item.id}}" data-path="report/report-report" bindtap="nTo">
+      <view class="report" data-id="{{profileId}}" data-path="report/report-report" bindtap="nTo">
         <view class="text40 report-text-1">{{item.time}}</view>
         <image src="{{imageArrow}}" class="report-image"/>
         <view class="text28 report-text-2"><text>综合风险指数：{{item.riskIndex}}｜心率：{{item.heartRate}}</text></view>
@@ -12,7 +12,7 @@
   <block wx:else>
     <block wx:for="{{reports}}" wx:key="true">
       <block wx:if="{{index < 1}}">
-        <view class="report" data-id="{{item.id}}" data-path="report/report-report" bindtap="selectReport">
+        <view class="report" data-id="{{profileId}}" data-path="report/report-report" bindtap="selectReport">
           <view class="text40 report-text-1">{{item.time}}</view>
           <image src="{{imageArrow}}" class="report-image"/>
           <view class="text28 report-text-2"><text>综合风险指数：{{item.riskIndex}}｜心率：{{item.heartRate}}</text></view>

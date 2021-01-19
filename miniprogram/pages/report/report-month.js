@@ -1,53 +1,12 @@
 const app = getApp()
 const dateUtil = require("../../utils/date-util.js")
-import * as echarts from '../../components/ec-canvas/echarts';
-let page = {}
-let chart1 = {}
-let chart2 = {}
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    riskIndex: { 
-      onInit: function(canvas, width, height, dpr) {
-        chart1 = echarts.init(canvas, null, {
-          width: width,
-          height: height,
-          devicePixelRatio: dpr // new
-        });
-        canvas.setChart(chart1);
-        let option = getOption1([0,0,0,0],["10-1","10-2","10-3","10-4"])
-        chart1.setOption(option,{
-          notMerge:true,
-          lazyUpdate:true,
-          silent: false
-        });
-        return chart1;
-      }
-  },
-    riskTrend: { onInit: function(canvas, width, height, dpr) {
-      chart2 = echarts.init(canvas, null, {
-        width: width,
-        height: height,
-        devicePixelRatio: dpr // new
-      });
-      canvas.setChart(chart2);
-      let option = getOption2([0,0,0,0],["10-1","10-2","10-3","10-4"],{
-        offset0: '#00A29E',
-        offset1: '#65E1C5',
-        shadow: '#E2F4F0'
-      })
-      chart2.setOption(option,{
-        notMerge:true,
-        lazyUpdate:true,
-        silent: false
-      });
-      return chart2;
-    }},
-    canvasImage1: '',
-    canvasImage2: '',
     reportCount: 0,
     showChoose: false,
     activeIndex: 0,
@@ -85,7 +44,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoaded: function (options) {
-
+    this.setData({
+      profileId: options.id
+    })
+    //获取月报信息
+    this.listMonthlyReport(options.id,new Date())
+    // this.listMonthlyReport(app.getUser().id,new Date('2020-10-30'))
   },
 
   /**
@@ -99,11 +63,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    //获取月报信息
-    this.listMonthlyReport(new Date())
     //获取Vip信息
     this.getVipInfo()
-    page = this
     
   },
 
@@ -200,8 +161,7 @@ Page({
       currentMenuId: currentMenuId,
       currentMenu: that.data.menus[currentMenuId]
     })
-    changeRiskIndex(that.data.monthlyReport.chart_content[currentMenuId].content)
-    changeRiskTrend(that.data.monthlyReport.chart_content[19].content.slice((index * 2),(index * 2 + 2)))
+    that.changeRiskTrend(that.data.monthlyReport.chart_content[19].content.slice((index * 2),(index * 2 + 2)),that.data.monthlyReport.chart_content[currentMenuId].content)
   },
   changeMonth: function(e){
     let that = this
@@ -226,7 +186,7 @@ Page({
         date = new Date(y + '-' + m + "-30 23:59:59")
       }
       console.log(date)      
-      this.listMonthlyReport(date)
+      this.listMonthlyReport(this.data.profileId,date)
     }else if(e.currentTarget.dataset.ori == 1){
       console.log("下月")
       let inputDate = new Date(that.data.date)
@@ -248,10 +208,76 @@ Page({
         date = new Date(y + '-' + m + "-30 23:59:59")
       }
       console.log(date)      
-      this.listMonthlyReport(date)
+      this.listMonthlyReport(this.data.profileId,date)
     }
   },
-  listMonthlyReport: function(endTime){
+  changeRiskTrend: function(dataArray,dataArray2){
+    let start = dataArray[0]
+    let end = dataArray[1]
+    let dateStart = dataArray[0].date.split("T")[0].split("2020-")[1]
+    let dateEnd = dataArray[1].date.split("T")[0].split("2020-")[1]
+    let angle = parseInt((start.avg - end.avg) * 20 / 50)
+    let trend = 2
+    if(end.avg - start.avg > 5){
+      trend = 3
+      this.setData({
+        colorStart: '#FF8C75',
+        colorEnd: '#F4664A',
+        shadow: '#EFE6E4',
+        currentColor: "#FF8C75",
+        currentText: "上升",
+        dateStart: dateStart,
+        dateEnd: dateEnd,
+        trend: trend,
+        angle: angle
+      })
+    }else if(end.avg - start.avg < -5){
+      trend = 1
+      this.setData({
+        colorStart: '#5AD8A6',
+        colorEnd: '#008D50',
+        shadow: '#D6EFE5',
+        currentColor: "#008D50",
+        currentText: "下降",
+        dateStart: dateStart,
+        dateEnd: dateEnd,
+        trend: trend,
+        angle: angle
+      })
+    }else{
+      
+      this.setData({
+        colorStart: '#00A29E',
+        colorEnd: '#65E1C5',
+        shadow: '#E2F4F0',
+        currentColor: "#00A29E",
+        currentText: "平稳",
+        dateStart: dateStart,
+        dateEnd: dateEnd,
+        trend: trend,
+        angle: angle
+      })
+    }
+    this.changeRiskIndex(dataArray2,trend)
+  },
+  changeRiskIndex: function(dataArray,trend){
+
+    let riskIndexData = []
+    for(let i = 0; i < dataArray.length; i++){
+      let content = dataArray[i]
+      if((content.avg)){
+        let avg = content.avg
+        let date = content.date.split("T")[0].split("2020-")[1]
+        let data = {
+          value: avg,
+          date: date
+        }
+        riskIndexData.push(data)
+      }
+    }
+    this.selectComponent("#brokeline").changeStyle(riskIndexData,trend)
+  },
+  listMonthlyReport: function(profileId,endTime){
     let that = this
     endTime = new Date(endTime)
     endTime = dateUtil.getEndTimeSecond(endTime)
@@ -270,7 +296,7 @@ Page({
         "method": "ReportAPI.GetMonthlyReport",
         "service": "com.jt-health.api.app",
         "request": {
-          "user_profile_id": app.getUser().id,
+          "user_profile_id": profileId,
           "user_id": app.getUser().id,
           "language_code": "zh-Hans",
           "time_zone": "Asia/Shanghai",
@@ -296,8 +322,9 @@ Page({
               monthlyReport: res.data.monthly_report,
               reportCount: 1
             })
-            changeRiskIndex(res.data.monthly_report.chart_content[0].content)
-            changeRiskTrend(res.data.monthly_report.chart_content[19].content.slice(0,2))
+            that.changeRiskTrend(res.data.monthly_report.chart_content[19].content.slice(0,2),res.data.monthly_report.chart_content[0].content)
+            
+            
           }else{
             that.setData({
               reportCount: 0
@@ -309,327 +336,3 @@ Page({
     })     
   },
 })
-
-
-function changeRiskIndex(dataArray){
-  let riskIndexData = []
-  let riskIndexDate = []
-  for(let i = 0; i < dataArray.length; i++){
-    let content = dataArray[i]
-    if(!(content.avg)){
-      continue
-    }
-    let avg = content.avg
-    let date = content.date.split("T")[0].split("2020-")[1]
-    riskIndexDate.push(date)
-    riskIndexData.push(avg)
-  }
-  let option = getOption1(riskIndexData,riskIndexDate)
-  chart1.setOption(option,{
-          notMerge:true,
-          lazyUpdate:true,
-          silent: false
-        })
-}
-
-function changeRiskTrend(dataArray){
-  let riskTrendData = []
-  let riskTrendDate = []
-  let color = {}
-  if(dataArray[1].avg - dataArray[0].avg > 10){
-    color = {
-      offset0: '#FF8C75',
-      offset1: '#F4664A',
-      shadow: '#EFE6E4'
-    }
-    page.setData({
-      currentColor: "#FF8C75",
-      currentText: "上升"
-    })
-  }else if(dataArray[1].avg - dataArray[0].avg < 0){
-    color = {
-      offset0: '#5AD8A6',
-      offset1: '#008D50',
-      shadow: '#D6EFE5'
-    }
-    page.setData({
-      currentColor: "#00A29E",
-      currentText: "下降"
-    })
-  }else{
-    color = {
-      offset0: '#00A29E',
-      offset1: '#65E1C5',
-      shadow: '#E2F4F0'
-    }
-    page.setData({
-      currentColor: "#00A29E",
-      currentText: "平稳"
-    })
-  }
-  for(let i = 0; i < dataArray.length; i++){
-    let content = dataArray[i]
-    if(!(content.avg)){
-      continue
-    }
-    let avg = content.avg
-    let date = content.date.split("T")[0].split("2020-")[1]
-    riskTrendData.push(avg)
-    riskTrendDate.push(date)
-  }
-  let option = getOption2(riskTrendData,riskTrendDate,color)
-  chart2.setOption(option,{
-    notMerge:true,
-    lazyUpdate:true,
-    silent: false
-  })
-}
-
-
-
-function getOption1(riskIndexData, riskIndexDate){
-  var option = {
-    title: {
-      text: '',
-      left: 'center',
-      show: false
-    },
-    color: [{
-      type: 'linear',
-      x: 0,
-      y: 0,
-      x2: 0,
-      y2: 1,
-      colorStops: [{
-          offset: 0, color: '#00A29E' // 0% 处的颜色
-      }, {
-          offset: 1, color: '#65E1C5' // 100% 处的颜色
-      }],
-      globalCoord: false // 缺省为 false
-  }],
-    legend: {
-      data: [],
-      top: 50,
-      left: 'center',
-      backgroundColor: 'none',
-      z: 100
-    },
-    grid: {
-      containLabel: true
-    },
-    tooltip: {
-      show: true,
-      trigger: 'axis'
-    },
-    xAxis: {
-      type: 'category',
-      boundaryGap: false,
-      data: riskIndexDate,
-      show: true,
-      splitLine: {
-        show: false,
-        interval: 1,
-        lineStyle: {
-          type: 'dotted',
-          color: 'rgba(0, 0, 0, 0.4)'
-        }
-      },
-      axisLine:{
-        lineStyle:{
-          type: 'dotted',
-          color: 'rgba(0, 0, 0, 0.4)'
-        },
-        show: false
-      },
-      axisTick:{
-        show: false
-      },
-      nameTextStyle:{
-        fontSize: '12'
-      }
-
-    },
-    yAxis: {
-      name: '',
-      nameTextStyle:{
-        color: '#000000',
-        fontSize: '32rpx',
-        fontWeight: 500
-      },
-      type: 'value',
-      boundaryGap: false,
-      splitLine: {
-        show: false,
-        interval: 1,
-        lineStyle: {
-          type: 'dotted',
-          color: 'rgba(0, 0, 0, 0.4)',
-          width: 1,
-          show:false
-        }
-      },
-      axisTick:{
-        show: false
-      },
-      axisLine:{
-        lineStyle:{
-          type: 'dotted',
-          color: 'rgba(0, 0, 0, 0.4)'
-        },
-        show: false
-      },
-      show: true,
-      
-    },
-    series: [{
-      name: '风险系数',
-      type: 'line',
-      smooth: false,
-      data: riskIndexData,
-      itemStyle:{
-        shadowColor: "rgba(226, 244, 240, 1)",
-        shadowBlur: 6,
-        shadowOffsetX: 0,
-        shadowOffsetY: 16
-      },
-      lineStyle:{
-        width: 3,
-        type: 'solid',
-        shadowColor: "rgba(226, 244, 240, 1)",
-        shadowBlur: 6,
-        shadowOffsetX: 0,
-        shadowOffsetY: 16,
-      },
-      
-    }]
-  };
-  return option
-}
-
-
-function getOption2(riskIndexData, riskIndexDate, color){
-  var option = {
-    backgroundColor: 'rgba(0,0,0,0)',
-    title: {
-      text: '',
-      left: 'center',
-      show: false
-    },
-    color: [{
-      type: 'linear',
-      x: 0,
-      y: 0,
-      x2: 0,
-      y2: 1,
-      colorStops: [{
-          offset: 0, color: color.offset0 // 0% 处的颜色
-      }, {
-          offset: 1, color: color.offset1 // 100% 处的颜色
-      }],
-      globalCoord: false // 缺省为 false
-  }],
-    legend: {
-      data: [],
-      top: 50,
-      left: 'center',
-      backgroundColor: 'none',
-      z: 100,
-      show:false
-    },
-    grid: {
-      containLabel: true,
-      show: false
-    },
-    tooltip: {
-      show: false,
-      trigger: 'axis'
-    },
-    xAxis: {
-      type: 'category',
-      boundaryGap: false,
-      data: riskIndexDate,
-      show: true,
-      splitLine: {
-        show: false,
-        interval: 1,
-        lineStyle: {
-          type: 'dotted',
-          color: 'rgba(0, 0, 0, 0.4)',
-          show: false
-        }
-      },
-      axisTick:{
-        show: false
-      },
-      axisLine:{
-        lineStyle:{
-          type: 'dotted',
-          color: 'rgba(0, 0, 0, 0.4)',
-        },
-        show: false
-      },
-      nameTextStyle:{
-        fontSize: '12',
-        show: false
-      }
-
-    },
-    yAxis: {
-      name: '',
-      show: false,
-      axisLabel: {
-        show: false
-      },
-      axisTick:{
-        show: false
-      },
-      nameTextStyle:{
-        color: '#000000',
-        fontSize: '32rpx',
-        fontWeight: 500
-      },
-      type: 'value',
-      boundaryGap: false,
-      splitLine: {
-        show: false,
-        interval: 1,
-        lineStyle: {
-          type: 'dotted',
-          color: 'rgba(0, 0, 0, 0.4)',
-          width: 1
-        }
-      },
-      axisLine:{
-        lineStyle:{
-          type: 'dotted',
-          color: 'rgba(0, 0, 0, 0.4)'
-        },
-        show: false
-      },
-      show: false,
-      
-    },
-    series: [{
-      name: '',
-      type: 'line',
-      smooth: false,
-      data: riskIndexData,
-      itemStyle:{
-        shadowColor: color.shadow,
-        shadowBlur: 6,
-        shadowOffsetX: 0,
-        shadowOffsetY: 16
-      },
-      lineStyle:{
-        width: 3,
-        type: 'solid',
-        shadowColor: color.shadow,
-        shadowBlur: 6,
-        shadowOffsetX: 0,
-        shadowOffsetY: 16
-      },
-      
-    }]
-  };
-  return option
-}

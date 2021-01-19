@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "月报分析",
   "usingComponents": {
-    "ec-canvas": "../../components/ec-canvas/ec-canvas"
+    "brokeline": "../../components/chart-brokeline/chart-brokeline"
   }
 }

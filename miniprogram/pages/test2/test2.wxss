@@ -1,1 +1,17 @@
-/* pages/test2/test2.wxss */
+.test{
+  background-color:red;
+  width:2rpx;
+  height:200rpx;
+  margin-left:100rpx;
+  margin-top: 100rpx;
+  
+}
+.test1{
+  background-color:blue;
+  width:2rpx;
+  height:200rpx;
+  margin-left: 100rpx;
+  margin-top: -200rpx;
+  transform-origin: center center;
+  transform: rotateZ(45deg);
+}

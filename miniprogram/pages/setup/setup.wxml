@@ -25,7 +25,9 @@
 <view class="content-tab-3" style="height: 128rpx;margin-top:24rpx;border:none" >  
     <view class="content-tab-3-view" >
         <view class="content-tab-3-view-text-1">服务条款</view>
+        <picker class="content-tab-3-view-text-2" value="{{serviceIndex}}" range="{{serviceArray}}" bindchange="serviceChange">请选择</picker>
         <image class="content-tab-3-view-image" src="{{imageArrow}}"/>
     </view>
+
 </view>
 <view class="login-out" bindtap="loginout">退出登录</view>

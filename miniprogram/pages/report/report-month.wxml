@@ -29,27 +29,34 @@
     </image>
   </view>
 <view class="risk-index-title">风险系数</view>
-<view class="risk-index" >
-  <ec-canvas id="riskIndex" canvas-id="riskIndexC" class="risk-canvas" type="2d" ec="{{riskIndex}}"></ec-canvas>
-  <view class="risk-index-background1">
-    <block wx:for="{{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36]}}" wx:key="true">
-      <view class="risk-index-background-sub1"></view>
-    </block>
-  </view>
-</view>
+<brokeline id="brokeline"></brokeline>
 <view class="risk-line"></view>
-<view class="risk-index-title">风险数值趋势{{canvasImage1}}</view>
+<view class="risk-index-title">风险数值趋势</view>
 <!-- 是否会员start1 -->
 <block wx:if="{{vipInfo.isVip}}">
-<view class="risk-index">
-  <ec-canvas id="riskTrend" canvas-id="riskTrendC" type="2d" ec="{{riskTrend}}"></ec-canvas>
+<view class="risk-index2">
+  <view class="linear-regression">
+    <view class="linear-regression-lineback">
+      <block wx:if="{{trend == 1}}">
+        <view class="linear-regression-line-down" style="transform: rotateZ({{angle}}deg);"></view>
+      </block>
+      <block wx:if="{{trend == 2}}">
+        <view class="linear-regression-line" style="transform: rotateZ({{angle}}deg);"></view>
+      </block>
+      <block wx:if="{{trend == 3}}">
+        <view class="linear-regression-line-up" style="transform: rotateZ({{angle}}deg);"></view>
+      </block>
+    </view>
+    <view class="linear-regression-text" style="float:left;margin-left:16rpx;text-align:left">{{dateStart}}</view>
+    <view class="linear-regression-text" style="float:right;margin-right:16rpx;text-align:right">{{dateEnd}}</view>
+  </view>
   <view class="risk-index-background">
     <block wx:for="{{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171]}}" wx:key="true">
       <view class="risk-index-background-sub"></view>
     </block>
   </view>
 </view>
-<view class="text32" style="margin-top:-120rpx;margin-left:40rpx;float:left">
+<view class="text32" style="margin-top:-80rpx;margin-left:40rpx;float:left">
   <text>本月</text><text style="font-weight:500"> {{currentMenu.menu_name}}</text> 呈 <text style="color:{{currentColor}};font-weight:500">{{currentText}}趋势</text>
 </view>
 </block>

@@ -14,8 +14,20 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoaded: function (options) {
+    let endDate = new Date()
+    endDate.setHours(23)
+    endDate.setMinutes(59)
+    endDate.setSeconds(59)
+    let startDate = new Date()
+    startDate.setDate(1)
+    startDate.setHours(0)
+    startDate.setMinutes(0)
+    startDate.setSeconds(0)
+    this.setData({
+      profileId: options.id
+    })
+    this.listReports(options.id,startDate,endDate)
   },
 
   /**
@@ -29,17 +41,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let endDate = new Date()
-    endDate.setHours(23)
-    endDate.setMinutes(59)
-    endDate.setSeconds(59)
-    let startDate = new Date()
-    startDate.setDate(1)
-    startDate.setHours(0)
-    startDate.setMinutes(0)
-    startDate.setSeconds(0)
-    
-    this.listReports(startDate,endDate)
     this.getVipInfo()
     
   },
@@ -81,7 +82,7 @@ Page({
     startDate.setHours(0)
     startDate.setMinutes(0)
     startDate.setSeconds(0)
-    this.listReports(startDate,endDate)
+    this.listReports(this.data.profileId,startDate,endDate)
   },
   dateChangeTap: function(e){
     this.dateChange(e.detail.date)
@@ -110,9 +111,9 @@ Page({
     startDate.setHours(0)
     startDate.setMinutes(0)
     startDate.setSeconds(0)
-    this.listReports(startDate,endDate)
+    this.listReports(this.data.profileId,startDate,endDate)
   },
-  listReports: function(startDate,endDate){
+  listReports: function(profileId,startDate,endDate){
     let that = this
     let startTimeReq = startDate
     let endTimeReq = endDate
@@ -129,7 +130,7 @@ Page({
             size: 20
           },
           "search_condition": {
-            "user_profile_id": app.getUser().id,
+            "user_profile_id": profileId,
             "start_time": startTimeReq,
             "end_time": endTimeReq
             

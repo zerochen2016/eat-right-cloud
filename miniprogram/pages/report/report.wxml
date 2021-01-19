@@ -7,14 +7,14 @@
     <text class="text24" style="margin-top:10rpx;display: block">随时随地，了解家人的健康状</text>
   </view>
 </view>
-<view class="content-view" bindtap="nTo" data-path="report/report-record">
+<view class="content-view" bindtap="nTo" data-id="{{userId}}" data-path="report/report-record">
   <image class="content-image" src="{{imageReport}}" />
   <view class="content-text">
     <text class="text38">报告记录</text>
     <text class="text24" style="margin-top:10rpx;display: block">一年的记录保存，全面掌握健康变化</text>
   </view>
 </view>
-<view class="content-view" bindtap="nTo" data-path="report/report-week">
+<view class="content-view" bindtap="nTo" data-id="{{userId}}" data-path="report/report-week">
   <image class="content-image" src="{{imageAnalysisWeek}}" />
   <view class="content-text">
     <text class="text38">周分析</text>
@@ -24,7 +24,7 @@
     <text class="text24" style="margin-top:10rpx;display: block">让健康管理成为习惯</text>
   </view>
 </view>
-<view class="content-view" bindtap="nTo" data-path="report/report-month">
+<view class="content-view" bindtap="nTo" data-id="{{userId}}" data-path="report/report-month">
   <image class="content-image" src="{{imageAnalysisMonth}}" />
   <view class="content-text">
     <text class="text38">月分析</text>

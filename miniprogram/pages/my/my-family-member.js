@@ -16,6 +16,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoaded: function (options) {
+    let that = this
     let info = JSON.parse(options.info)
     if(info.user_profile.gender == 'GENDER_MALE'){
       info.gender = '男'
@@ -31,11 +32,12 @@ Page({
     if(info.user_profile.weight){
       info.weight = info.user_profile.weight + '公斤'
     }
-    console.log(info)
     this.setData({
-      userId: app.getUser().id,
-      familyMemberId: options.id,
-      thisInfo: info
+      self: (app.getUser().id == options.id) ? true : false,
+      thisInfo: info,
+      master: (info.is_primary_user) ? true : false
+    },function(){
+      console.log(console.log(that.data))
     })
   },
 
@@ -113,7 +115,7 @@ Page({
       },
     })     
   },
-  removeFamily: function(){
+  removeFamily: function(e){
     var that = this
     wx.showModal({
       title: '',
@@ -129,7 +131,57 @@ Page({
       },
       
     })
+  },      
+  doExitFamily: function(){
+    let that = this
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "FamilyAPI.ExitFamily",
+        "service": "com.jt-health.api.app",
+        "request": {
+         "user_id": app.getUser().id,
+        }
+        
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log(res)
+        if(res.statusCode == 200){
+          if(res.data.ok){
+            wx.redirectTo({
+              url: '../my/my-family',
+            })
+          }
+        }
+
+      },
+    })     
+  },    
+  
+  exitFamily: function(e){
+    var that = this
+    wx.showModal({
+      title: '',
+      content: '确认退出当前家庭吗？',
+      showCancel: true,
+      success: function(res){
+        if(res.confirm){
+          console.log('确定')
+          that.doExitFamily()
+        }else{
+          console.log('取消')
+        }
+      },
+      
+    })
 
       
-  },        
+  },       
 })

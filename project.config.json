@@ -221,6 +221,11 @@
           "pathName": "pages/policy/policy-member",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/setup/setup",
+          "pathName": "pages/setup/setup",
+          "scene": null
         }
       ]
     }

@@ -33,6 +33,9 @@ Page({
     this.selectComponent("#bottom-navigate").changeActiveIndex(3)
     //周报测量天数
     this.getMeasurementDays()
+    this.setData({
+      userId: app.getUser().id
+    })
   },
 
   /**

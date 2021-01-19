@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "周报分析",
-  "usingComponents": {}
+  "usingComponents": {
+    "brokeline": "../../components/chart-brokeline/chart-brokeline"
+  }
 }

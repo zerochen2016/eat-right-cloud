@@ -100,23 +100,23 @@ Component({
       headEndX = e.touches[0].pageX; // 获取触摸时的原点
       headEndY = e.touches[0].pageY; // 获取触摸时的原点
       if (headMoveFlag) {
-        if (headEndX - headStartX > 50) {
+        if (headEndX - headStartX > 10) {
           this.dateChange(1,this.data.nowDate)
           console.log("日历右滑")
           headMoveFlag = false;
         }
-        if(headEndY - headStartX > 50){
+        if(headEndY - headStartX > 5){
           console.log("日历下滑")
           if(this.data.days.length < 10){
             this.showAllCalendar()
           }
         }
-        if (headStartX - headEndX > 50) {
+        if (headStartX - headEndX > 10) {
           this.dateChange(0,this.data.nowDate)
           headMoveFlag = false;
           console.log("日历左滑")
         }
-        if(headStartY - headEndY > 50){
+        if(headStartY - headEndY > 5){
           console.log("日历上滑")
           if(this.data.days.length > 10){
             this.showSomeCalendar()

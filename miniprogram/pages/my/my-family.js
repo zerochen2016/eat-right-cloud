@@ -87,12 +87,12 @@ Page({
         if(res.statusCode == 200){
           let familyMembers = res.data.family_members
           let familyId = null
-          let mainMember = false
+          let master = false
           for(let i = 0; i < familyMembers.length; i++){
             if(familyMembers[i].is_primary_user){
               familyId = familyMembers[i].family_id
               if(familyMembers[i].family_member_id = app.getUser().id){
-                mainMember = true
+                master = true
               }
             }
             familyMembers[i].json = JSON.stringify(familyMembers[i])
@@ -100,72 +100,13 @@ Page({
           that.setData({
             familys: familyMembers,
             familyId: familyId,
-            mainMember: mainMember
+            master: master
           })
         }
 
       },
     })     
   },    
-  doExitFamily: function(){
-    let that = this
-    wx.request({
-      url: app.globalData.apiHost, 
-      data: 
-      JSON.stringify({
-        "method": "FamilyAPI.ExitFamily",
-        "service": "com.jt-health.api.app",
-        "request": {
-         "user_id": app.getUser().id,
-        }
-        
-       }),
-      dataType: 'json',
-      method: "POST",
-      header: {
-        'content-type': 'application/json',
-        "Authorization": 'Bearer ' + app.getRequestSign()
-      },
-      success(res) {
-        console.log(res)
-        if(res.statusCode == 200){
-          let familyMembers = res.data.family_members
-          let familyId = null
-          for(let i = 0; i < familyMembers.length; i++){
-            if(familyMembers[i].is_primary_user){
-              familyId = familyMembers[i].family_id
-            }
-            familyMembers[i].json = JSON.stringify(familyMembers[i])
-          }
-          that.setData({
-            familys: familyMembers,
-            familyId: familyId
-          })
-        }
-
-      },
-    })     
-  },    
-  
-  exitFamily: function(e){
-    var that = this
-    wx.showModal({
-      title: '',
-      content: '确认退出当前家庭吗？',
-      showCancel: true,
-      success: function(res){
-        if(res.confirm){
-          console.log('确定')
-          that.doExitFamily()
-        }else{
-          console.log('取消')
-        }
-      },
-      
-    })
-
-      
-  },     
   getVipInfo: function(){
     const that = this
     wx.request({

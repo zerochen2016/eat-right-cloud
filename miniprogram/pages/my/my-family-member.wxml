@@ -2,18 +2,18 @@
   <image src="{{thisInfo.user_profile.avatar_url}}" style="width:180rpx;height:180rpx;margin-top:40rpx;margin-left:285rpx;border-radius:50%" />
   <view class="text52" style="margin-top:20rpx;width:100%;text-align:center">{{thisInfo.user_profile.nickname}}</view>
 </view>
-<view class="family-view" >
+<view class="family-view" bindtap="nTo" data-path="report/report-record" data-id="{{thisInfo.family_member_id}}" >
     <image class="family-view-avatar" src="{{imageReport}}" />
     <view class="text38 family-view-text">报告记录</view>
     <image class="family-view-arrow" src="{{imageArrow}}" />
     <view class="text24 family-view-text-2">最近检测 {{(thisInfo.measurement_summary.has_record) ? thisInfo.measurement_summary.last_report_time : '未检测'}}</view>
 </view>
-<view class="family-view" >
+<view class="family-view" bindtap="nTo" data-path="report/report-week" data-id="{{thisInfo.family_member_id}}" >
     <image class="family-view-avatar" src="{{imageAnalysisWeek}}" />
     <view class="text38 family-view-text">周分析</view>
     <image class="family-view-arrow" src="{{imageArrow}}" />
 </view>
-<view class="family-view" >
+<view class="family-view" bindtap="nTo" data-path="report/report-month" data-id="{{thisInfo.family_member_id}}" >
     <image class="family-view-avatar" src="{{imageAnalysisMonth}}" />
     <view class="text38 family-view-text">月分析</view>
     <image class="family-view-arrow" src="{{imageArrow}}" />
@@ -43,6 +43,14 @@
   <text class="text34 family-view-2-text-1" >生日</text>
   <text class="text30 family-view-2-text-2" >{{thisInfo.user_profile.birthday.year}}-{{thisInfo.user_profile.birthday.month}}-{{thisInfo.user_profile.birthday.day}}</text>
 </view>
-<block wx:if="{{familyMemberId != userId}}">
-  <view bindtap="removeFamily" class="text34" style="width:100%;height:112rpx;background-color:white;margin-top:24rpx;text-align:center;color:rgba(244, 102, 74, 1);line-height:112rpx">移除成员</view>
+<block wx:if="{{!master}}">
+  <block wx:if="{{!self}}">
+    <view bindtap="removeFamily" class="text34" style="width:100%;height:112rpx;background-color:white;margin-top:24rpx;text-align:center;color:rgba(244, 102, 74, 1);line-height:112rpx">移除成员</view>
+  </block>
+  <block wx:if="{{self}}">
+    <view bindtap="exitFamily" class="text34" style="width:100%;height:112rpx;background-color:white;margin-top:24rpx;text-align:center;color:rgba(244, 102, 74, 1);line-height:112rpx">退出家庭</view>
+  </block>
 </block>
+
+
+

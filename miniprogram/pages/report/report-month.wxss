@@ -110,31 +110,64 @@ page{
   font-weight: 500;
   color: rgba(0, 0, 0, 0.87);
 }
-.risk-index{
-  width: 850rpx;
-  height: 600rpx;
-  margin-left: -50rpx;
-  margin-top: -100rpx;
+.risk-index2{
+  width: 670rpx;
+  height: 480rpx;
+  margin-left: 40rpx;
+  margin-top: 30rpx;
 }
-.risk-index-background1{
-  width: 720rpx;
-  height: 270rpx;
+.linear-regression{
+  width: 670rpx;
+  height: 350rpx;
+  position: relative;
+  z-index: 10;
+}
+.linear-regression-line{
+  height: 6rpx;
+  width: 610rpx;
+  background: linear-gradient(360deg, #00A29E 0%, #65E1C5 100%) #00A29E;
   float: left;
-  margin-top: -490rpx;
-  margin-left: 135rpx;
+  margin-top: 170rpx;
+  margin-left: 20rpx;
+  box-shadow: 0 32rpx 12rpx 4rpx #E2F4F0;
+  transform-origin: center center;
 }
-.risk-index-background-sub1{
+.linear-regression-line-up{
+  height: 6rpx;
+  width: 610rpx;
+  background: linear-gradient(360deg, #FF8C75 0%, #F4664A 100%) #FF8C75;
+  float: left;
+  margin-top: 170rpx;
+  margin-left: 20rpx;
+  box-shadow: 0 32rpx 12rpx 4rpx rgba(239, 230, 228, 1);
+  transform-origin: center center;
+}
+.linear-regression-line-down{
+  height: 6rpx;
+  width: 610rpx;
+  background: linear-gradient(360deg, #5AD8A6 0%, #008D50 100%) #5AD8A6;
+  float: left;
+  margin-top: 170rpx;
+  margin-left: 20rpx;
+  box-shadow: 0 32rpx 12rpx 4rpx #D6EFE5;
+  transform-origin: center center;
+}
+.linear-regression-lineback{
+  height: 350rpx;
+  width: 670rpx;
+}
+.linear-regression-text{
   width: 100rpx;
-  height: 50rpx;
-  border: 2rpx dotted #DFE6E9;
-  float: left;
+  font-size: 24rpx;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.4);
+  line-height: 24rpx;
 }
 .risk-index-background{
-  width: 700rpx;
+  width: 670rpx;
   height: 300rpx;
   float: left;
-  margin-top: -480rpx;
-  margin-left: 80rpx;
+  margin-top: -350rpx;
 }
 .risk-index-background-sub{
   width: 32rpx;
@@ -145,7 +178,7 @@ page{
 .risk-line{
   width:690rpx;
   margin-left:30rpx;
-  margin-top:-80rpx;
+  margin-top:60rpx;
   height: 2rpx;
   background-color: rgba(223, 230, 233, 1);
 }

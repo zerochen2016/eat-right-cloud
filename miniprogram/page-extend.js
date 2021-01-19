@@ -143,13 +143,6 @@ const pageExtend = Page => {
         url: '../third-webview/third-webview?thirdUrl=' + thirdUrl,
       })
     }
-    object.loginout = (e) => {
-      wx.clearStorageSync()
-      getApp().updateRequestSign('')
-      wx.redirectTo({
-        url: '../login/login',
-      })
-    }
 
     object.getWechatUserInfo = (that) =>{
       

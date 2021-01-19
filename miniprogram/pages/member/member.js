@@ -14,7 +14,7 @@ Page({
     vipSelectDay: 30,
     familyVipSelectDay: 30,
     imageVipFamily: app.globalData.resourcesHost + 'my/vip-family@2x.png',
-    imageVip: app.globalData.resourcesHost + 'images/my/vip@2x.png',
+    imageVip: app.globalData.resourcesHost + 'my/vip@2x.png',
     imageQuestion: app.globalData.resourcesHost + 'my/question@3x.png',
     imageDeviceSell: app.globalData.resourcesHost + 'check/device-sell.png',
     imageArrowWhite: app.globalData.resourcesHost + 'arrow-white@3x.png',

@@ -21,7 +21,7 @@
     <view class="text36" style="width:100%;height:100%;text-align:center;line-height:110rpx;color:rgba(0, 149, 145, 1)" bindtap="nTo" data-path="member/member">立即开通VIP家庭包</view>
   </block>
 </view>
-<block wx:if="{{familys.length > 0 && vipInfo.vipFamilyRemainDay > 0}}" wx:key="true">
+<block wx:if="{{familys.length > 0 }}">
 <block wx:for="{{familys}}" wx:key="true">
   <view class="family-view" bindtap="nTo" data-path="my/my-family-member" data-id="{{item.family_member_id}}" data-info="{{item.json}}">
     <image class="family-view-avatar" src="{{item.user_profile.avatar_url}}" />
