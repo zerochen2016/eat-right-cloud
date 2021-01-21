@@ -21,7 +21,7 @@ const pageExtend = Page => {
       const route = getCurrentPages()[0].route
       console.log("-----route-----")
       console.log(route)
-      if(route.indexOf('login') == -1 && route.indexOf('third-webview/third-webview') == -1){
+      if(route.indexOf('login') == -1 && route.indexOf('third-webview/third-webview') == -1 && route.indexOf('setup/setup') == -1){
         let user = app.getUser()
         if(!user||!user.id){
           wx.redirectTo({
@@ -37,8 +37,7 @@ const pageExtend = Page => {
       }
       this.getWechatUserInfo(this)//微信授权信息   
       let userProfile = app.getUserProfile()
-      console.log('-----userProfile----')
-      console.log(userProfile)
+
       this.setData({
         userProfile: userProfile
       })
@@ -144,6 +143,20 @@ const pageExtend = Page => {
       })
     }
 
+    object.toYouzan = (e) => {
+      console.log(e)
+      wx.navigateToMiniProgram({
+        appId: 'wx6deb54e571e86e3c',
+        path: 'packages/goods/detail/index?alias=' + e.currentTarget.dataset.alias + '&shopAutoEnter=1',
+        extraData: {},
+        envVersion: 'release',
+        success(res) {
+          // 打开成功
+          console.log('navigateToMiniProgram youzan')
+        }
+      })
+    }
+
     object.getWechatUserInfo = (that) =>{
       
       // 获取用户信息，
@@ -157,7 +170,6 @@ const pageExtend = Page => {
             wx.getUserInfo({
               success: res => {
                 const userInfo = res.userInfo
-                let gender =
                 that.setData({
                   avatarUrl: userInfo.avatarUrl,
                   nickName: userInfo.nickName,

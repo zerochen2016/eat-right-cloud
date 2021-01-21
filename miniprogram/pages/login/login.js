@@ -1,6 +1,6 @@
 // pages/login/login.js
 const app = getApp()
-const dateUtil = require("../../utils/date-util.js")
+const util = require("../../utils/util.js")
 Page({
 
   /**
@@ -19,7 +19,6 @@ Page({
   onLoaded: function (options) {
     
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -31,6 +30,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    
   },
 
   /**
@@ -69,7 +69,7 @@ Page({
     const loginType = e.currentTarget.dataset.logintype//1微信登录2手机号登录
     if(userInfo){
       if(loginType == 1){
-        this.getUnionId()
+        this.getUnionId(e.detail.encryptedData,e.detail.iv)
       }else if(loginType == 2){
         wx.navigateTo({
           url: '../login/login-mobile',
@@ -80,13 +80,17 @@ Page({
       console.info(app.globalData.userInfo);
     }
   },
-  getUnionId: function(){
+  getUnionId: function(encryptedData,iv){
     let that = this
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         const code = res.code
-        console.log(code)
+        let codeToApi = {
+          encryptedData: encryptedData,
+          iv: iv,
+          code: code
+        }
         wx.request({
           url: app.globalData.apiHost, 
           data: 
@@ -94,7 +98,7 @@ Page({
             "method": "UserAPI.SignInByWechatMiniProgram",
             "service": "com.jt-health.api.app",
             "request": {
-             "code": code
+             "code": JSON.stringify(codeToApi)
             }
             
            }),
@@ -107,7 +111,12 @@ Page({
           success(res) {
             console.log(res)
             if(res.statusCode == 200){
-              if(res.data){
+              if(res.data.union_id){
+                app.setUnionId(res.data.union_id)
+                that.setData({
+                  hasAuth: true
+                })
+              }else{
                 let userInfo = res.data
                 app.setUser({
                   id: userInfo.user_id,
@@ -123,11 +132,7 @@ Page({
                 wx.navigateTo({
                   url: '../home/home',
                 })
-              }else{
-                app.setUnionId(res.data.union_id)
-                that.setData({
-                  hasAuth: true
-                })
+
               }
               
 

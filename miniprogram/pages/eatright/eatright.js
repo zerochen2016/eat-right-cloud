@@ -192,18 +192,22 @@ Page({
     this.dateChange(e.detail.date)
   },
   dateChange: function(inputDate){
-    let dateArr = inputDate.split("-")
-    let date = null
-    if(dateArr[1] == 1||dateArr[1]==3||dateArr[1]==5||dateArr[1]==7||dateArr[1]==8||dateArr[1]==10||dateArr[1]==12){
-      date = dateArr[0] + "-" + dateArr[1] + "-31"
-    }else if(dateArr[1]==2){
-      if(parseInt(dateArr[0]) % 4 == 0){
-        date = dateArr[0] + "-" + dateArr[1] + "-29"
+    let dateArr = new Date(inputDate)
+    let y = dateArr.getFullYear()
+    let m = dateArr.getMonth() + 1
+    let date = new Date()
+    date.setFullYear(y)
+    date.setMonth(m)
+    if(m == 1||m==3||m==5||m==7||m==8||m==10||m==12){
+      date.setDate(31)
+    }else if(m==2){
+      if(y % 4 == 0){
+        date.setDate(29)
       }else{
-        date = dateArr[0] + "-" + dateArr[1] + "-28"
+        date.setDate(28)
       }
     }else{
-      date = dateArr[0] + "-" + dateArr[1] + "-30"
+      date.setDate(30)
     }
     
     let endDate = new Date(date)

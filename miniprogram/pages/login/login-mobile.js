@@ -2,7 +2,6 @@
 const app = getApp()
 var verifyCodeLock = 0 //防止连续点击获取验证码
 var loginLock = 0 //防止连续点击登录
-const dateUtil = require("../../utils/date-util.js")
 const util = require("../../utils/util.js")
 Page({
 
@@ -12,8 +11,8 @@ Page({
   data: {
     inputMobile: "",
     verifyCode: "",
-    loginStyle: 0,
-    verifyStyle: 1,
+    loginStyle: false,
+    verifyStyle: false,
     countDown: 120,
     countDownText: '获取验证码',
     areaCode: '+86',
@@ -92,16 +91,26 @@ Page({
     this.setData({
       verifyCode: value
     })
+    
     this.checkLoginStyle()
   },
   checkLoginStyle: function(){
     if(util.isMobile(this.data.inputMobile) && this.data.verifyCode.length == 6){
       this.setData({
-        loginStyle: 1
+        loginStyle: true
       })
     }else{
       this.setData({
-        loginStyle: 0
+        loginStyle: false
+      })
+    }
+    if(util.isMobile(this.data.inputMobile)){
+      this.setData({
+        verifyStyle: true
+      })
+    }else{
+      this.setData({
+        verifyStyle: false
       })
     }
   },
@@ -160,7 +169,7 @@ Page({
   //获取验证码
   getVerifyCode: function(){
     var that = this
-    if(this.data.countDownText == '获取验证码' && verifyCodeLock == 0){
+    if(this.data.verifyStyle && verifyCodeLock == 0){
       verifyCodeLock = 1
       wx.request({
         url: app.globalData.apiHost, 
@@ -201,14 +210,14 @@ Page({
       this.setData({
         countDownText: this.data.countDown,
         countDown: this.data.countDown - 1,
-        verifyStyle: 0
+        verifyStyle: false
       })
       setTimeout(this.doCountDown, 1000);
     }else{
       this.setData({
-        countDownText: '获取验证码',
+        countDownText: '重新获取',
         countDown: 120,
-        verifyStyle: 1,
+        verifyStyle: true,
       })
     }
   },

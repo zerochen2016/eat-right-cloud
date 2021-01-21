@@ -9,24 +9,22 @@ App({
         //   env 参数决定接下来小程序发起的云开发调用（wx.cloud.xxx）会默认请求到哪个云环境的资源
         //   此处请填入环境 ID, 环境 ID 可打开云控制台查看
         //   如不填则使用默认环境（第一个创建的环境）
-        env: 'by-mnp-cloud-3gq3pra654ec88ff',
+        env: 'eatright-0g1wf495a9878e14',
         traceUser: true,
       })
     }
-    // const res = wx.cloud.callContainer({
-    //   path: '/container-by-util/jwt/sign', // 填入容器的访问路径（云托管-服务列表-路径）
-    //   method: 'POST',
-    // })
+    
+
   
   
     //全局数据
     this.globalData = {
       h5Host: "https://res.jt-health.cn/app-dev/v1/index.html#/",
       // h5Host: "https://res.jt-health.cn/app/v1/index.html#/",
-      apiHost: "https://dev-api.jt-health.cn:18088/rpc",//接口前缀，需要https
+      apiHost: "https://dev-api.jt-health.cn/rpc",//接口前缀，需要https
       // apiHost: "https://api.jt-health.cn:18088/rpc",//接口前缀，需要https
       resourcesHost: "https://jtfile.pingfangli.com/",//图片等资源前缀，需要https
-      signHost: "http://jt.pingfangli.com/",//TODO 云托管
+      // signHost: "http://jt.pingfangli.com/",
       userInfo: null,//微信授权后获取用户昵称和头像,
       chart1: {},
       chart2: {},
@@ -194,42 +192,54 @@ App({
     wx.setStorageSync("requestSign", requestSign);
   },
   updateRequestSign: function(accessToken){
+    console.log("-----updateRequestSign-----",accessToken)
+    if(accessToken.length < 1){
+      accessToken = 'no'
+    }
     let that = this
-    //TODO 云托管
-    wx.request({
-      url: that.globalData.signHost + "sign", 
-      data: {
-        accessToken: accessToken,
-        key: "jtutil_sign"
+    wx.cloud.callContainer({
+      path: '/container-jt-util/jwt/sign/' + accessToken, 
+      method: 'POST',
+      data:{
+        accessToken: accessToken
       },
-    
-      dataType: 'json',
-      method: "POST",
       header: {
-        'content-type': 'application/x-www-form-urlencoded',
+        "Content-Type": "application/x-www-form-urlencoded"
       },
+      dataType: 'json',
       success: function(res){
         let token = res.data.info
         that.setRequestSign(token)
       }
-    })                          
+    })
+    // wx.request({
+    //   url: that.globalData.signHost + "sign", 
+    //   data: {
+    //     accessToken: accessToken,
+    //     key: "jtutil_sign"
+    //   },
+    
+    //   dataType: 'json',
+    //   method: "POST",
+    //   header: {
+    //     'content-type': 'application/x-www-form-urlencoded',
+    //   },
+    //   success: function(res){
+    //     let token = res.data.info
+    //     that.setRequestSign(token)
+    //   }
+    // })                          
   },
   timedTaskRefreshToken: function(){
     let that = this
-    console.log("-------6分钟定时任务 刷新token-----")
-    //TODO 云托管
-    wx.request({
-      url: that.globalData.signHost + "sign", 
-      data: {
-        accessToken: "",
-        key: "jtutil_sign"
-      },
-      dataType: 'json',
-      method: "POST",
+    wx.cloud.callContainer({
+      path: '/container-jt-util/jwt/sign/no', 
+      method: 'POST',
       header: {
-        'content-type': 'application/x-www-form-urlencoded',
+        "Content-Type": "application/x-www-form-urlencoded"
       },
-      success(res) {
+      success: function(res){
+        console.log(res)
         let user = that.getUser()
         let token = res.data.info
         if(user && user.refreshToken){
@@ -282,20 +292,18 @@ App({
                           user.refreshToken = refreshToken
                           user.accessToken = accessToken
                           that.setUser(user)
-                          //TODO 云托管
-                          wx.request({
-                            url: that.globalData.signHost + "sign", 
+                          wx.cloud.callContainer({
+                            path: '/container-jt-util/jwt/sign/' + user.accessToken, 
+                            method: 'POST',
                             data: {
-                              accessToken: accessToken,
-                              key: "jtutil_sign"
+                              accessToken: user.accessToken
                             },
-                          
                             dataType: 'json',
-                            method: "POST",
                             header: {
-                              'content-type': 'application/x-www-form-urlencoded',
+                              "Content-Type": "application/x-www-form-urlencoded"
                             },
                             success: function(res){
+                              console.log(res)
                               let token = res.data.info
                               that.setRequestSign(token)
                             }
@@ -316,6 +324,107 @@ App({
     })
     //8分钟定时器
     setTimeout(that.timedTaskRefreshToken,480000)
+  },
+  // timedTaskRefreshToken: function(){
+  //   let that = this
+  //   console.log("-------6分钟定时任务 刷新token-----")
+  //   wx.request({
+  //     url: that.globalData.signHost + "sign", 
+  //     data: {
+  //       accessToken: "",
+  //       key: "jtutil_sign"
+  //     },
+  //     dataType: 'json',
+  //     method: "POST",
+  //     header: {
+  //       'content-type': 'application/x-www-form-urlencoded',
+  //     },
+  //     success(res) {
+  //       let user = that.getUser()
+  //       let token = res.data.info
+  //       if(user && user.refreshToken){
+  //         console.log("-----has refreshToken----")
+  //         console.log(user.refreshToken)
+  //         wx.request({
+  //           url: that.globalData.apiHost, 
+  //           data: 
+  //           JSON.stringify({
+  //             "method": "UserAPI.RefreshRefreshToken",
+  //             "service": "com.jt-health.api.app",
+  //             "request": {
+  //              "user_id": user.id,
+  //              "refresh_token": user.refreshToken
+  //             }
+  //            }),
+  //           dataType: 'json',
+  //           method: "POST",
+  //           header: {
+  //             'content-type': 'application/json',
+  //             "Authorization": 'Bearer ' + token
+  //           },
+  //           success(res) {
+  //             console.log(res)
+  //             if(res.statusCode == 200){
+  //               const refreshToken = res.data.refresh_token.token
+  //               if(refreshToken){
+  //                 wx.request({
+  //                   url: that.globalData.apiHost, 
+  //                   data: 
+  //                   JSON.stringify({
+  //                     "method": "UserAPI.RefreshAccessToken",
+  //                     "service": "com.jt-health.api.app",
+  //                     "request": {
+  //                      "user_id": user.id,
+  //                      "refresh_token": user.refreshToken
+  //                     }
+  //                    }),
+  //                   dataType: 'json',
+  //                   method: "POST",
+  //                   header: {
+  //                     'content-type': 'application/json',
+  //                     "Authorization": 'Bearer ' + token
+  //                   },
+  //                   success(res) {
+  //                     console.log(res)
+  //                     if(res.statusCode == 200){
+  //                       const accessToken = res.data.access_token.token
+  //                       if(refreshToken){
+  //                         user.refreshToken = refreshToken
+  //                         user.accessToken = accessToken
+  //                         that.setUser(user)
+  //                         wx.request({
+  //                           url: that.globalData.signHost + "sign", 
+  //                           data: {
+  //                             accessToken: accessToken,
+  //                             key: "jtutil_sign"
+  //                           },
+                          
+  //                           dataType: 'json',
+  //                           method: "POST",
+  //                           header: {
+  //                             'content-type': 'application/x-www-form-urlencoded',
+  //                           },
+  //                           success: function(res){
+  //                             let token = res.data.info
+  //                             that.setRequestSign(token)
+  //                           }
+  //                         })
+  //                       }
+  //                     }
+  //                   },
+  //                 }) 
+  //               }
+  //             }
+  //           },
+  //         })   
+  //       }else{
+  //         console.log("-----no refreshToken----")
+  //         that.setRequestSign(token)
+  //       }
+  //     }
+  //   })
+  //   //8分钟定时器
+  //   setTimeout(that.timedTaskRefreshToken,480000)
     
-  }
+  // }
 })

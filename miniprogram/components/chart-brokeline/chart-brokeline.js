@@ -27,7 +27,7 @@ Component({
       // 在组件实例进入页面节点树时执行
     },
     ready: function(){
-      this.changeStyle(this.data.points, 2)
+      
     },
     detached: function() {
       // 在组件实例被从页面节点树移除时执行
@@ -38,6 +38,15 @@ Component({
    */
   methods: {
     changeStyle: function(points, colorType){
+      if(points.length > 8){
+        let interval = (points.length - 1) / 7
+        let usePoints = []
+        for(let i = 0; i * interval < points.length; i++){
+          usePoints.push(points[parseInt(i * interval)])
+          usePoints.push(points[points.length - 1])
+        } 
+        points = usePoints
+      }
       for(let i = 0; i < points.length; i++){
         let y = parseInt(points[i].value * 4.9)
         let x = i * 100

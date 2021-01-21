@@ -68,15 +68,16 @@ Page({
     this.getLastReport()
     //底部导航选中
     this.selectComponent("#bottom-navigate").changeActiveIndex(1)
-    if(app.gethasGuide() != 1){
+    this.checkHasGuide()
+  },
+  checkHasGuide: function(){
+    if(app.gethasGuide() == 1){
       this.setData({
-        showNewBook: true,
-        hasGuide: 0
+        hasGuide: true
       })
     }else{
       this.setData({
-        showNewBook: false,
-        hasGuide: 1
+        hasGuide: false
       })
     }
   },
@@ -330,7 +331,8 @@ Page({
     if(step == 3){
       app.sethasGuide(1)
       this.setData({
-        showDeviceGuide: false
+        showDeviceGuide: false,
+        hasGuide: true
       })
     }else{
       this.setData({
@@ -354,7 +356,7 @@ Page({
     }
   },
   showNewBook: function(e){
-    const status = e.currentTarget.xdataset.status
+    const status = e.currentTarget.dataset.status
     if(status == 0){
       this.setData({
         showNewBook: false,

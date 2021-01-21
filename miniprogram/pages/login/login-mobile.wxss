@@ -22,9 +22,8 @@ page{
 }
 .mobile-input-2{
   float: left;
-  width: 220rpx;
+  width: 300rpx;
   font-size: 36rpx;
-  font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
   color: black;
   height: 132rpx;

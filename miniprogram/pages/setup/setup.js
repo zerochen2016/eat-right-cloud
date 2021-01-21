@@ -77,11 +77,11 @@ Page({
   musicChange: function(e){
     console.log(e)
   },
-  loginout: e =>{
+  loginout: function(e){
     console.log(e)
     wx.clearStorageSync()
     getApp().updateRequestSign('')
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../login/login',
     })
   }

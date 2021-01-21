@@ -1,7 +1,6 @@
 
 module.exports = {
   utcToBeiJing: utcToBeiJing,
-  getUtcDateYYMMDD_hhmmss: getUtcDateYYMMDD_hhmmss,
   dateToStringYYMMDD_hhmmss: dateToStringYYMMDD_hhmmss,
   dateToStringYYMMDD: dateToStringYYMMDD,
   dateDiffDay: dateDiffDay,
@@ -9,12 +8,10 @@ module.exports = {
   dateDiffSecond: dateDiffSecond,
   dateToYYMM: dateToYYMM,
   dateToYYMMDD: dateToYYMMDD,
-  dateToYYMMToday: dateToYYMMToday,
-  dateToYYMMDDToday: dateToYYMMDDToday,
+  dateToYYMMTodayString: dateToYYMMTodayString,
+  dateToYYMMDDTodayString: dateToYYMMDDTodayString,
   getEndTime: getEndTime,
   getEndTimeSecond: getEndTimeSecond,
-  getLastMonthYYMM: getLastMonthYYMM,
-  getNextMonthYYMM: getNextMonthYYMM,
   getMonday: getMonday,
   getSunday: getSunday,
   getTimeDescritipn: getTimeDescritipn,
@@ -103,31 +100,7 @@ function getSunday(inputDate){
   return date
 }
 
-function getLastMonthYYMM(inputDate){
-  let date = new Date(inputDate)
-  var y = date.getFullYear();
-  var m = date.getMonth() + 1;
-  if(m == 1){
-    return (y - 1) + '-12';
-  }else{
-    m -= 1
-    return y + '-' + m;
-  }
-  
-}
-function getNextMonthYYMM(inputDate){
-  let date = new Date(inputDate)
-  var y = date.getFullYear();
-  var m = date.getMonth() + 1;
-  if(m == 12){
-    return (y + 1) + '-01';
-  }else{
-    m += 1
-    return y + '-' + m;
-  }
-  
 
-}
 /**
  * 当天结束时间
  */
@@ -138,7 +111,15 @@ function getEndTime(inputDate){
   m = m < 10 ? ('0' + m) : m;
   var d = date.getDate();
   d = d < 10 ? ('0' + d) : d;
-  return y + '-' + m + '-' + d + " 23:59:59";
+  
+  let result = new Date()
+  result.setFullYear(y)
+  result.setMonth(m - 1)
+  result.setDate(d)
+  result.setHours(23)
+  result.setMinutes(59)
+  result.setSeconds(59)
+  return result
 }
 
 /**
@@ -149,12 +130,14 @@ function getEndTimeSecond(inputDate){
   var y = date.getFullYear();
   var m = date.getMonth() + 1;
   var d = date.getDate();
-  return new Date(y + '-' + m + '-' + d + " 23:59:59").getTime()/1000
-}
-
-function getUtcDateYYMMDD_hhmmss(inputDate){
-  let date = new Date(inputDate)
-  return date.getUTCFullYear() + '-' + (date.getUTCMonth() + 1) + '-' + date.getUTCDate() + 'T' + date.getUTCHours() + ':' + date.getUTCMinutes() + ':' + date.getUTCSeconds() + '.' + date.getUTCMilliseconds() + 'Z'
+  let result = new Date()
+  result.setFullYear(y)
+  result.setMonth(m - 1)
+  result.setDate(d)
+  result.setHours(23)
+  result.setMinutes(59)
+  result.setSeconds(59)
+  return result.getTime()/1000
 }
 
 function utcToBeiJing(utc_datetime) {
@@ -175,7 +158,7 @@ function utcToBeiJing(utc_datetime) {
     return new Date(parseInt(timestamp) * 1000);
 } 
 
-function dateToYYMMToday(language){
+function dateToYYMMTodayString(language){
   var date = new Date()
   var y = date.getFullYear();
   var m = date.getMonth() + 1;
@@ -187,7 +170,7 @@ function dateToYYMMToday(language){
   
 }
 
-function dateToYYMMDDToday(language){
+function dateToYYMMDDTodayString(language){
   var date = new Date()
   var y = date.getFullYear();
   var m = date.getMonth() + 1;
@@ -204,7 +187,10 @@ function dateToYYMM(date){
   var y = date.getFullYear();
   var m = date.getMonth() + 1;
   m = m < 10 ? ('0' + m) : m;
-  return y + '-' + m;
+  let result = new Date()
+  result.setFullYear(y)
+  result.setMonth(m - 1)
+  return result
 }
 
 function dateToYYMMDD(date){
@@ -214,7 +200,11 @@ function dateToYYMMDD(date){
   m = m < 10 ? ('0' + m) : m;
   var d = date.getDate();
   d = d < 10 ? ('0' + d) : d;
-  return y + '-' + m + '-' + d;
+  let result = new Date()
+  result.setFullYear(y)
+  result.setMonth(m - 1)
+  result.setDate(d)
+  return result
 }
 
 function dateToStringYYMMDD_hhmmss(date) {

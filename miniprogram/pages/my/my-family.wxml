@@ -23,14 +23,16 @@
 </view>
 <block wx:if="{{familys.length > 0 }}">
 <block wx:for="{{familys}}" wx:key="true">
-  <view class="family-view" bindtap="nTo" data-path="my/my-family-member" data-id="{{item.family_member_id}}" data-info="{{item.json}}">
-    <image class="family-view-avatar" src="{{item.user_profile.avatar_url}}" />
-    <view class="family-view-text">
-      <text class="text38">{{item.user_profile.nickname}}</text>
-      <text class="text24" style="margin-top:10rpx;display: block">最近检测: {{(item.measurement_summary.has_record) ? item.measurement_summary.last_report_time : '未检测'}}</text>
+  <block wx:if="{{item.family_member_id != userId}}"> 
+    <view class="family-view" bindtap="nTo" data-path="my/my-family-member" data-id="{{item.family_member_id}}" data-info="{{item.json}}">
+      <image class="family-view-avatar" src="{{item.user_profile.avatar_url}}" />
+      <view class="family-view-text">
+        <text class="text38">{{item.user_profile.nickname}}</text>
+        <text class="text24" style="margin-top:10rpx;display: block">最近检测: {{(item.measurement_summary.has_record) ? item.measurement_summary.last_report_time : '未检测'}}</text>
+      </view>
+      <image class="family-view-arrow" src="{{imageArrow}}" />
     </view>
-    <image class="family-view-arrow" src="{{imageArrow}}" />
-  </view>
+  </block>
 </block> 
 </block>
 <block wx:else>

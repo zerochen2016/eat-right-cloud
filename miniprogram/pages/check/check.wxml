@@ -24,7 +24,13 @@
     <view class="text28" style="margin-top: 32rpx;line-height: 36rpx;">最近一次检测</view>
     <view class="text52" style="line-height: 92rpx;">{{lastCheckDate}}</view>
   </view>    
-  <view class="button-success" style="float: left;margin-left: 32rpx;margin-top: 40rpx" bindtap="reLaTo" data-device="{{connectStatus == 1 ? deviceConnectedJson : ''}}" data-path="{{connectStatus == 1 ? 'check/connect' : 'check/search'}}">{{connectStatus == 1 ? '开始检测' : '连接小阶'}}</view>  
+  <block wx:if="{{connectStatus == 1}}">
+    <view class="button-success" style="float: left;margin-left: 32rpx;margin-top: 40rpx" bindtap="{{(hasGuide) ? 'reLaTo' : 'showNewBook'}}" data-status="1" data-device="{{deviceConnectedJson}}" data-path="check/connect">开始检测</view>  
+  </block>
+  <block wx:else>
+    <view class="button-success" style="float: left;margin-left: 32rpx;margin-top: 40rpx" bindtap="reLaTo" data-device="{{deviceConnectedJson}}" data-path="check/search">连接小阶</view>  
+  </block>
+
 </view>
 <!-- 后续版本 -->
 <!-- <view class="content-view">
@@ -202,7 +208,7 @@
       </block>
     </block>    
   </view>
-  <block wx:if="{{hasGuide == 1}}">
+  <block wx:if="{{hasGuide}}">
     <image class="new-book-close" src="{{imageCancelCircle}}" bindtap="showNewBook" data-status="0"/>
   </block>
 </view>
@@ -241,7 +247,7 @@
     <view class="text36" style="width:100%;float:left;color:rgba(0, 149, 145, 1);margin-top:36rpx;text-align:center" bindtap="lastStep2" data-step="{{step2}}">上一步</view>
   </block>    
   </view>
-  <block wx:if="{{hasGuide == 1}}">
+  <block wx:if="{{hasGuide}}">
     <image class="new-book-close" src="{{imageCancelCircle}}" bindtap="showNewBook" data-status="0"/>
   </block>
 </view>

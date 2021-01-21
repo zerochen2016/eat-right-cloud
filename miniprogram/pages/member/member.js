@@ -127,49 +127,54 @@ Page({
     }
     this.setData({
       currentPrice: currentPrice,
-      currentProductId: currentProductId
+      currentProductId: currentProductId,
+      currentVipList: viplist
     })
 
     
   },
   buyProduct: function(e){
     console.log(e)
-    const that = this
-    const productId = e.currentTarget.dataset.productid
-    wx.request({
-      url: app.globalData.apiHost, 
-      data: 
-      JSON.stringify({
-        "method": "MallAPI.GetOrderLink",
-        "service": "com.jt-health.api.app",
-        "request": {
-         "product_id": productId,
-        }
-        
-       }),
-      dataType: 'json',
-      method: "POST",
-      header: {
-        'content-type': 'application/json',
-        "Authorization": 'Bearer ' + app.getRequestSign()
-      },
-      success(res) {
-        console.log(res)
-        if(res.statusCode == 200){
-          if(res.data.yz_place_order_url){
-            wx.navigateTo({
-              url: '../third-webview/third-webview?thirdUrl=' + res.data.yz_place_order_url,
-            })
+    let array = []
+    if(e.currentTarget.dataset.viplist == 1){
+      array = this.data.vipArray
+      
+    }else if(e.currentTarget.dataset.viplist == 2){
+      array = this.data.familyVipArray
+    }
+    for(let i = 0; i < array.length; i++){
+      if(e.currentTarget.dataset.productid == array[i].product_id){
+        wx.navigateToMiniProgram({
+          appId: 'wx6deb54e571e86e3c',
+          path: 'packages/goods/detail/index?alias=' + array[i].alias + '&shopAutoEnter=1',
+          extraData: {},
+          envVersion: 'release',
+          success(res) {
+            // 打开成功
+            console.log('navigateToMiniProgram youzan')
           }
-        }
-      },
-    })     
+        })
+      }
+    }
+    
+    
+    
   },
   changeVipList: function(e){
+    let vipList = e.currentTarget.dataset.viplist
+    let vipArray = []
+    if(vipList == 1){
+      vipArray = this.data.vipArray
+    }else if(vipList == 2){
+      vipArray = this.data.familyVipArray
+    }
     this.setData({
-      vipList: e.currentTarget.dataset.viplist,
+      vipList: vipList,
       vipSelectDay: 30,
-      familyVipSelectDay: 30
+      familyVipSelectDay: 30,
+      currentVipList: vipList,
+      currentPrice: vipArray[0].price / 10000,
+      currentProductId: vipArray[0].product_id
     })
   },
   listFamilyVipGoods: function(){
@@ -194,10 +199,21 @@ Page({
       success(res) {
         console.log(res)
         if(res.statusCode == 200){
+          let vipArray = res.data.family_renewal_products
+          for(let i = 0; i < vipArray.length; i++){
+            if(vipArray[i].renew_days == 30){
+              vipArray[i].alias = '3nklw9gkukxgw'
+            }else if(vipArray[i].renew_days == 90){
+              vipArray[i].alias = '1y5l705cwlmgg'
+            }else if(vipArray[i].renew_days == 365){
+              vipArray[i].alias = '1y34o9c2r56uo'
+            }
+          }
           that.setData({
-            familyVipArray: res.data.family_renewal_products,
-            currentPrice: res.data.family_renewal_products[0].price / 10000,
-            currentProductId: res.data.family_renewal_products[0].product_id
+            familyVipArray: vipArray,
+            currentPrice: vipArray[0].price / 10000,
+            currentProductId: vipArray[0].product_id,
+            currentVipList: 2
           })
         }
       },
@@ -225,8 +241,18 @@ Page({
       success(res) {
         console.log(res)
         if(res.statusCode == 200){
+          let vipArray = res.data.personal_products
+          for(let i = 0; i < vipArray.length; i++){
+            if(vipArray[i].renew_days == 30){
+              vipArray[i].alias = '1y6s5c7tcxk7k'
+            }else if(vipArray[i].renew_days == 90){
+              vipArray[i].alias = '1y6s5c7tcxk7k'
+            }else if(vipArray[i].renew_days == 365){
+              vipArray[i].alias = '1yfgn1in9dim8'
+            }
+          }
           that.setData({
-            vipArray: res.data.personal_products,
+            vipArray: vipArray,
           })
         }
       

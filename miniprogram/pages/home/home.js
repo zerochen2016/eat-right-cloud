@@ -49,7 +49,6 @@ Page({
   onShow: function () {
     
     const that = this
-    console.log(that.data.imageProductMain)
     //导航选中
     this.selectComponent("#bottom-navigate").changeActiveIndex(0)
     let user = app.getUser()
@@ -74,7 +73,6 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    console.log("----Home onHide----")
     clearInterval(dataDelayDoInterval)
   },
 
@@ -82,7 +80,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    console.log("----Home onUnload----")
     clearInterval(dataDelayDoInterval)
   },
 
@@ -120,7 +117,6 @@ Page({
     let that = this
     console.log(wx.getSystemInfoSync())   
     const system = wx.getSystemInfoSync().system.toLowerCase().toString()
-    console.log(system)
     let method = "UserAPI.GetAndroidUpdateInfo"
     let isIos = false
     if(system.indexOf('ios') != -1 || system.indexOf('macos') != -1){

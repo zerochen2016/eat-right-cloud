@@ -122,9 +122,22 @@ Page({
     }
     return angle;
   },
+  intToByte: function(i){
+    var b = i & 0xFF;
+    var c = 0;
+    if (b >= 128) {
+        c = b % 128;
+        c = -1 * (128 - c);
+    } else {
+        c = b;
+    }
+    console.log(c)
+  },
   onShow: function () {
+    
     // console.log(sha256.encode('a123456'))
-    console.log(this.getAngle(25,24))
+    this.intToByte(8425984)
+    
     
     // console.log(new Date().getTime())
     // this.writeFile('d')

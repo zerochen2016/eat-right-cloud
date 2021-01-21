@@ -172,18 +172,23 @@ Page({
       let y = inputDate.getFullYear()
       y = m == 1 ? y - 1 : y
       m = m == 1 ? 12 : m - 1
-      let date = null
+      let date = new Date
+      date.setFullYear(y)
+      date.setMonth(m - 1)
+      date.setHours(23)
+      date.setMinutes(59)
+      date.setSeconds(59)
       //31天
       if(m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12){
-        date = new Date(y + '-' + m + "-31 23:59:59")
+        date.setDate(31)
       }else if(m == 2){
           if(y % 4 == 0){
-            date = new Date(y + '-' + m + "-29 23:59:59")
+            date.setDate(29)
           }else{
-            date = new Date(y + '-' + m + "-28 23:59:59")
+            date.setDate(28)
           }
       }else{
-        date = new Date(y + '-' + m + "-30 23:59:59")
+        date.setDate(30)
       }
       console.log(date)      
       this.listMonthlyReport(this.data.profileId,date)
@@ -194,18 +199,23 @@ Page({
       let y = inputDate.getFullYear()
       y = m == 12 ? y + 1 : y
       m = m == 12 ? 1 : m + 1
-      let date = null
+      let date = new Date
+      date.setFullYear(y)
+      date.setMonth(m - 1)
+      date.setHours(23)
+      date.setMinutes(59)
+      date.setSeconds(59)
       //31天
       if(m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12){
-        date = new Date(y + '-' + m + "-31 23:59:59")
+        date.setDate(31)
       }else if(m == 2){
           if(y % 4 == 0){
-            date = new Date(y + '-' + m + "-29 23:59:59")
+            date.setDate(29)
           }else{
-            date = new Date(y + '-' + m + "-28 23:59:59")
+            date.setDate(28)
           }
       }else{
-        date = new Date(y + '-' + m + "-30 23:59:59")
+        date.setDate(30)
       }
       console.log(date)      
       this.listMonthlyReport(this.data.profileId,date)

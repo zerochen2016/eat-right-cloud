@@ -9,10 +9,10 @@
   <view class="line" style="width:710rpx"></view>
   <view class="verify-view">
     <input class="verify-input" type="number" placeholder="输入验证码" bindinput="verifyCodeChange"  maxlength="6" value="{{verifyCode}}" />
-    <view class="{{verifyStyle == 1 ? 'verify-button' : 'verify-button-grey'}}" bindtap="getVerifyCode">{{countDownText}}</view>
+    <view class="{{verifyStyle ? 'verify-button' : 'verify-button-grey'}}" bindtap="getVerifyCode">{{countDownText}}</view>
   </view>
   <view class="line" style="width:710rpx"></view>
-  <button class="{{loginStyle == 0 ? 'login-button' : 'login-button-success'}}" style="width:606rpx;height:120rpx" bindtap="doLogin">登陆</button>
+  <button class="{{loginStyle ? 'login-button-success' : 'login-button'}}" style="width:606rpx;height:120rpx" bindtap="doLogin">登陆</button>
   <view class="password-view">
     <text class="password-text-1" bindtap="nTo" data-path="login/login-password">密码登陆</text>
   </view>

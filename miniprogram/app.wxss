@@ -1,6 +1,7 @@
 page{
   background-color: #F2F2F6;
   font-family: PingFangSC-Heavy, PingFang SC;  
+  width: 750rpx
 }
 .text24{
   font-size: 24rpx;

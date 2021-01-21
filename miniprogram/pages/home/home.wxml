@@ -8,7 +8,7 @@
     </block>        
   </scroll-view>
 </view>
-<view style="margin-left: 40rpx;margin-top: 30rpx;width: 670rpx;height: 834rpx;">
+<view style="margin-left: 40rpx;margin-top: 30rpx;width: 670rpx;height: 834rpx;" bindtap="toYouzan" data-alias="1y34bn2g4wu68" >
   <image src="{{imageDeviceHome}}" style="width: 670rpx;height: 834rpx;border-radius: 30rpx 30rpx 0rpx 0rpx;" />
 </view>
 <!-- <view class="special-recommend" bindtap="goThirdWeb" data-url="{{recommend.url}}">
@@ -55,13 +55,13 @@
 </view> -->
 <view class="select-scroll-view">
   <scroll-view class="select-scroll" scroll-x="true" bindscroll="scroll" style="width: 100%">
-    <image class="select-scroll-image scroll-image" src="{{imageProduct1}}"/>
-    <image class="select-scroll-image scroll-image" src="{{imageProduct2}}"/>
-    <image class="select-scroll-image scroll-image" src="{{imageProduct3}}"/>
-    <image class="select-scroll-image scroll-image" src="{{imageProduct4}}"/>
-    <image class="select-scroll-image scroll-image" src="{{imageProduct5}}"/>
-    <image class="select-scroll-image scroll-image" src="{{imageProduct6}}"/>
-    <image class="select-scroll-image scroll-image" src="{{imageProduct7}}"/>  
+    <image class="select-scroll-image scroll-image" bindtap="toYouzan" data-alias="3eplyaiwfn4a8"  src="{{imageProduct1}}"/>
+    <image class="select-scroll-image scroll-image" bindtap="toYouzan" data-alias="2flrvx8nwwj40"  src="{{imageProduct2}}"/>
+    <image class="select-scroll-image scroll-image" bindtap="toYouzan" data-alias="2fwwdf38oibsw" src="{{imageProduct3}}"/>
+    <image class="select-scroll-image scroll-image" bindtap="toYouzan" data-alias="2fn0qxe2hj45c"v src="{{imageProduct4}}"/>
+    <image class="select-scroll-image scroll-image" bindtap="toYouzan" data-alias="1y6ue7lqkjssw" src="{{imageProduct5}}"/>
+    <image class="select-scroll-image scroll-image" bindtap="toYouzan" data-alias="3en59i82i1wcg" src="{{imageProduct6}}"/>
+    <image class="select-scroll-image scroll-image" bindtap="toYouzan" data-alias="3equzq67z86xs"  src="{{imageProduct7}}"/>  
     <!-- <block wx:for="{{features}}" wx:key="true">
       <block wx:if="{{!item.is_heading}}">
         <image class="select-scroll-image scroll-image" src="{{item.image.public_access_url}}" data-url="{{item.page.public_access_url}}" bindtap="goThirdWeb"/>

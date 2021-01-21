@@ -20,8 +20,8 @@ Component({
   data: {
     imageArrowLeft: app.globalData.resourcesHost + 'calendar/arrow-left@2x.png',
     imageArrowRight: app.globalData.resourcesHost + 'calendar/arrow-right@2x.png',
-    nowDate: dateUtil.dateToYYMMToday(),
-    nowDateChinese: dateUtil.dateToYYMMToday('chinese'),
+    nowDate: dateUtil.dateToYYMMTodayString(),
+    nowDateChinese: dateUtil.dateToYYMMTodayString('chinese'),
     dayAll: true,
     dayHeight: "660rpx",
   },
@@ -39,7 +39,6 @@ Component({
    */
   methods: {
     setTextUnique: function(inputDate,text,selected,clear){
-      console.log(inputDate,text,selected)
       let days = this.data.days
       let selectDay = new Date(inputDate)
       let selectI = null
@@ -70,11 +69,24 @@ Component({
       })
     },
     selectDay: function(e){
-      let selectDay = new Date(e.currentTarget.dataset.date)
+      let dateArr = e.currentTarget.dataset.date.toString().split("-")
+      let y = parseInt(dateArr[0])
+      let m = parseInt(dateArr[1])
+      let d = parseInt(dateArr[2])
+      let selectDay = new Date()
+      selectDay.setFullYear(y)
+      selectDay.setMonth(m - 1)
+      selectDay.setDate(d)
+      
+      
       let days = this.data.days
 
       for(let i = 0; i < days.length; i++){
-        let date = new Date(days[i].id)
+        let dayDate = days[i].id.toString().split("-")
+        let date = new Date()
+        date.setFullYear(parseInt(dayDate[0]))
+        date.setMonth(parseInt(dayDate[1]) - 1)
+        date.setDate(parseInt(dayDate[2]))
         if(selectDay.getFullYear() == date.getFullYear() && selectDay.getMonth() == date.getMonth() && selectDay.getDate() == date.getDate()){
           days[i].type = 4
         }else{
@@ -100,23 +112,23 @@ Component({
       headEndX = e.touches[0].pageX; // 获取触摸时的原点
       headEndY = e.touches[0].pageY; // 获取触摸时的原点
       if (headMoveFlag) {
-        if (headEndX - headStartX > 10) {
+        if (headEndX - headStartX > 20) {
           this.dateChange(1,this.data.nowDate)
           console.log("日历右滑")
           headMoveFlag = false;
         }
-        if(headEndY - headStartX > 5){
+        if(headEndY - headStartX > 10){
           console.log("日历下滑")
           if(this.data.days.length < 10){
             this.showAllCalendar()
           }
         }
-        if (headStartX - headEndX > 10) {
+        if (headStartX - headEndX > 20) {
           this.dateChange(0,this.data.nowDate)
           headMoveFlag = false;
           console.log("日历左滑")
         }
-        if(headStartY - headEndY > 5){
+        if(headStartY - headEndY > 10){
           console.log("日历上滑")
           if(this.data.days.length > 10){
             this.showSomeCalendar()
@@ -137,15 +149,20 @@ Component({
       this.dateChange(ori,date)
     },
     dateChange: function(ori,date){
+      let dateArr = date.toString().split("-")
+      let y = parseInt(dateArr[0])
+      let m = parseInt(dateArr[1])
       if(ori == 0){
-        date = dateUtil.getLastMonthYYMM(date)
+        y = m == 1 ? (y - 1) : y
+        m = m == 1 ? 12 : m - 1
       }else if(ori == 1){
-        date = dateUtil.getNextMonthYYMM(date)
+        y = m == 12 ? (y + 1) : y
+        m = m == 12 ? 1 : (m + 1)        
       }
-      let dateArr = date.split("-")
+      
       this.setData({
-        nowDate: dateArr[0] + - + dateArr[1],
-        nowDateChinese: dateArr[0] + '年' + dateArr[1] + '月'
+        nowDate: y + '-' + m,
+        nowDateChinese: y + '年' + m + '月'
       })
       
       this.initDays(date)
@@ -155,9 +172,13 @@ Component({
     initDays: function(inputDate){
       const that = this
       let days = []
-      days = that.pushThisMonth(inputDate,days)
-      days = that.pushLastMonth(inputDate,days)
-      days = that.pushNextMonth(inputDate,days)
+      let dateArr = inputDate.toString().split("-")
+      let date = new Date()
+      date.setFullYear(parseInt(dateArr[0]))
+      date.setMonth(parseInt(dateArr[1]) - 1)
+      days = that.pushThisMonth(date,days)
+      days = that.pushLastMonth(date,days)
+      days = that.pushNextMonth(date,days)
       if(this.data.dayAll){
         let height = "550rpx"
         if(days.length > 35){
@@ -176,7 +197,6 @@ Component({
     },
     pushLastMonth: function(inputDate,days){
       let input = new Date(inputDate)
-      let today = dateUtil.dateToYYMMDD(new Date)
       let m = input.getMonth() + 1
       let y = m == 1 ? input.getFullYear() - 1 : input.getFullYear()
       m = m == 1 ? 12 : m - 1//上一个月
@@ -279,7 +299,6 @@ Component({
     },
     pushNextMonth: function(inputDate,days){
       let input = new Date(inputDate)
-      let today = dateUtil.dateToYYMMDD(new Date)
       let m = input.getMonth() + 1
       let y = m == 12 ? input.getFullYear() + 1 : input.getFullYear()
       m = m == 12 ? 1 : m + 1

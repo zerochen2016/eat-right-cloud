@@ -137,7 +137,7 @@ Page({
                         //连接过自动重连
                         const hasConnectDevice = app.getLastDevice()
                         wx.reLaunch({
-                          url: '../check/connect?device=' + hasConnect,
+                          url: '../check/check'
                         })
                       }else{
                         //选择设备
@@ -183,9 +183,9 @@ Page({
       services: e.currentTarget.dataset.services,
       characteristics: []
     }
-
+    app.setLastDevice(device)
     wx.reLaunch({
-      url: '../check/connect?device=' + JSON.stringify(device),
+      url: '../check/check',
     })
   },
   stopSearch: function () {

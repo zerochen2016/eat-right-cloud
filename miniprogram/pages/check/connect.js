@@ -15,7 +15,7 @@ var byte_group=[];
 var total_data = [];
 var min_num = 0;
 var max_num = 0;
-var totalArrayBuffer = []
+var call_count = 0;
 Page({
 
   /**
@@ -362,13 +362,13 @@ Page({
   checkResult: function(){
     let that = this
     let checkPercentage = this.data.checkPercentage
-    if(checkPercentage < 99){
+    if(checkPercentage <= 99){
       let totalLength = total_data.length
       if(totalLength <= 0){
         this.setData({checkPercentage: 0})  
-      }else if(totalLength > 0 && totalLength < 100000){
-        this.setData({checkPercentage: parseInt(totalLength / 1000)})  
-      }else if(totalLength < 100000){
+      }else if(totalLength > 0 && totalLength < 3600){
+        this.setData({checkPercentage: parseInt(totalLength / 40)})  
+      }else if(totalLength < 4000){
         this.setData({checkPercentage: 99})  
       }else{
         //检测完成，结果取5000-20000的数字
@@ -376,19 +376,15 @@ Page({
           status: 4,
           checkPercentage: 100,
         })
+        console.log('before,submitCheckData')
         //提交数据
-        let subData = total_data.slice(66000,90000)
-        // let submitData = []
-        // for(let i = 0;i<subData.length;i++){
-        //   submitData.push(parseInt(subData[i],16))
-        // }
-        that.submitCheckData(new Uint8Array(subData).buffer,startTime,new Date())
+        that.submitCheckData(total_data.slice(0,4000),startTime,new Date())
+        
+
       }
-      if(total_data.length < 100000){
-        checkResultInterval = setTimeout(that.checkResult,1000)
-        console.log("checkResult:",total_data.length)
-      }
-    }    
+    }  
+    checkResultInterval = setTimeout(that.checkResult,1000)
+    console.log("checkResult:",total_data.length)  
   },      
   uploadFileForText: function(data){
     let filePath = wx.env.USER_DATA_PATH + "/" + util.randomLetterString(6) + '.txt'
@@ -472,15 +468,16 @@ Page({
   },  
   
   submitCheckData: function(data,startTime,endTime){
-    let base64Data = wx.arrayBufferToBase64(data)
+    let submit = new Uint16Array(data).buffer
+    let base64Data = wx.arrayBufferToBase64(submit)
     this.uploadFileForText(base64Data)
+    this.uploadFileForText(JSON.stringify(data))
     const that = this
     const timeSecond = dateUtil.dateDiffSecond(new Date(startTime),new Date(endTime))
-    let sampleRate = parseInt(8000 * 1.1 / timeSecond / 10)
+    let sampleRate = parseInt(total_data.length / timeSecond)
     console.log("----sampleRate-----",sampleRate)
-    sampleRate = 200
     let hash = md5.create()
-    hash.update(data)
+    hash.update(submit)
     let signature = hash.hex()
     let requestData = JSON.stringify({
       "method": "ReportAPI.SubmitPulseTest",
@@ -521,7 +518,11 @@ Page({
         console.log('-----submitCheckData result-----')
         console.log(res)
         if(res.statusCode == 200){
-
+          if(res.data.report_id){
+            wx.navigateTo({
+              url: '../report/report-report',
+            })
+          }
         }else{
           if(res.data.detail){
             wx.showModal({
@@ -539,6 +540,7 @@ Page({
         
       },
       complete(res){
+        console.log('-----submitCheckData complete-----')
         that.closeBluetooth()
       }
     })     
@@ -568,11 +570,13 @@ Page({
       }
     }
 
-    var LENGTH = 0x08;
-    var CHECKSUM = 0x53; // 3+8+40+8
+    var LENGTH = 0x03;
+    var CHECKSUM = 0xf6; // 3+8+e8+3
     CHECKSUM &= 0xff;
     CHECKSUM = ~CHECKSUM & 0xff;
-    let orz = new Uint8Array([0x4e, 0x51, 0x03, 0x08, 0x40,  LENGTH, CHECKSUM, 0x5a]);
+    // 4e 51 03 08 1a 04 d6 5a
+    // let orz = new Uint8Array([0x4e, 0x51, 0x03, 0x08, 0xE8,  LENGTH, CHECKSUM, 0x5a]);
+    let orz = new Uint8Array([0x4e, 0x51, 0x03, 0x08, 0x1a,  0x04, 0xd6, 0x5a]);
     var buffer = orz.buffer;
 
     wx.writeBLECharacteristicValue({
@@ -589,7 +593,6 @@ Page({
     })
   },      
   ab2hex: function(buffer) {
-    // console.log('-----ab2hex-----')
     var hexArr = Array.prototype.map.call(
       new Uint8Array(buffer),
       function (bit) {
@@ -618,10 +621,11 @@ Page({
         last_byte=this_byte;
       }
     });
+    
   },
   push_to_display: function(data_array){
-    // console.log('-----push_to_display-----')
     let that = this
+    call_count += 1;
     if(data_array[0] == '03' && data_array[16] == '5a' && data_array[17] == '4e'){ //is measure data set
       total_data.push(parseInt('0x'+data_array[3]+data_array[2]+data_array[1]));
       total_data.push(parseInt('0x'+data_array[6]+data_array[5]+data_array[4]));
@@ -629,20 +633,11 @@ Page({
       total_data.push(parseInt('0x'+data_array[12]+data_array[11]+data_array[10]));
       min_num = min_num + Math.round(min_num*0.01);
       max_num = max_num - Math.round(max_num*0.01);
-      that.setData({
-        measure_value: parseInt('0x'+data_array[3]+data_array[2]+data_array[1])
-      });
    
-      var current_num = parseInt('0x'+data_array[3]+data_array[2]+data_array[1]);
-      if(max_num < current_num){
-        max_num = current_num;
-      }
-      if(min_num > current_num || min_num == 0){
-        min_num = current_num;
-      }
       that.setData({
-        measure_width: Math.round(current_num/(max_num-min_num)*100)
+        measure_value: total_data.length
       });
     }
+    data_pool = [];
   }  
 })

@@ -34,6 +34,9 @@ Page({
   onShow: function () {
     this.listFamilyMembers()
     this.getVipInfo()
+    this.setData({
+      userId: app.getUser().id
+    })
   },
 
   /**

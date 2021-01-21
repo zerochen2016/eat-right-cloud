@@ -19,8 +19,8 @@ Page({
   onLoaded: function (options) {
     // console.log(options)
     
-    // let report1 = JSON.parse(options.report1)
-    // let report2 = JSON.parse(options.report2)
+    let report1 = JSON.parse(options.report1)
+    let report2 = JSON.parse(options.report2)
 
     //test 升高
     // let report1 = {
@@ -30,12 +30,12 @@ Page({
     //   date: "2020-11-03 09:09:36",dateText: "吃前",heartRate: 79,id: "bugarjqvooe97nq1e7n0",riskIndex: 22,timeDetail: "3/11"
     // }
     //降低
-    let report1 = {
-      date: "2020-09-23 16:17:22",dateText: "吃后",heartRate: 100,id: "btlg94ivooe2568ok710",riskIndex: 77,timeDetail: "23/9"
-    }
-    let report2 = {
-      date: "2020-11-03 09:09:36",dateText: "吃后",heartRate: 79,id: "bugarjqvooe97nq1e7n0",riskIndex: 22,timeDetail: "3/11"
-    }
+    // let report1 = {
+    //   date: "2020-09-23 16:17:22",dateText: "吃后",heartRate: 100,id: "btlg94ivooe2568ok710",riskIndex: 77,timeDetail: "23/9"
+    // }
+    // let report2 = {
+    //   date: "2020-11-03 09:09:36",dateText: "吃后",heartRate: 79,id: "bugarjqvooe97nq1e7n0",riskIndex: 22,timeDetail: "3/11"
+    // }
     //平衡
     // let report1 = {
     //   date: "2020-10-25 09:41:21",dateText: "吃前",heartRate: 97,id: "bu939gavooeccm4ul6vg",riskIndex: 32,timeDetail: "25/10"
