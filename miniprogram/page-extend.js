@@ -28,8 +28,6 @@ const pageExtend = Page => {
             url: '../login/login',
           })
         }else{
-          console.log('-----user----')
-          console.log(user)
           this.setData({
             user: user
           })

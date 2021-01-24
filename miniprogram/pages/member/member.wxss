@@ -227,14 +227,13 @@ page{
   margin-top: 40rpx;
 }
 .right-body{
-  width: 800rpx;
+  width: 750rpx;
   height: 636rpx;
   margin-top: 24rpx;
   text-align: center;
-  margin-left: -6rpx;
 }
 .right-body-per{
-  width: 192rpx;
+  width: 185rpx;
   height: 188rpx;
   margin-top: 16rpx;
   float: left;

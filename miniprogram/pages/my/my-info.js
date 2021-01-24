@@ -147,16 +147,19 @@ Page({
         if(res.tempFiles[0].size > 524288){
           app.alert("温馨提示","图片过大，请上传500K以内图片")
         }else{
-          wx.showLoading({
-            title: '上传中',
+          wx.navigateTo({
+            url: '../my/my-avatarcropper?filepath='+filePath,
           })
-          wx.getFileSystemManager().readFile({
-            filePath: filePath,
-            encoding: 'base64',
-            success: res => {
-              that.uploadAvatar(res.data)
-            }
-          })
+          // wx.showLoading({
+          //   title: '上传中',
+          // })
+          // wx.getFileSystemManager().readFile({
+          //   filePath: filePath,
+          //   encoding: 'base64',
+          //   success: res => {
+          //     that.uploadAvatar(res.data)
+          //   }
+          // })
         }
         
       },

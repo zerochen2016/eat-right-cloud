@@ -1,13 +1,13 @@
 <view class="myinfo">
-  <image class="myinfo-avatar" src="{{userProfile.avatar_url}}" />
+  <image class="myinfo-avatar" bindtap="nTo" data-path="my/my-info"  src="{{userProfile.avatar_url}}" />
   <view class="myinfo-view">
-    <view class="myinfo-name">{{userProfile.nickname}}</view>
+    <view class="myinfo-name" bindtap="nTo" data-path="my/my-info" >{{userProfile.nickname}}</view>
     
     <block wx:if="{{vipInfo.isVip}}">
       <view class="myinfo-member">VIP会员剩余天数：{{vipInfo.vipRemainDay}}天</view>
     </block>
     <block wx:else>
-      <view class="myinfo-member">未开通会员，更多权益等你解锁</view>
+      <view class="myinfo-member">未开通会员</view>
     </block>
     <view bindtap="nTo" data-path="my/my-info" class="myinfo-update">编辑档案</view>
   </view>

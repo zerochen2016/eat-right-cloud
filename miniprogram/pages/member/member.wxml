@@ -104,7 +104,7 @@
     <view class="right-body-per">
       <image class="right-body-image" src="{{imageFamily}}" />
       <view class="text28" style="color:rgba(81, 53, 8, 1);width:192rpx;margin-top:16rpx;float:left">家庭成员</view>
-      <view class="text24" style="color:rgba(122, 101, 68, 0.6);width:192rpx;margin-top:16rpx;float:left">（家庭包专享受）</view>
+      <view class="text24" style="color:rgba(122, 101, 68, 0.6);width:192rpx;margin-top:16rpx;float:left">（家庭包专享）</view>
     </view>
     <view class="right-body-per">
       <image class="right-body-image" src="{{imageVs}}" />

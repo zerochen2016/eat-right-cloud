@@ -71,7 +71,7 @@
 </view>
 <view class="line" style="margin-top: 30rpx;"></view>
 <view class="text40" style="margin-left: 40rpx;margin-top: 60rpx;">更多为您推荐</view>
-<image class="more-image-1" src="{{imageWangweigong1}}" bindtap="nTo" data-path="article/theory-wangweigong"/>
+<image class="more-image-1" src="{{imageWangweigong1}}" bindtap="nTo" data-path="article/wangweigong"/>
 <!-- 去关注组件 -->
 <wechat-subscription style="margin-top:30rpx;float:left"></wechat-subscription>
 <!-- 探索end -->

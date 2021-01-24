@@ -26,10 +26,6 @@ App({
       resourcesHost: "https://jtfile.pingfangli.com/",//图片等资源前缀，需要https
       // signHost: "http://jt.pingfangli.com/",
       userInfo: null,//微信授权后获取用户昵称和头像,
-      chart1: {},
-      chart2: {},
-      chart3: {},
-      chart4: {}
     }
 
     this.timedTaskRefreshToken()

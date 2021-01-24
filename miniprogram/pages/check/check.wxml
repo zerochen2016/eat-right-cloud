@@ -52,7 +52,7 @@
   <view class="share-view">
     <text class="text38" style="float: left;">邀请好友</text>
     <!-- 后续版本 -->
-    <image class="share-text-image" src="{{imageShare}}" />
+    <!-- <image class="share-text-image" src="{{imageShare}}" /> -->
     <text class="text24" style="margin-top:10rpx;float: left;display: block">分享快乐与传递健康同等重要</text>
   </view>
 </button>

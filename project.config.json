@@ -2,7 +2,7 @@
   "miniprogramRoot": "miniprogram/",
   "cloudbaseRoot": "cloudbase/",
   "setting": {
-    "urlCheck": false,
+    "urlCheck": true,
     "es6": true,
     "enhance": true,
     "postcss": true,
@@ -225,6 +225,12 @@
         {
           "name": "pages/setup/setup",
           "pathName": "pages/setup/setup",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/my/my-info",
+          "pathName": "pages/my/my-info",
           "scene": null
         }
       ]

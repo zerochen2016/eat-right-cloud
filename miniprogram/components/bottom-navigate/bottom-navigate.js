@@ -53,9 +53,10 @@ Component({
   methods: {
     redirectTo: function (e) {
       var page = e.currentTarget.dataset.page;
-      wx.redirectTo({
+      wx.navigateTo({
         url: '../' + page + '/' + page
       })
+
     },  
     changeActiveIndex: function(activeIndex){
       this.setData({

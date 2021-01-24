@@ -68,18 +68,27 @@ Page({
           filePath: filePath,
           encoding: 'UTF8',
           success: res => {
-            // console.log(res.data)
+            console.log(res.data)
             let data = res.data
             let check = wx.base64ToArrayBuffer(data)
-            check = new Uint8Array(check)
-            let array = []
-              for(let i=0; i + 2< check.length; i=i+3){
-                let p = parseInt('0x' + check[i] + check[i+1] + check[i+2])
-                
-                array.push(p)
-              }
-            console.log(array)
-            console.log(JSON.stringify(array))
+            console.log(check)
+            let data1 = Array.from(new Uint8Array(check))
+            let data2 = []
+            for(let i = 0;i + 2< data1.length;i = i+3){
+              let item = data1[i].toString(16) + data1[i+1].toString(16) + data1[i+2].toString(16)
+              data2.push(parseInt('0x'+item))
+            }
+            console.log(data2)
+            
+            // console.log(data1)
+            // let ints = new DataView(check)
+            
+            // console.log(ints)
+            // console.log(ints.getInt8(0))
+            // console.log(ints.getInt8(0).toString(2))
+            // let endTime = new Date()
+            // let startTime = new Date(endTime.getTime() - 23093)
+            // this.submitCheckData(startTime,endTime,check2)
           }
         })
       }
@@ -99,11 +108,20 @@ Page({
             let data = res.data
             
             let submit = JSON.parse(data)
-            // let p = new Uint32Array(submit).buffer
-            // console.log(p)
+            
+            
+            let submit1 = new Uint8Array(24000).buffer
+            let j = 0
+            for(let i = 0; i < submit.length; i=i+3){
+              let bytes = this.intToByte4(submit[i])
+              submit1[i] = bytes[0]
+              submit1[i + 1] = bytes[1]
+              submit1[i + 2] = bytes[2]
+            }
+            
             let endTime = new Date()
             let startTime = new Date(endTime.getTime() - 23093)
-            this.submitCheckData(startTime,endTime,submit)
+            this.submitCheckData(startTime,endTime,new Uint8Array(submit1).buffer)
           }
         })
       }
@@ -115,42 +133,35 @@ Page({
   onShow: function () {
     // this.test4()
     // console.log(this.intToByte4([2368835]))
-    let a = [2368835]
-    console.log(new Uint32Array(a).buffer)
+    // let a = [2368835]
+    // console.log(new Uint32Array(a).buffer)
+    // this.test4()
+    // this.test2()
+    // this.test2()
+    // console.log(parseInt('0x242543'))
+    // console.log(this.intToByte4(2368835))
+    // this.test2()
+    let a1 = 24
+    let a2 = 254
+    let a3 = 3
+    // 102371
+    console.log(this.intToByte4(2368835))
+    // console.log('0x' + a1.toString(16) + a2.toString(16) + a3.toString(16))
+    // console.log(parseInt(0x242543))
+    // console.log(parseInt(0x18fe03))
   },
   submitCheckData: function(startTime,endTime,data){
-    // let hash = md5.create()
-    // hash.update(data)
-    // let signature = hash.hex()
-    // const that = this
-    // let arrayBuffer = new Uint32Array(data).buffer
-    // console.log(arrayBuffer)
-    // let sub = new ArrayBuffer(24000)
-    // let j = 0
-    let arrayBuffer = new Uint8Array(24000)
-    for(let i = 0; i < data.length;i = i + 3){
-      let t = this.intToByte4(data[i])
-      arrayBuffer[i] = t[0]
-      arrayBuffer[i + 1] = t[1]
-      arrayBuffer[i + 2] = t[2]
-    }
-    arrayBuffer = arrayBuffer.buffer
-    console.log(arrayBuffer)
-    // let arrayBuffer = new ArrayBuffer(data.length)
-    // for(let i = 0; i < data.length;i++){
-    //   arrayBuffer[i] = data[i]
-    // }
-    // let arrayBuffer = data.buffer
+    console.log("submitCheckData")
     const timeSecond = dateUtil.dateDiffSecond(new Date(startTime),new Date(endTime))
     let sampleRate = 4180 / timeSecond
-    // console.log(sampleRate)
+    
 
     
-    let base64 = wx.arrayBufferToBase64(arrayBuffer)
+    let base64 = wx.arrayBufferToBase64(data)
     // console.log(arrayBuffer)
     
     let hash = md5.create()
-    hash.update(arrayBuffer)
+    hash.update(data)
     let signature = hash.hex()
     let requestData = JSON.stringify({
       "method": "ReportAPI.SubmitPulseTest",
@@ -193,6 +204,10 @@ Page({
         }
         
       },
+      complete(res) {
+        console.log('-----submitCheckData complete-----')
+        console.log(res)
+      }
     })     
   },      
   getAdvertisement: function(){
@@ -258,5 +273,33 @@ Page({
       },
     })     
   },
-
+  uploadFileForText: function(data){
+    let filePath = wx.env.USER_DATA_PATH + "/" + util.randomLetterString(6) + '.txt'
+    wx.getFileSystemManager().writeFile({
+      filePath: filePath,
+      data: data,
+      encoding: 'utf8',
+      success: res =>{
+        console.log(res)
+        wx.uploadFile({
+          url: 'http://jt.pingfangli.com/file/upload', //仅为示例，非真实的接口地址
+          filePath: filePath,
+          name: 'file',
+          formData: {
+            
+          },
+          success (res){
+            console.log("uploadfile:",res)
+            //do something
+          },
+          complete(res){
+            console.log(res)
+          }
+        })
+      },
+      complete: res=>{
+        console.log(res)
+      }
+    })
+  },
 })

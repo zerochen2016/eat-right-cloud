@@ -39,6 +39,7 @@
     "pages/my/my-family-add",
     "pages/my/my-family-member",
     "pages/my/my-update-password",
+    "pages/my/my-avatarcropper",
 
     "pages/report/report",
     "pages/report/report-record",

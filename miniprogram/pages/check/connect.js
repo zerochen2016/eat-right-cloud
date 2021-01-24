@@ -631,8 +631,8 @@ Page({
       total_data.push(parseInt('0x'+data_array[6]+data_array[5]+data_array[4]));
       total_data.push(parseInt('0x'+data_array[9]+data_array[8]+data_array[7]));
       total_data.push(parseInt('0x'+data_array[12]+data_array[11]+data_array[10]));
-      min_num = min_num + Math.round(min_num*0.01);
-      max_num = max_num - Math.round(max_num*0.01);
+      min_num = min_num + Math.round(min_num * 0.01);
+      max_num = max_num - Math.round(max_num * 0.01);
    
       that.setData({
         measure_value: total_data.length
