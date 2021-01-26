@@ -1,3 +1,4 @@
+
 <!-- 探索start -->
 <view class="text72" style="margin-left: 40rpx;margin-top: 40rpx;">探索</view>
 <view class="line" style="margin-top: 20rpx;"></view>
@@ -9,7 +10,7 @@
   </scroll-view>
 </view>
 <view style="margin-left: 40rpx;margin-top: 30rpx;width: 670rpx;height: 834rpx;" bindtap="toYouzan" data-alias="1y34bn2g4wu68" >
-  <image src="{{imageDeviceHome}}" style="width: 670rpx;height: 834rpx;border-radius: 30rpx 30rpx 0rpx 0rpx;" />
+  <image src="{{imageDeviceHome}}" style="width: 670rpx;height: 834rpx;border-radius: 30rpx" />
 </view>
 <!-- <view class="special-recommend" bindtap="goThirdWeb" data-url="{{recommend.url}}">
   <image class="special-recommend-image" src="{{recommend.picture}}"></image>

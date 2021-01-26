@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "缩放与移动",
+  "usingComponents": {
+    "avatar-cropper": "../../components/avatar-cropper/avatar-cropper"
+  }
+}

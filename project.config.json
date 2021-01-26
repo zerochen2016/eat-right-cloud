@@ -231,6 +231,12 @@
         {
           "name": "pages/my/my-info",
           "pathName": "pages/my/my-info",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/my/my-avatar-cropper",
+          "pathName": "pages/my/my-avatar-cropper",
           "scene": null
         }
       ]

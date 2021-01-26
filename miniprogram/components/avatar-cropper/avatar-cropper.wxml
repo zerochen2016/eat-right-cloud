@@ -1,0 +1,6 @@
+<view class="back">
+
+  
+  <view class="main" bindtouchend="cutEnd" bindtouchstart="cutStart" bindtouchmove="cutMove" style="width: {{mainHeight}}rpx;height: {{mainWidth}}rpx;left: {{mainLeft}}rpx;top: {{mainTop}}rpx;"></view>
+  <view class="button-confirm" bindtap="confirmCut">确定</view>  
+</view>

@@ -125,11 +125,12 @@
 <block wx:else>
   <view class="tips">
     <image src="{{imageTips}}" class="image-tips" />
-    <view class="text36" style="color: rgba(0, 0, 0, 0.24);float:left;margin-left:10rpx;line-height:50rpx">小贴士提醒您</view>
+    <view class="text36" style="color: rgba(0, 0, 0, 0.24);float:left;margin-left:10rpx;line-height:50rpx">小贴士</view>
     <view class="text32" style="float:left;line-height:46rpx;color: rgba(0, 0, 0, 0.4);">
       <text>
-        1、吃后报告需距离餐食时间2小时以上；
-        2、保健食材或药物等对人体的作用时间，根据具体产品而定。
+        1、建议的量测时间：饭后两小时，不太饿且受上一餐食物影响较小的时候；
+        2、食物在吃、喝后，可以在30分钟至2个小时，每半小时量测一次，观察其变化趋势；
+        3、可能影响变化的饮食：食物状态、消化吸收能量、个人体质、药物等。
       </text>
     </view>
   </view>

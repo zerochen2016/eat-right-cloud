@@ -10,8 +10,8 @@ Page({
     nickName: '',
     resourcesHost: '',
     unReadCount: 0,
-    imageFamily: app.globalData.resourcesHost + 'my/family@2x.png',
-    imageOrder: app.globalData.resourcesHost + 'my/order@2x.png',
+    imageFamily: app.globalData.resourcesHost + 'my/family-new@2x.png',
+    imageOrder: app.globalData.resourcesHost + 'my/order-new@2x.png',
     imageStore: app.globalData.resourcesHost + 'my/store@2x.png',
     imageArrow: app.globalData.resourcesHost + 'arrow@2x.png'
   },

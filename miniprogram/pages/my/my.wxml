@@ -11,10 +11,20 @@
     </block>
     <view bindtap="nTo" data-path="my/my-info" class="myinfo-update">编辑档案</view>
   </view>
-  <view class="myinfo-list">
+  <!-- <view class="myinfo-list">
     <view bindtap="nTo" data-path="my/my-family"><image src="{{imageFamily}}"/><text>我的家庭</text></view>
     <view ><image src="{{imageOrder}}"/><text>订单信息</text></view>
     <view  data-path="my/my-store"><image src="{{imageStore}}"/><text>我的收藏</text></view>
+  </view> -->
+  <view class="myinfo-list-new">
+    <view bindtap="nTo" data-path="my/my-family" style="border-right:2rpx solid rgba(0, 0, 0, 0.09)">
+      <image src="{{imageFamily}}"/>
+      <text>我的家庭</text>
+    </view>
+    <view style="width:250rpx">
+      <image src="{{imageOrder}}"/>
+      <text>订单信息</text>
+    </view>
   </view>
 </view>
 <view class="content-tab" data-path="member/member" bindtap="nTo">

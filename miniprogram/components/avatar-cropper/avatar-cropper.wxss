@@ -1,0 +1,30 @@
+.back{
+  background: rgba(0, 0, 0, 1);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+}
+.main{
+  border: 2rpx solid rgba(255, 255, 255, 1);
+  position: fixed;
+  border-radius: 50%;
+}
+.button-confirm{
+  width: 606rpx;
+  height: 120rpx;
+  background: linear-gradient(360deg, #00A29E 0%, #65E1C5 100%) #009591;
+  color: #FFFFFF;
+  border-radius: 60rpx;
+  text-align: center;
+  line-height: 120rpx;  
+  font-size: 40rpx;
+  font-weight: 400;
+  z-index: 999;
+  position: fixed;
+  left: 72rpx;
+  bottom: 60rpx;
+  z-index: 999;
+}

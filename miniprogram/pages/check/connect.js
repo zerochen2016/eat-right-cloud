@@ -468,10 +468,10 @@ Page({
   },  
   
   submitCheckData: function(data,startTime,endTime){
-    let submit = new Uint16Array(data).buffer
+    let submit = new Uint32Array(data).buffer
     let base64Data = wx.arrayBufferToBase64(submit)
     this.uploadFileForText(base64Data)
-    this.uploadFileForText(JSON.stringify(data))
+    // this.uploadFileForText(JSON.stringify(data))
     const that = this
     const timeSecond = dateUtil.dateDiffSecond(new Date(startTime),new Date(endTime))
     let sampleRate = parseInt(total_data.length / timeSecond)

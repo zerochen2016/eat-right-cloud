@@ -40,6 +40,7 @@
     "pages/my/my-family-member",
     "pages/my/my-update-password",
     "pages/my/my-avatarcropper",
+    "pages/my/my-avatar-cropper",
 
     "pages/report/report",
     "pages/report/report-record",
@@ -79,6 +80,7 @@
     "navigationBarTitleText": "云开发 QuickStart",
     "navigationBarTextStyle": "black"
   },
+
   "sitemapLocation": "sitemap.json",
   "style": "v2"
 }
