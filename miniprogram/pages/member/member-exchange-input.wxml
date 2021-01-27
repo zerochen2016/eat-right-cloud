@@ -1,4 +1,5 @@
-<view class="text32" style="color: rgba(0, 0, 0, 0.54);margin-left:40rpx;margin-top:60rpx">请输入会员卡密码：</view>
+<header-navigate id="header"></header-navigate>
+<view class="text32" style="color: rgba(0, 0, 0, 0.54);margin-left:40rpx;margin-top:{{statusHeight}}px">请输入会员卡密码：</view>
 <view style="width:100%;margin-top:20rpx;height:132rpx;background-color:white">
   <input placeholder="密码不区分大小写" style="width:710rpx;margin-left:40rpx;height:132rpx;font-size:36rpx" bindinput="codeInput" value="{{code}}"/>
 </view>

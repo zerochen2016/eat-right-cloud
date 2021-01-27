@@ -56,7 +56,7 @@ Component({
       wx.navigateTo({
         url: '../' + page + '/' + page
       })
-
+      
     },  
     changeActiveIndex: function(activeIndex){
       this.setData({

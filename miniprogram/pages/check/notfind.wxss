@@ -1,1 +1,358 @@
-/* pages/check/notfind.wxss */
+.check-search-title{
+  width: 670rpx;
+  height: 82rpx;
+  font-size: 72rpx;
+  font-weight: 800;
+  color: rgba(0, 0, 0, 0.87);
+  line-height: 82rpx;
+  margin-top: 40rpx;
+  margin-left: 40rpx;
+}
+.check-search-title-2{
+  width: 670rpx;
+  height: 40rpx;
+  font-size: 28rpx;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.4);
+  line-height: 40rpx;
+  margin-top: 20rpx;
+  margin-left: 40rpx;
+}
+.check-search-pointer-image{
+  width: 480rpx;
+  height: 480rpx;
+  z-index: 9;
+  position: absolute;
+  left: 135rpx;
+  top: 300rpx;
+  transform-origin: center center;
+  opacity: 0.8;
+}
+.check-search-image-0{
+  width: 32rpx;
+  height: 32rpx;
+  background: #FFFFFF;
+  border: 2rpx solid #009491;
+  z-index: 20;
+  position: absolute;
+  left: 356rpx;
+  top: 520rpx;
+  border-radius: 50%;
+  
+}
+.check-search-image-1{
+  width: 160rpx;
+  height: 160rpx;
+  float: left;
+  z-index: 6;
+  position: absolute;
+  left: 295rpx;
+  top: 460rpx;
+}
+.check-search-image-2{
+  width: 320rpx;
+  height: 320rpx;
+  float: left;
+  z-index: 5;
+  position: absolute;
+  left: 215rpx;
+  top: 380rpx;
+}
+.check-search-image-3{
+  width: 480rpx;
+  height: 480rpx;
+  float: left;
+  z-index: 4;
+  position: absolute;
+  left: 135rpx;
+  top: 300rpx;
+}
+.check-search-close{
+  width: 232rpx;
+  height: 232rpx;
+  margin: 0 auto;
+  margin-top: 780rpx;
+  margin-left: 259rpx;
+}
+.check-search-device{
+  width: 100%;
+  height: 192rpx;
+  margin-top: 24rpx;
+  background-color: #FFFFFF;
+}
+.check-search-device-image-1{
+  width: 112rpx;
+  height: 112rpx;
+  float: left;
+  margin-top: 40rpx;
+  margin-left: 40rpx;
+}
+.check-search-device-text{
+  height: 192rpx;
+  line-height: 192rpx;
+  font-size: 38rpx;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.87);
+  float: left;
+  margin-left: 16rpx;
+}
+.check-search-device-text-connected{
+  width: 120rpx;
+  height: 32rpx;
+  font-size: 22rpx;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 32rpx;
+  background-color: #32C384;
+  border-radius: 4rpx;
+  float: left;
+  margin-top: 116rpx;
+  text-align: center;
+  margin-left: 16rpx;
+}
+.check-search-title-choose{
+  width: 670rpx;
+  height: 44rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
+  line-height: 32rpx;
+  margin-top: 60rpx;
+  margin-left: 40rpx;
+  float: left;
+}
+.check-search-device-image-2{
+  width: 48rpx;
+  height: 48rpx;
+  float: right;
+  margin-top: 72rpx;
+  margin-right: 30rpx;
+}
+.check-linking{
+  width: 600rpx;
+  height: 600rpx;
+  margin: 0 auto;
+  margin-top: 120rpx;
+  border: solid 2rpx;
+  z-index: 4;
+}
+.check-linking-image-1{
+  width: 480rpx;
+  height: 480rpx;
+  float: left;
+  z-index: 4;
+  position: absolute;
+  left: 135rpx;
+  top: 300rpx;
+}
+.check-linking-image-2{
+  width: 520rpx;
+  height: 520rpx;
+  border-radius: 50%;
+  float: left;
+  border: solid 2rpx rgba(78, 191, 188, 0.4);
+  z-index: 3;
+  position: absolute;
+  left: 115rpx;
+  top: 280rpx;
+}
+.check-linking-image-3{
+  width: 560rpx;
+  height: 560rpx;
+  border-radius: 50%;
+  float: left;
+  border: solid 2rpx rgba(78, 191, 188, 0.2);
+  z-index: 2;
+  position: absolute;
+  left: 95rpx;
+  top: 260rpx;
+}
+.check-linking-image-4{
+  width: 600rpx;
+  height: 600rpx;
+  border-radius: 50%;
+  float: left;
+  border: solid 2rpx rgba(78, 191, 188, 0.05);
+  z-index: 7;
+  position: absolute;
+  left: 75rpx;
+  top: 240rpx;
+}
+.check-checking-image-1{
+  width: 380rpx;
+  height: 380rpx;
+  float: left;
+  z-index: 5;
+  position: absolute;
+  left: 185rpx;
+  top: 355rpx;
+}
+.check-checking-image-tick{
+  width: 118rpx;
+  height: 88rpx;
+  position: absolute;
+  left: 316rpx;
+  top: 500rpx;
+  z-index: 15;
+  
+}
+.check-checking-text-1{
+  width: 300rpx;
+  height: 108rpx;
+  font-size: 84rpx;
+  font-weight: bold;
+  color: black;
+  line-height: 108rpx;
+  position: absolute;
+  text-align: center;
+  left: 225rpx;
+  top: 460rpx;
+  z-index: 30;
+}
+.check-checking-text-2{
+  width: 300rpx;
+  height: 36rpx;
+  font-size: 28rpx;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.4);
+  line-height: 28rpx;
+  position: absolute;
+  text-align: center;
+  left: 225rpx;
+  top: 570rpx;
+  z-index: 30;
+}
+.check-checking-tips{
+  width: 250rpx;
+  height: 50rpx;
+  font-size: 36rpx;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.24);
+  line-height: 50rpx;
+  position: absolute;
+  left: 250rpx;
+  top: 900rpx;
+  text-align: center;
+}
+.check-checking-tips-text-1{
+  width: 300rpx;
+  height: 50rpx;
+  font-size: 36rpx;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.24);
+  line-height: 50rpx;
+  text-align: left;
+}
+
+.check-checking-tips image{
+  width: 30rpx;
+  height: 32rpx;
+  margin-top: 9rpx;
+  margin-right: 8rpx;
+}
+.check-checking-tips-text-2{
+  width: 400rpx;
+  height: 144rpx;
+  font-size: 56rpx;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.87);
+  line-height: 72rpx;
+  text-align: center;
+  margin-left: -75rpx;
+  margin-top: 16rpx;
+}
+.check-search-notfind{
+  width: 400rpx;
+  height: 256rpx;
+  margin-top: 160rpx;
+  margin-left: 175rpx; 
+}
+.check-search-notfind-text{
+  width: 450rpx;
+  height: 100rpx;
+  font-size: 36rpx;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.24);
+  line-height: 50rpx;  
+  float: left;
+  margin-top: 20rpx;
+  margin-left: 150rpx;
+}
+.check-search-notfind-text image{
+  width: 28rpx;
+  height: 28rpx;
+  float: left;
+}
+.check-search-notfind-text text{
+  float: left;
+  margin-left: 38rpx;
+  margin-top: -38rpx;
+}
+/* 商品卡start */
+.goods-card{
+  width: 670rpx;
+  height: 160rpx;
+  background: #FDFDFD;
+  margin-left: 40rpx;
+  box-shadow: 0rpx 22rpx 20rpx 0rpx rgba(0, 0, 0, 0.04), 0rpx 2rpx 56rpx -20rpx rgba(0, 0, 0, 0.02);
+  border-radius: 30rpx;
+}
+.goods-card-image{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 16rpx;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+  float: left;
+}
+.goods-card-text-1{
+  height: 50rpx;
+  width: 200rpx;
+  font-size: 36rpx;
+  font-weight: 800;
+  color: rgba(0, 0, 0, 0.87);
+  line-height: 50rpx;
+  margin-left: 16rpx;
+  float: left;
+  margin-top: 34rpx;
+  
+}
+.goods-card-text-2{
+  height: 36rpx;
+  font-size: 26rpx;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.4);
+  line-height: 36rpx;
+  float: left;
+  margin-top: 90rpx;
+  margin-left: -200rpx;
+}
+.goods-card-button{
+  width: 184rpx;
+  height: 68rpx;
+  background: #009591;
+  border-radius: 34rpx;
+  float: right;
+  margin-top: 46rpx;
+  margin-right: 30rpx;
+
+}
+.goods-card-button view{
+  width: 96rpx;
+  height: 68rpx;
+  font-size: 24rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  float: left;
+  line-height: 68rpx;
+  margin-left: 32rpx;
+}
+.goods-card-button image{
+  width: 32rpx;
+  height: 32rpx;
+  float: right;
+  margin-top: 20rpx;
+  margin-right: 10rpx;
+}
+/* 商品卡end */

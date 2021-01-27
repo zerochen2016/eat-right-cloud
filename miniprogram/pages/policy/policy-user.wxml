@@ -1,5 +1,5 @@
-
-<view class="title">《吃对了么》小程序 用户服务协议及隐私政策</view>
+<header-navigate id="header"></header-navigate>
+<view class="title" style="margin-top:{{statusHeight}}px">《吃对了么》小程序 用户服务协议及隐私政策</view>
 <view class="title-time">本版本更新时间：2021年1月20日</view>
 <view class="content">
   <text>

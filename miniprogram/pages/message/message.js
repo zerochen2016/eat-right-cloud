@@ -31,6 +31,7 @@ Page({
     this.listNotification()
     // //检测是否加入家庭
     // this.checkHasJoinedOtherFamily()
+    this.selectComponent("#header").setTitle("消息中心")
   },
 
   /**
@@ -245,7 +246,7 @@ Page({
       showMessage: true
     })
   },
-  //TODO 怎么知道哪些消息未读
+  
   listNotification: function(){
     let that = this
     wx.request({
@@ -268,18 +269,18 @@ Page({
       success(res) {
         console.log(res)
         if(res.statusCode == 200){
-           let unReadCount = 0
-           let familyMessageArray = []
-           let firstMessage = {}
+          let unReadCount = 0
+          let familyMessageArray = []
+          let firstMessage = {}
           if(res.data.unread_messages_size){
             unReadCount = res.data.unread_messages_size
           }else if(res.data.unread_messages_size > 99){
             unReadCount = 99
           }
-          if(res.data.on_site_messages[0]){
+          if(res.data.on_site_messages){
             familyMessageArray = res.data.on_site_messages,
             firstMessage = res.data.on_site_messages[0]
-          }
+          } 
           that.setData({
             unReadCount: unReadCount,
             familyMessageArray: familyMessageArray,
@@ -289,5 +290,31 @@ Page({
 
       },
     })     
+  },
+  onPageScroll(e){
+    console.log(e.scrollTop)
+    console.log(this.data.scrollTop)
+    if(this.data.scrollTop > e.scrollTop){
+      console.log("页面上滑")
+      if(!(this.data.showTitle)){
+        //调用显示动画
+        this.selectComponent("#header").show()
+        this.setData({
+          showTitle: true
+        })
+      }
+    }else{
+      console.log("页面下滑")
+      if((this.data.showTitle)){
+        //调用消失动画
+        this.selectComponent("#header").hide()
+        this.setData({
+          showTitle: false
+        })
+      }
+    }
+    this.setData({
+      scrollTop: e.scrollTop
+    })
   },
 })

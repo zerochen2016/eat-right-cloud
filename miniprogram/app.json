@@ -34,13 +34,15 @@
 
     "pages/my/my",
     "pages/my/my-info",
-    "pages/my/my-store",
     "pages/my/my-family",
     "pages/my/my-family-add",
     "pages/my/my-family-member",
     "pages/my/my-update-password",
     "pages/my/my-avatarcropper",
     "pages/my/my-avatar-cropper",
+
+    "pages/policy/policy-member",
+    "pages/policy/policy-user",
 
     "pages/report/report",
     "pages/report/report-record",
@@ -78,9 +80,13 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "云开发 QuickStart",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
   },
 
   "sitemapLocation": "sitemap.json",
-  "style": "v2"
+  "style": "v2",
+  "usingComponents": {
+    "header-navigate":"../../components/header-navigate/header-navigate"
+  }
 }

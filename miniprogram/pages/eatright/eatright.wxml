@@ -1,4 +1,5 @@
-<view class="text72 eat-title">吃对了吗</view>
+<header-navigate id="header"></header-navigate>
+<view class="text72 eat-title" style="margin-top:{{statusHeight}}px">吃对了吗</view>
 <view class="eat-main">
   <view class="{{hasResult ? 'eat-main-left-result' :'eat-main-left'}}" bindtap="openSelectReport" data-ori="1">
     <block wx:if="{{reportBefore.riskIndex > 0}}">

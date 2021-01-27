@@ -1,3 +1,4 @@
+<header-navigate id="header"></header-navigate>
 <!-- 搜索设备start -->
 <block wx:if="{{status == 0}}">
   <view class="check-search-title">正在搜索附近设备{{dots}}</view>

@@ -1,7 +1,6 @@
 .cal{
   background-color: white;
   width: 750rpx;
-  
 }
 .cal-head{
   height: 100rpx;
@@ -9,6 +8,7 @@
   width: 100%;
   float: left;
   background-color: white;
+  
 }
 .cal-head-picker{
   width: 436rpx;

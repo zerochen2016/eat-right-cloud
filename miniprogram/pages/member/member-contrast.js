@@ -1,17 +1,19 @@
-// pages/member-contrast/member-contrast.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    imageV: app.globalData.resourcesHost + 'member/v.png',
+    imageTrue: app.globalData.resourcesHost + 'member/true@2x.png',
+    imageFalse: app.globalData.resourcesHost + 'member/false@2x.png',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoaded: function (options) {
 
   },
 
@@ -26,7 +28,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.selectComponent("#header").setTitle("权益对比")
   },
 
   /**
@@ -57,10 +59,30 @@ Page({
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+  onPageScroll(e){
+    console.log(e.scrollTop)
+    console.log(this.data.scrollTop)
+    if(this.data.scrollTop > e.scrollTop){
+      console.log("页面上滑")
+      if(!(this.data.showTitle)){
+        //调用显示动画
+        this.selectComponent("#header").show()
+        this.setData({
+          showTitle: true
+        })
+      }
+    }else{
+      console.log("页面下滑")
+      if((this.data.showTitle)){
+        //调用消失动画
+        this.selectComponent("#header").hide()
+        this.setData({
+          showTitle: false
+        })
+      }
+    }
+    this.setData({
+      scrollTop: e.scrollTop
+    })
+  },
 })

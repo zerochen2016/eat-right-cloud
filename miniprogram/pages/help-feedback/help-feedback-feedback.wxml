@@ -1,4 +1,5 @@
-<view class="feedback-head">
+<header-navigate id="header"></header-navigate>
+<view class="feedback-head" style="margin-top:{{statusHeight}}px">
   <image src="{{imageLogoHome}}"/>
   <view>感谢您使用本公司产品 您的反馈将让我们做的更好</view>
 </view>

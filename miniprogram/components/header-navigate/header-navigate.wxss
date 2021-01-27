@@ -1,0 +1,12 @@
+.title{
+  width: 750rpx;
+  position: fixed;
+  left: 0;
+  top: 0;
+  font-size: 36rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  text-align: center;
+  background-color: white;
+}

@@ -1,4 +1,5 @@
-<view style="width:100%;background-color:white;height:350rpx;">
+<header-navigate id="header"></header-navigate>
+<view style="width:100%;background-color:white;height:350rpx;margin-top:{{statusHeight-20}}px">
   <image class="avatar180" style="margin-top: 40rpx;margin-left: 285rpx" src="{{userProfile.avatar_url}}" bindtap="chooseAvatar" />
   <view class="text30" style="color: #009591;text-align: center;margin-top:20rpx" bindtap="chooseAvatar">更换头像</view>
 </view>

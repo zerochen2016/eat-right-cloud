@@ -1,4 +1,5 @@
-<view class="head">
+<header-navigate id="header" ></header-navigate>
+<view class="head" style="margin-top:{{statusHeight - 20}}px">
   <image class="head-avatar" src="{{userProfile.avatar_url}}"/>
   <view class="head-info">
     <text class="text52" style="display:block">我的名字</text>

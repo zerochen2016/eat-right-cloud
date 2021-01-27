@@ -29,6 +29,20 @@ Component({
     attached: function() {
       // 在组件实例进入页面节点树时执行
       this.initDays(new Date())
+      let that = this
+      let menuInfo = wx.getMenuButtonBoundingClientRect()
+      console.log("info")
+      wx.getSystemInfo({
+        success: (result) => {
+          console.log(result)
+          let pixelRatio = result.pixelRatio
+          // that.setData({height:result.statusBarHeight})          
+          that.setData({
+            height: menuInfo.top + menuInfo.bottom - result.statusBarHeight,
+            lineHeight: menuInfo.top + menuInfo.bottom
+          })          
+        },
+      })
     },
     detached: function() {
       // 在组件实例被从页面节点树移除时执行

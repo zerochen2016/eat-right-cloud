@@ -1,17 +1,20 @@
-// pages/check/notfind.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    imageWarnCircleFill: app.globalData.resourcesHost + 'check/warning-circle-fill@2x.png',
+    imageDevice: app.globalData.resourcesHost + 'check/device.png',
+    imageDeviceSell: app.globalData.resourcesHost + 'check/device-sell.png',
+    imageArrowWhite: app.globalData.resourcesHost + 'arrow-white@3x.png',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoaded: function (options) {
 
   },
 
@@ -26,7 +29,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.selectComponent("#header").setTitle("检测")
   },
 
   /**
@@ -62,5 +65,31 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  onPageScroll(e){
+    console.log(e.scrollTop)
+    console.log(this.data.scrollTop)
+    if(this.data.scrollTop > e.scrollTop){
+      console.log("页面上滑")
+      if(!(this.data.showTitle)){
+        //调用显示动画
+        this.selectComponent("#header").show()
+        this.setData({
+          showTitle: true
+        })
+      }
+    }else{
+      console.log("页面下滑")
+      if((this.data.showTitle)){
+        //调用消失动画
+        this.selectComponent("#header").hide()
+        this.setData({
+          showTitle: false
+        })
+      }
+    }
+    this.setData({
+      scrollTop: e.scrollTop
+    })
+  },
 })

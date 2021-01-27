@@ -1,4 +1,5 @@
-<view class="text56 title">王唯工《气血共振理论》</view>
+<header-navigate id="header"></header-navigate>
+<view class="text56 title" style="margin-top:{{statusHeight}}px">王唯工《气血共振理论》</view>
 <image class="image-1" src="{{imageWangweigong1}}"/>
 <view class="text32 title-little" bindtap="nTo" data-path="article/wangweigong">
   <image src="{{imagePeople}}" style="width:32rpx;height:32rpx;float:left;margin-right:8rpx" />

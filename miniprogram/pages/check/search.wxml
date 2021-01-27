@@ -1,6 +1,7 @@
+<header-navigate id="header"></header-navigate>
 <!-- 搜索设备start -->
 <block wx:if="{{status == 0}}">
-  <view class="check-search-title">正在搜索附近设备{{dots}}</view>
+  <view class="check-search-title" style="margin-top:{{statusHeight}}px">正在搜索附近设备{{dots}}</view>
   <image class="check-linking-image-1" src="{{imageCircleSearch}}"/>
   <view class="check-search-image-0"></view>
   <image class="check-search-pointer-image" src="{{imageCirclePointer}}" style="transform: rotateZ({{pointerAnger}}deg)"/>
@@ -13,7 +14,7 @@
 <!-- 搜索设备end -->
 <!-- 选择设备start -->
 <block wx:elif="{{status == 1}}">
-  <view class="check-search-title">选择设备</view>
+  <view class="check-search-title" style="margin-top:{{statusHeight}}px">选择设备</view>
   <view style="margin:0 auto;margin-top:24rpx;float:left;width:100%">
   <block wx:for="{{devices}}" wx:key="true">
     <view class="check-search-device" data-devicename="{{item.name}}" data-deviceid="{{item.deviceId}}" data-services="{{item.advertisServiceUUIDs}}" bindtap="selectDeviceTap">

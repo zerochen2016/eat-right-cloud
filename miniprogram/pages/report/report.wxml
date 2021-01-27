@@ -1,4 +1,5 @@
-<view class="text72" style="margin-top:40rpx;margin-left:40rpx">健康报告</view>
+<header-navigate id="header"></header-navigate>
+<view class="text72" style="margin-top:{{statusHeight}}px;margin-left:40rpx">健康报告</view>
 <image class="avatar90" style="float: right;margin-top: -82rpx;margin-right: 40rpx;" src="{{userProfile.avatar_url}}"/>
 <view class="content-view" style="margin-top:72rpx" bindtap="nTo" data-path="my/my-family">
   <image class="content-image" src="{{imageFamily}}" />

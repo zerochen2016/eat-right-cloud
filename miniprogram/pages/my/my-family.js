@@ -151,5 +151,31 @@ Page({
         
       },
     })     
-  }  
+  },
+  onPageScroll(e){
+    console.log(e.scrollTop)
+    console.log(this.data.scrollTop)
+    if(this.data.scrollTop > e.scrollTop){
+      console.log("页面上滑")
+      if(!(this.data.showTitle)){
+        //调用显示动画
+        this.selectComponent("#header").show()
+        this.setData({
+          showTitle: true
+        })
+      }
+    }else{
+      console.log("页面下滑")
+      if((this.data.showTitle)){
+        //调用消失动画
+        this.selectComponent("#header").hide()
+        this.setData({
+          showTitle: false
+        })
+      }
+    }
+    this.setData({
+      scrollTop: e.scrollTop
+    })
+  },  
 })

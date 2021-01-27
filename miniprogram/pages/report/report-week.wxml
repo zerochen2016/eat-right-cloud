@@ -1,4 +1,5 @@
-<view class="none-head">
+<header-navigate id="header"></header-navigate>
+<view class="none-head" style="margin-top:{{statusHeight}}px">
   <view class="none-head-last" bindtap="changeMonth" data-ori="0">
   上一周
   </view>

@@ -1,4 +1,5 @@
-<view class="message" hidden="{{showMessage?'':true}}">
+<header-navigate id="header"></header-navigate>
+<view class="message" style="margin-top:{{statusHeight - 20}}px"  hidden="{{showMessage?'':true}}">
   <view class="message-back">
     <view class="text80" style="margin-top:96rpx;margin-left:40rpx;color: #009591;">{{firstMessage.sender_nickname}}</view>
     <view class="text60" style="margin-top:40rpx;margin-left:40rpx">{{firstMessage.message_content}}</view>

@@ -1,3 +1,4 @@
-<view>
+<header-navigate id="header"></header-navigate>
+<view style="margin-top:{{statusHeight}}px">
   <web-view src="{{thirdUrl}}"></web-view>
 </view>

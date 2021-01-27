@@ -1,0 +1,1 @@
+<view class="title" style="height:{{height}}px;line-height:{{lineHeight}}px" animation="{{animationData}}">{{title}}</view>

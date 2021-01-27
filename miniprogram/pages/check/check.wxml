@@ -1,5 +1,6 @@
+<header-navigate id="header"></header-navigate>
 <!-- 检测start -->
-<view class="head">
+<view class="head" style="margin-top:{{statusHeight}}px">
   <view class="text72 head-text">欢迎回来！</view>
   <image class="avatar90 head-avatar" src="{{userProfile.avatar_url}}"></image>
 </view>

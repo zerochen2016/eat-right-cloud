@@ -61,26 +61,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/login/login-password",
-          "pathName": "pages/login/login-password",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/member/member",
-          "pathName": "pages/member/member",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/message/message",
-          "pathName": "pages/message/message",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/my/my-family",
-          "pathName": "pages/my/my-family",
+          "name": "pages/my/my-update-password",
+          "pathName": "pages/my/my-update-password",
           "query": "",
           "scene": null
         },
@@ -91,152 +73,14 @@
           "scene": null
         },
         {
-          "name": "pages/report/report",
-          "pathName": "pages/report/report",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/special/special",
-          "pathName": "pages/special/special",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/test/test",
-          "pathName": "pages/test/test",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/special/special",
-          "pathName": "pages/special/special",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/test2/test2",
-          "pathName": "pages/test2/test2",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/check/check-device",
-          "pathName": "pages/check/check-device",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/check/check",
-          "pathName": "pages/check/check",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/check/search",
-          "pathName": "pages/check/search",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/check/connect",
-          "pathName": "pages/check/connect",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/console/console",
-          "pathName": "pages/console/console",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/report/report",
-          "pathName": "pages/report/report",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/report/report-record",
-          "pathName": "pages/report/report-record",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/test3/test3",
-          "pathName": "pages/test3/test3",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/report/report-month",
-          "pathName": "pages/report/report-month",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/report/report-week",
-          "pathName": "pages/report/report-week",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/eatright/eatright",
-          "pathName": "pages/eatright/eatright",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/eatright/eatright-detail",
-          "pathName": "pages/eatright/eatright-detail",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/console/console",
-          "pathName": "pages/console/console",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/message/message",
-          "pathName": "pages/message/message",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/login/login",
-          "pathName": "pages/login/login",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/policy/policy-user",
-          "pathName": "pages/policy/policy-user",
-          "query": "",
-          "scene": null
-        },
-        {
           "name": "pages/policy/policy-member",
           "pathName": "pages/policy/policy-member",
           "query": "",
           "scene": null
         },
         {
-          "name": "pages/setup/setup",
-          "pathName": "pages/setup/setup",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/my/my-info",
-          "pathName": "pages/my/my-info",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/my/my-avatar-cropper",
-          "pathName": "pages/my/my-avatar-cropper",
+          "name": "pages/report/report-record",
+          "pathName": "pages/report/report-record",
           "scene": null
         }
       ]

@@ -1,4 +1,5 @@
-<view style="background-color: white;width:100%;height:432rpx">
+<header-navigate id="header"></header-navigate>
+<view style="background-color: white;width:100%;height:432rpx;margin-top:{{statusHeight-20}}px">
   <image style="width:144rpx;height:144rpx;margin-top:80rpx;margin-left:303rpx" src="{{imageFamily}}" />
   <view class="line" style="margin-top: 60rpx;width:100%"></view>
   <view class="mobile-view">

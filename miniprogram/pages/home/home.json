@@ -3,7 +3,6 @@
   "usingComponents": {
     "wechat-subscription":"../../components/wechatSubscription/wechatSubscription",
     "bottom-navigate":"../../components/bottom-navigate/bottom-navigate"
-
   }
   
 }

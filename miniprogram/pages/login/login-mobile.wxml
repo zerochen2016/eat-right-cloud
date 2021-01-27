@@ -1,4 +1,5 @@
-<view>
+<header-navigate id="header"></header-navigate>
+<view style="margin-top:{{statusHeight}}px">
   <view class="logo-view">
     <image src="{{imageLogoLogin}}"></image>
   </view>

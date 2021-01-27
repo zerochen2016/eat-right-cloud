@@ -1,2 +1,96 @@
-<!--pages/member-contrast/member-contrast.wxml-->
-<text>pages/member-contrast/member-contrast.wxml</text>
+<header-navigate id="header"></header-navigate>
+<view class="main" style="margin-top:{{statusHeight - 20}}px">
+  <view class="main-title">
+    <image src="{{imageV}}" class="imageV" />    
+    <text style="margin-left:20rpx;float:left">权益对比</text>
+  </view>
+  <view class="main-body">
+    <view class="main-per" style="background-color:rgba(251, 242, 217, 1);border-top:1rpx solid rgba(230, 177, 40, 1);border-radius: 8rpx 8rpx 0 0;">
+      <view style="width:142rpx;">权益</view>
+      <view>普通用户</view>
+      <view>家庭成员</view>
+      <view>VIP成员</view>
+      <view style="border-right: 1rpx solid rgba(230, 177, 40, 1)">VIP家庭包</view>
+    </view>
+    <view class="main-per" style="background-color:white;">
+      <view style="width:142rpx;">组建家庭</view>
+      <view><image src="{{imageFalse}}"  class="imageFalse"/></view>
+      <view><image src="{{imageFalse}}"  class="imageFalse"/></view>
+      <view><image src="{{imageFalse}}"  class="imageFalse"/></view>
+      <view style="border-right: 1rpx solid rgba(230, 177, 40, 1)"><image src="{{imageTrue}}" class="imageTrue" /></view>
+    </view>
+    <view class="main-per" style="background-color:rgba(246, 245, 242, 1);">
+      <view style="width:142rpx;">改善对比</view>
+      <view><image src="{{imageFalse}}"  class="imageFalse"/></view>
+      <view><image src="{{imageTrue}}"  class="imageTrue"/></view>
+      <view><image src="{{imageTrue}}"  class="imageTrue"/></view>
+      <view style="border-right: 1rpx solid rgba(230, 177, 40, 1)"><image src="{{imageTrue}}" class="imageTrue" /></view>
+    </view>
+    <view class="main-per" style="background-color:white;">
+      <view style="width:142rpx;">周分析</view>
+      <view><image src="{{imageFalse}}"  class="imageFalse"/></view>
+      <view><image src="{{imageTrue}}"  class="imageTrue"/></view>
+      <view><image src="{{imageTrue}}"  class="imageTrue"/></view>
+      <view style="border-right: 1rpx solid rgba(230, 177, 40, 1)"><image src="{{imageTrue}}" class="imageTrue" /></view>
+    </view>
+    <view class="main-per" style="background-color:rgba(246, 245, 242, 1);">
+      <view style="width:142rpx;">月分析</view>
+      <view><image src="{{imageFalse}}"  class="imageFalse"/></view>
+      <view><image src="{{imageTrue}}"  class="imageTrue"/></view>
+      <view><image src="{{imageTrue}}"  class="imageTrue"/></view>
+      <view style="border-right: 1rpx solid rgba(230, 177, 40, 1)"><image src="{{imageTrue}}" class="imageTrue" /></view>
+    </view>
+    <view class="main-per" style="background-color:white;">
+      <view style="width:142rpx;">健康风险评估</view>
+      <view><image src="{{imageTrue}}"  class="imageTrue"/></view>
+      <view><image src="{{imageTrue}}"  class="imageTrue"/></view>
+      <view><image src="{{imageTrue}}"  class="imageTrue"/></view>
+      <view style="border-right: 1rpx solid rgba(230, 177, 40, 1)"><image src="{{imageTrue}}" class="imageTrue" /></view>
+    </view>
+    <view class="main-per" style="background-color:rgba(246, 245, 242, 1);">
+      <view style="width:142rpx;">膳食建议</view>
+      <view><image src="{{imageTrue}}"  class="imageTrue"/></view>
+      <view><image src="{{imageTrue}}"  class="imageTrue"/></view>
+      <view><image src="{{imageTrue}}"  class="imageTrue"/></view>
+      <view style="border-right: 1rpx solid rgba(230, 177, 40, 1)"><image src="{{imageTrue}}" class="imageTrue" /></view>
+    </view>
+    <view class="main-per" style="background-color:white;">
+      <view style="width:142rpx;">报告管理</view>
+      <view><image src="{{imageFalse}}"  class="imageFalse"/></view>
+      <view><image src="{{imageTrue}}"  class="imageTrue"/></view>
+      <view><image src="{{imageTrue}}"  class="imageTrue"/></view>
+      <view style="border-right: 1rpx solid rgba(230, 177, 40, 1)"><image src="{{imageTrue}}" class="imageTrue" /></view>
+    </view>
+    <view class="main-per" style="background-color:rgba(246, 245, 242, 1);">
+      <view style="width:142rpx;">VIP专享商品</view>
+      <view><image src="{{imageFalse}}"  class="imageFalse"/></view>
+      <view><image src="{{imageFalse}}"  class="imageFalse"/></view>
+      <view><image src="{{imageTrue}}"  class="imageTrue"/></view>
+      <view style="border-right: 1rpx solid rgba(230, 177, 40, 1)"><image src="{{imageTrue}}" class="imageTrue" /></view>
+    </view>
+    <view class="main-per" style="background-color:white;">
+      <view style="width:142rpx;">健康专题</view>
+      <view><image src="{{imageTrue}}"  class="imageTrue"/></view>
+      <view><image src="{{imageTrue}}"  class="imageTrue"/></view>
+      <view><image src="{{imageTrue}}"  class="imageTrue"/></view>
+      <view style="border-right: 1rpx solid rgba(230, 177, 40, 1)"><image src="{{imageTrue}}" class="imageTrue" /></view>
+    </view>
+    <view class="main-per" style="background-color:rgba(246, 245, 242, 1);">
+      <view style="width:142rpx;">尊享身份标识</view>
+      <view><image src="{{imageFalse}}"  class="imageFalse"/></view>
+      <view><image src="{{imageFalse}}"  class="imageFalse"/></view>
+      <view><image src="{{imageTrue}}"  class="imageTrue"/></view>
+      <view style="border-right: 1rpx solid rgba(230, 177, 40, 1)"><image src="{{imageTrue}}" class="imageTrue" /></view>
+    </view>
+    <view class="main-per" style="background-color:white;border-bottom: 1rpx solid rgba(230, 177, 40, 1);border-radius: 0 0 8rpx 8rpx">
+      <view style="width:142rpx;">更多权益</view>
+      <view><image src="{{imageFalse}}"  class="imageFalse"/></view>
+      <view><image src="{{imageTrue}}"  class="imageTrue"/></view>
+      <view style="color:rgba(0, 0, 0, 0.4)">抢先体验</view>
+      <view style="border-right: 1rpx solid rgba(230, 177, 40, 1);color:rgba(0,0,0,0.4)">抢先体验</view>
+    </view>
+  </view>
+  
+</view>
+
+

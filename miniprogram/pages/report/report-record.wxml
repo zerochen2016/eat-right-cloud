@@ -1,5 +1,6 @@
+<header-navigate id="header"></header-navigate>
 <!-- <view hidden="{{reportCount > 0 ? '' :true}}"> -->
-  <calendar bind:dateChange="dateChangeTap" bind:selectDay="selectDay" id="calendar"></calendar>
+  <calendar bind:dateChange="dateChangeTap" bind:selectDay="selectDay" id="calendar" ></calendar >
   <block wx:if="{{vipInfo.isVip}}">
     <block wx:for="{{reports}}" wx:key="true">
       <view class="report" data-id="{{profileId}}" data-path="report/report-report" bindtap="nTo">

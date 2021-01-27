@@ -1,5 +1,5 @@
-<!-- TODO -->
-<view class="content-tab-3">  
+<header-navigate id="header"></header-navigate>
+<view class="content-tab-3" style="margin-top:{{statusHeight-20}}px">  
     <view class="content-tab-3-view" >
         <view class="content-tab-3-view-text-1">手机号</view>
         <view class="content-tab-3-view-text-2">{{user.mobile}}</view>

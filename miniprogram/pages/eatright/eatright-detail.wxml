@@ -1,4 +1,5 @@
-<view class="eat-main">
+<header-navigate id="header"></header-navigate>
+<view class="eat-main" style="margin-top:{{statusHeight}}px">
   <view class="{{hasResult ? 'eat-main-left-result' :'eat-main-left'}}">
     <view class="eat-main-left-text1" style="{{hasResult ? 'color:white' : ''}}">{{reportBefore.dateText}}</view>
     <view class="eat-main-left-text2-has" style="{{hasResult ? 'color:white' : ''}}">{{reportBefore.riskIndex}}</view>

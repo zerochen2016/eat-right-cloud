@@ -1,4 +1,5 @@
-<view class="title">吃对了么VIP会员服务协议</view>
+<header-navigate id="header"></header-navigate>
+<view class="title" style="margin-top:{{statusHeight}}px">吃对了么VIP会员服务协议</view>
 <view class="title-time">本版本更新时间：2020年7月18日</view>
 <view class="content">
   <text>

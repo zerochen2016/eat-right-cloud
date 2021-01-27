@@ -13,19 +13,19 @@ Page({
     imageLogoAlert: app.globalData.resourcesHost + 'logo-alert@2x.png',
     imageCancelCircle: app.globalData.resourcesHost + 'cancel-circle@2x.png',
     imageWangweigong1: app.globalData.resourcesHost + 'article/wangweigong1.png',
-    imageJianzhi:  app.globalData.resourcesHost + 'home/jianzhi.jpg',
-    imageJiankang:  app.globalData.resourcesHost + 'home/jiankang.jpg',
-    imageYingyang:  app.globalData.resourcesHost + 'home/yingyang.jpg',
-    imageShanshi:  app.globalData.resourcesHost + 'home/shanshi.jpg',
-    imageDeviceHome:  app.globalData.resourcesHost + 'home/device-home.jpg',
-    imageProductMain:  app.globalData.resourcesHost + 'home/product-main.jpg',
-    imageProduct1:  app.globalData.resourcesHost + 'home/product1.jpg',
-    imageProduct2:  app.globalData.resourcesHost + 'home/product2.jpg',
-    imageProduct3:  app.globalData.resourcesHost + 'home/product3.jpg',
-    imageProduct4:  app.globalData.resourcesHost + 'home/product4.jpg',
-    imageProduct5:  app.globalData.resourcesHost + 'home/product5.jpg',
-    imageProduct6:  app.globalData.resourcesHost + 'home/product6.jpg',
-    imageProduct7:  app.globalData.resourcesHost + 'home/product7.jpg',
+    imageJianzhi:  app.globalData.resourcesHost + 'home/jianzhi-new.jpg',
+    imageJiankang:  app.globalData.resourcesHost + 'home/jiankang-new.jpg',
+    imageYingyang:  app.globalData.resourcesHost + 'home/yingyang-new.jpg',
+    imageShanshi:  app.globalData.resourcesHost + 'home/shanshi-new.jpg',
+    imageDeviceHome:  app.globalData.resourcesHost + 'home/device-home-new.jpg',
+    imageProductMain:  app.globalData.resourcesHost + 'home/product-main-new.jpg',
+    imageProduct1:  app.globalData.resourcesHost + 'home/product1-new.jpg',
+    imageProduct2:  app.globalData.resourcesHost + 'home/product2-new.jpg',
+    imageProduct3:  app.globalData.resourcesHost + 'home/product3-new.jpg',
+    imageProduct4:  app.globalData.resourcesHost + 'home/product4-new.jpg',
+    imageProduct5:  app.globalData.resourcesHost + 'home/product5-new.jpg',
+    imageProduct6:  app.globalData.resourcesHost + 'home/product6-new.jpg',
+    imageProduct7:  app.globalData.resourcesHost + 'home/product7-new.jpg',
   },
   
   
@@ -49,6 +49,8 @@ Page({
   onShow: function () {
     
     const that = this
+    //导航标题
+    this.selectComponent("#header").setTitle("探索")
     //导航选中
     this.selectComponent("#bottom-navigate").changeActiveIndex(0)
     let user = app.getUser()
@@ -103,7 +105,30 @@ Page({
   },
   
   onPageScroll(e){
-    console.log(e)
+    console.log(e.scrollTop)
+    console.log(this.data.scrollTop)
+    if(this.data.scrollTop > e.scrollTop){
+      console.log("页面上滑")
+      if(!(this.data.showTitle)){
+        //调用显示动画
+        this.selectComponent("#header").show()
+        this.setData({
+          showTitle: true
+        })
+      }
+    }else{
+      console.log("页面下滑")
+      if((this.data.showTitle)){
+        //调用消失动画
+        this.selectComponent("#header").hide()
+        this.setData({
+          showTitle: false
+        })
+      }
+    }
+    this.setData({
+      scrollTop: e.scrollTop
+    })
   },
   
   
@@ -302,4 +327,15 @@ Page({
       },
     })     
   },
+  toYouzanShop: function(e){
+    wx.navigateToMiniProgram({
+      appId: 'wx6deb54e571e86e3c',
+      extraData: {},
+      envVersion: 'release',
+      success(res) {
+        // 打开成功
+        console.log('navigateToMiniProgram youzan')
+      }
+    })
+  }
 })

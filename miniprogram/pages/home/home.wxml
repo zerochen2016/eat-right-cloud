@@ -1,6 +1,7 @@
 
 <!-- 探索start -->
-<view class="text72" style="margin-left: 40rpx;margin-top: 40rpx;">探索</view>
+<header-navigate id="header"></header-navigate>
+<view class="text72" style="margin-left: 40rpx;margin-top: {{statusHeight}}px;">探索</view>
 <view class="line" style="margin-top: 20rpx;"></view>
 <view class="special-view">
   <scroll-view class="special-scroll" scroll-x="true" bindscroll="scroll" style="width: 100%">
@@ -36,7 +37,7 @@
 </view> -->
 <view class="line" style="margin-top: 48rpx;"></view>
 <view class="text40" style="margin-left: 40rpx;margin-top: 60rpx;">精选</view>
-<view style="width: 670rpx;height: 776rpx;background: #FDFDFD;box-shadow: 0rpx 8rpx 20rpx 0rpx rgba(0, 0, 0, 0.02), 0rpx -8rpx 20rpx 0px rgba(0, 0, 0, 0.02);border-radius: 30rpx;margin-left: 40rpx;margin-top: 30rpx;">
+<view bindtap="toYouzanShop" style="width: 670rpx;height: 776rpx;background: #FDFDFD;box-shadow: 0rpx 8rpx 20rpx 0rpx rgba(0, 0, 0, 0.02), 0rpx -8rpx 20rpx 0px rgba(0, 0, 0, 0.02);border-radius: 30rpx;margin-left: 40rpx;margin-top: 30rpx;">
   <image src="{{imageProductMain}}" style="width: 670rpx;height: 776rpx;box-shadow: 0rpx 8rpx 20rpx 0rpx rgba(0, 0, 0, 0.02), 0rpx -8rpx 20rpx 0px rgba(0, 0, 0, 0.02);border-radius: 30rpx;" />
 </view>
 <!-- <view class="select-list">

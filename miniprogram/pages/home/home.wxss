@@ -107,7 +107,7 @@ page{
   float: left;
 }
 .select-scroll-view{
-  width: 670rpx;
+  width: 730rpx;
   height: 570rpx;
   margin-left: 20rpx;
   margin-top: 30rpx;

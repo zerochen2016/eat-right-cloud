@@ -1,4 +1,5 @@
-<view style="width:100%;height:360rpx;background-color:white">
+<header-navigate id="header"></header-navigate>
+<view style="width:100%;height:360rpx;background-color:white;margin-top:{{statusHeight-20}}px">
   <image src="{{thisInfo.user_profile.avatar_url}}" style="width:180rpx;height:180rpx;margin-top:40rpx;margin-left:285rpx;border-radius:50%" />
   <view class="text52" style="margin-top:20rpx;width:100%;text-align:center">{{thisInfo.user_profile.nickname}}</view>
 </view>

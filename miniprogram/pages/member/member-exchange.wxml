@@ -1,4 +1,5 @@
-<image class="card" src="{{imageCard}}" />
+<header-navigate id="header"></header-navigate>
+<image class="card" style="margin-top:{{statusHeight}}px"  src="{{imageCard}}" />
 <view class="button-success" style="margin-top:70rpx" bindtap="scan">
   <image src="{{imageScan}}" style="width:40rpx;height:40rpx;margin-left:200rpx;float:left;margin-top:40rpx" />
   <text style="float:left;margin-left:20rpx">扫码兑换</text>

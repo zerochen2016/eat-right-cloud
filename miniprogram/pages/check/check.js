@@ -69,6 +69,8 @@ Page({
     //底部导航选中
     this.selectComponent("#bottom-navigate").changeActiveIndex(1)
     this.checkHasGuide()
+    //标题
+    this.selectComponent("#header").setTitle("检测")
   },
   checkHasGuide: function(){
     if(app.gethasGuide() == 1){
@@ -404,4 +406,30 @@ Page({
       },
     })  
   },  
+  onPageScroll(e){
+    console.log(e.scrollTop)
+    console.log(this.data.scrollTop)
+    if(this.data.scrollTop > e.scrollTop){
+      console.log("页面上滑")
+      if(!(this.data.showTitle)){
+        //调用显示动画
+        this.selectComponent("#header").show()
+        this.setData({
+          showTitle: true
+        })
+      }
+    }else{
+      console.log("页面下滑")
+      if((this.data.showTitle)){
+        //调用消失动画
+        this.selectComponent("#header").hide()
+        this.setData({
+          showTitle: false
+        })
+      }
+    }
+    this.setData({
+      scrollTop: e.scrollTop
+    })
+  },
 })

@@ -1,4 +1,5 @@
-<view class="special-view">
+<header-navigate id="header"></header-navigate>
+<view class="special-view" style="margin-top:{{statusHeight}}px">
   <scroll-view class="special-scroll" scroll-x="true" bindscroll="scroll">
     <block wx:for="{{menus}}" wx:key="true">
       <view id="{{index}}" data-id="{{item.menu_id}}" class="{{activeIndex == index ? 'special-scroll-text' : 'special-scroll-text-grey'}}" bindtap="changeSpecial">{{item.menu_name}}</view>

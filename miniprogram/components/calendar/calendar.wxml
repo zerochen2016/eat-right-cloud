@@ -1,5 +1,5 @@
-<view class="cal" bindtouchstart="headTouchStart" bindtouchmove="headTouchMove" bindtouchend="headTouchEnd" >
-  <view class="cal-head">
+<view class="cal"  bindtouchstart="headTouchStart" bindtouchmove="headTouchMove" bindtouchend="headTouchEnd" >
+  <view class="cal-head" style="margin-top:{{height}}px">
     <image src="{{imageArrowLeft}}" style="margin-left: 107rpx;" bindtap="dateChangeTap" data-ori="0" data-date="{{nowDate}}" />
     <picker class="cal-head-picker" fields="month" mode="date" value="{{nowDate}}" bindchange="dateChangeTap" >
     {{nowDateChinese}}

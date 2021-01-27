@@ -1,4 +1,5 @@
-<image class="logo-view" src="{{imageLogoLogin}}"></image>
+<header-navigate id="header"></header-navigate>
+<image class="logo-view" src="{{imageLogoLogin}}" style="margin-top:{{statusHeight + 80}}px"></image>
 <block  wx:if="{{hasAuth==false}}">
   <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"
 class="wechat" data-logintype="1" style="width: 606rpx;height: 120rpx;" >

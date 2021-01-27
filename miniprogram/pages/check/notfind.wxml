@@ -1,2 +1,18 @@
-<!--pages/check/notfind.wxml-->
-<text>pages/check/notfind.wxml</text>
+
+<header-navigate id="header"></header-navigate>
+<view class="check-search-title" style="margin-top:{{statusHeight}}px">未发现可用设备</view>
+    <image class="check-search-notfind" src="{{imageDevice}}" />
+    <view class="check-search-notfind-text">
+      <image src="{{imageWarnCircleFill}}" />
+      <text>检查需要查找的小阶感测器是否开启！</text>
+    </view>
+    <view class="button-success" data-path="check/search" bindtap="nTo" style="margin-top:120rpx;float:left;margin-left:72rpx">再次搜索</view>
+    <view class="goods-card" style="float:left;margin-top:310rpx" bindtap="toYouzan" data-alias="1y34bn2g4wu68">
+      <image class="goods-card-image" src="{{imageDeviceSell}}" />
+      <view class="goods-card-text-1">小阶感测器</view>
+      <view class="goods-card-text-2">弹指之间 健康可见</view>
+      <view class="goods-card-button">
+        <view>立即拥有</view>
+        <image src="{{imageArrowWhite}}" />
+      </view>
+    </view>

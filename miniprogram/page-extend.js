@@ -33,6 +33,12 @@ const pageExtend = Page => {
           })
         }
       }
+
+      this.setData({
+        scrollTop: 0,
+        showTitle: true
+      })
+
       this.getWechatUserInfo(this)//微信授权信息   
       let userProfile = app.getUserProfile()
 
@@ -47,6 +53,18 @@ const pageExtend = Page => {
       if (typeof onLoaded === 'function') {
         onLoaded.call(this, options)
       }
+      //顶部导航高度
+      let menuInfo = wx.getMenuButtonBoundingClientRect()
+      wx.getSystemInfo({
+        success: (result) => {
+          console.log(result)
+          let pixelRatio = result.pixelRatio
+          let statusHeight = menuInfo.top + menuInfo.bottom - result.statusBarHeight
+          this.setData({
+            statusHeight: statusHeight + 20
+          })          
+        },
+      })
     }
     
     // 公共的onShareAppMessage事件处理函数

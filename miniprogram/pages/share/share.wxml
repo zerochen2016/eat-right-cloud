@@ -1,2 +1,1 @@
-<!--pages/share/share.wxml-->
-<text>pages/share/share.wxml</text>
+<header-navigate id="header"></header-navigate>
