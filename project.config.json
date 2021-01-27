@@ -81,6 +81,12 @@
         {
           "name": "pages/report/report-record",
           "pathName": "pages/report/report-record",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/help-feedback/help-feedback",
+          "pathName": "pages/help-feedback/help-feedback",
           "scene": null
         }
       ]

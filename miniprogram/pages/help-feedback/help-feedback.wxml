@@ -9,13 +9,13 @@
 </view>
 <view class="guesslike">猜你喜欢</view>
 <view class="content-tab-2">
-  <view class="content-tab-2-view" >
-    <view>怎么开启手机蓝牙？</view>
-    <image src="{{imageArrow}}"/>
-  </view>
-  <view class="content-tab-2-view" >
+  <view class="content-tab-2-view" bindtap="nTo" data-path="help-feedback/question" data-id="2">
     <view>感测器对手机有什么要求？</view>
     <image src="{{imageArrow}}"/>
   </view>
+  <view class="content-tab-2-view" bindtap="nTo" data-path="help-feedback/question" data-id="3">
+    <view>如何查看感测器MAC地址？</view>
+    <image src="{{imageArrow}}"/>
+  </view>  
 </view>
 <view class="feedback" bindtap="nTo" data-path="help-feedback/help-feedback-feedback"><image class="feedback-image" src="{{imageFeedback}}" /><text>反馈</text></view>

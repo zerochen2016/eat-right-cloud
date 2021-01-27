@@ -130,7 +130,7 @@ page{
 }
 .content-tab-2{
   width: 100%;
-  height: 384rpx;
+  height: 256rpx;
   background: #FFFFFF;
   margin-top: 24rpx;
 }

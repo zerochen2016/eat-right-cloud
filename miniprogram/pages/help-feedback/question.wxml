@@ -1,0 +1,7 @@
+<header-navigate id="header"></header-navigate>
+<view class="title" style="margin-top:{{statusHeight}}px">{{title}}</view>
+<view class="content">
+  <text>
+    {{content}}
+  </text>
+</view>

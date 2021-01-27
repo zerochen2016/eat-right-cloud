@@ -19,6 +19,7 @@
     "pages/help-feedback/help-feedback",
     "pages/help-feedback/help-feedback-guide",
     "pages/help-feedback/help-feedback-feedback",
+    "pages/help-feedback/question",
 
     "pages/login/login",
     "pages/login/login-mobile",
