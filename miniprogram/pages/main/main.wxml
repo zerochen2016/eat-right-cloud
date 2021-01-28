@@ -1,0 +1,600 @@
+<header-navigate id="header"></header-navigate>
+
+<!-- 探索start -->
+<block wx:if="{{activeIndex == 0}}">
+<view style="height:4000rpx;width:750rpx;background: #F2F2F6">
+<view class="text72" style="margin-left: 40rpx;margin-top: {{statusHeight}}px;">探索</view>
+<view class="line" style="margin-top: 20rpx;"></view>
+<view class="special-view">
+  <scroll-view class="special-scroll" scroll-x="true" bindscroll="scroll" style="width: 100%">
+    <block wx:for="{{channelMenus}}" wx:key="true">
+      <image data-id="{{item.channel_id}}" data-title="{{item.topic}}" class="special-scroll-image scroll-image" src="{{item.image.public_access_url}}" bindtap="nTo" data-path="special/special" />
+    </block>        
+  </scroll-view>
+</view>
+<view style="margin-left: 40rpx;margin-top: 30rpx;width: 670rpx;height: 834rpx;" bindtap="toYouzan" data-alias="1y34bn2g4wu68" >
+  <image src="{{imageDeviceHome}}" style="width: 670rpx;height: 834rpx;border-radius: 30rpx" />
+</view>
+<view class="line" style="margin-top: 48rpx;"></view>
+<view class="text40" style="margin-left: 40rpx;margin-top: 60rpx;">精选</view>
+<view bindtap="toYouzanShop" style="width: 670rpx;height: 776rpx;background: #FDFDFD;box-shadow: 0rpx 8rpx 20rpx 0rpx rgba(0, 0, 0, 0.02), 0rpx -8rpx 20rpx 0px rgba(0, 0, 0, 0.02);border-radius: 30rpx;margin-left: 40rpx;margin-top: 30rpx;">
+  <image src="{{imageProductMain}}" style="width: 670rpx;height: 776rpx;box-shadow: 0rpx 8rpx 20rpx 0rpx rgba(0, 0, 0, 0.02), 0rpx -8rpx 20rpx 0px rgba(0, 0, 0, 0.02);border-radius: 30rpx;" />
+</view>
+<view class="select-scroll-view">
+  <scroll-view class="select-scroll" scroll-x="true" bindscroll="scroll" style="width: 100%">
+    <image class="select-scroll-image scroll-image" bindtap="toYouzan" data-alias="3eplyaiwfn4a8"  src="{{imageProduct1}}"/>
+    <image class="select-scroll-image scroll-image" bindtap="toYouzan" data-alias="2flrvx8nwwj40"  src="{{imageProduct2}}"/>
+    <image class="select-scroll-image scroll-image" bindtap="toYouzan" data-alias="2fwwdf38oibsw" src="{{imageProduct3}}"/>
+    <image class="select-scroll-image scroll-image" bindtap="toYouzan" data-alias="2fn0qxe2hj45c"v src="{{imageProduct4}}"/>
+    <image class="select-scroll-image scroll-image" bindtap="toYouzan" data-alias="1y6ue7lqkjssw" src="{{imageProduct5}}"/>
+    <image class="select-scroll-image scroll-image" bindtap="toYouzan" data-alias="3en59i82i1wcg" src="{{imageProduct6}}"/>
+    <image class="select-scroll-image scroll-image" bindtap="toYouzan" data-alias="3equzq67z86xs"  src="{{imageProduct7}}"/>  
+  </scroll-view>
+</view>
+<view class="line" style="margin-top: 30rpx;"></view>
+<view class="text40" style="margin-left: 40rpx;margin-top: 60rpx;">更多为您推荐</view>
+<image class="more-image-1" src="{{imageWangweigong1}}" bindtap="nTo" data-path="article/wangweigong"/>
+<!-- 去关注组件 -->
+<wechat-subscription style="margin-top:30rpx;float:left"></wechat-subscription>
+
+<!-- 重要通知start -->
+<view class="pop-alert" style="height:4500rpx" hidden="{{showImportantNotice == 1 ? '' : 'true'}}">
+  <view class="pop-alert-view">
+    <image class="pop-alert-view-image" src="{{imageLogoAlert}}" />
+    <view class="pop-alert-view-text">发现新版本</view>
+    <view class="pop-alert-view-line"></view>
+    <rich-text nodes="{{updateInfo}}" class="pop-alert-view-content"></rich-text>
+    <view class="pop-alert-view-button" bindtap="closeNotice" data-url="{{importantNotice.url}}">立即更新</view>
+  </view>
+  <image class="pop-alert-image" bindtap="closeNotice" src="{{imageCancelCircle}}" />
+</view>
+<!-- 重要通知end -->
+</view>
+</block>
+<!-- 探索end -->
+
+<!-- check start -->
+<block wx:elif="{{activeIndex == 1}}">
+<view name="check" style="height: 1500rpx;width:750rpx;background: #F2F2F6">
+<!-- 检测start -->
+<view class="head" style="margin-top:{{statusHeight}}px">
+  <view class="text72 head-text">欢迎回来！</view>
+  <image class="avatar90 head-avatar" src="{{userProfile.avatar_url}}"></image>
+</view>
+
+<view class="new">
+  <view class="text30 new-text-1" bindtap="showNewBook" data-status="1">
+    <image class="new-image" src="{{imageNotice}}"/>新手必读
+  </view>
+  <view class="text26 new-text-2" bindtap="nTo" data-path="article/theory-wangweigong">王唯工《气血共振理论》</view>
+</view>
+<view class="check-link">
+  <view class="check-link-equip text24">
+      <view style="{{connectStatus == 1 ? 'background-color: #00B567' : 'background-color: #E86452'}}"></view>
+      <image src="{{imageEquip}}" />
+      <text style="line-height: 66rpx;margin-left: 8rpx;">{{connectStatus == 1 ? '已连接': '未连接'}}</text>  
+  </view>
+  <view class="check-link-text" style=" float: left;width: 260rpx;height: 200rpx;margin-left: 32rpx;margin-top: 32rpx;">
+      <view class="text28" style="margin-top: 32rpx;line-height: 36rpx;">今天综合指数</view>
+      <view class="text52" style="line-height: 92rpx;">{{compositeIndex}}</view>
+  </view>
+  <view class="check-link-text" style=" float: right;width: 334rpx;height: 200rpx;margin-right: 32rpx;margin-top: 32rpx;">
+    <view class="text28" style="margin-top: 32rpx;line-height: 36rpx;">最近一次检测</view>
+    <view class="text52" style="line-height: 92rpx;">{{lastCheckDate}}</view>
+  </view>    
+  <block wx:if="{{connectStatus == 1}}">
+    <view class="button-success" style="float: left;margin-left: 32rpx;margin-top: 40rpx" bindtap="{{(hasGuide) ? 'reLaTo' : 'showNewBook'}}" data-status="1" data-device="{{deviceConnectedJson}}" data-path="check/connect">开始检测</view>  
+  </block>
+  <block wx:else>
+    <view class="button-success" style="float: left;margin-left: 32rpx;margin-top: 40rpx" bindtap="reLaTo" data-device="{{deviceConnectedJson}}" data-path="check/search">连接小阶</view>  
+  </block>
+
+</view>
+<!-- 后续版本 -->
+<!-- <view class="content-view">
+  <image class="content-image" src="{{imageApple}}" style="border-radius:50%" />
+  <view class="content-text">
+    <text class="text38">午餐吃什么</text>
+    <text class="text24" style="margin-top:10rpx;display: block">测一下看看今天应该吃什么</text>
+  </view>
+</view>
+<view class="content-view">
+  <image class="content-image" src="{{imageChallenge}}" />
+  <view class="content-text">
+    <text class="text38">发起挑战</text>
+    <text class="text24" style="margin-top:10rpx;display: block">TA的健康我一直很在乎</text>
+  </view>
+</view> -->
+<button class="share-button" style="width: 670rpx;height: 184rpx;margin-top: 30rpx;margin-left: 40rpx;float:left" open-type="share">
+  <image class="share-image" src="{{imageInvite}}" />
+  <view class="share-view">
+    <text class="text38" style="float: left;">邀请好友</text>
+    <!-- 后续版本 -->
+    <!-- <image class="share-text-image" src="{{imageShare}}" /> -->
+    <text class="text24" style="margin-top:10rpx;float: left;display: block">分享快乐与传递健康同等重要</text>
+  </view>
+</button>
+<!-- 检测end -->
+<!-- 新手必读start -->
+<view class="new-book" hidden="{{showNewBook?'':'false'}}">
+  <view class="new-book-main">
+    <block wx:if="{{step == 1}}">
+      <view class="text48 new-book-title">补充基本信息</view>
+      <view class="text24 new-book-title-little">性别涉及到检测的准确性，请填写使用者准备性别</view>
+      <view class="new-book-step">
+        <view class="new-book-step-circle" style="margin-left:60rpx;background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-line"></view>
+        <view class="new-book-step-circle"></view>
+        <view class="new-book-step-line"></view>
+        <view class="new-book-step-circle"></view>
+        <view class="new-book-step-line"></view>
+        <view class="new-book-step-circle"></view>
+      </view>
+      <view class="new-book-step-text">
+        <text>检测</text>
+        <text style="margin-left:20rpx">生日</text>
+        <text>身高体重</text>
+        <text style="margin-left:25rpx">检测偏好</text>
+      </view>
+      <view class="new-book-gender" >
+        <view bindtap="changeGender" data-gender="GENDER_MALE" style="{{userProfile.gender == 'GENDER_MALE' ? 'border: 2rpx solid rgba(0, 149, 145, 1);background-color:rgba(0, 149, 145, 0.06);' : ''}}">
+          <image src="{{userProfile.gender == 'GENDER_MALE' ? imageGender1 : imageGender1Grey}}" />
+          <text style="{{userProfile.gender == 'GENDER_MALE' ? 'color:rgba(0, 149, 145, 1)' : ''}}">男</text>
+        </view>
+        <view bindtap="changeGender" data-gender="GENDER_FEMALE" style="{{userProfile.gender == 'GENDER_FEMALE' ? 'border: 2rpx solid rgba(0, 149, 145, 1);background-color:rgba(0, 149, 145, 0.06);' : ''}}">
+          <image src="{{userProfile.gender == 'GENDER_FEMALE' ? imageGender2 : imageGender2Grey}}" />
+          <text style="{{userProfile.gender == 'GENDER_FEMALE' ? 'color:rgba(0, 149, 145, 1)' : ''}}">女</text>
+        </view>
+      </view>
+      <block wx:if="{{userProfile.gender == 'GENDER_FEMALE'}}">
+        <view class="step-button-success" data-step="{{step}}" bindtap="nextStep" >下一步</view>
+      </block>
+      <block wx:elif="{{userProfile.gender == 'GENDER_MALE'}}">
+        <view class="step-button-success" data-step="{{step}}" bindtap="nextStep" >下一步</view>
+      </block>
+      <block wx:else>
+        <view class="step-button-grey" >下一步</view>
+      </block>
+    </block>
+    <block wx:elif="{{step == 2}}">
+      <!-- 生日 -->
+      <view class="text48 new-book-title">完善信息使检测更精确</view>
+      <view class="text24 new-book-title-little"></view>
+      <view class="new-book-step">
+        <view class="new-book-step-circle" style="margin-left:60rpx;background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-line" style="background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-circle" style="background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-line" ></view>
+        <view class="new-book-step-circle" ></view>
+        <view class="new-book-step-line"></view>
+        <view class="new-book-step-circle"></view>
+      </view>
+      <view class="new-book-step-text">
+        <text>检测</text>
+        <text style="margin-left:20rpx">生日</text>
+        <text>身高体重</text>
+        <text style="margin-left:25rpx">检测偏好</text>
+      </view>
+      <view class="new-book-select" >
+        <view class="new-book-select-view-1">生日</view>
+        <picker class="new-book-select-picker" mode="date" value="{{userProfile.birthday.year}}-{{userProfile.birthday.month}}-{{userProfile.birthday.day}}" bindchange="birthdayChange" >{{userProfile.birthday.year}}-{{userProfile.birthday.month}}-{{userProfile.birthday.day}}</picker>
+        <view class="line" style="width:544rpx;margin-left:48rpx;float:left;margin-top:24rpx"></view>
+      </view>
+      <view class="step-button-last" data-step="{{step}}" style="width:256rpx" bindtap="lastStep" >上一步</view>
+      <view class="step-button-success" style="width:256rpx" data-step="{{step}}" bindtap="nextStep" >下一步</view>
+    </block>
+    <!-- 体重身高 -->
+    <block wx:elif="{{step == 3}}">
+      <view class="text48 new-book-title">完成大半了</view>
+      <view class="text24 new-book-title-little"></view>
+      <view class="new-book-step">
+        <view class="new-book-step-circle" style="margin-left:60rpx;background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-line" style="background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-circle" style="background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-line" style="background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-circle" style="background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-line"></view>
+        <view class="new-book-step-circle"></view>
+      </view>
+      <view class="new-book-step-text">
+        <text>检测</text>
+        <text style="margin-left:20rpx">生日</text>
+        <text>身高体重</text>
+        <text style="margin-left:25rpx">检测偏好</text>
+      </view>
+      <view class="new-book-select" >
+        <view class="new-book-select-view-1">身高</view>
+        <picker class="new-book-select-picker"  bindchange="heightChange" value="{{heightIndex}}" range="{{heightArray}}" style="{{userProfile.height?userProfile.height:'color: rgba(0, 0, 0, 0.4);'}}">
+          <block wx:if="{{userProfile.height}}">{{userProfile.height}} CM</block>
+          <block wx:else="{{userProfile.height}}">请选择</block>
+        </picker>
+        <view class="line" style="width:544rpx;margin-left:48rpx;float:left;margin-top:24rpx"></view>
+      <view class="new-book-select" style="margin-top:24rpx">
+        <view class="new-book-select-view-1" >体重</view>
+        <picker class="new-book-select-picker"  bindchange="weightChange" value="{{weightIndex}}" range="{{weightArray}}" style="{{userProfile.weight?userProfile.weight:'color: rgba(0, 0, 0, 0.4);'}}">
+          <block wx:if="{{userProfile.weight}}">{{userProfile.weight}} KG</block>
+          <block wx:else="{{userProfile.weight}}">请选择</block>
+        </picker>
+        <view class="line" style="width:544rpx;margin-left:48rpx;float:left;margin-top:24rpx"></view>
+      </view>
+      </view>
+      <view class="step-button-last" data-step="{{step}}" style="width:256rpx" bindtap="lastStep" >上一步</view>
+      <block wx:if="{{userProfile.weight && userProfile.height}}">
+        <view class="step-button-success" style="width:256rpx" data-step="{{step}}" bindtap="nextStep" >下一步</view>
+      </block>
+      <block wx:else>
+        <view class="step-button-grey" style="width:256rpx"  >下一步</view>
+      </block>
+    </block>
+    <!-- 食指 -->
+    <block wx:if="{{step == 4}}">
+      <view class="text48 new-book-title">最后一步</view>
+      <view class="text24 new-book-title-little"></view>
+      <view class="new-book-step">
+        <view class="new-book-step-circle" style="margin-left:60rpx;background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-line" style="background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-circle" style="background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-line" style="background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-circle" style="background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-line" style="background-color:rgba(0, 149, 145, 1)"></view>
+        <view class="new-book-step-circle" style="background-color:rgba(0, 149, 145, 1)"></view>
+      </view>
+      <view class="new-book-step-text">
+        <text>检测</text>
+        <text style="margin-left:20rpx">生日</text>
+        <text>身高体重</text>
+        <text style="margin-left:25rpx">检测偏好</text>
+      </view>
+      <view class="new-book-hand" >
+        <view bindtap="changeHand" data-hand="HAND_LEFT" style="{{userProfile.hand == 'HAND_LEFT' ? 'border: 2rpx solid rgba(0, 149, 145, 1);background-color: rgba(0, 149, 145, 0.06);' : ''}}">
+          <text style="{{userProfile.hand == 'HAND_LEFT' ? 'color:rgba(0, 149, 145, 1)' : ''}}">左食指</text>
+          <image src="{{imageRecommend}}"/>
+        </view>
+        <view bindtap="changeHand" data-hand="HAND_RIGHT" style="{{userProfile.hand == 'HAND_RIGHT' ? 'border: 2rpx solid rgba(0, 149, 145, 1);background-color: rgba(0, 149, 145, 0.06);' : ''}}">
+          <text style="{{userProfile.hand == 'HAND_RIGHT' ? 'color:rgba(0, 149, 145, 1)' : ''}}">右食指</text>
+        </view>
+      </view>
+      <view class="step-button-last" data-step="{{step}}" bindtap="lastStep" style="width:256rpx" >上一步</view>
+      <block wx:if="{{userProfile.hand == 'HAND_LEFT' || userProfile.hand == 'HAND_RIGHT'}}">
+        <view class="step-button-success" style="width:256rpx" data-step="{{step}}" bindtap="nextStep" >完成</view>
+      </block>
+      <block wx:else>
+        <view class="step-button-grey" style="width:256rpx"  >完成</view>
+      </block>
+    </block>    
+  </view>
+  <block wx:if="{{hasGuide}}">
+    <image class="new-book-close" src="{{imageCancelCircle}}" bindtap="showNewBook" data-status="0"/>
+  </block>
+</view>
+<!-- 新手必读end -->
+<!-- 新手必读 设备start -->
+<view class="new-book" hidden="{{showDeviceGuide?'':'false'}}">
+  <view class="new-book-main" style="height:850rpx">
+    <block wx:if="{{step2 == 0}}">
+      <view class="new-device-title-l text40"><text style="color:rgba(0, 149, 145, 1)">3</text>步正确使用</view>
+      <view class="new-device-title text80">小阶感测器</view>
+      <image class="new-device-image" src="{{imageDevice}}"/>
+      <view class="step-button-success" bindtap="nextStep2" data-step="{{step2}}">开始学习</view>
+    </block>
+  <block wx:if="{{step2 == 1}}">
+    <view class="new-device-title-d text48">
+      ①将设置的左手食指充分置入感测器尽头
+    </view>
+    <image class="new-device-step1-image" src="{{imageStep1}}" />
+    <view class="step-button-success" style="margin-top:60rpx" bindtap="nextStep2" data-step="{{step2}}">下一步{{step2}}/3</view>
+  </block>
+  <block wx:if="{{step2 == 2}}">
+    <view class="new-device-title-d text48">
+      ②将手平稳放置桌面上
+    </view>
+    <image class="new-device-step1-image" src="{{userProfile.gender == 'GENDER_MALE' ? imageStep2G1 : imageStep2G2}}" />
+    <view class="step-button-success" style="margin-top:60rpx" bindtap="nextStep2" data-step="{{step2}}">下一步{{step2}}/3</view>
+    <view class="text36" style="width:100%;float:left;color:rgba(0, 149, 145, 1);margin-top:36rpx;text-align:center" bindtap="lastStep2" data-step="{{step2}}">上一步</view>
+  </block>  
+  <block wx:if="{{step2 == 3}}">
+    <view class="new-device-title-d text48">
+      ③端正坐姿 双手双脚放平
+    </view>
+    <image class="new-device-step1-image" src="{{userProfile.gender == 'GENDER_MALE' ? imageStep3G1 : imageStep3G2}}" />
+    <view class="step-button-success" style="margin-top:60rpx" bindtap="nextStep2" data-step="{{step2}}">我会了{{step2}}/3</view>
+    <view class="step-button-last" style="margin-top:20rpx" bindtap="nTo" data-path="article/theory-wangweigong" >了解气血共振理论</view>
+    <view class="text36" style="width:100%;float:left;color:rgba(0, 149, 145, 1);margin-top:36rpx;text-align:center" bindtap="lastStep2" data-step="{{step2}}">上一步</view>
+  </block>    
+  </view>
+  <block wx:if="{{hasGuide}}">
+    <image class="new-book-close" src="{{imageCancelCircle}}" bindtap="showNewBook" data-status="0"/>
+  </block>
+</view>
+<!-- 新手必读 设备end -->
+</view>
+</block>
+<!-- check end -->
+
+<!-- eatright start -->
+<block wx:elif="{{activeIndex == 2}}">
+<view name="eatright" style="background: #F2F2F6">
+<view class="text72 eat-title" style="margin-top:{{statusHeight}}px">吃对了吗</view>
+<view class="eat-main">
+  <view class="{{hasResult ? 'eat-main-left-result' :'eat-main-left'}}" bindtap="openSelectReport" data-ori="1">
+    <block wx:if="{{reportBefore.riskIndex > 0}}">
+      <view class="eat-main-left-text1" style="{{hasResult ? 'color:white' : ''}}">{{reportBefore.dateText}}</view>
+      <view class="eat-main-left-text2-has" style="{{hasResult ? 'color:white' : ''}}">{{reportBefore.riskIndex}}</view>
+      <view class="eat-main-left-text3-has" style="{{hasResult ? 'color:white' : ''}}">综合风险指数({{reportBefore.timeDetail}})</view>
+    </block>
+    <block wx:else>
+      <view class="eat-main-left-text1">吃前</view>
+      <view class="eat-main-left-text2-no">选择报告</view>
+      <view class="eat-main-left-text3-no">获取风险指数</view>
+    </block>
+  </view>
+  <view class="{{hasResult ? 'eat-main-right-result' : 'eat-main-right'}}" bindtap="openSelectReport" data-ori="2">
+    <block wx:if="{{reportAfter.riskIndex > 0}}">
+      <view class="eat-main-right-text1" style="{{hasResult ? 'color:white' : ''}}">{{reportAfter.dateText}}</view>
+      <view class="eat-main-right-text2-has" style="{{hasResult ? 'color:white' : ''}}">{{reportAfter.riskIndex}}</view>
+      <view class="eat-main-right-text3-has" style="{{hasResult ? 'color:white' : ''}}">综合风险指数({{reportAfter.timeDetail}})</view>
+    </block>
+    <block wx:else>
+      <view class="eat-main-right-text1">吃后</view>
+      <view class="eat-main-right-text2-no">选择报告</view>
+      <view class="eat-main-right-text3-no">获取风险指数</view>
+    </block>
+  </view>
+  <block wx:if="{{compareReport.resultStatus == 1}}">
+    <view class="eat-main-image"><image src="{{imageEatrightDown}}" /></view>
+  </block>
+  <block wx:elif="{{compareReport.resultStatus == 2}}">
+    <view class="eat-main-image"><image src="{{imageEatright}}" /></view>
+  </block>
+  <block wx:elif="{{compareReport.resultStatus == 3}}">
+    <view class="eat-main-image"><image src="{{imageEatrightUp}}" /></view>
+  </block>
+  <block wx:else>
+    <view class="eat-main-image"><image src="{{imageEatrightGrey}}" /></view>
+  </block>  
+</view>
+<!-- 对比结果start -->
+<block wx:if="{{hasResult}}">
+  <view class="compare">
+    <block wx:if="{{compareReport.resultStatus == 1}}">
+      <image src="{{imageCompareDown}}" class="compare-image" />
+      <view class="compare-title">真棒！综合风险指数<text style="color:rgba(0, 141, 80, 1)">降低</text>了</view>
+      <view class="compare-type">
+        <view class="compare-type-image"><image src="{{imageCompareArrowDown}}" style="width: 24rpx;height: 32rpx;margin-left: 10rpx;margin-top: 6rpx;float: left;"/></view>
+        <view class="compare-type-text">降低：<text style="color:rgba(0, 141, 80, 1)">{{compareReport.decreased_risks_count}}</text>/18</view>
+      </view>
+      <view class="compare-type-little">
+        <view class="compare-type-image-2"><image src="{{imageCompareArrowUp}}" style="width: 24rpx;height: 32rpx;margin-left: 10rpx;margin-top: 19rpx;float: left;"/></view>
+        <view class="compare-type-text-2" >升高：<text style="color:rgba(255, 159, 0, 1)">{{compareReport.increased_risks_count}}</text>/18</view> 
+        <view class="compare-type-text-3">平衡：<text style="color:rgba(0, 149, 145, 1)">{{compareReport.same_risks_count}}</text>/18</view> 
+        <view class="compare-type-image-3"><image src="{{imageCompareArrow}}" style="width: 26rpx;height: 8rpx;margin-right: 9rpx;margin-top: 31rpx;float: right;"/></view>
+      </view>
+    </block>
+    <block wx:if="{{compareReport.resultStatus == 2}}">
+      <image src="{{imageCompare}}" class="compare-image" />
+      <view class="compare-title">加油！综合风险指数<text style="color:rgba(0, 149, 145, 1)">改善不明显</text></view>
+      <view class="compare-type">
+        <view class="compare-type-image"><image src="{{imageCompareArrow}}" style="width: 26rpx;height: 8rpx;margin-left: 9rpx;margin-top: 18rpx;float: left;"/></view>
+        <view class="compare-type-text">平衡：<text style="color:rgba(0, 149, 145, 1)">{{compareReport.same_risks_count}}</text>/18</view>
+      </view>
+      <view class="compare-type-little">
+        <view class="compare-type-image-2"><image src="{{imageCompareArrowUp}}" style="width: 24rpx;height: 32rpx;margin-left: 10rpx;margin-top: 19rpx;float: left;"/></view>
+        <view class="compare-type-text-2" >升高：<text style="color:rgba(255, 159, 0, 1)">{{compareReport.increased_risks_count}}</text>/18</view> 
+        <view class="compare-type-text-3">平衡：<text style="color:rgba(0, 149, 145, 1)">{{compareReport.decreased_risks_count}}</text>/18</view> 
+        <view class="compare-type-image-3"><image src="{{imageCompareArrowDown}}" style="width: 24rpx;height: 32rpx;margin-right: 10rpx;margin-top: 19rpx;float: right;"/></view>
+      </view>
+    </block>
+    <block wx:if="{{compareReport.resultStatus == 3}}">
+      <image src="{{imageCompareUp}}" class="compare-image" />
+      <view class="compare-title">糟糕！综合风险指数<text style="color:rgba(255, 159, 0, 1)">升高</text>了</view>
+      <view class="compare-type">
+        <view class="compare-type-image"><image src="{{imageCompareArrowUp}}" style="width: 24rpx;height: 32rpx;margin-left: 10rpx;margin-top: 6rpx;float: left;"/></view>
+        <view class="compare-type-text">升高：<text style="color:rgba(255, 159, 0, 1)">{{compareReport.increased_risks_count}}</text>/18</view>
+      </view>
+      <view class="compare-type-little">
+        <view class="compare-type-image-2"><image src="{{imageCompareArrowDown}}" style="width: 24rpx;height: 32rpx;margin-left: 10rpx;margin-top: 19rpx;float: left;"/></view>
+        <view class="compare-type-text-2" >降低：<text style="color:rgba(0, 141, 80, 1)">{{compareReport.decreased_risks_count}}</text>/18</view> 
+        <view class="compare-type-text-3">平衡：<text style="color:rgba(0, 149, 145, 1)">{{compareReport.same_risks_count}}</text>/18</view> 
+        <view class="compare-type-image-3"><image src="{{imageCompareArrow}}" style="width: 26rpx;height: 8rpx;margin-right: 9rpx;margin-top: 31rpx;float: right;"/></view>
+      </view>
+    </block>
+    <view class="compare-line"></view>
+    <view class="compare-button" bindtap="nTo"  data-report1="{{reportBeforeJson}}" data-report2="{{reportAfterJson}}" data-path="eatright/eatright-detail"><image src="{{imageArrow}}" /><view>查看18项目风险详细变化</view></view>
+    <!-- 风险改善start -->
+    <view class="text48" style="margin-top:120rpx;margin-left:40rpx;float:left">风险改善</view>
+    <view class="compare-risk">
+      <view class="compare-risk-back">
+        <view class="compare-risk-back-per" style="background-color:rgba(255, 234, 240, 1)"></view>
+        <view class="compare-risk-back-per" style="background-color:rgba(255, 245, 228, 1)"></view>
+        <view class="compare-risk-back-per" style="background-color:rgba(253, 250, 240, 1)"></view>
+        <view class="compare-risk-back-per" style="background-color:rgba(0, 141, 80, 0.08)"></view>
+        <view class="compare-risk-back-per" style="background-color:rgba(0, 141, 80, 0.03)"></view>
+        <view class="compare-risk-back-per" style="background-color:white"></view>
+      </view>
+      <view class="compare-risk-main">
+        <block wx:for="{{compareReport.reducingRisk}}" wx:key="true">
+          <view class="compare-risk-main-per">
+            <view class="compare-risk-main-text">{{item.risk_name}}</view>
+            <block wx:if="{{item.status == 2}}">
+              <view class="compare-risk-main-image"><image style="width:20rpx;height:6rpx;margin-top:13rpx;margin-left:6rpx;float:left" src="{{item.image}}" /></view>
+              
+            </block>
+            <block wx:else>
+              <view class="compare-risk-main-image">
+                <image class="compare-risk-main-image" style="width: 18rpx;height: 24rpx;margin-left: 7rpx;margin-top: 4rpx;float:left" src="{{item.image}}" />
+              </view>
+            </block>
+            <view class="compare-risk-main-chart1"  >
+              <view style="background-color:rgba(151, 220, 216, 1);width:{{item.widthF}}rpx">{{item.former_index_value}} </view>
+            </view>
+            <view class="compare-risk-main-chart2" >
+              <view style="background-color:rgba(0, 149, 145, 1);width:{{item.widthL}}rpx">{{item.later_index_value}} </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <!-- 风险改善end -->
+  </view>
+</block>
+<!-- 对比结果end -->
+<block wx:else>
+  <view class="tips">
+    <image src="{{imageTips}}" class="image-tips" />
+    <view class="text36" style="color: rgba(0, 0, 0, 0.24);float:left;margin-left:10rpx;line-height:50rpx">小贴士</view>
+    <view class="text32" style="float:left;line-height:46rpx;color: rgba(0, 0, 0, 0.4);">
+      <text>
+        1、建议的量测时间：饭后两小时，不太饿且受上一餐食物影响较小的时候；
+        2、食物在吃、喝后，可以在30分钟至2个小时，每半小时量测一次，观察其变化趋势；
+        3、可能影响变化的饮食：食物状态、消化吸收能量、个人体质、药物等。
+      </text>
+    </view>
+  </view>
+</block>
+<!-- 选择start -->
+<view class="report-select" hidden="{{showSelect?'':true}}">
+  <calendar bind:dateChange="dateChangeTap" bind:selectDay="selectDay" id="calendar"></calendar>
+  <block wx:for="{{reports}}" wx:key="true">
+    <view class="report" data-id="{{item.id}}" data-date="{{item.date}}" data-risk="{{item.riskIndex}}" data-heart="{{item.heartRate}}" bindtap="selectReport">
+      <view class="text40 report-text-1">{{item.time}}</view>
+      <view class="text28 report-text-2"><text>时刻: {{item.time2}}｜综合风险指数: {{item.riskIndex}}｜心率: {{item.heartRate}}</text></view>
+      <block wx:if="{{item.id == reportBefore.id}}">
+        <block wx:if="{{reportAfter}}">
+          <view class="report-button">吃前</view>
+        </block>
+        <block wx:else>
+          <view class="report-button">已选择</view>
+        </block>
+      </block>
+      <block wx:elif="{{item.id == reportAfter.id}}">
+        <block wx:if="{{reportBefore}}">
+          <view class="report-button">吃后</view>
+        </block>
+        <block wx:else>
+          <view class="report-button">已选择</view>
+        </block>
+      </block>
+    </view>
+  </block>
+  <block wx:if="{{reports.length < 1}}">
+    <view class="text48" style="color:rgba(0, 0, 0, 0.4);margin-top:180rpx;width:100%;text-align:center;float:left">当前无报告</view>
+    <view class="button-success" style="float:left;margin-top:60rpx;margin-left:72rpx" bindtap="nTo" data-path="check/check">去检测</view>
+  </block>
+</view>
+<!-- 选择end -->
+</view>
+</block>
+<!-- earright end -->
+<!-- report start -->
+<block wx:elif="{{activeIndex == 3}}">
+<view name="report" style="width:750rpx;height:1200rpx;background: #F2F2F6">
+<view class="text72" style="margin-top:{{statusHeight}}px;margin-left:40rpx">健康报告</view>
+<image class="avatar90" style="float: right;margin-top: -82rpx;margin-right: 40rpx;" src="{{userProfile.avatar_url}}"/>
+<view class="content-view" style="margin-top:72rpx" bindtap="nTo" data-path="my/my-family">
+  <image class="content-image" src="{{imageFamily}}" />
+  <view class="content-text" bindtap="nTo" data-path="my/my-family">
+    <text class="text38">我的家庭</text>
+    <text class="text24" style="margin-top:10rpx;display: block">随时随地，了解家人的健康状</text>
+  </view>
+</view>
+<view class="content-view" bindtap="nTo" data-id="{{userId}}" data-path="report/report-record">
+  <image class="content-image" src="{{imageReport}}" />
+  <view class="content-text">
+    <text class="text38">报告记录</text>
+    <text class="text24" style="margin-top:10rpx;display: block">一年的记录保存，全面掌握健康变化</text>
+  </view>
+</view>
+<view class="content-view" bindtap="nTo" data-id="{{userId}}" data-path="report/report-week">
+  <image class="content-image" src="{{imageAnalysisWeek}}" />
+  <view class="content-text">
+    <text class="text38">周分析</text>
+    <text class="text28" style="float:right;margin-top:12rpx;text-align:right">
+      <text style="color:#009591">{{weeklyDays}}</text>/7
+    </text>
+    <text class="text24" style="margin-top:10rpx;display: block">让健康管理成为习惯</text>
+  </view>
+</view>
+<view class="content-view" bindtap="nTo" data-id="{{userId}}" data-path="report/report-month">
+  <image class="content-image" src="{{imageAnalysisMonth}}" />
+  <view class="content-text">
+    <text class="text38">月分析</text>
+    <text class="text28" style="float:right;margin-top:12rpx;text-align:right">
+      <text style="color:#009591">{{monthlyDays}}</text>/30
+    </text>
+    <text class="text24" style="margin-top:10rpx;display: block">点点滴滴，每一份报告都重要</text>
+  </view>
+</view>
+</view>
+</block>
+<!-- report end -->
+
+<!-- my start -->
+<block wx:elif="{{activeIndex == 4}}">
+<view name="my" style="width:750rpx;height:1900rpx;background: #F2F2F6">
+<view class="myinfo">
+  <image class="myinfo-avatar" bindtap="nTo" data-path="my/my-info"  src="{{userProfile.avatar_url}}" />
+  <view class="myinfo-view">
+    <view class="myinfo-name" bindtap="nTo" data-path="my/my-info" >{{userProfile.nickname}}</view>
+    
+    <block wx:if="{{vipInfo.isVip}}">
+      <view class="myinfo-member">VIP会员剩余天数：{{vipInfo.vipRemainDay}}天</view>
+    </block>
+    <block wx:else>
+      <view class="myinfo-member">未开通会员</view>
+    </block>
+    <view bindtap="nTo" data-path="my/my-info" class="myinfo-update">编辑档案</view>
+  </view>
+  <view class="myinfo-list-new">
+    <view bindtap="nTo" data-path="my/my-family" style="border-right:2rpx solid rgba(0, 0, 0, 0.09)">
+      <image src="{{imageFamily}}"/>
+      <text>我的家庭</text>
+    </view>
+    <view style="width:250rpx">
+      <image src="{{imageOrder}}"/>
+      <text>订单信息</text>
+    </view>
+  </view>
+</view>
+<view class="content-tab" data-path="member/member" bindtap="nTo">
+  <view class="content-tab-text-1" >
+    <view class="content-tab-text-1-view-1">会员中心</view>
+    <view class="content-tab-text-1-view-2">购买小阶感测器</view>
+  </view>
+  <image class="content-tab-arrow" src="{{imageArrow}}" />
+  <view class="content-tab-text-2">新户1.00元</view>
+</view>
+<view class="content-tab" bindtap="go" data-page="message">
+  <view class="content-tab-text-1">
+    <view class="content-tab-text-1-view-1">消息通知</view>
+    <view class="content-tab-text-1-view-2">查看消息</view>
+  </view>
+  <image class="content-tab-arrow" src="{{imageArrow}}" />
+  <block wx:if="{{unReadCount}}">
+    <view  class="content-tab-text-3">{{unReadCount}}</view>
+  </block>
+</view>
+<!-- 去关注组件 -->
+<view style="background-color:white;height:240rpx;width:100%;margin-top:24rpx">
+  <wechat-subscription style="float:left;margin-top:40rpx"></wechat-subscription>
+</view>
+<view class="content-tab-2">
+  <view class="content-tab-2-view" bindtap="go" data-page="help-feedback">
+    <view>帮助与反馈</view>
+    <image src="{{imageArrow}}"/>
+  </view>
+  <view class="content-tab-2-view" data-url="https://jt-health.cn/about_us.html" bindtap="goThirdWeb">
+    <view>关于我们</view>
+    <image src="{{imageArrow}}"/>
+  </view>
+  <view class="content-tab-2-view" bindtap="go" data-page="setup">
+    <view>设置</view>
+    <image src="{{imageArrow}}"/>
+  </view>
+</view>
+</view>
+</block>
+<!-- my end -->
+
+<!-- 底部导航start -->
+<bottom-navigate id="bottom-navigate" bindchangeActiveIndex="changeActiveIndex"></bottom-navigate>
+<!-- 底部导航end -->

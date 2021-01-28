@@ -1,5 +1,8 @@
 const app = getApp()
 Component({
+  options: {
+    multipleSlots: true // 在组件定义时的选项中启用多slot支持
+  },
   /**
    * 组件的属性列表
    */
@@ -51,17 +54,20 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    redirectTo: function (e) {
-      var page = e.currentTarget.dataset.page;
-      wx.navigateTo({
-        url: '../' + page + '/' + page
-      })
+    // redirectTo: function (e) {
+    //   var page = e.currentTarget.dataset.page;
+    //   wx.navigateTo({
+    //     url: '../' + page + '/' + page
+    //   })
       
-    },  
-    changeActiveIndex: function(activeIndex){
+    // },  
+    changeActiveIndex: function(e){
+      let index = e.currentTarget.dataset.index
       this.setData({
-        activeIndex: activeIndex
+        activeIndex: index
       })
+      let item = {activeIndex: index}//要传给父组件的参数
+      this.triggerEvent('changeActiveIndex',item)//通过triggerEvent将参数传给父组件
     }
   }
 })

@@ -1,5 +1,5 @@
 <header-navigate id="header"></header-navigate>
-<view class="myinfo" style="margin-top:{{statusHeight-20}}px">
+<view class="myinfo">
   <image class="myinfo-avatar" bindtap="nTo" data-path="my/my-info"  src="{{userProfile.avatar_url}}" />
   <view class="myinfo-view">
     <view class="myinfo-name" bindtap="nTo" data-path="my/my-info" >{{userProfile.nickname}}</view>

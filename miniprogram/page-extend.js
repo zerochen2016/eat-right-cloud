@@ -36,7 +36,7 @@ const pageExtend = Page => {
 
       this.setData({
         scrollTop: 0,
-        showTitle: true
+        showTitle: false
       })
 
       this.getWechatUserInfo(this)//微信授权信息   
@@ -61,7 +61,8 @@ const pageExtend = Page => {
           let pixelRatio = result.pixelRatio
           let statusHeight = menuInfo.top + menuInfo.bottom - result.statusBarHeight
           this.setData({
-            statusHeight: statusHeight + 20
+            statusHeight: statusHeight + 20,
+            titleHeight: statusHeight + 80
           })          
         },
       })

@@ -409,7 +409,7 @@ Page({
   onPageScroll(e){
     console.log(e.scrollTop)
     console.log(this.data.scrollTop)
-    if(this.data.scrollTop > e.scrollTop){
+    if(this.data.scrollTop < e.scrollTop){
       console.log("页面上滑")
       if(!(this.data.showTitle)){
         //调用显示动画

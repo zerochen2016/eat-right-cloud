@@ -83,6 +83,7 @@ Component({
       })
     },
     selectDay: function(e){
+      console.log(e)
       let dateArr = e.currentTarget.dataset.date.toString().split("-")
       let y = parseInt(dateArr[0])
       let m = parseInt(dateArr[1])

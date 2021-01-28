@@ -4,13 +4,13 @@
 <view class="nav-bottom">
   <block wx:for="{{navData}}" wx:key="true">
     <block wx:if="{{index != 2}}">
-      <view id="{{index}}" class="nav-bottom-view" bindtap="redirectTo" data-page="{{item.page}}">
+      <view id="{{index}}" class="nav-bottom-view" bindtap="changeActiveIndex" data-index="{{index}}">
         <image class="nav-bottom-image" src="{{activeIndex == index ?item.iconed : item.icon}}"></image>
         <text class="nav-bottom-text {{activeIndex == index ?'nav-bottom-text-on' : ''}}">{{item.title}}</text>
       </view>
     </block>
     <block wx:if="{{index == 2}}">
-      <view id="{{index}}" class="nav-bottom-view" bindtap="redirectTo" data-page="{{item.page}}">
+      <view id="{{index}}" class="nav-bottom-view" bindtap="changeActiveIndex" data-index="{{index}}">
       <image class="nav-bottom-image-mid" src="{{activeIndex == index ?item.iconed : item.icon}}"></image>
       </view>
     </block>

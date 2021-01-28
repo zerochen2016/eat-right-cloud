@@ -3,7 +3,7 @@ page{
 }
 .myinfo{
   width: 100%;
-  height: 400rpx;
+  height: 500rpx;
   background-color: white;
 }
 .myinfo-avatar{
@@ -11,7 +11,7 @@ page{
   height: 180rpx;
   border-radius: 50%;
   margin-left: 40rpx;
-  margin-top: 40rpx;
+  margin-top: 150rpx;
   float: left;
 }
 .myinfo-view{
@@ -19,7 +19,7 @@ page{
   width: 450rpx;
   float: left;
   margin-left: 40rpx;
-  margin-top: 40rpx;
+  margin-top: 150rpx;
 }
 .myinfo-name{
   height: 74rpx;
