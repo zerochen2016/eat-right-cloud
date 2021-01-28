@@ -56,7 +56,7 @@
     <image src="{{imageArrow}}"/>
   </view>
   <view class="content-tab-2-view" data-url="https://jt-health.cn/about_us.html" bindtap="goThirdWeb" data-title="关于我们">
-    <view>关于我们</view>
+    <view>关于公众号</view>
     <image src="{{imageArrow}}"/>
   </view>
   <view class="content-tab-2-view" bindtap="go" data-page="setup">
