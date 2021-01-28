@@ -2,7 +2,6 @@
   "pages": [
     "pages/main/main",
     
-    "pages/article/article",
     "pages/article/theory-wangweigong",
     "pages/article/wangweigong",
 
@@ -50,11 +49,7 @@
 
     "pages/special/special",
     
-    "pages/third-webview/third-webview",
-    
-    "pages/test/test",
-    "pages/test2/test2",
-    "pages/test3/test3"
+    "pages/third-webview/third-webview"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

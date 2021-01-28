@@ -36,7 +36,8 @@ const pageExtend = Page => {
 
       this.setData({
         scrollTop: 0,
-        showTitle: false
+        showTitle: false,
+        showTitle2: false,
       })
 
       this.getWechatUserInfo(this)//微信授权信息   

@@ -1,4 +1,4 @@
 <view class="title" style="height:{{height}}px;line-height:{{lineHeight}}px" animation="{{animationData}}">
   <!-- <image src="{{imageBack}}" class="back" style="height:{{imageHeight}}px;width:{{imageHeight}}px;top:{{imageTop}}px" bindtap="back" /> -->
-  {{title}}
+  <text class="title-text" animation="{{animationData2}}">{{title}}</text>
 </view>

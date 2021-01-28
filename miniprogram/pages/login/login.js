@@ -229,15 +229,22 @@ Page({
     })  
   },
   onPageScroll(e){
-    console.log(e.scrollTop)
-    console.log(this.data.scrollTop)
+    let h = 15
+    let h2 = parseInt(this.data.statusHeight/this.data.pixelRatio) + 72
     if(this.data.scrollTop < e.scrollTop){
       console.log("页面上滑")
-      if(!(this.data.showTitle)){
+      if(!(this.data.showTitle) && e.scrollTop > h){
         //调用显示动画
         this.selectComponent("#header").show()
         this.setData({
           showTitle: true
+        })
+      }
+      if(!(this.data.showTitle2) && e.scrollTop > h2){
+        //调用显示动画
+        this.selectComponent("#header").showText()
+        this.setData({
+          showTitle2: true
         })
       }
     }else{
@@ -245,8 +252,10 @@ Page({
       if((this.data.showTitle)){
         //调用消失动画
         this.selectComponent("#header").hide()
+        this.selectComponent("#header").hideText()
         this.setData({
-          showTitle: false
+          showTitle: false,
+          showTitle2: false
         })
       }
     }

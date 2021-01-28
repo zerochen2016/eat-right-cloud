@@ -31,6 +31,45 @@ Component({
     setTitle: function(title){
       this.setData({title: title})
     },
+    
+    showText: function(){
+      console.log("显示文字")
+      let that = this
+      let animation = wx.createAnimation({
+        duration: 200,
+        timingFunction: 'linear'
+      })
+      that.animation = animation
+      animation.opacity(0).step({duration: 200})
+      that.setData({
+        animationData2: animation.export()
+      })
+      setTimeout(function () {
+        animation.opacity(1).step();
+        that.setData({
+            animationData2: animation.export(),
+        })
+      }, 200)
+    },
+    hideText: function(){
+      console.log("消失文字")
+      var that = this;
+      var animation = wx.createAnimation({
+          duration: 200,
+          timingFunction: 'linear'
+      })
+      that.animation = animation
+      animation.opacity(1).step({ duration: 200 })
+      that.setData({
+          animationData2: animation.export()
+      })
+      setTimeout(function () {
+          animation.opacity(0).step();
+          that.setData({
+              animationData2: animation.export()
+          })
+      }, 200)
+    },
     show: function(){
       console.log("显示")
       let that = this
