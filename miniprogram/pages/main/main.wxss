@@ -909,7 +909,7 @@
 /* my start */
 .myinfo{
   width: 100%;
-  height: 600rpx;
+  height: 550rpx;
   background-color: white;
 }
 .myinfo-avatar{
