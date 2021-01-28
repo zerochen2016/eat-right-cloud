@@ -3,7 +3,7 @@
 <!-- 探索start -->
 <block wx:if="{{activeIndex == 0}}">
 <view style="height:4000rpx;width:750rpx;background: #F2F2F6">
-<view class="text72" style="margin-left: 40rpx;margin-top: {{statusHeight}}px;">探索</view>
+<view class="text72" id="title" style="margin-left: 40rpx;margin-top: {{statusHeight}}px;">探索</view>
 <view class="line" style="margin-top: 20rpx;"></view>
 <view class="special-view">
   <scroll-view class="special-scroll" scroll-x="true" bindscroll="scroll" style="width: 100%">
@@ -314,7 +314,7 @@
 <!-- eatright start -->
 <block wx:elif="{{activeIndex == 2}}">
 <view name="eatright" style="background: #F2F2F6">
-<view class="text72 eat-title" style="margin-top:{{statusHeight}}px">吃对了吗</view>
+<view class="text72 eat-title" style="margin-top:{{statusHeight}}px">吃对了么</view>
 <view class="eat-main">
   <view class="{{hasResult ? 'eat-main-left-result' :'eat-main-left'}}" bindtap="openSelectReport" data-ori="1">
     <block wx:if="{{reportBefore.riskIndex > 0}}">

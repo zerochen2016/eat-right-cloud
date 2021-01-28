@@ -62,7 +62,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.selectComponent("#header").setTitle("吃对了吗")
+    this.selectComponent("#header").setTitle("吃对了么")
   },
 
   /**

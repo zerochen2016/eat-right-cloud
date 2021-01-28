@@ -107,7 +107,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoaded: function (options) {
-
+    this.addData(0)
+    
   },
 
   /**
@@ -121,16 +122,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.addData(0)
+    
   },
   addData: function(index){
     const that = this
     if(index == 0){
       //导航标题
       this.selectComponent("#header").setTitle("探索")
-      // this.selectComponent("#title").setTitle("探索")
-      // //导航选中
-      // this.selectComponent("#bottom-navigate").changeActiveIndex(0)
       let user = app.getUser()
       if(user && user.id){
         dataDelayDoInterval = setTimeout(function(){
@@ -149,7 +147,6 @@ Page({
       this.checkHasGuide()
       //标题
       this.selectComponent("#header").setTitle("检测")
-      // this.selectComponent("#title").setTitle("欢迎回来！")
     }else if(index == 2){
       //底部导航选中
       let endDate = new Date()
@@ -163,14 +160,12 @@ Page({
       startDate.setSeconds(0)
       //获取报告记录
       this.listReports(startDate,endDate)
-      this.selectComponent("#header").setTitle("吃对了吗")
-      // this.selectComponent("#title").setTitle("吃对了吗")
+      this.selectComponent("#header").setTitle("吃对了么")
     }else if(index == 3){
       //周报测量天数
       this.getMeasurementDays()
       this.setData({userId: app.getUser().id})
       this.selectComponent("#header").setTitle("报告")
-      // this.selectComponent("#title").setTitle("健康报告")
     }else if(index == 4){
       //获取有赞我的订单页面
       this.getMyOrderUrl()
@@ -222,11 +217,12 @@ Page({
   },
 
   onPageScroll(e){
+    let h = parseInt(this.data.statusHeight/this.data.pixelRatio) + 72
     console.log(e.scrollTop)
-    console.log(this.data.scrollTop)
+    console.log(h)
     if(this.data.scrollTop < e.scrollTop){
       console.log("页面上滑")
-      if(!(this.data.showTitle)){
+      if(!(this.data.showTitle) && e.scrollTop > h){
         //调用显示动画
         this.selectComponent("#header").show()
         this.setData({
@@ -1037,32 +1033,7 @@ Page({
       },
     })     
   },
-  onPageScroll(e){
-    console.log(e.scrollTop)
-    console.log(this.data.scrollTop)
-    if(this.data.scrollTop < e.scrollTop){
-      console.log("页面上滑")
-      if(!(this.data.showTitle)){
-        //调用显示动画
-        this.selectComponent("#header").show()
-        this.setData({
-          showTitle: true
-        })
-      }
-    }else{
-      console.log("页面下滑")
-      if((this.data.showTitle)){
-        //调用消失动画
-        this.selectComponent("#header").hide()
-        this.setData({
-          showTitle: false
-        })
-      }
-    }
-    this.setData({
-      scrollTop: e.scrollTop
-    })
-  },
+  
   // report end
   // my start 
   getUserProfile: function(){

@@ -2,7 +2,6 @@
   "usingComponents": {
     "wechat-subscription":"../../components/wechatSubscription/wechatSubscription",
     "bottom-navigate":"../../components/bottom-navigate/bottom-navigate",
-    "title": "../../components/title/title",
     "calendar": "../../components/calendar/calendar"
   }
 }

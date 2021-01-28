@@ -62,7 +62,8 @@ const pageExtend = Page => {
           let statusHeight = menuInfo.top + menuInfo.bottom - result.statusBarHeight
           this.setData({
             statusHeight: statusHeight + 20,
-            titleHeight: statusHeight + 80
+            titleHeight: statusHeight + 80,
+            pixelRatio: pixelRatio
           })          
         },
       })
