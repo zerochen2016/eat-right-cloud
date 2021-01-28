@@ -31,10 +31,8 @@ Component({
       this.initDays(new Date())
       let that = this
       let menuInfo = wx.getMenuButtonBoundingClientRect()
-      console.log("info")
       wx.getSystemInfo({
         success: (result) => {
-          console.log(result)
           let pixelRatio = result.pixelRatio
           // that.setData({height:result.statusBarHeight})          
           that.setData({
@@ -83,8 +81,8 @@ Component({
       })
     },
     selectDay: function(e){
-      console.log(e)
       let dateArr = e.currentTarget.dataset.date.toString().split("-")
+      
       let y = parseInt(dateArr[0])
       let m = parseInt(dateArr[1])
       let d = parseInt(dateArr[2])
@@ -92,7 +90,6 @@ Component({
       selectDay.setFullYear(y)
       selectDay.setMonth(m - 1)
       selectDay.setDate(d)
-      
       
       let days = this.data.days
 
@@ -185,15 +182,27 @@ Component({
       this.triggerEvent('dateChange',item)//通过triggerEvent将参数传给父组件
     },
     initDays: function(inputDate){
+      let y = 0
+      let m = 0
+      if(inputDate.toString().indexOf("-") != -1){
+        let dateArr = inputDate.toString().split("-")
+        y = parseInt(dateArr[0])
+        m = parseInt(dateArr[1])
+      }else {
+        let dateInput = new Date(inputDate)
+        y = dateInput.getFullYear()
+        m = dateInput.getMonth() - 1
+      }
+      
       const that = this
       let days = []
-      let dateArr = inputDate.toString().split("-")
       let date = new Date()
-      date.setFullYear(parseInt(dateArr[0]))
-      date.setMonth(parseInt(dateArr[1]) - 1)
+      date.setFullYear(y)
+      date.setMonth(m)
       days = that.pushThisMonth(date,days)
       days = that.pushLastMonth(date,days)
       days = that.pushNextMonth(date,days)
+      console.log(days)
       if(this.data.dayAll){
         let height = "550rpx"
         if(days.length > 35){
@@ -261,6 +270,7 @@ Component({
       return days
     },    
     pushThisMonth: function(inputDate,days){
+      
       let input = new Date(inputDate)
       let today = new Date()
       let m = input.getMonth() + 1
@@ -278,6 +288,8 @@ Component({
           }
 
           days.push(day)
+          console.log("day")
+          console.log(day)
         }
       }else if(m == 2){
           //29天

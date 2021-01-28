@@ -179,8 +179,6 @@ Page({
     }
   },
   changeActiveIndex: function(e){
-    console.log("changeActiveIndex")
-    console.log(e)
     let index = e.detail.activeIndex
     console.log(index)
     this.setData({
@@ -760,6 +758,7 @@ Page({
   },
   selectDay: function(e){
     console.log(e)
+    console.log("e++++++++++++++")
     let date = e.detail.date
     let endDate = new Date(date)
     endDate.setHours(23)

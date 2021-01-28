@@ -2,7 +2,7 @@
 
 <!-- 探索start -->
 <block wx:if="{{activeIndex == 0}}">
-<view style="height:4000rpx;width:750rpx;background: #F2F2F6">
+<view style="height:3800rpx;width:750rpx;background: #F2F2F6">
 <view class="text72" id="title" style="margin-left: 40rpx;margin-top: {{statusHeight}}px;">探索</view>
 <view class="line" style="margin-top: 20rpx;"></view>
 <view class="special-view">
@@ -36,7 +36,7 @@
 <image class="more-image-1" src="{{imageWangweigong1}}" bindtap="nTo" data-path="article/wangweigong"/>
 <!-- 去关注组件 -->
 <wechat-subscription style="margin-top:30rpx;float:left"></wechat-subscription>
-
+<view class="text24" style="margin-top:30rpx;width:750rpx;text-align:center;float:left">没有更多了</view>
 <!-- 重要通知start -->
 <view class="pop-alert" style="height:4500rpx" hidden="{{showImportantNotice == 1 ? '' : 'true'}}">
   <view class="pop-alert-view">
@@ -59,7 +59,7 @@
 <!-- 检测start -->
 <view class="head" style="margin-top:{{statusHeight}}px">
   <view class="text72 head-text">欢迎回来！</view>
-  <image class="avatar90 head-avatar" src="{{userProfile.avatar_url}}"></image>
+  <image class="avatar90 head-avatar" bindtap="nTo" data-path="my/my-info" src="{{userProfile.avatar_url}}"></image>
 </view>
 
 <view class="new">
@@ -488,8 +488,10 @@
 <!-- report start -->
 <block wx:elif="{{activeIndex == 3}}">
 <view name="report" style="width:750rpx;height:1200rpx;background: #F2F2F6">
-<view class="text72" style="margin-top:{{statusHeight}}px;margin-left:40rpx">健康报告</view>
-<image class="avatar90" style="float: right;margin-top: -82rpx;margin-right: 40rpx;" src="{{userProfile.avatar_url}}"/>
+<view class="head" style="margin-top:{{statusHeight}}px">
+  <view class="text72 head-text">健康报告</view>
+  <image class="avatar90 head-avatar" bindtap="nTo" data-path="my/my-info" src="{{userProfile.avatar_url}}"></image>
+</view>
 <view class="content-view" style="margin-top:72rpx" bindtap="nTo" data-path="my/my-family">
   <image class="content-image" src="{{imageFamily}}" />
   <view class="content-text" bindtap="nTo" data-path="my/my-family">
