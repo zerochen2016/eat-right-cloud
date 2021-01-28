@@ -155,9 +155,13 @@ const pageExtend = Page => {
       })
     }
     object.goThirdWeb = (e) => {
-      var thirdUrl = e.currentTarget.dataset.url;
+      let thirdUrl = e.currentTarget.dataset.url;
+      let title = ''
+      if(e.currentTarget.dataset.title){
+        title = e.currentTarget.dataset.title
+      }
       wx.navigateTo({
-        url: '../third-webview/third-webview?thirdUrl=' + thirdUrl,
+        url: '../third-webview/third-webview?thirdUrl=' + thirdUrl + '&title='+title,
       })
     }
 

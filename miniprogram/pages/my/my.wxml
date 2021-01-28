@@ -51,7 +51,7 @@
   <wechat-subscription style="float:left;margin-top:40rpx"></wechat-subscription>
 </view>
 <view class="content-tab-2">
-  <view class="content-tab-2-view" bindtap="go" data-page="help-feedback">
+  <view class="content-tab-2-view" data-url="https://res.jt-health.cn/app-dev/v1/index.html#/help" bindtap="goThirdWeb" data-title="帮助与反馈">
     <view>帮助与反馈</view>
     <image src="{{imageArrow}}"/>
   </view>

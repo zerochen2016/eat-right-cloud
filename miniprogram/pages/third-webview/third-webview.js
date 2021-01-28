@@ -12,12 +12,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoaded: function (options) {
+    console.log(options)
     if(options.title){
       wx.setNavigationBarTitle({
         title: options.title,
       })
     }
-    console.log(options.thirdUrl)
+    
     this.setData({
       thirdUrl: options.thirdUrl
     })

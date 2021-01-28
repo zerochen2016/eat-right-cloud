@@ -19,10 +19,11 @@ Component({
    */
   methods: {
     goThirdWeb: function(e){
-      var thirdUrl = e.currentTarget.dataset.url;
+      let thirdUrl = e.currentTarget.dataset.url;
+      let title = e.currentTarget.dataset.title
       console.log(e)
       wx.navigateTo({
-        url: '../third-webview/third-webview?thirdUrl=' + thirdUrl,
+        url: '../third-webview/third-webview?thirdUrl=' + thirdUrl + '&title=' + title,
       })
     },
   }
