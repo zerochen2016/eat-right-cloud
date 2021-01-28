@@ -12,3 +12,8 @@
   opacity: 0;
   z-index: 999;
 }
+.back{
+  float: left;
+  position: fixed;
+  left: 20rpx;
+}

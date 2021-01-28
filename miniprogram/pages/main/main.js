@@ -167,8 +167,6 @@ Page({
       this.setData({userId: app.getUser().id})
       this.selectComponent("#header").setTitle("报告")
     }else if(index == 4){
-      //获取有赞我的订单页面
-      this.getMyOrderUrl()
       //获取站内信
       this.listNotification()
       //用户VIP信息
@@ -180,7 +178,6 @@ Page({
   },
   changeActiveIndex: function(e){
     let index = e.detail.activeIndex
-    console.log(index)
     this.setData({
       activeIndex: index
     })
@@ -216,8 +213,6 @@ Page({
 
   onPageScroll(e){
     let h = parseInt(this.data.statusHeight/this.data.pixelRatio) + 72
-    console.log(e.scrollTop)
-    console.log(h)
     if(this.data.scrollTop < e.scrollTop){
       console.log("页面上滑")
       if(!(this.data.showTitle) && e.scrollTop > h){
@@ -244,7 +239,6 @@ Page({
   
   getVersionUpdateInfo: function(){
     let that = this
-    console.log(wx.getSystemInfoSync())   
     const system = wx.getSystemInfoSync().system.toLowerCase().toString()
     let method = "UserAPI.GetAndroidUpdateInfo"
     let isIos = false
@@ -508,7 +502,6 @@ Page({
     })     
   },
   changeHand: function(e){
-    console.log(e)
     let hand = e.currentTarget.dataset.hand
     let userProfile = this.data.userProfile
     userProfile.hand = hand
@@ -517,7 +510,6 @@ Page({
     })
   },
   weightChange: function(e){
-    console.log(e)
     let weight = this.data.weightArray[e.detail.value]
     weight = weight.substring(0,weight.length-2)
     if(weight){
@@ -529,7 +521,6 @@ Page({
     }    
   },
   heightChange: function(e){
-    console.log(e)
     let height = this.data.heightArray[e.detail.value]
     height = height.substring(0,height.length-2)
     if(height){
@@ -559,7 +550,6 @@ Page({
       success: function(res){
         if(res.confirm){
           let gender = e.currentTarget.dataset.gender
-          console.log(gender)
           let userProfile = that.data.userProfile
           userProfile.gender = gender
           that.setData({
@@ -587,7 +577,6 @@ Page({
     }
   },
   nextStep2: function(e){
-    console.log(e)
     let step = e.currentTarget.dataset.step
     if(step == 3){
       app.sethasGuide(1)
@@ -631,7 +620,6 @@ Page({
   },
   updateUserProfile: function(){
     let that = this
-    console.log(that.data.userProfile)
     wx.request({
       url: app.globalData.apiHost, 
       data: 
@@ -719,7 +707,6 @@ Page({
       if(beforeTime.getFullYear() == afterTime.getFullYear() && beforeTime.getMonth() == afterTime.getMonth() && beforeTime.getDate() == afterTime.getDate()){
         this.selectComponent("#calendar").setTextUnique(date,"前后",true,true)
       }
-      console.log("----comparison",reportBefore.id,reportAfter.id)
       doComparison = true 
     }
     if(doComparison){
@@ -750,15 +737,12 @@ Page({
     })
   },
   openSelectReport: function(e){
-    console.log(e)
     this.setData({
       showSelect: true,
       ori: e.currentTarget.dataset.ori
     })
   },
   selectDay: function(e){
-    console.log(e)
-    console.log("e++++++++++++++")
     let date = e.detail.date
     let endDate = new Date(date)
     endDate.setHours(23)
@@ -1103,37 +1087,6 @@ Page({
       },
     })     
   },
-  getMyOrderUrl: function(){
-    let that = this
-    //TODO 订单路径无法打开
-    wx.request({
-      url: app.globalData.apiHost, 
-      data: 
-      JSON.stringify({
-        "method": "MallAPI.GetMyOrderUrl",
-        "service": "com.jt-health.api.app",
-        "request": {
-         "user_id": app.getUser().id,
-        }
-        
-       }),
-      dataType: 'json',
-      method: "POST",
-      header: {
-        'content-type': 'application/json',
-        "Authorization": 'Bearer ' + app.getRequestSign()
-      },
-      success(res) {
-        console.log(res)
-        if(res.statusCode == 200){
-          that.setData({
-            myOrderUrl: res.data.yz_order_url
-          })
-        }
-
-      },
-    })     
-  },
   getVipInfo: function(){
     const that = this
     wx.request({
@@ -1170,7 +1123,6 @@ Page({
             vipFamilyRemainDay: dateUtil.dateDiffDay(new Date(), vipFamilyTime),
           }
           that.setData({vipInfo: vipInfo})
-          console.log(vipInfo)
         }
         
       },

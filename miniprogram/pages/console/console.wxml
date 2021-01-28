@@ -1,8 +1,0 @@
-<!--pages/console/console.wxml-->
-<view selectable="true" style="width:100%">
-  <text selectable="true" style="word-break:break-all;">
-  这里开始---
-  {{data}}
-  ---这里结束
-</text>
-</view>

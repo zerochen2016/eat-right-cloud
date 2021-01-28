@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText":"吃对了么",
-  "usingComponents": {
-    "bottom-navigate":"../../components/bottom-navigate/bottom-navigate",
-    "calendar": "../../components/calendar/calendar"
-  }
-}

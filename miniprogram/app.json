@@ -1,21 +1,16 @@
 {
   "pages": [
     "pages/main/main",
-
-    "pages/home/home",
     
     "pages/article/article",
     "pages/article/theory-wangweigong",
     "pages/article/wangweigong",
 
-    "pages/console/console",
-    "pages/check/check",
     "pages/check/check-device",
     "pages/check/search",
     "pages/check/connect",
     "pages/check/notfind",
 
-    "pages/eatright/eatright",
     "pages/eatright/eatright-detail",
 
     "pages/help-feedback/help-feedback",
@@ -35,7 +30,6 @@
 
     "pages/message/message",
 
-    "pages/my/my",
     "pages/my/my-info",
     "pages/my/my-family",
     "pages/my/my-family-add",
@@ -47,33 +41,17 @@
     "pages/policy/policy-member",
     "pages/policy/policy-user",
 
-    "pages/report/report",
     "pages/report/report-record",
     "pages/report/report-month",
     "pages/report/report-week",
     "pages/report/report-report",
 
     "pages/setup/setup",
-    
-    "pages/share/share",
 
     "pages/special/special",
     
     "pages/third-webview/third-webview",
     
-    "pages/index/index",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib",
-    "pages/openapi/openapi",
-    "pages/openapi/serverapi/serverapi",
-    "pages/openapi/callback/callback",
-    "pages/openapi/cloudid/cloudid",
-    "pages/im/im",
-    "pages/im/room/room",
     "pages/test/test",
     "pages/test2/test2",
     "pages/test3/test3"

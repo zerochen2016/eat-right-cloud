@@ -1,4 +1,4 @@
-// components/header-navigate/header-navigate.js
+const app = getApp()
 Component({
   /**
    * 组件的属性列表
@@ -13,14 +13,21 @@ Component({
   data: {
     title: "",
     height: 0,
-    lineHeight: 0
-    
+    lineHeight: 0,
+    imageBack: app.globalData.resourcesHost + 'nav/back@2x.png',
+    imageHeight: 0,
+    imageTop: 0
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
+    back: function(e){
+      wx.navigateBack({
+        delta: 0,
+      })
+    },
     setTitle: function(title){
       this.setData({title: title})
     },
@@ -74,9 +81,14 @@ Component({
           console.log(result)
           let pixelRatio = result.pixelRatio
           // that.setData({height:result.statusBarHeight})          
+          let height = menuInfo.top + menuInfo.bottom - result.statusBarHeight
+          let lineHeight = menuInfo.top + menuInfo.bottom
+          let imageHeight = parseInt(height / 4)
           that.setData({
-            height: menuInfo.top + menuInfo.bottom - result.statusBarHeight,
-            lineHeight: menuInfo.top + menuInfo.bottom
+            height: height,
+            lineHeight: lineHeight,
+            imageHeight: imageHeight,
+            imageTop: (lineHeight - imageHeight) / 2
           })          
         },
       })

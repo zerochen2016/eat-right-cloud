@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText":"我的",
-  "usingComponents": {
-    "bottom-navigate":"../../components/bottom-navigate/bottom-navigate",
-    "wechat-subscription":"../../components/wechatSubscription/wechatSubscription"
-  }
-}

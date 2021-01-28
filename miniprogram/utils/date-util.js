@@ -142,16 +142,23 @@ function getEndTimeSecond(inputDate){
 
 function utcToBeiJing(utc_datetime) {
     // 转为正常的时间格式 年-月-日 时:分:秒
-    var T_pos = utc_datetime.indexOf('T');
-    var Z_pos = utc_datetime.indexOf('Z');
+    let T_pos = utc_datetime.indexOf('T');
+    let Z_pos = utc_datetime.indexOf('Z');
     var year_month_day = utc_datetime.substr(0,T_pos);
     var hour_minute_second = utc_datetime.substr(T_pos+1,Z_pos-T_pos-1);
-    var new_datetime = year_month_day+" "+hour_minute_second; 
+    let TArray = year_month_day.toString().split("-")
+    let ZArray = hour_minute_second.toString().split(":")
 
     // 处理成为时间戳
-    timestamp = new Date(Date.parse(new_datetime));
+    timestamp = new Date();
+    timestamp.setFullYear(parseInt(TArray[0]))
+    timestamp.setMonth(parseInt(TArray[1]) - 1)
+    timestamp.setDate(parseInt(TArray[2]))
+    timestamp.setHours(parseInt(ZArray[0]))
+    timestamp.setMinutes(parseInt(ZArray[1]))
+    timestamp.setSeconds(parseInt(ZArray[2]))
     timestamp = timestamp.getTime();
-    timestamp = timestamp/1000;
+    timestamp = timestamp / 1000;
 
     // 增加8个小时，北京时间比utc时间多八个时区
     var timestamp = timestamp + 8 * 60 * 60;
