@@ -62,26 +62,16 @@
     <block wx:for="{{familyVipArray}}" wx:key="true">
       <view class="vip-buy-view" style="{{item.renew_days == familyVipSelectDay ? 'border: 2rpx solid rgba(230, 177, 40, 1)' : ''}}" bindtap="changeSelect" data-viplist="2" data-days="{{item.renew_days}}">
         <view class="vip-buy-text-1">{{item.product_title}}</view>
-        <block wx:if="{{(vipInfo.isVipFamily) && index == 0}}">
-          <view class="vip-buy-text-2" style="{{item.renew_days == familyVipSelectDay ? 'color:rgba(230, 177, 40, 1)' : ''}}">
-            <text>¥</text>88
-          </view>
+        <view class="vip-buy-text-2" style="{{item.renew_days == familyVipSelectDay ? 'color:rgba(230, 177, 40, 1)' : ''}}"><text>¥</text>{{item.price / 10000}}</view>
+        <block wx:if="{{item.discount_brief}}">
+          <view class="vip-buy-text-3">{{item.discount_brief}}</view>
         </block>
-        <block wx:else>
-          <view class="vip-buy-text-2" style="{{item.renew_days == familyVipSelectDay ? 'color:rgba(230, 177, 40, 1)' : ''}}">
-            <text>¥</text>{{item.price / 10000}}
-          </view>
-          <block wx:if="{{item.discount_brief}}">
-            <view class="vip-buy-text-3">{{item.discount_brief}}</view>
-          </block>
-        </block>
-        
       </view>
     </block>
   </block>
   </view>
   
-  <view class="button-gold" bindtap="buyProduct" data-productid="{{currentProductId}}" data-price="{{currentPrice}}" data-viplist="{{currentVipList}}" style="margin-top:40rpx;float:left">立即以{{(currentProductId == 'bumu533ipt30io2ljklg' && vipInfo.isVipFamily) ? 88 : currentPrice}}元续费</view>
+  <view class="button-gold" bindtap="buyProduct" data-productid="{{currentProductId}}" data-price="{{currentPrice}}" data-viplist="{{currentVipList}}" style="margin-top:40rpx;float:left">立即以{{currentPrice}}元续费</view>
   <view class="member-policy">阅读并同意<text bindtap="nTo" data-path="policy/policy-member">《会员服务协议》</text></view>
 </view>
 
