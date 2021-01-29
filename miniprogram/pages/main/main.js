@@ -230,14 +230,19 @@ Page({
           showTitle2: true
         })
       }
-    }else{
+    }else if(this.data.scrollTop > e.scrollTop){
       console.log("页面下滑")
-      if((this.data.showTitle)){
-        //调用消失动画
+      if((this.data.showTitle) && e.scrollTop < h){
+        //调用显示动画
         this.selectComponent("#header").hide()
+        this.setData({
+          showTitle: false
+        })
+      }
+      if((this.data.showTitle2) && e.scrollTop < h2){
+        //调用显示动画
         this.selectComponent("#header").hideText()
         this.setData({
-          showTitle: false,
           showTitle2: false
         })
       }

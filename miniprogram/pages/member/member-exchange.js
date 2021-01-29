@@ -29,7 +29,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.selectComponent("#header").setTitle("扫码兑换")
+    this.selectComponent("#header").showAll("扫码兑换")
   },
 
   /**
@@ -69,39 +69,5 @@ Page({
       }
     })
   },
-  onPageScroll(e){
-    let h = 15
-    let h2 = parseInt(this.data.statusHeight/this.data.pixelRatio) + 72
-    if(this.data.scrollTop < e.scrollTop){
-      console.log("页面上滑")
-      if(!(this.data.showTitle) && e.scrollTop > h){
-        //调用显示动画
-        this.selectComponent("#header").show()
-        this.setData({
-          showTitle: true
-        })
-      }
-      if(!(this.data.showTitle2) && e.scrollTop > h2){
-        //调用显示动画
-        this.selectComponent("#header").showText()
-        this.setData({
-          showTitle2: true
-        })
-      }
-    }else{
-      console.log("页面下滑")
-      if((this.data.showTitle)){
-        //调用消失动画
-        this.selectComponent("#header").hide()
-        this.selectComponent("#header").hideText()
-        this.setData({
-          showTitle: false,
-          showTitle2: false
-        })
-      }
-    }
-    this.setData({
-      scrollTop: e.scrollTop
-    })
-  },
+  
 })

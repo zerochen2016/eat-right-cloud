@@ -61,7 +61,8 @@ Page({
     this.getVipInfo(),
     //获取感测器购买链接
     this.getDeviceGoods()
-    this.selectComponent("#header").setTitle("我的")
+    this.selectComponent("#header").showAll("会员中心")
+
   },
 
   /**
@@ -324,53 +325,9 @@ Page({
               deviceProduct: res.data.device_products[0]
             },)
           }
-//           data:
-// device_products: Array(1)
-// 0:
-// brief: "守护全家健康的好帮手"
-// is_promotion_product: true
-// original_price: 12990000
-// price: 9990000
-// product_id: "btk6433ipt3c236duk70"
-// product_name: "小阶感测器"
         }
         
       },
     })     
-  },
-  onPageScroll(e){
-    let h = 15
-    let h2 = parseInt(this.data.statusHeight/this.data.pixelRatio) + 72
-    if(this.data.scrollTop < e.scrollTop){
-      console.log("页面上滑")
-      if(!(this.data.showTitle) && e.scrollTop > h){
-        //调用显示动画
-        this.selectComponent("#header").show()
-        this.setData({
-          showTitle: true
-        })
-      }
-      if(!(this.data.showTitle2) && e.scrollTop > h2){
-        //调用显示动画
-        this.selectComponent("#header").showText()
-        this.setData({
-          showTitle2: true
-        })
-      }
-    }else{
-      console.log("页面下滑")
-      if((this.data.showTitle)){
-        //调用消失动画
-        this.selectComponent("#header").hide()
-        this.selectComponent("#header").hideText()
-        this.setData({
-          showTitle: false,
-          showTitle2: false
-        })
-      }
-    }
-    this.setData({
-      scrollTop: e.scrollTop
-    })
-  },
+  }
 })

@@ -16,7 +16,8 @@ Component({
     lineHeight: 0,
     imageBack: app.globalData.resourcesHost + 'nav/back@2x.png',
     imageHeight: 0,
-    imageTop: 0
+    imageTop: 0,
+    showAll: false
   },
 
   /**
@@ -28,10 +29,15 @@ Component({
         delta: 0,
       })
     },
+    showAll: function(title){
+      this.setData({
+        showAll: true,
+        title: title
+      })
+    },
     setTitle: function(title){
       this.setData({title: title})
     },
-    
     showText: function(){
       console.log("显示文字")
       let that = this
