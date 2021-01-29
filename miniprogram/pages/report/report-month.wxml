@@ -1,5 +1,5 @@
 <header-navigate id="header"></header-navigate>
-<view class="none-head" style="margin-top:{{statusHeight}}px">
+<view class="none-head" style="margin-top:{{statusHeight - 20}}px">
   <view class="none-head-last" bindtap="changeMonth" data-ori="0">
   上个月
   </view>

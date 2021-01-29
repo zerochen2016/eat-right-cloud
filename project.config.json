@@ -105,6 +105,12 @@
         {
           "name": "pages/article/theory-wangweigong",
           "pathName": "pages/article/theory-wangweigong",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/member/member",
+          "pathName": "pages/member/member",
           "scene": null
         }
       ]

@@ -13,7 +13,7 @@
     </view>
     <block wx:if="{{vipInfo.isVipFamily}}">
       <view class="head-text-family">
-        VIP家庭包有效期至：{{vipInfo.vipFamilyRemainDay}}
+        VIP家庭包有效期至：{{vipInfo.vipFamilyTime}}
       </view>
     </block>
     <block wx:if="{{vipInfo.isVip}}">
@@ -62,21 +62,31 @@
     <block wx:for="{{familyVipArray}}" wx:key="true">
       <view class="vip-buy-view" style="{{item.renew_days == familyVipSelectDay ? 'border: 2rpx solid rgba(230, 177, 40, 1)' : ''}}" bindtap="changeSelect" data-viplist="2" data-days="{{item.renew_days}}">
         <view class="vip-buy-text-1">{{item.product_title}}</view>
-        <view class="vip-buy-text-2" style="{{item.renew_days == familyVipSelectDay ? 'color:rgba(230, 177, 40, 1)' : ''}}"><text>¥</text>{{item.price / 10000}}</view>
-        <block wx:if="{{item.discount_brief}}">
-          <view class="vip-buy-text-3">{{item.discount_brief}}</view>
+        <block wx:if="{{(vipInfo.isVipFamily) && index == 0}}">
+          <view class="vip-buy-text-2" style="{{item.renew_days == familyVipSelectDay ? 'color:rgba(230, 177, 40, 1)' : ''}}">
+            <text>¥</text>88
+          </view>
         </block>
+        <block wx:else>
+          <view class="vip-buy-text-2" style="{{item.renew_days == familyVipSelectDay ? 'color:rgba(230, 177, 40, 1)' : ''}}">
+            <text>¥</text>{{item.price / 10000}}
+          </view>
+          <block wx:if="{{item.discount_brief}}">
+            <view class="vip-buy-text-3">{{item.discount_brief}}</view>
+          </block>
+        </block>
+        
       </view>
     </block>
   </block>
   </view>
   
-  <view class="button-gold" bindtap="buyProduct" data-productid="{{currentProductId}}" data-price="{{currentPrice}}" data-viplist="{{currentVipList}}" style="margin-top:40rpx;float:left">立即以{{currentPrice}}元续费</view>
+  <view class="button-gold" bindtap="buyProduct" data-productid="{{currentProductId}}" data-price="{{currentPrice}}" data-viplist="{{currentVipList}}" style="margin-top:40rpx;float:left">立即以{{(currentProductId == 'bumu533ipt30io2ljklg' && vipInfo.isVipFamily) ? 88 : currentPrice}}元续费</view>
   <view class="member-policy">阅读并同意<text bindtap="nTo" data-path="policy/policy-member">《会员服务协议》</text></view>
 </view>
 
-<view class="goods-card" bindtap="nTo" data-path="member/member-exchange">
-      <image class="goods-card-image" src="{{imageDeviceSell}}" />
+<view class="goods-card" bindtap="nTo" data-path="member/member-exchange-input">
+      <image class="goods-card-image" src="{{imageCard}}" />
       <view class="goods-card-text-1">卡密兑换</view>
       <view class="goods-card-text-2">输入密码或扫码进行兑换</view>
       <view class="button-arrow-white" style="float: right;margin-top: 46rpx;margin-right: 30rpx;width:160rpx">
@@ -86,18 +96,13 @@
 </view>
 
 <button class="goods-card" open-type="share" style="width: 100%;height: 160rpx;" bindtap="goThirdWeb" data-url="{{deviceBuyUrl}}">
-      <image class="goods-card-image" style="margin-top:0;margin-left:-40rpx" src="{{imageDeviceSell}}" />
+      <image class="goods-card-image" style="margin-top:0;margin-left:-40rpx" src="{{imageInvite}}" />
       <view class="goods-card-text-1" style="margin-left: -16rpx;margin-top: 17rpx;">邀请好友</view>
       <view class="goods-card-text-2" style="margin-top: 73rpx;margin-left: -168rpx;">TA的健康我一直很在乎</view>
-      <view class="button-arrow-white" style="float: right;margin-top: 29rpx;margin-right: -30rpx;width:160rpx">
-        <image src="{{imageArrowBlue}}" />
-        <view>领会员</view>
-      </view>
 </button>
 <view class="rights">
   <view class="rights-head">
     <view class="rights-head-view-1">VIP权益</view>
-    <!-- TODO 箭头颜色 权益对吧 -->
     <image class="rights-head-image" src="{{imageArrowGrey}}"/>
     <view class="rights-head-view-2" bindtap="nTo" data-path="member/member-contrast">查看权益对比</view>
   </view>

@@ -121,11 +121,11 @@ Page({
           const vipFamilyTime = dateUtil.utcToBeiJing(subscriptionSummary.family_timeline.expired_time)
 
           let vipInfo = {
-            vipTimeBegin: dateUtil.utcToBeiJing(subscriptionSummary.personal_timeline.available_begin_time),
-            vipTime: vipTime,
+            vipTimeBegin: dateUtil.dateToStringYYMMDD(dateUtil.utcToBeiJing(subscriptionSummary.personal_timeline.available_begin_time)),
+            vipTime: dateUtil.dateToStringYYMMDD(vipTime),
             isVip: subscriptionSummary.personal_subscription_expired ? false : true,
-            vipFamilyTimeBegin: dateUtil.utcToBeiJing(subscriptionSummary.family_timeline.available_begin_time),
-            vipFamilyTime: vipFamilyTime,
+            vipFamilyTimeBegin: dateUtil.dateToStringYYMMDD(dateUtil.utcToBeiJing(subscriptionSummary.family_timeline.available_begin_time)),
+            vipFamilyTime: dateUtil.dateToStringYYMMDD(vipFamilyTime),
             isVipFamily: subscriptionSummary.family_subscription_expired ? false : true,
             vipRemainDay: dateUtil.dateDiffDay(new Date(), vipTime),
             vipFamilyRemainDay: dateUtil.dateDiffDay(new Date(), vipFamilyTime),

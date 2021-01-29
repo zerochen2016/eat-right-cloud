@@ -31,7 +31,9 @@ Page({
     imageVipGoods: app.globalData.resourcesHost + 'member/vip-goods@2x.png',
     imageVip2: app.globalData.resourcesHost + 'member/vip@2x.png',
     imageMore: app.globalData.resourcesHost + 'member/more@2x.png',
-    imageArrow: app.globalData.resourcesHost + 'arrow@2x.png'
+    imageArrow: app.globalData.resourcesHost + 'arrow@2x.png',
+    imageInvite: app.globalData.resourcesHost + 'member/invite@2x.png',
+    imageCard: app.globalData.resourcesHost + 'member/card@2x.png',
     
   },
 
@@ -248,7 +250,7 @@ Page({
             if(vipArray[i].renew_days == 30){
               vipArray[i].alias = '1y6s5c7tcxk7k'
             }else if(vipArray[i].renew_days == 90){
-              vipArray[i].alias = '1y6s5c7tcxk7k'
+              vipArray[i].alias = '27cybcxe5u2cg'
             }else if(vipArray[i].renew_days == 365){
               vipArray[i].alias = '1yfgn1in9dim8'
             }
@@ -287,11 +289,11 @@ Page({
           const vipFamilyTime = dateUtil.utcToBeiJing(subscriptionSummary.family_timeline.expired_time)
 
           let vipInfo = {
-            vipTimeBegin: dateUtil.utcToBeiJing(subscriptionSummary.personal_timeline.available_begin_time),
-            vipTime: vipTime,
+            vipTimeBegin: dateUtil.dateToStringYYMMDD(dateUtil.utcToBeiJing(subscriptionSummary.personal_timeline.available_begin_time)),
+            vipTime: dateUtil.dateToStringYYMMDD(vipTime),
             isVip: subscriptionSummary.personal_subscription_expired ? false : true,
-            vipFamilyTimeBegin: dateUtil.utcToBeiJing(subscriptionSummary.family_timeline.available_begin_time),
-            vipFamilyTime: vipFamilyTime,
+            vipFamilyTimeBegin: dateUtil.dateToStringYYMMDD(dateUtil.utcToBeiJing(subscriptionSummary.family_timeline.available_begin_time)),
+            vipFamilyTime: dateUtil.dateToStringYYMMDD(vipFamilyTime),
             isVipFamily: subscriptionSummary.family_subscription_expired ? false : true,
             vipRemainDay: dateUtil.dateDiffDay(new Date(), vipTime),
             vipFamilyRemainDay: dateUtil.dateDiffDay(new Date(), vipFamilyTime),

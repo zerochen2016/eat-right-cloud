@@ -548,7 +548,7 @@
   </view>
   <view class="myinfo-list-new">
     <view bindtap="nTo" data-path="my/my-family" style="border-right:2rpx solid rgba(0, 0, 0, 0.09)">
-      <image src="{{imageFamily}}"/>
+      <image src="{{imageFamilyNew}}"/>
       <text>我的家庭</text>
     </view>
     <view style="width:250rpx">
