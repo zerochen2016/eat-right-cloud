@@ -124,6 +124,9 @@ Page({
   onShow: function () {
     
   },
+  scroll: function(e){
+
+  },
   addData: function(index){
     const that = this
     if(index == 0){
@@ -337,21 +340,23 @@ Page({
             let channelMenus = res.data.channel_menus
             for(let i = 0; i < channelMenus.length; i++){
               let image = channelMenus[i].image
-              if(image.title = "健康"){
+              if(image.title == "健康"){
                 channelMenus[i].image.public_access_url = that.data.imageJiankang
-              }else if(image.title = "减脂"){
+              }else if(image.title == "减脂"){
                 channelMenus[i].image.public_access_url = that.data.imageJianzhi
-              }else if(image.title = "膳食"){
+              }else if(image.title == "膳食"){
                 channelMenus[i].image.public_access_url = that.data.imageShanshi
-              }else if(image.title = "营养"){
+              }else if(image.title == "营养"){
                 channelMenus[i].image.public_access_url = that.data.imageYingyang
               }
             }
             that.setData({
               channelMenus: channelMenus
             })
+            console.log(channelMenus)
           }
         }
+        
         
       },
     })     

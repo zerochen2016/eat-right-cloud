@@ -86,8 +86,8 @@
 </view>
 
 <button class="goods-card" open-type="share" style="width: 100%;height: 160rpx;" bindtap="goThirdWeb" data-url="{{deviceBuyUrl}}">
-      <image class="goods-card-image" style="margin-top:0;margin-left:-40rpx" src="{{imageInvite}}" />
-      <view class="goods-card-text-1" style="margin-left: -16rpx;margin-top: 17rpx;">邀请好友</view>
+      <image class="goods-card-image" style="margin-top:0;margin-left:-30rpx;height:108rpx;width:108rpx" src="{{imageInvite}}" />
+      <view class="goods-card-text-1" style="margin-left: -12rpx;margin-top: 17rpx;">邀请好友</view>
       <view class="goods-card-text-2" style="margin-top: 73rpx;margin-left: -168rpx;">TA的健康我一直很在乎</view>
 </button>
 <view class="rights">
