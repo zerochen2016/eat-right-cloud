@@ -130,7 +130,7 @@ Page({
                 app.setUserProfile(userInfo.user_profile)
                 app.updateRequestSign(userInfo.access_token.token)
                 wx.navigateTo({
-                  url: '../home/home',
+                  url: '../main/main',
                 })
 
               }
@@ -221,7 +221,7 @@ Page({
           app.setUserProfile(userInfo.user_profile)
           app.updateRequestSign(userInfo.access_token.token)
           wx.navigateTo({
-            url: '../home/home',
+            url: '../main/main',
           })
         }
         

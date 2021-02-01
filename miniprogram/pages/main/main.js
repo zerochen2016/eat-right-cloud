@@ -99,7 +99,9 @@ Page({
     imageFamilyNew: app.globalData.resourcesHost + 'my/family-new@2x.png',
     imageOrder: app.globalData.resourcesHost + 'my/order-new@2x.png',
     imageStore: app.globalData.resourcesHost + 'my/store@2x.png',
-    imageArrow: app.globalData.resourcesHost + 'arrow@2x.png'
+    imageArrow: app.globalData.resourcesHost + 'arrow@2x.png',
+    imageVipFamily: app.globalData.resourcesHost + 'my/vip-family@2x.png',
+    imageVip: app.globalData.resourcesHost + 'my/vip@2x.png',
     // my end
   },
 
@@ -137,8 +139,8 @@ Page({
         dataDelayDoInterval = setTimeout(function(){
         //获取弹窗公共
         that.getVersionUpdateInfo()
-        //获取专题菜单
-        that.listChannelMenus()
+        // //获取专题菜单
+        // that.listChannelMenus()
 
         },500)
         

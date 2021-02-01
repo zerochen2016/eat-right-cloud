@@ -2,7 +2,7 @@
   "miniprogramRoot": "miniprogram/",
   "cloudbaseRoot": "cloudbase/",
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "es6": true,
     "enhance": true,
     "postcss": true,
@@ -97,12 +97,6 @@
           "scene": null
         },
         {
-          "name": "pages/home/home",
-          "pathName": "pages/home/home",
-          "query": "",
-          "scene": null
-        },
-        {
           "name": "pages/article/theory-wangweigong",
           "pathName": "pages/article/theory-wangweigong",
           "query": "",
@@ -111,6 +105,12 @@
         {
           "name": "pages/member/member",
           "pathName": "pages/member/member",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/my/my-family",
+          "pathName": "pages/my/my-family",
           "scene": null
         }
       ]

@@ -74,7 +74,7 @@ const pageExtend = Page => {
     object.onShareAppMessage = () => {
       return{
         title: "健康生活 从吃开始",
-        path: "/pages/home/home?shareid=" + getApp().getUser().id
+        path: "/pages/main/main?shareid=" + getApp().getUser().id
       }
     }
 

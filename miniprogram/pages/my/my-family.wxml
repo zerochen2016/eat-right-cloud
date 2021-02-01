@@ -3,14 +3,18 @@
   <image class="head-avatar" src="{{userProfile.avatar_url}}"/>
   <view class="head-info">
     <text class="text52" style="display:block">我的名字</text>
-    <block wx:if="{{vipInfo.isVipFamily}}">
+    <block wx:if="{{(vipInfo.isVipFamily) && (vipInfo.isVip)}}">
       <image class="head-info-image-1" src="{{imageVipFamily}}" />
+      <image class="head-info-image-2" src="{{imageVip}}" />
+    </block>
+    <block wx:elif="{{(vipInfo.isVipFamily)}}">
+      <image class="head-info-image-1" src="{{imageVipFamily}}" />
+    </block>
+    <block wx:elif="{{vipInfo.isVip}}">
+      <image class="head-info-image-2" src="{{imageVip}}" />
     </block>
     <block wx:else>
       <text class="text24">未开通VIP家庭包</text>
-    </block>
-    <block wx:if="{{vipInfo.isVip}}">
-      <image class="head-info-image-2" src="{{imageVip}}" />
     </block>
   </view>
 </view>

@@ -7,11 +7,17 @@
 <view class="line" style="margin-top: 20rpx;"></view>
 <view class="special-view">
   <scroll-view class="special-scroll" scroll-x="true" bindscroll="scroll" style="width: 100%">
-    <block wx:for="{{channelMenus}}" wx:key="true">
+    <!-- <block wx:for="{{channelMenus}}" wx:key="true">
       <image data-id="{{item.channel_id}}" data-title="{{item.topic}}" class="special-scroll-image scroll-image" src="{{item.image.public_access_url}}" bindtap="nTo" data-path="special/special" />
-    </block>        
+    </block>         -->
+    <image  data-title="健康" class="special-scroll-image scroll-image" src="{{imageJiankang}}" bindtap="goThirdWeb" data-url="https://res.jt-health.cn/app-dev/v1/index.html#/channel/bs9vjtbipt36qd0r90b0"  />
+    <image  data-title="营养" class="special-scroll-image scroll-image" src="{{imageYingyang}}" bindtap="goThirdWeb" data-url="https://res.jt-health.cn/app-dev/v1/index.html#/channel/bs9vjuript36qjgmmclg"  />
+    <image  data-title="减脂" class="special-scroll-image scroll-image" src="{{imageJianzhi}}" bindtap="goThirdWeb" data-url="https://res.jt-health.cn/app-dev/v1/index.html#/channel/bs9vj0ript36pvsr37i0"  />
+    <image  data-title="膳食" class="special-scroll-image scroll-image" src="{{imageShanshi}}" bindtap="goThirdWeb" data-url="https://res.jt-health.cn/app-dev/v1/index.html#/channel/bs9vjj3ipt36q6mpaqn0"  />
   </scroll-view>
 </view>
+
+
 <view style="margin-left: 40rpx;margin-top: 30rpx;width: 670rpx;height: 834rpx;" bindtap="toYouzan" data-alias="1y34bn2g4wu68" >
   <image src="{{imageDeviceHome}}" style="width: 670rpx;height: 834rpx;border-radius: 30rpx" />
 </view>
@@ -538,7 +544,7 @@
   <view class="myinfo-view">
     <view class="myinfo-name" bindtap="nTo" data-path="my/my-info" >{{userProfile.nickname}}</view>
     
-    <block wx:if="{{vipInfo.isVipFamily}}">
+    <!-- <block wx:if="{{vipInfo.isVipFamily}}">
       <view class="myinfo-member">家庭包剩余天数：{{vipInfo.vipFamilyRemainDay}}天</view>
     </block>
     <block wx:else>
@@ -548,6 +554,25 @@
       <block wx:else>
         <view class="myinfo-member">未开通会员</view>
       </block>
+    </block> -->
+    <block wx:if="{{(vipInfo.isVipFamily) && (vipInfo.isVip)}}">
+      <view class="head-info-image">
+        <image class="head-info-image-1" src="{{imageVipFamily}}" />
+        <image class="head-info-image-2" src="{{imageVip}}" />
+      </view>
+    </block>
+    <block wx:elif="{{(vipInfo.isVipFamily)}}">
+      <view class="head-info-image">
+        <image class="head-info-image-1" src="{{imageVipFamily}}" />
+      </view>
+    </block>
+    <block wx:elif="{{(vipInfo.isVip)}}">
+      <view class="head-info-image">
+        <image class="head-info-image-2" src="{{imageVip}}" />
+      </view>
+    </block>
+    <block wx:else>
+      <view class="myinfo-member">未开通会员</view>
     </block>
     <view bindtap="nTo" data-path="my/my-info" class="myinfo-update">编辑档案</view>
   </view>
