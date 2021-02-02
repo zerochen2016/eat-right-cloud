@@ -33,6 +33,7 @@ Page({
    */
   onShow: function () {
     this.selectComponent("#header").showAll("我的")
+    this.setData({user: app.getUser()})
   },
 
   /**
@@ -82,17 +83,82 @@ Page({
     this.checkbuttonStyle()
   },
   checkbuttonStyle: function(){
-    if(this.data.password1.length >= 8 && this.data.password2.length >= 8 && this.data.password3.length >= 8 ){
-      this.setData({
-        buttonStyle: 1
-      })
+    if(this.data.user.hasPassword){
+      if(this.data.password1.length >= 8 && this.data.password2.length >= 8 && this.data.password3.length >= 8 ){
+        this.setData({
+          buttonStyle: 1
+        })
+      }else{
+        this.setData({
+          buttonStyle: 0
+        })
+      }
     }else{
-      this.setData({
-        buttonStyle: 0
-      })
+      if(this.data.password2.length >= 8 && this.data.password3.length >= 8 ){
+        this.setData({
+          buttonStyle: 1
+        })
+      }else{
+        this.setData({
+          buttonStyle: 0
+        })
+      }
     }
-  },
 
+  },
+  setPassword: function(mobile){
+    let that = this
+    let password2 = this.data.password2
+    let password3 = this.data.password3
+    if(password2 != password3){
+      app.alert("温馨提示","两次输入密码不一致")
+      return
+    }
+    if(!util.hasNumberAndLetter(password2) || !util.hasNumberAndLetter(password3)){
+      app.alert("温馨提示","密码必须包含字母和数字")
+      return
+    }
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "UserAPI.SetUserPassword",
+        "service": "com.jt-health.api.app",
+        "request": {
+         "user_id": app.getUser().id,
+         "plain_password": password3
+        }
+        
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log(res)
+        if(res.statusCode == 200){
+          if(res.errMsg == 'request:ok'){
+            wx.showModal({
+              title: '温馨提示',
+              content: '设置成功',
+              showCancel: false,
+              success: function(res){
+                if(res.confirm){
+                  that.reLogin()
+                  
+                }
+              }
+            })
+          }
+        }else{
+          app.alert("温馨提示","密码不正确")
+        }
+
+      },
+    })  
+  },
   savePassword: function(mobile){
     let that = this
     let password1 = this.data.password1
@@ -135,17 +201,28 @@ Page({
               showCancel: false,
               success: function(res){
                 if(res.confirm){
-                  that.loginout()
+                  that.reLogin()
                   
                 }
               }
             })
           }
         }else{
-          app.alert("温馨提示","密码不正确")
+          if(res.data.detail){
+            app.alert("温馨提示",res.data.detail)
+          }else{
+            app.alert("温馨提示","密码不正确")
+          }
         }
 
       },
     })  
-  }
+  },
+  reLogin: function(){
+    wx.clearStorageSync()
+    getApp().updateRequestSign('')
+    wx.redirectTo({
+      url: '../login/login',
+    })
+  },
 })

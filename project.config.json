@@ -2,7 +2,7 @@
   "miniprogramRoot": "miniprogram/",
   "cloudbaseRoot": "cloudbase/",
   "setting": {
-    "urlCheck": false,
+    "urlCheck": true,
     "es6": true,
     "enhance": true,
     "postcss": true,
@@ -111,6 +111,24 @@
         {
           "name": "pages/my/my-family",
           "pathName": "pages/my/my-family",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/my/my-family-add",
+          "pathName": "pages/my/my-family-add",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/setup/setup",
+          "pathName": "pages/setup/setup",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/my/my-update-mobile",
+          "pathName": "pages/my/my-update-mobile",
           "scene": null
         }
       ]

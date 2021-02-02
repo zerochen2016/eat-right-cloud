@@ -205,13 +205,7 @@ Page({
         if(res.statusCode == 200){
           let vipArray = res.data.family_renewal_products
           for(let i = 0; i < vipArray.length; i++){
-            if(vipArray[i].renew_days == 30){
-              vipArray[i].alias = '3nklw9gkukxgw'
-            }else if(vipArray[i].renew_days == 90){
-              vipArray[i].alias = '1y5l705cwlmgg'
-            }else if(vipArray[i].renew_days == 365){
-              vipArray[i].alias = '1y34o9c2r56uo'
-            }
+            vipArray[i].alias = vipArray[i].product_id
           }
           that.setData({
             familyVipArray: vipArray,
@@ -247,13 +241,7 @@ Page({
         if(res.statusCode == 200){
           let vipArray = res.data.personal_products
           for(let i = 0; i < vipArray.length; i++){
-            if(vipArray[i].renew_days == 30){
-              vipArray[i].alias = '1y6s5c7tcxk7k'
-            }else if(vipArray[i].renew_days == 90){
-              vipArray[i].alias = '27cybcxe5u2cg'
-            }else if(vipArray[i].renew_days == 365){
-              vipArray[i].alias = '1yfgn1in9dim8'
-            }
+            vipArray[i].alias = vipArray[i].product_id
           }
           that.setData({
             vipArray: vipArray,

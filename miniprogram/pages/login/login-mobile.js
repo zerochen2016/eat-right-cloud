@@ -152,7 +152,8 @@ Page({
               yzCookieKey: userInfo.yz_cookie_key,
               yzCookieValue: userInfo.yz_cookie_value,
               yzOpenId: userInfo.yz_open_id,
-              mobile: userInfo.phone_mask
+              mobile: userInfo.phone_mask,
+              hasPassword: userInfo.has_set_password
             })
             app.setUserProfile(userInfo.user_profile)
             app.updateRequestSign(userInfo.access_token.token)

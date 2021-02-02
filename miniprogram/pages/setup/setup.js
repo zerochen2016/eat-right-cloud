@@ -34,6 +34,8 @@ Page({
    */
   onShow: function () {
     this.selectComponent("#header").showAll("设置")
+    this.setData({user: app.getUser()})
+
   },
 
   /**

@@ -1,12 +1,19 @@
 <header-navigate id="header"></header-navigate>
-<view class="content-tab-3" style="margin-top:{{statusHeight-20}}px">  
+<view class="content-tab-3" style="margin-top:{{statusHeight-20}}px" bindtap="nTo" data-path="my/my-update-mobile">  
     <view class="content-tab-3-view" >
         <view class="content-tab-3-view-text-1">手机号</view>
         <view class="content-tab-3-view-text-2">{{user.mobile}}</view>
+        <image class="content-tab-3-view-image" src="{{imageArrow}}"/>
     </view>
     <view class="content-tab-3-view" bindtap="nTo" data-path="my/my-update-password" >
-        <view class="content-tab-3-view-text-1">修改密码</view>
+        <block wx:if="{{(user.hasPassword)}}">
+            <view class="content-tab-3-view-text-1">修改密码</view>
+        </block>
+        <block wx:else>
+            <view class="content-tab-3-view-text-1">设置密码</view>
+        </block>
         <view class="content-tab-3-view-text-2">********</view>
+        <image class="content-tab-3-view-image" src="{{imageArrow}}"/>
     </view>
 </view>
 

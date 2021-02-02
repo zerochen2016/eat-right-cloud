@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "select-mobile": "../../components/select-mobile/select-mobile"
+  }
+}

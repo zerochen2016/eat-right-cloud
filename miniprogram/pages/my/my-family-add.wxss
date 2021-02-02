@@ -7,7 +7,7 @@
 }
 .mobile-input-2{
   float: left;
-  width: 220rpx;
+  width: 400rpx;
   font-size: 36rpx;
   font-weight: 400;
   height: 132rpx;

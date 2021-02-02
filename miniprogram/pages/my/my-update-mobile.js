@@ -37,13 +37,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoaded: function (options) {
-    //从修改密码的忘记密码进入
-    if(options.mobile){
-      this.setData({
-        inputMobile: options.mobile,
-        nextStyle: true
-      })
-    }
+    
 
   },
 
@@ -58,7 +52,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.selectComponent("#header").showAll("忘记密码")
+    this.selectComponent("#header").showAll("修改手机号")
+    this.setData({user: app.getUser()})
   },
 
   /**
@@ -123,19 +118,7 @@ Page({
           nextStyle: false
         })
       }
-    }else if(step == 3){
-      
-      if(this.data.password1.length > 7 && this.data.password2.length > 7){
-        this.setData({
-          nextStyle: true
-        })
-      }else{
-        this.setData({
-          nextStyle: false
-        })
-      }
     }
-
   },
   areaCodeChange: function(e){
     console.log(e.detail)
@@ -157,94 +140,84 @@ Page({
     }else if(step == 2){
       let verifyCode =  that.data.verifyCode1 + that.data.verifyCode2 + that.data.verifyCode3 + that.data.verifyCode4 + that.data.verifyCode5 + that.data.verifyCode6
       if(!util.isEmpty(verifyCode) && verifyCode.length == 6 && checkVerifyLock == 0){
-        this.setData({
-          step: 3,
-          nextStyle: false,
-          verifyCode: verifyCode
-        })
-      }
-    }else if(step == 3){
-      if(this.data.password1.length > 7 && this.data.password2.length > 7){
-        if(this.data.password1 == this.data.password2){
-          if(util.hasNumberAndLetter(this.data.password1) && util.hasNumberAndLetter(this.data.password2)){
-            if(checkVerifyLock == 0){
-              checkVerifyLock == 1
-              wx.request({
-                url: app.globalData.apiHost, 
-                data: 
-                JSON.stringify({
-                  "method": "UserAPI.ResetPasswordByPhone",
-                  "service": "com.jt-health.api.app",
-                  "request": {
-                   "phone": that.data.inputMobile,
-                   "nation_code": that.data.areaCode,
-                   "sms_verification_code": that.data.verifyCode,
-                   "plain_password": that.data.password1
-                  }
-                  
-                 }),
-                dataType: 'json',
-                method: "POST",
-                header: {
-                  'content-type': 'application/json',
-                  "Accept-Language": "zh-Hans",
-                  "Authorization": 'Bearer ' + app.getRequestSign()
-                },
-                success(res) {
-                  console.log(res)
-                  if(res.statusCode == 200){
-                    wx.showModal({
-                      title: "温馨提示",
-                      content: "重置成功",
-                      showCancel: false,
-                      success: function(res){
-                        console.log(res)
-                        if(res.confirm){
-                          wx.redirectTo({
-                            url: '../login-password/login-password',
-                          })
-                        }
-                      }
-                    })
-                  }else{
-                    wx.showModal({
-                      title: "温馨提示",
-                      content: "验证码错误",
-                      showCancel: false,
-                      success: function(res){
-                        console.log(res)
-                        if(res.confirm){
-                          that.setData({
-                            step: 2,
-                            verifyCode1: null,
-                            verifyCode2: null,
-                            verifyCode3: null,
-                            verifyCode4: null,
-                            verifyCode5: null,
-                            verifyCode6: null,
-                            focus1: 1,
-                            focus2: 0,
-                            focus3: 0,
-                            focus4: 0,
-                            focus5: 0,
-                            focus6: 0,
-                            nextStyle: false
-                          })
-                        }
-                      }
-                    })
-
-                  }
-                
-                },
-              })       
-              checkVerifyLock = 0
+        if(checkVerifyLock == 0){
+          checkVerifyLock == 1
+          let requestData = JSON.stringify({
+            "method": "UserAPI.UpdatePhone",
+            "service": "com.jt-health.api.app",
+            "request": {
+             "user_id": app.getUser().id,
+             "old_nation_code": "+86",
+             "old_phone": app.getUser().mobile,
+             "new_nation_code": that.data.areaCode,
+             "new_phone_verification_code": that.data.verifyCode,
+             "new_phone": that.data.inputMobile
             }
-          }else{
-            app.alert("温馨提示","密码需同时包含字母和数字")
-          }
-        }else{
-          app.alert("温馨提示","两次输入密码不一致")
+            
+           })
+          wx.request({
+            url: app.globalData.apiHost, 
+            data: requestData,
+            dataType: 'json',
+            method: "POST",
+            header: {
+              'content-type': 'application/json',
+              "Accept-Language": "zh-Hans",
+              "Authorization": 'Bearer ' + app.getRequestSign()
+            },
+            success(res) {
+              console.log(res)
+              if(res.statusCode == 200){
+                wx.showModal({
+                  title: "温馨提示",
+                  content: "修改成功",
+                  showCancel: false,
+                  success: function(res){
+                    console.log(res)
+                    if(res.confirm){
+                      wx.redirectTo({
+                        url: '../main/main',
+                      })
+                    }
+                  }
+                })
+              }else{
+                let tip = "验证码错误"
+                if(res.data.detail){
+                  tip = res.data.detail
+                }
+                wx.showModal({
+                  title: "温馨提示",
+                  content: tip,
+                  showCancel: false,
+                  success: function(res){
+                    console.log(res)
+                    if(res.confirm){
+                      that.setData({
+                        step: 2,
+                        verifyCode1: null,
+                        verifyCode2: null,
+                        verifyCode3: null,
+                        verifyCode4: null,
+                        verifyCode5: null,
+                        verifyCode6: null,
+                        focus1: 1,
+                        focus2: 0,
+                        focus3: 0,
+                        focus4: 0,
+                        focus5: 0,
+                        focus6: 0,
+                        nextStyle: false
+                      })
+                    }
+                  }
+                })
+
+              }
+            
+            },
+          })       
+          checkVerifyLock = 0
         }
       }
     }
@@ -417,7 +390,7 @@ Page({
           "service": "com.jt-health.api.app",
           "request": {
            "phone": that.data.inputMobile,
-           "template_action": "TEMPLATE_ACTION_RESET_PASSWORD",
+           "template_action": "TEMPLATE_ACTION_RESET_PHONE",
            "nation_code": that.data.areaCode,
            "language": "LANGUAGE_SIMPLIFIED_CHINESE"
           }

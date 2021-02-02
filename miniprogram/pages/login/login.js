@@ -109,7 +109,7 @@ Page({
             "Authorization": 'Bearer ' + app.getRequestSign()
           },
           success(res) {
-            console.log(res)
+            console.log("unionId",res)
             if(res.statusCode == 200){
               if(res.data.union_id){
                 app.setUnionId(res.data.union_id)
@@ -125,7 +125,8 @@ Page({
                   yzCookieKey: userInfo.yz_cookie_key,
                   yzCookieValue: userInfo.yz_cookie_value,
                   yzOpenId: userInfo.yz_open_id,
-                  mobile: userInfo.phone_mask
+                  mobile: userInfo.phone_mask,
+                  hasPassword: userInfo.has_set_password
                 })
                 app.setUserProfile(userInfo.user_profile)
                 app.updateRequestSign(userInfo.access_token.token)
@@ -206,7 +207,7 @@ Page({
         "Authorization": 'Bearer ' + app.getRequestSign()
       },
       success(res) {
-        console.log(res)
+        console.log("login",res)
         if(res.statusCode == 200){
           let userInfo = res.data
           app.setUser({
@@ -216,7 +217,8 @@ Page({
             yzCookieKey: userInfo.yz_cookie_key,
             yzCookieValue: userInfo.yz_cookie_value,
             yzOpenId: userInfo.yz_open_id,
-            mobile: userInfo.phone_mask
+            mobile: userInfo.phone_mask,
+            hasPassword: userInfo.has_set_password
           })
           app.setUserProfile(userInfo.user_profile)
           app.updateRequestSign(userInfo.access_token.token)
