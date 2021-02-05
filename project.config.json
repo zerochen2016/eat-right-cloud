@@ -129,6 +129,30 @@
         {
           "name": "pages/my/my-update-mobile",
           "pathName": "pages/my/my-update-mobile",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/message/message",
+          "pathName": "pages/message/message",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/check/search",
+          "pathName": "pages/check/search",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/check/connect",
+          "pathName": "pages/check/connect",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/test/test",
+          "pathName": "pages/test/test",
           "scene": null
         }
       ]

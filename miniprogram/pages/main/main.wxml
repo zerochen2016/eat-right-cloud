@@ -1,4 +1,4 @@
-<header-navigate id="header"></header-navigate>
+<header-navigate id="header" ></header-navigate>
 
 <!-- 探索start -->
 <block wx:if="{{activeIndex == 0}}">
@@ -78,7 +78,13 @@
   <view class="check-link-equip text24">
       <view style="{{connectStatus == 1 ? 'background-color: #00B567' : 'background-color: #E86452'}}"></view>
       <image src="{{imageEquip}}" />
-      <text style="line-height: 66rpx;margin-left: 8rpx;">{{connectStatus == 1 ? '已连接': '未连接'}}</text>  
+      <block wx:if="{{connectStatus == 1}}">
+        <text style="line-height: 66rpx;margin-left: 8rpx;" bindtap="nTo" data-path="check/search" data-status="1" >已连接</text>  
+      </block>
+      <block wx:elif="{{connectStatus == 0}}">
+        <text style="line-height: 66rpx;margin-left: 8rpx;" bindtap="nTo" data-path="check/search">未连接</text>  
+      </block>
+      
   </view>
   <view class="check-link-text" style=" float: left;width: 260rpx;height: 200rpx;margin-left: 32rpx;margin-top: 32rpx;">
       <view class="text28" style="margin-top: 32rpx;line-height: 36rpx;">今天综合指数</view>
@@ -92,7 +98,7 @@
     <view class="button-success" style="float: left;margin-left: 32rpx;margin-top: 40rpx" bindtap="{{(hasGuide) ? 'reLaTo' : 'showNewBook'}}" data-status="1" data-device="{{deviceConnectedJson}}" data-path="check/connect">开始检测</view>  
   </block>
   <block wx:else>
-    <view class="button-success" style="float: left;margin-left: 32rpx;margin-top: 40rpx" bindtap="reLaTo" data-device="{{deviceConnectedJson}}" data-path="check/search">连接小阶</view>  
+    <view class="button-success" style="float: left;margin-left: 32rpx;margin-top: 40rpx" bindtap="reLaTo" data-path="check/search">连接小阶</view>  
   </block>
 
 </view>
@@ -457,37 +463,7 @@
     </view>
   </view>
 </block>
-<!-- 选择start -->
-<view class="report-select" hidden="{{showSelect?'':true}}">
-  <calendar bind:dateChange="dateChangeTap" bind:selectDay="selectDay" id="calendar"></calendar>
-  <block wx:for="{{reports}}" wx:key="true">
-    <view class="report" data-id="{{item.id}}" data-date="{{item.date}}" data-risk="{{item.riskIndex}}" data-heart="{{item.heartRate}}" bindtap="selectReport">
-      <view class="text40 report-text-1">{{item.time}}</view>
-      <view class="text28 report-text-2"><text>时刻: {{item.time2}}｜综合风险指数: {{item.riskIndex}}｜心率: {{item.heartRate}}</text></view>
-      <block wx:if="{{item.id == reportBefore.id}}">
-        <block wx:if="{{reportAfter}}">
-          <view class="report-button">吃前</view>
-        </block>
-        <block wx:else>
-          <view class="report-button">已选择</view>
-        </block>
-      </block>
-      <block wx:elif="{{item.id == reportAfter.id}}">
-        <block wx:if="{{reportBefore}}">
-          <view class="report-button">吃后</view>
-        </block>
-        <block wx:else>
-          <view class="report-button">已选择</view>
-        </block>
-      </block>
-    </view>
-  </block>
-  <block wx:if="{{reports.length < 1}}">
-    <view class="text48" style="color:rgba(0, 0, 0, 0.4);margin-top:180rpx;width:100%;text-align:center;float:left">当前无报告</view>
-    <view class="button-success" style="float:left;margin-top:60rpx;margin-left:72rpx" bindtap="nTo" data-path="check/check">去检测</view>
-  </block>
-</view>
-<!-- 选择end -->
+
 </view>
 </block>
 <!-- earright end -->

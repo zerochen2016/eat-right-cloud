@@ -12,13 +12,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoaded: function (options) {
-    let id = options.id
-    // console.log(id)
-    // let dpr = wx.getSystemInfoSync().pixelRatio
-    // let width = wx.getSystemInfoSync().screenWidth
-    // console.log(dpr)
-    // console.log(width)
-    // console.log(750 / width)
+    console.log("report-report onLoaded,options",options)
+    console.log(options)
+    let id = options.id 
     let url = app.globalData.h5Host + "private/report/" + id + '?theme=light-theme&size=medium&access_token=' + app.getUser().accessToken
     console.log(url)
     this.setData({
@@ -46,7 +42,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.selectComponent("#header").showAll("报告")
+    
   },
 
   /**

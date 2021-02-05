@@ -17,7 +17,8 @@ Component({
     imageBack: app.globalData.resourcesHost + 'nav/back@2x.png',
     imageHeight: 0,
     imageTop: 0,
-    showAll: false
+    showAll: false,
+    arrowNotBack: false
   },
 
   /**
@@ -30,10 +31,21 @@ Component({
       })
     },
     showAll: function(title){
+      this.setData({showAll: true,title: title})
+    },
+    showAllFalse: function(){
+      this.setData({showAll: false,arrowNotBack: false})
+    },
+    arrowNotBack: function(){
       this.setData({
-        showAll: true,
-        title: title
+        arrowNotBack: true,
+        showAll: true
       })
+    },
+
+    clickArrow: function(e){
+      let item = {clickArrow: true}//要传给父组件的参数
+      this.triggerEvent('clickArrow',item)//通过triggerEvent将参数传给父组件
     },
     setTitle: function(title){
       this.setData({title: title})

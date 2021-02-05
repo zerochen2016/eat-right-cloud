@@ -1,3 +1,11 @@
+import {ReplyParser, CommandBuilder} from "../../jm-ble/index"
+const EXPECTED_PACKET_SIZE = 8000 // 期望采集的数据包数量，每个数据包包含4个数据点
+// 测量数据回调解析器
+let parser = new ReplyParser()
+
+const wholePayload = ReplyParser.createPayloadBuffer(EXPECTED_PACKET_SIZE) // 采集的 payload 数据缓冲区
+let wholePayloadLen = 0 // 采集的 payload 数据缓冲区中的有效数据长度
+
 const app = getApp()
 const util = require("../../utils/util.js")
 const dateUtil = require("../../utils/date-util.js")
@@ -9,13 +17,6 @@ let changeDotsNumberInterval = null//... 0，2，3
 let checkResultInterval = null//检测结果数据
 let startMeasureInterval = null//开始输入
 
-var data_pool = [];
-var last_byte='';
-var byte_group=[];
-var total_data = [];
-var min_num = 0;
-var max_num = 0;
-var call_count = 0;
 Page({
 
   /**
@@ -53,6 +54,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoaded: function (options) {
+    console.log("connect onLoad", options)
     let device = options.device
     this.checkConnected(device)
   },
@@ -109,21 +111,16 @@ Page({
                               success (res) {
                                 console.log("--notifyBLECharacteristicValueChange success--")
                                 console.log(res)
+                                
                                 startMeasureInterval = setTimeout(function(){
                                   that.startMeasure(deviceId,serviceId,characteristics)
                                 }, 3000)
+
+                                wholePayload.fill(0) // reset wholePayload
+                                wholePayloadLen = 0
                                 wx.onBLECharacteristicValueChange(function(res) {
-                                  // console.log("-onBLECharacteristicValueChange-")
-                                  // console.log(res)
-                                  // if(res.value){
-                                  //   console.log(res.value.toString())
-                                  // }
-                                  that.handleNotifications(that.ab2hex(res.value))
-                                  // if(res.value){
-                                  //   for(let i = 0; i<res.value.length;i++){
-                                  //     total_data.push(res.value[i])
-                                  //   }
-                                  // }
+
+                                  that.clollectData(res.value)
                                 })
                               },
                               fail (res){
@@ -226,21 +223,16 @@ Page({
                   success (res) {
                     console.log("--notifyBLECharacteristicValueChange success--")
                     console.log(res)
+
                     startMeasureInterval = setTimeout(function(){
                       that.startMeasure(deviceId,serviceId,characteristics)
                     }, 3000)
+
+                    wholePayload.fill(0) // reset wholePayload
+                    wholePayloadLen = 0
                     wx.onBLECharacteristicValueChange(function(res) {
-                      // console.log("-onBLECharacteristicValueChange-")
-                      // console.log(res)
-                      // if(res.value){
-                      //   console.log(res.value.toString())
-                      // }
-                      that.handleNotifications(that.ab2hex(res.value))
-                      // if(res.value){
-                      //   for(let i = 0; i<res.value.length;i++){
-                      //     total_data.push(res.value[i])
-                      //   }
-                      // }
+
+                      that.clollectData(res.value)
                     })
                   },
                   fail (res){
@@ -364,13 +356,13 @@ Page({
   checkResult: function(){
     let that = this
     let checkPercentage = this.data.checkPercentage
-    if(checkPercentage <= 99){
-      let totalLength = total_data.length
+    if(checkPercentage <= 99 && wholePayloadLen > 0){
+      let totalLength = wholePayloadLen
       if(totalLength <= 0){
         this.setData({checkPercentage: 0})  
-      }else if(totalLength > 0 && totalLength < 3600){
-        this.setData({checkPercentage: parseInt(totalLength / 40)})  
-      }else if(totalLength < 4000){
+      }else if(totalLength > 0 && totalLength < 23000){
+        this.setData({checkPercentage: parseInt(totalLength / 230)})  
+      }else if(totalLength < 24000){
         this.setData({checkPercentage: 99})  
       }else{
         //检测完成，结果取5000-20000的数字
@@ -380,13 +372,11 @@ Page({
         })
         console.log('before,submitCheckData')
         //提交数据
-        that.submitCheckData(total_data.slice(0,4000),startTime,new Date())
-        
-
+        that.submitCheckData(wholePayload.slice(0,24000),startTime,new Date())
       }
     }  
     checkResultInterval = setTimeout(that.checkResult,1000)
-    console.log("checkResult:",total_data.length)  
+    console.log("checkResult:",wholePayloadLen)  
   },      
   uploadFileForText: function(data){
     let filePath = wx.env.USER_DATA_PATH + "/" + util.randomLetterString(6) + '.txt'
@@ -470,16 +460,14 @@ Page({
   },  
   
   submitCheckData: function(data,startTime,endTime){
-    let submit = new Uint32Array(data).buffer
-    let base64Data = wx.arrayBufferToBase64(submit)
-    this.uploadFileForText(base64Data)
-    // this.uploadFileForText(JSON.stringify(data))
+    let base64Data = wx.arrayBufferToBase64(data)
+    // this.uploadFileForText(base64Data)
     const that = this
-    const timeSecond = dateUtil.dateDiffSecond(new Date(startTime),new Date(endTime))
-    let sampleRate = parseInt(total_data.length / timeSecond)
-    console.log("----sampleRate-----",sampleRate)
+    // const timeSecond = dateUtil.dateDiffSecond(new Date(startTime),new Date(endTime))
+    // let sampleRate = parseInt(wholePayloadLen / timeSecond)
+    // console.log("----sampleRate-----",sampleRate)
     let hash = md5.create()
-    hash.update(submit)
+    hash.update(data)
     let signature = hash.hex()
     let requestData = JSON.stringify({
       "method": "ReportAPI.SubmitPulseTest",
@@ -490,7 +478,7 @@ Page({
           "hand": app.getUserProfile().hand,
           "geo_location":{},
           "sample_device":{
-            "sample_rate": sampleRate,
+            "sample_rate": 200,
             "device_model": "JM1300",
             "device_mac": util.replaceAll(that.data.deviceConnected.deviceId,":",""),
             "device_params":{}
@@ -522,7 +510,7 @@ Page({
         if(res.statusCode == 200){
           if(res.data.report_id){
             wx.navigateTo({
-              url: '../report/report-report',
+              url: '../report/report-report?id=' + res.data.report_id,
             })
           }
         }else{
@@ -572,13 +560,7 @@ Page({
       }
     }
 
-    var LENGTH = 0x03;
-    var CHECKSUM = 0xf6; // 3+8+e8+3
-    CHECKSUM &= 0xff;
-    CHECKSUM = ~CHECKSUM & 0xff;
-    // 4e 51 03 08 1a 04 d6 5a
-    // let orz = new Uint8Array([0x4e, 0x51, 0x03, 0x08, 0xE8,  LENGTH, CHECKSUM, 0x5a]);
-    let orz = new Uint8Array([0x4e, 0x51, 0x03, 0x08, 0x1a,  0x04, 0xd6, 0x5a]);
+    const orz = CommandBuilder.startPulseTest(EXPECTED_PACKET_SIZE)
     var buffer = orz.buffer;
 
     wx.writeBLECharacteristicValue({
@@ -588,58 +570,19 @@ Page({
       value: buffer,
       success (res) {
         console.log('writeBLECharacteristicValue success', res.errMsg)
+        console.log(`开始采集脉诊数据: ${EXPECTED_PACKET_SIZE} 个数据包`)
       },
       fail (res){
         console.log('writeBLECharacteristicValue fail', res.errMsg)
       }
     })
   },      
-  ab2hex: function(buffer) {
-    var hexArr = Array.prototype.map.call(
-      new Uint8Array(buffer),
-      function (bit) {
-        return ('00' + bit.toString(16)).slice(-2)
-      }
-    )
-    return hexArr;
-  },
-  handleNotifications: function(value){
-    // console.log('-----handleNotifications-----')
-    const that = this
-    Object.keys(value).forEach(function(key) {
-      data_pool.push(value[key]);
-    });
-    that.pool_cut();
-  },
-  pool_cut: function(){
-    // console.log('-----pool_cut-----')
-    const that = this
-    data_pool.forEach(function(this_byte, index){
-      if(this_byte == '51' && last_byte == '4e'){
-        that.push_to_display(byte_group);
-        byte_group = [];
-      }else{
-        byte_group.push(this_byte);
-        last_byte=this_byte;
-      }
-    });
-    
-  },
-  push_to_display: function(data_array){
-    let that = this
-    call_count += 1;
-    if(data_array[0] == '03' && data_array[16] == '5a' && data_array[17] == '4e'){ //is measure data set
-      total_data.push(parseInt('0x'+data_array[3]+data_array[2]+data_array[1]));
-      total_data.push(parseInt('0x'+data_array[6]+data_array[5]+data_array[4]));
-      total_data.push(parseInt('0x'+data_array[9]+data_array[8]+data_array[7]));
-      total_data.push(parseInt('0x'+data_array[12]+data_array[11]+data_array[10]));
-      min_num = min_num + Math.round(min_num * 0.01);
-      max_num = max_num - Math.round(max_num * 0.01);
-   
-      that.setData({
-        measure_value: total_data.length
-      });
-    }
-    data_pool = [];
+  // 收集通知回应
+  clollectData: function(reply) {
+  const data = new Uint8Array(reply)
+  parser.fill(data)
+
+  const size = parser.readPayload(wholePayload, wholePayloadLen)
+  wholePayloadLen = wholePayloadLen + size
   },
 })

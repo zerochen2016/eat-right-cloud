@@ -157,7 +157,7 @@ Page({
             })
             app.setUserProfile(userInfo.user_profile)
             app.updateRequestSign(userInfo.access_token.token)
-            wx.navigateTo({
+            wx.reLaunch({
               url: '../main/main',
             })
           }

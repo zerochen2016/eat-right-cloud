@@ -175,7 +175,7 @@ Page({
                   success: function(res){
                     console.log(res)
                     if(res.confirm){
-                      wx.redirectTo({
+                      wx.reLaunch({
                         url: '../main/main',
                       })
                     }

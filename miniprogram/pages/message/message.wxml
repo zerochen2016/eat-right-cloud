@@ -24,7 +24,7 @@
   </block>
 </view>
 <block wx:if="{{familyMessageArray.length}}">
-<view class="content-tab" bindtap="showMessage">
+<view class="content-tab" style="margin-top:{{statusHeight - 20}}px"  bindtap="showMessage">
   <view class="content-tab-text-1">
     <view class="content-tab-text-1-view-1">{{firstMessage.message_title}}</view>
     <view class="content-tab-text-1-view-2">{{firstMessage.sender_nickname}} {{firstMessage.message_content}}</view>

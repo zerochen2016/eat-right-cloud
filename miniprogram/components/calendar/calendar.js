@@ -4,6 +4,9 @@ var headStartX, headEndX;
 var headStartY, headEndY;
 var headMoveFlag = true;// 判断执行滑动事件
 Component({
+  options: {
+    addGlobalClass: true
+  },
   /**
    * 组件的属性列表
    */
@@ -124,23 +127,23 @@ Component({
       headEndX = e.touches[0].pageX; // 获取触摸时的原点
       headEndY = e.touches[0].pageY; // 获取触摸时的原点
       if (headMoveFlag) {
-        if (headEndX - headStartX > 20) {
+        if (headEndX - headStartX > 40) {
           this.dateChange(1,this.data.nowDate)
           console.log("日历右滑")
           headMoveFlag = false;
         }
-        if(headEndY - headStartX > 10){
+        if(headEndY - headStartX > 20){
           console.log("日历下滑")
           if(this.data.days.length < 10){
             this.showAllCalendar()
           }
         }
-        if (headStartX - headEndX > 20) {
+        if (headStartX - headEndX > 40) {
           this.dateChange(0,this.data.nowDate)
           headMoveFlag = false;
           console.log("日历左滑")
         }
-        if(headStartY - headEndY > 10){
+        if(headStartY - headEndY > 20){
           console.log("日历上滑")
           if(this.data.days.length > 10){
             this.showSomeCalendar()
@@ -191,7 +194,8 @@ Component({
       }else {
         let dateInput = new Date(inputDate)
         y = dateInput.getFullYear()
-        m = dateInput.getMonth() - 1
+        m = dateInput.getMonth()
+        
       }
       
       const that = this
@@ -202,7 +206,6 @@ Component({
       days = that.pushThisMonth(date,days)
       days = that.pushLastMonth(date,days)
       days = that.pushNextMonth(date,days)
-      console.log(days)
       if(this.data.dayAll){
         let height = "550rpx"
         if(days.length > 35){
@@ -288,8 +291,6 @@ Component({
           }
 
           days.push(day)
-          console.log("day")
-          console.log(day)
         }
       }else if(m == 2){
           //29天
@@ -299,6 +300,10 @@ Component({
               let day = {
                 "id": id, "value": i + "", "type": (id == today) ? 3 : 1
               }
+              if(input.getFullYear() == today.getFullYear() && m == today.getMonth() + 1 && i == today.getDate()){
+                day.type = 3
+                day.text = "今天"
+              }
               days.push(day)
             }
           //28天
@@ -307,6 +312,10 @@ Component({
               let id =  y + "-" + m + "-" + i
               let day = {
                 "id": id, "value": i + "", "type": (id == today) ? 3 : 1
+              }
+              if(input.getFullYear() == today.getFullYear() && m == today.getMonth() + 1 && i == today.getDate()){
+                day.type = 3
+                day.text = "今天"
               }
               days.push(day)
             }
@@ -318,6 +327,10 @@ Component({
           let id =  y + "-" + m + "-" + i
           let day = {
             "id": id, "value": i + "", "type": (id == today) ? 3 : 1
+          }
+          if(input.getFullYear() == today.getFullYear() && m == today.getMonth() + 1 && i == today.getDate()){
+            day.type = 3
+            day.text = "今天"
           }
           days.push(day)
         }
@@ -348,10 +361,18 @@ Component({
       let days = this.data.days
       if(reportData.length > 0){
         for(let i = 0; i < reportData.length; i++){
-          let date = new Date(reportData[i]) 
+          let date = new Date()
+          let dateArr = reportData[i].split("-")
+          date.setFullYear(parseInt(dateArr[0])) 
+          date.setMonth(parseInt(dateArr[1]) - 1)
+          date.setDate(parseInt(dateArr[2]))
           for(let j = 0;j < days.length; j ++){
             let day = days[j]
-            let dayDate = new Date(day.id)
+            let dayDate = new Date()
+            let dayArr = day.id.split("-")
+            dayDate.setFullYear(parseInt(dayArr[0]))
+            dayDate.setMonth(parseInt(dayArr[1]) - 1)
+            dayDate.setDate(parseInt(dayArr[2]))
             if(date.getFullYear() == dayDate.getFullYear() && date.getMonth() == dayDate.getMonth() && date.getDate() == dayDate.getDate()){
               if(days[j].type != 4){
                 days[j].type = 2

@@ -5,7 +5,6 @@
   font-weight: 800;
   color: rgba(0, 0, 0, 0.87);
   line-height: 82rpx;
-  margin-top: 40rpx;
   margin-left: 40rpx;
 }
 .check-search-title-2{
@@ -15,16 +14,14 @@
   font-weight: 400;
   color: rgba(0, 0, 0, 0.4);
   line-height: 40rpx;
-  margin-top: 20rpx;
   margin-left: 40rpx;
 }
 .check-search-pointer-image{
   width: 480rpx;
   height: 480rpx;
   z-index: 9;
-  position: absolute;
-  left: 135rpx;
-  top: 300rpx;
+  margin-left: -224rpx;
+  margin-top: -224rpx;
   transform-origin: center center;
   opacity: 0.8;
 }
@@ -34,44 +31,15 @@
   background: #FFFFFF;
   border: 2rpx solid #009491;
   z-index: 20;
-  position: absolute;
-  left: 356rpx;
-  top: 520rpx;
+  margin-left: 356rpx;
+  margin-top: -256rpx;
   border-radius: 50%;
-  
-}
-.check-search-image-1{
-  width: 160rpx;
-  height: 160rpx;
   float: left;
-  z-index: 6;
-  position: absolute;
-  left: 295rpx;
-  top: 460rpx;
-}
-.check-search-image-2{
-  width: 320rpx;
-  height: 320rpx;
-  float: left;
-  z-index: 5;
-  position: absolute;
-  left: 215rpx;
-  top: 380rpx;
-}
-.check-search-image-3{
-  width: 480rpx;
-  height: 480rpx;
-  float: left;
-  z-index: 4;
-  position: absolute;
-  left: 135rpx;
-  top: 300rpx;
 }
 .check-search-close{
   width: 232rpx;
   height: 232rpx;
-  margin: 0 auto;
-  margin-top: 780rpx;
+  margin-top: 100rpx;
   margin-left: 259rpx;
 }
 .check-search-device{
@@ -141,9 +109,8 @@
   height: 480rpx;
   float: left;
   z-index: 4;
-  position: absolute;
-  left: 135rpx;
-  top: 300rpx;
+  margin-left: 135rpx;
+  margin-top: 240rpx;
 }
 .check-linking-image-2{
   width: 520rpx;
@@ -152,9 +119,8 @@
   float: left;
   border: solid 2rpx rgba(78, 191, 188, 0.4);
   z-index: 3;
-  position: absolute;
-  left: 115rpx;
-  top: 280rpx;
+  margin-left: 115rpx;
+  margin-top: -500rpx;
 }
 .check-linking-image-3{
   width: 560rpx;
@@ -163,9 +129,9 @@
   float: left;
   border: solid 2rpx rgba(78, 191, 188, 0.2);
   z-index: 2;
-  position: absolute;
-  left: 95rpx;
-  top: 260rpx;
+  margin-left: 95rpx;
+  margin-top: -540rpx;
+  
 }
 .check-linking-image-4{
   width: 600rpx;
@@ -174,7 +140,6 @@
   float: left;
   border: solid 2rpx rgba(78, 191, 188, 0.05);
   z-index: 7;
-  position: absolute;
-  left: 75rpx;
-  top: 240rpx;
+  margin-left: 75rpx;
+  margin-top: -580rpx;
 }

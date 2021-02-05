@@ -1,0 +1,32 @@
+<header-navigate id="header"></header-navigate>
+<!-- 选择start -->
+<view class="report-select"  >
+  <calendar bind:dateChange="dateChangeTap" bind:selectDay="selectDay" id="calendar" class="calendar"></calendar>
+  <block wx:for="{{reports}}" wx:key="true">
+    <view class="report" data-id="{{item.id}}" data-date="{{item.date}}" data-risk="{{item.riskIndex}}" data-heart="{{item.heartRate}}" bindtap="selectReport">
+      <view class="text40 report-text-1">{{item.time}}</view>
+      <view class="text28 report-text-2"><text>时刻: {{item.time2}}｜综合风险指数: {{item.riskIndex}}｜心率: {{item.heartRate}}</text></view>
+      <block wx:if="{{item.id == reportBefore.id}}">
+        <block wx:if="{{reportAfter}}">
+          <view class="report-button">吃前</view>
+        </block>
+        <block wx:else>
+          <view class="report-button">已选择</view>
+        </block>
+      </block>
+      <block wx:elif="{{item.id == reportAfter.id}}">
+        <block wx:if="{{reportBefore}}">
+          <view class="report-button">吃后</view>
+        </block>
+        <block wx:else>
+          <view class="report-button">已选择</view>
+        </block>
+      </block>
+    </view>
+  </block>
+  <block wx:if="{{reports.length < 1}}">
+    <view class="text48" style="color:rgba(0, 0, 0, 0.4);margin-top:180rpx;width:100%;text-align:center;float:left">当前无报告</view>
+    <view class="button-success" style="float:left;margin-top:60rpx;margin-left:72rpx" bindtap="nTo" data-path="check/check">去检测</view>
+  </block>
+</view>
+<!-- 选择end -->

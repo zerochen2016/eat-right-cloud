@@ -87,7 +87,7 @@ Page({
         "Authorization": 'Bearer ' + app.getRequestSign()
       },
       success(res) {
-        console.log(res)
+        console.log("FamilyAPI.ListFamilyMembers",res)
         if(res.statusCode == 200){
           let familyMembers = res.data.family_members
           let familyId = null
@@ -143,6 +143,7 @@ Page({
             vipFamilyTimeBegin: dateUtil.dateToStringYYMMDD(dateUtil.utcToBeiJing(subscriptionSummary.family_timeline.available_begin_time)),
             vipFamilyTime: dateUtil.dateToStringYYMMDD(vipFamilyTime),
             isVipFamily: subscriptionSummary.family_subscription_expired ? false : true,
+            // isVipFamily:true,
             vipRemainDay: dateUtil.dateDiffDay(new Date(), vipTime),
             vipFamilyRemainDay: dateUtil.dateDiffDay(new Date(), vipFamilyTime),
           }

@@ -6,7 +6,7 @@
   box-shadow: 0rpx -4rpx 60rpx 0rpx rgba(0, 0, 0, 0.09), 0rpx 4rpx 8rpx 0rpx rgba(0, 0, 0, 0.09);
   position: fixed;
   bottom: 0;
-  z-index: 0;
+  z-index: 997;
 }
 .nav-bottom-circle {
   width: 134rpx;
@@ -17,7 +17,7 @@
   background: white;
   box-shadow: 0rpx -4rpx 60rpx 0rpx rgba(0, 0, 0, 0.09), 0rpx 4rpx 8rpx 0rpx rgba(0, 0, 0, 0.09);
   border-radius: 50%;
-  z-index: 1;
+  z-index: 998;
   float: left;
 }
 .nav-bottom {
@@ -26,7 +26,7 @@
   background: white;
   position: fixed;
   bottom: 0;
-  z-index: 2;
+  z-index: 999;
   border: none;
 }
 .nav-bottom-view {

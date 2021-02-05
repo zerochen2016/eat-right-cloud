@@ -12,7 +12,7 @@
         <block wx:else>
             <view class="content-tab-3-view-text-1">设置密码</view>
         </block>
-        <view class="content-tab-3-view-text-2">********</view>
+        <view class="content-tab-3-view-text-2"></view>
         <image class="content-tab-3-view-image" src="{{imageArrow}}"/>
     </view>
 </view>
@@ -32,7 +32,7 @@
 <view class="content-tab-3" style="height: 128rpx;margin-top:24rpx;border:none" >  
     <view class="content-tab-3-view" >
         <view class="content-tab-3-view-text-1">服务条款</view>
-        <picker class="content-tab-3-view-text-2" value="{{serviceIndex}}" range="{{serviceArray}}" bindchange="serviceChange">请选择</picker>
+        <picker class="content-tab-3-view-text-2" value="{{serviceIndex}}" range="{{serviceArray}}" bindchange="serviceChange">{{serviceArray[serviceIndex]}}</picker>
         <image class="content-tab-3-view-image" src="{{imageArrow}}"/>
     </view>
 

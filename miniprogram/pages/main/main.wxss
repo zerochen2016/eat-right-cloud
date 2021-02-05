@@ -474,7 +474,6 @@
   background: linear-gradient(360deg, #009591 0%, #65E1C5 100%);
   float: left;
   height: 240rpx;
-  width: 320rpx;
   background-color: white;
   box-shadow: 0rpx 4rpx 24rpx 0rpx rgba(0, 0, 0, 0.12), 0rpx 4rpx 8rpx 0rpx rgba(0, 179, 134, 0.08);
   border-radius: 16rpx;
@@ -489,7 +488,6 @@
   background-color: white;
   float: left;
   height: 240rpx;
-  width: 320rpx;
   background-color: white;
   box-shadow: 0rpx 8rpx 20rpx 0rpx rgba(0, 0, 0, 0.02), 0rpx -8rpx 20rpx 0rpx rgba(0, 0, 0, 0.02);
   border-radius: 16rpx;
@@ -622,47 +620,6 @@
   height: 50rpx;
   margin-left: 40rpx;
   margin-top: 60rpx;
-}
-.report-select{
-  background-color: #F2F2F6;
-  position: absolute;
-  z-index: 999;
-  left: 0;
-  top: 0;
-  height: 1800rpx;
-}
-.report{
-  width: 750rpx;
-  height: 184rpx;
-  margin-top: 30rpx;
-  background-color: white;
-  float: left;
-}
-.report-text-1{
-  float: left;
-  width: 600rpx;
-  margin-top: 48rpx;
-  margin-left: 30rpx;
-}
-.report-text-2{
-  float: left;
-  width: 600rpx;
-  margin-top: 20rpx;
-  margin-left: 30rpx;
-}
-.report-button{
-  float: right;
-  margin-right: 30rpx;
-  margin-top: -88rpx;
-  height: 56rpx;
-  width: 112rpx;
-  color: rgba(0, 149, 145, 1);
-  border-radius: 34rpx;
-  border: 2rpx solid rgba(0, 149, 145, 1);
-  line-height: 56rpx;
-  text-align: center;
-  font-size: 24rpx;
-  font-weight: 400;
 }
 .compare{
   margin-top: 40rpx;

@@ -29,7 +29,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoaded: function (options) {
-
+    if(options.status == 1){
+      this.setData({
+        status: 1,
+        devices: app.getLastDevices()
+      })
+      this.stopBluetooth()
+    }else{
+      this.changePointAnger()
+      this.searchBluetooth()
+      this.changeDotsNumber()
+      this.selectComponent("#header").showAll("检测")
+    }
   },
 
   /**
@@ -43,10 +54,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.changePointAnger()
-    this.searchBluetooth()
-    this.changeDotsNumber()
-    this.selectComponent("#header").showAll("检测")
+    
   },
 
   /**
@@ -136,9 +144,8 @@ Page({
                       
                       if(hasConnect){
                         //连接过自动重连
-                        const hasConnectDevice = app.getLastDevice()
                         wx.reLaunch({
-                          url: '../check/check'
+                          url: '../main/main?index=1'
                         })
                       }else{
                         //选择设备
@@ -186,7 +193,15 @@ Page({
     }
     app.setLastDevice(device)
     wx.reLaunch({
-      url: '../check/check',
+      url: '../main/main?index=1',
+    })
+  },
+  stopBluetooth: function(){
+    
+    wx.closeBluetoothAdapter({
+      success: (res) => {
+        console.log('-----closeBluetoothAdapter-----')
+      },
     })
   },
   stopSearch: function () {

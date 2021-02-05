@@ -5,7 +5,6 @@
   font-weight: 800;
   color: rgba(0, 0, 0, 0.87);
   line-height: 82rpx;
-  margin-top: 40rpx;
   margin-left: 40rpx;
 }
 .check-search-title-2{
@@ -18,61 +17,12 @@
   margin-top: 20rpx;
   margin-left: 40rpx;
 }
-.check-search-pointer-image{
-  width: 480rpx;
-  height: 480rpx;
-  z-index: 9;
-  position: absolute;
-  left: 135rpx;
-  top: 300rpx;
-  transform-origin: center center;
-  opacity: 0.8;
-}
-.check-search-image-0{
-  width: 32rpx;
-  height: 32rpx;
-  background: #FFFFFF;
-  border: 2rpx solid #009491;
-  z-index: 20;
-  position: absolute;
-  left: 356rpx;
-  top: 520rpx;
-  border-radius: 50%;
-  
-}
-.check-search-image-1{
-  width: 160rpx;
-  height: 160rpx;
-  float: left;
-  z-index: 6;
-  position: absolute;
-  left: 295rpx;
-  top: 460rpx;
-}
-.check-search-image-2{
-  width: 320rpx;
-  height: 320rpx;
-  float: left;
-  z-index: 5;
-  position: absolute;
-  left: 215rpx;
-  top: 380rpx;
-}
-.check-search-image-3{
-  width: 480rpx;
-  height: 480rpx;
-  float: left;
-  z-index: 4;
-  position: absolute;
-  left: 135rpx;
-  top: 300rpx;
-}
 .check-search-close{
   width: 232rpx;
   height: 232rpx;
-  margin: 0 auto;
-  margin-top: 780rpx;
+  margin-top: 200rpx;
   margin-left: 259rpx;
+  float: left;
 }
 .check-search-device{
   width: 100%;
@@ -141,9 +91,8 @@
   height: 480rpx;
   float: left;
   z-index: 4;
-  position: absolute;
-  left: 135rpx;
-  top: 300rpx;
+  margin-left: 135rpx;
+  margin-top: 200rpx;
 }
 .check-linking-image-2{
   width: 520rpx;
@@ -152,9 +101,8 @@
   float: left;
   border: solid 2rpx rgba(78, 191, 188, 0.4);
   z-index: 3;
-  position: absolute;
-  left: 115rpx;
-  top: 280rpx;
+  margin-left: 115rpx;
+  margin-top: -500rpx;
 }
 .check-linking-image-3{
   width: 560rpx;
@@ -163,9 +111,8 @@
   float: left;
   border: solid 2rpx rgba(78, 191, 188, 0.2);
   z-index: 2;
-  position: absolute;
-  left: 95rpx;
-  top: 260rpx;
+  margin-left: 95rpx;
+  margin-top: -540rpx;
 }
 .check-linking-image-4{
   width: 600rpx;
@@ -174,25 +121,22 @@
   float: left;
   border: solid 2rpx rgba(78, 191, 188, 0.05);
   z-index: 7;
-  position: absolute;
-  left: 75rpx;
-  top: 240rpx;
+  margin-left: 75rpx;
+  margin-top: -580rpx;
 }
 .check-checking-image-1{
   width: 380rpx;
   height: 380rpx;
   float: left;
   z-index: 5;
-  position: absolute;
-  left: 185rpx;
-  top: 355rpx;
+  margin-left: 50rpx;
+  margin-top: 50rpx;
 }
 .check-checking-image-tick{
   width: 118rpx;
   height: 88rpx;
-  position: absolute;
-  left: 316rpx;
-  top: 500rpx;
+  margin-left: 200rpx;
+  margin-top: 216rpx;
   z-index: 15;
   
 }
@@ -203,11 +147,11 @@
   font-weight: bold;
   color: black;
   line-height: 108rpx;
-  position: absolute;
   text-align: center;
-  left: 225rpx;
-  top: 460rpx;
+  margin-left: 225rpx;
+  margin-top: -320rpx;
   z-index: 30;
+  float: left;
 }
 .check-checking-text-2{
   width: 300rpx;
@@ -216,11 +160,11 @@
   font-weight: 400;
   color: rgba(0, 0, 0, 0.4);
   line-height: 28rpx;
-  position: absolute;
   text-align: center;
-  left: 225rpx;
-  top: 570rpx;
+  margin-left: 225rpx;
+  margin-top: -210rpx;
   z-index: 30;
+  float: left;
 }
 .check-checking-tips{
   width: 250rpx;
@@ -229,10 +173,10 @@
   font-weight: 500;
   color: rgba(0, 0, 0, 0.24);
   line-height: 50rpx;
-  position: absolute;
-  left: 250rpx;
-  top: 900rpx;
+  margin-left: 250rpx;
+  margin-top: 60rpx;
   text-align: center;
+  float: left;
 }
 .check-checking-tips-text-1{
   width: 300rpx;
@@ -242,6 +186,7 @@
   color: rgba(0, 0, 0, 0.24);
   line-height: 50rpx;
   text-align: left;
+  float: left;
 }
 
 .check-checking-tips image{
@@ -249,6 +194,7 @@
   height: 32rpx;
   margin-top: 9rpx;
   margin-right: 8rpx;
+  float: left;
 }
 .check-checking-tips-text-2{
   width: 400rpx;
@@ -260,31 +206,13 @@
   text-align: center;
   margin-left: -75rpx;
   margin-top: 16rpx;
-}
-.check-search-notfind{
-  width: 400rpx;
-  height: 256rpx;
-  margin-top: 160rpx;
-  margin-left: 175rpx; 
-}
-.check-search-notfind-text{
-  width: 450rpx;
-  height: 100rpx;
-  font-size: 36rpx;
-  font-weight: 500;
-  color: rgba(0, 0, 0, 0.24);
-  line-height: 50rpx;  
-  float: left;
-  margin-top: 20rpx;
-  margin-left: 150rpx;
-}
-.check-search-notfind-text image{
-  width: 28rpx;
-  height: 28rpx;
   float: left;
 }
-.check-search-notfind-text text{
-  float: left;
-  margin-left: 38rpx;
-  margin-top: -38rpx;
+.volumn{
+  width:110rpx;
+  height:110rpx;
+  float:right;
+  background-color:white;
+  border-radius:50%;
+  margin-top:-14rpx
 }

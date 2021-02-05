@@ -4,7 +4,7 @@
   <view class="forget-text-top">更换手机号后，下次登录将需要使用新手机号登录。当前手机号：{{user.mobile}}</view>
   <view class="mobile-view">
     <select-mobile bind:areaCodeChange="areaCodeChange"></select-mobile>
-    <input class="mobile-input-2" type="number" bindinput="mobileChange" placeholder="请输入手机号" value="{{inputMobile}}" maxlength="11"/>
+    <input class="mobile-input-2" type="number" bindinput="mobileChange" placeholder="请输入新手机号" value="{{inputMobile}}" maxlength="11"/>
   </view>
   <view class="{{nextStyle ? 'button-success' : 'button-grey'}}" style="margin-top: 120rpx" bindtap="nextStep" data-step="1" >下一步</view>
   <view class="forget-text-bottom">

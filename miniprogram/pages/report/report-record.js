@@ -148,7 +148,7 @@ Page({
         "Authorization": 'Bearer ' + app.getRequestSign()
       },
       success(res) {
-        console.log(res)
+        console.log("ReportAPI.ListReports",res)
         if(res.statusCode == 200){
           let reports = []
           let reportTime = []
@@ -168,7 +168,7 @@ Page({
             that.setData({
               reports: reports
             })
-            that.selectComponent("#calendar").setReportData(reportTime)
+            that.selectComponent(".calendar").setReportData(reportTime)
           }else{
             that.setData({
               reports: []

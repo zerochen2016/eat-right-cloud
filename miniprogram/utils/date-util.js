@@ -19,7 +19,6 @@ module.exports = {
 }
 function getTimeDetail(inputDate){
   let date = new Date(inputDate)
-  let h = date.getHours()
   let result = date.getHours() + ":" + date.getMinutes()
   let today = new Date()
   date.setHours(0)
@@ -31,7 +30,7 @@ function getTimeDetail(inputDate){
   today.setSeconds(0)
   today.setMilliseconds(0)
   if(today.getTime() == date.getTime()){
-    return  result
+    return result
   }else {
     return date.getDate() + "/" +(date.getMonth() + 1)
   }

@@ -61,6 +61,13 @@ Component({
     //   })
       
     // },  
+    setActiveIndex: function(index){
+      this.setData({
+        activeIndex: index
+      })
+      let item = {activeIndex: index}//要传给父组件的参数
+      this.triggerEvent('changeActiveIndex',item)//通过triggerEvent将参数传给父组件
+    },
     changeActiveIndex: function(e){
       let index = e.currentTarget.dataset.index
       this.setData({

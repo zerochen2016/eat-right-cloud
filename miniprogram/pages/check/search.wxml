@@ -3,13 +3,13 @@
 <block wx:if="{{status == 0}}">
   <view class="check-search-title" style="margin-top:{{statusHeight}}px">正在搜索附近设备{{dots}}</view>
   <image class="check-linking-image-1" src="{{imageCircleSearch}}"/>
-  <view class="check-search-image-0"></view>
-  <image class="check-search-pointer-image" src="{{imageCirclePointer}}" style="transform: rotateZ({{pointerAnger}}deg)"/>
-
+  <view class="check-search-image-0">
+    <image class="check-search-pointer-image" src="{{imageCirclePointer}}" style="transform: rotateZ({{pointerAnger}}deg)"/>
+  </view>
   <view class="check-linking-image-2"></view>
   <view class="check-linking-image-3"></view>
   <view class="check-linking-image-4"></view>
-  <image class="check-search-close" src="{{imageClose}}" bindtap="go" data-page="check"/>
+  <image class="check-search-close" src="{{imageClose}}" bindtap="reLaTo" data-path="main/main" data-index="1" />
 </block>
 <!-- 搜索设备end -->
 <!-- 选择设备start -->

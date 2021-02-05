@@ -1,6 +1,11 @@
 <block wx:if="{{showAll}}">
   <view class="title" style="height:{{height}}px;line-height:{{lineHeight}}px;" >
-    <image src="{{imageBack}}" class="back" style="height:{{imageHeight}}px;width:{{imageHeight}}px;top:{{imageTop}}px" bindtap="back" />
+    <block wx:if="{{arrowNotBack}}">
+      <image src="{{imageBack}}" class="back" style="height:{{imageHeight}}px;width:{{imageHeight}}px;top:{{imageTop}}px" bindtap="clickArrow" />
+    </block>
+    <block wx:else>
+      <image src="{{imageBack}}" class="back" style="height:{{imageHeight}}px;width:{{imageHeight}}px;top:{{imageTop}}px" bindtap="back" />
+    </block>
   <text >{{title}}</text>
 </view>
 </block>
