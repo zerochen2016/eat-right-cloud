@@ -4,8 +4,7 @@
     
     "pages/article/theory-wangweigong",
     "pages/article/wangweigong",
-
-    "pages/check/check-device",
+    
     "pages/check/search",
     "pages/check/connect",
     "pages/check/notfind",
@@ -29,6 +28,7 @@
     "pages/member/member-contrast",
 
     "pages/message/message",
+    "pages/message/detail",
 
     "pages/my/my-info",
     "pages/my/my-family",
@@ -38,6 +38,7 @@
     "pages/my/my-update-mobile",
     "pages/my/my-avatarcropper",
     "pages/my/my-avatar-cropper",
+    "pages/my/order",
 
     "pages/policy/policy-member",
     "pages/policy/policy-user",

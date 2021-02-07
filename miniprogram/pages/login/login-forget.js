@@ -200,16 +200,20 @@ Page({
                       success: function(res){
                         console.log(res)
                         if(res.confirm){
-                          wx.redirectTo({
+                          wx.reLaunch({
                             url: '../login-password/login-password',
                           })
                         }
                       }
                     })
                   }else{
+                    let content = "验证码错误"
+                    if(res.data.detail){
+                      content = res.data.detail
+                    }
                     wx.showModal({
                       title: "温馨提示",
-                      content: "验证码错误",
+                      content: content,
                       showCancel: false,
                       success: function(res){
                         console.log(res)

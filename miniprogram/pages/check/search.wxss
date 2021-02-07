@@ -63,6 +63,13 @@
   color: rgba(0, 0, 0, 0.87);
   float: left;
   margin-left: 16rpx;
+  display: -webkit-box;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 500rpx;
 }
 .check-search-device-text-connected{
   width: 120rpx;
@@ -110,7 +117,7 @@
   float: left;
   z-index: 4;
   margin-left: 135rpx;
-  margin-top: 240rpx;
+  margin-top: 100rpx;
 }
 .check-linking-image-2{
   width: 520rpx;

@@ -1,0 +1,28 @@
+<header-navigate id="header"></header-navigate>
+<view class="message" style="margin-top:{{statusHeight - 20}}px">
+  <view class="message-back" style="height:{{info.message_title == '家庭邀请通知' ? '560' : 360}}rpx;">
+    <view class="text80" style="margin-top:96rpx;margin-left:40rpx;color: #009591;">{{info.sender_nickname}}</view>
+    <view class="text60" style="margin-top:40rpx;margin-left:40rpx">{{info.message_content}}</view>
+
+    <block wx:if="{{info.message_title == '家庭邀请通知'}}">
+      <view class="line" style="margin-top:60rpx;margin-left:40rpx;width:710rpx"></view>
+    </block>
+    <block wx:if="{{info.message_title == '家庭邀请通知'}}">
+      <view class="text36" style="margin-top:40rpx;margin-left:40rpx">我将获得</view>
+      <view class="text30" style="margin-top:22rpx;margin-left:40rpx">·共享邀请人的VIP会员部分权益</view>
+      <view class="text30" style="margin-top:8rpx;margin-left:40rpx;">·随时了解家人健康状态</view>
+    </block>
+  </view>
+  <block wx:for="{{info.plugins}}" wx:key="true">
+    <block wx:if="{{item.action == 'acknowledge'}}">
+      <view class="button-success" style="float:left;margin-top:60rpx;margin-left:72rpx" bindtap="resolveMessage" data-type="3" >知道了</view>
+    </block>
+    <block wx:elif="{{item.action == 'acceptInvite'}}">
+      <view class="button-success" style="float:left;margin-top:60rpx;margin-left:72rpx" bindtap="resolveMessage" data-type="1" >接受</view>
+      <view class="text30" style="color: #009591;width:100%;margin-top:40rpx;float:left;text-align:center" bindtap="resolveMessage" data-type="2">残忍拒绝</view>
+    </block>
+    <block wx:elif="{{item.action != 'cancelInvite'}}">
+      <view class="button-success" style="float:left;margin-top:60rpx;margin-left:72rpx" bindtap="resolveMessage" data-type="4" >关闭</view>
+    </block>
+  </block>
+</view>

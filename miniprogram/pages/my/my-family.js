@@ -92,19 +92,27 @@ Page({
           let familyMembers = res.data.family_members
           let familyId = null
           let master = false
+          let selfInfo = null
+          let masterId = ''
           for(let i = 0; i < familyMembers.length; i++){
             if(familyMembers[i].is_primary_user){
               familyId = familyMembers[i].family_id
-              if(familyMembers[i].family_member_id = app.getUser().id){
+              if(familyMembers[i].family_member_id == app.getUser().id){
                 master = true
               }
+              masterId = familyMembers[i].family_member_id
             }
             familyMembers[i].json = JSON.stringify(familyMembers[i])
+            if(familyMembers[i].family_member_id == app.getUser().id){
+              selfInfo = JSON.stringify(familyMembers[i])
+            }
           }
           that.setData({
             familys: familyMembers,
             familyId: familyId,
-            master: master
+            master: master,
+            selfInfo: selfInfo,
+            masterId: masterId
           })
         }
 

@@ -183,6 +183,7 @@ Page({
     }
   },
   doWechatLogin: function(){
+    console.log("doWechatLogin")
     wx.request({
       url: app.globalData.apiHost, 
       data: 

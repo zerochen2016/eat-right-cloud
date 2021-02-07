@@ -76,12 +76,15 @@
 </view>
 <view class="check-link">
   <view class="check-link-equip text24">
-      <view style="{{connectStatus == 1 ? 'background-color: #00B567' : 'background-color: #E86452'}}"></view>
-      <image src="{{imageEquip}}" />
+
       <block wx:if="{{connectStatus == 1}}">
+        <view style="background-color: #00B567" bindtap="nTo" data-path="check/search" data-status="1"></view>
+        <image src="{{imageEquip}}" bindtap="nTo" data-path="check/search" data-status="1" />
         <text style="line-height: 66rpx;margin-left: 8rpx;" bindtap="nTo" data-path="check/search" data-status="1" >已连接</text>  
       </block>
       <block wx:elif="{{connectStatus == 0}}">
+        <view style="background-color: #E86452" bindtap="nTo" data-path="check/search" ></view>
+        <image src="{{imageEquip}}" bindtap="nTo" data-path="check/search" />
         <text style="line-height: 66rpx;margin-left: 8rpx;" bindtap="nTo" data-path="check/search">未连接</text>  
       </block>
       
@@ -95,10 +98,10 @@
     <view class="text52" style="line-height: 92rpx;">{{lastCheckDate}}</view>
   </view>    
   <block wx:if="{{connectStatus == 1}}">
-    <view class="button-success" style="float: left;margin-left: 32rpx;margin-top: 40rpx" bindtap="{{(hasGuide) ? 'reLaTo' : 'showNewBook'}}" data-status="1" data-device="{{deviceConnectedJson}}" data-path="check/connect">开始检测</view>  
+    <view class="button-success" style="float: left;margin-left: 32rpx;margin-top: 40rpx" bindtap="{{(hasGuide) ? 'nTo' : 'showNewBook'}}" data-status="1" data-device="{{deviceConnectedJson}}" data-path="check/connect">开始检测</view>  
   </block>
   <block wx:else>
-    <view class="button-success" style="float: left;margin-left: 32rpx;margin-top: 40rpx" bindtap="reLaTo" data-path="check/search">连接小阶</view>  
+    <view class="button-success" style="float: left;margin-left: 32rpx;margin-top: 40rpx" bindtap="nTo" data-path="check/search">连接小阶</view>  
   </block>
 
 </view>
@@ -557,7 +560,7 @@
       <image src="{{imageFamilyNew}}"/>
       <text>我的家庭</text>
     </view>
-    <view style="width:250rpx">
+    <view style="width:250rpx" bindtap="nTo" data-path="my/order">
       <image src="{{imageOrder}}"/>
       <text>订单信息</text>
     </view>
@@ -571,7 +574,7 @@
   <image class="content-tab-arrow" src="{{imageArrow}}" />
   <view class="content-tab-text-2">新户1.00元</view>
 </view>
-<view class="content-tab" bindtap="go" data-page="message">
+<view class="content-tab" bindtap="nTo" data-path="message/message">
   <view class="content-tab-text-1">
     <view class="content-tab-text-1-view-1">消息通知</view>
     <view class="content-tab-text-1-view-2">查看消息</view>
@@ -594,7 +597,7 @@
     <view>关于我们</view>
     <image src="{{imageArrow}}"/>
   </view>
-  <view class="content-tab-2-view" bindtap="go" data-page="setup">
+  <view class="content-tab-2-view" bindtap="nTo" data-path="/setup/setup">
     <view>设置</view>
     <image src="{{imageArrow}}"/>
   </view>

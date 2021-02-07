@@ -1,0 +1,10 @@
+<header-navigate id="header"></header-navigate>
+<view class="message" style="margin-top:{{statusHeight - 20}}px">
+  <view class="message-back" >
+    <text>
+      请前往"吃对了么商城"小程序
+      并进入"我的"查看订单详情
+    </text>
+  </view>
+  <view class="button-success" style="float:left;margin-top:60rpx;margin-left:72rpx" bindtap="toYouzanShop" >前往查看</view>
+</view>

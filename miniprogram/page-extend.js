@@ -110,51 +110,7 @@ const pageExtend = Page => {
         url: '../' + path + paramsStr
       })
     }
-    object.rTo = (e) => {
-      var path = e.currentTarget.dataset.path;
-      let paramsStr = '?rTo=1'
-      if(e.currentTarget.dataset){
-        for (let [key, value] of Object.entries(e.currentTarget.dataset)) {
-          if(key == 'path'){
-            continue
-          }
-          paramsStr += '&' + key + '=' + value
-        }
-      }
-      wx.redirectTo({
-        url: '../' + path + paramsStr
-      })
-    }
-    object.redirectTo = (e) => {
-      var page = e.currentTarget.dataset.page;
-      let paramsStr = '?page=' + page
-      if(e.currentTarget.dataset){
-        for (let [key, value] of Object.entries(e.currentTarget.dataset)) {
-          if(key == 'page'){
-            continue
-          }
-          paramsStr += '&' + key + '=' + value
-        }
-      }
-      wx.redirectTo({
-        url: '../' + page + '/' + page + paramsStr
-      })
-    }
-    object.reLaTo = (e) => {
-      var path = e.currentTarget.dataset.path;
-      let paramsStr = '?reLaTo=1'
-      if(e.currentTarget.dataset){
-        for (let [key, value] of Object.entries(e.currentTarget.dataset)) {
-          if(key == 'path'){
-            continue
-          }
-          paramsStr += '&' + key + '=' + value
-        }
-      }
-      wx.redirectTo({
-        url: '../' + path + paramsStr
-      })
-    }
+    
     object.goThirdWeb = (e) => {
       let thirdUrl = e.currentTarget.dataset.url;
       let title = ''
@@ -179,6 +135,17 @@ const pageExtend = Page => {
         }
       })
     }
+    object.toYouzanShop = (e) => {
+      wx.navigateToMiniProgram({
+        appId: 'wx6deb54e571e86e3c',
+        extraData: {},
+        envVersion: 'release',
+        success(res) {
+          // 打开成功
+          console.log('navigateToMiniProgram youzan')
+        }
+      })
+    },
 
     object.getWechatUserInfo = (that) =>{
       

@@ -16,6 +16,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoaded: function (options) {
+    console.log(options)
     let that = this
     let info = JSON.parse(options.info)
     if(info.user_profile.gender == 'GENDER_MALE'){
@@ -32,12 +33,14 @@ Page({
     if(info.user_profile.weight){
       info.weight = info.user_profile.weight + '公斤'
     }
+    
+    //当前用户是不是群主
     this.setData({
       self: (app.getUser().id == options.id) ? true : false,
       thisInfo: info,
-      master: (info.is_primary_user) ? true : false
+      master: (options.masterid == app.getUser().id) ? true : false
     },function(){
-      console.log(console.log(that.data))
+      console.log(that.data)
     })
   },
 
@@ -155,7 +158,7 @@ Page({
         console.log(res)
         if(res.statusCode == 200){
           if(res.data.ok){
-            wx.redirectTo({
+            wx.navigateTo({
               url: '../my/my-family',
             })
           }

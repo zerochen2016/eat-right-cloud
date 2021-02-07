@@ -1,54 +1,22 @@
 <header-navigate id="header"></header-navigate>
-<view class="message" style="margin-top:{{statusHeight}}px"  hidden="{{showMessage?'':true}}">
-  <view class="message-back">
-    <view class="text80" style="margin-top:96rpx;margin-left:40rpx;color: #009591;">{{firstMessage.sender_nickname}}</view>
-    <view class="text60" style="margin-top:40rpx;margin-left:40rpx">{{firstMessage.message_content}}</view>
-    <view class="line" style="margin-top:60rpx;margin-left:40rpx;width:710rpx"></view>
-    <block wx:if="{{firstMessage.message_title == '家庭邀请通知'}}">
-      <view class="text36" style="margin-top:40rpx;margin-left:40rpx">我将获得</view>
-      <view class="text30" style="margin-top:22rpx;margin-left:40rpx">·共享邀请人的VIP会员部分权益</view>
-      <view class="text30" style="margin-top:8rpx;margin-left:40rpx;">·随时了解家人健康状态</view>
+<block wx:if="{{familyMessageArray.length > 0}}">
+<view  style="margin-top:{{statusHeight - 20}}px">
+  <block wx:for="{{familyMessageArray}}" wx:key="true">
+    <view class="content-tab"  bindtap="nTo" data-path="message/detail" data-info="{{item.info}}">
+      <view class="content-tab-text-1">
+      <view class="content-tab-text-1-view-1">{{item.message_title}}</view>
+      <view class="content-tab-text-1-view-2">{{item.sender_nickname}} {{item.message_content}}
+      </view>
+    </view>
+    <image class="content-tab-arrow" src="{{imageArrow}}" />
+    <block wx:if="{{item.unReadCount}}">
+      <view class="content-tab-text-3" ></view>
     </block>
-  </view>
-  <block wx:for="{{firstMessage.plugins}}" wx:key="true">
-    <block wx:if="{{item.action == 'acknowledge'}}">
-      <view class="button-success" style="float:left;margin-top:60rpx;margin-left:72rpx" bindtap="resolveMessage" data-type="3" >知道了</view>
+    <block wx:if="{{(item.plugins[0].plugin_type == 'text') && (item.plugins[0].label)}}">
+      <view class="text">{{item.plugins[0].label}}</view>  
     </block>
-    <block wx:elif="{{item.action == 'acceptInvite'}}">
-      <view class="button-success" style="float:left;margin-top:60rpx;margin-left:72rpx" bindtap="resolveMessage" data-type="1" >接受</view>
-      <view class="text30" style="color: #009591;width:100%;margin-top:40rpx;float:left;text-align:center" bindtap="resolveMessage" data-type="2">残忍拒绝</view>
-    </block>
-    <block wx:elif="{{item.action != 'cancelInvite'}}">
-      <view class="button-success" style="float:left;margin-top:60rpx;margin-left:72rpx" bindtap="resolveMessage" data-type="3" >关闭</view>
-    </block>
+    
+    </view>
   </block>
 </view>
-<block wx:if="{{familyMessageArray.length}}">
-<view class="content-tab" style="margin-top:{{statusHeight - 20}}px"  bindtap="showMessage">
-  <view class="content-tab-text-1">
-    <view class="content-tab-text-1-view-1">{{firstMessage.message_title}}</view>
-    <view class="content-tab-text-1-view-2">{{firstMessage.sender_nickname}} {{firstMessage.message_content}}</view>
-  </view>
-  <image class="content-tab-arrow" src="{{imageArrow}}" />
-  <block wx:if="{{unReadCount}}">
-    <view class="content-tab-text-3" ></view>
-  </block>
-</view>
-<!-- TODO  -->
-<!-- <view class="content-tab" bindtap="go" data-page="message">
-  <view class="content-tab-text-1">
-    <view class="content-tab-text-1-view-1">重要更新</view>
-    <view class="content-tab-text-1-view-2">新VIP家庭包上架，邀请体验</view>
-  </view>
-  <image class="content-tab-arrow" src="{{imageArrow}}" />
-  <view class="content-tab-text-3"></view>
-</view>
-<view class="content-tab" bindtap="go" data-page="message">
-  <view class="content-tab-text-1">
-    <view class="content-tab-text-1-view-1">春节到了，普天同乐</view>
-    <view class="content-tab-text-1-view-2">吃对了么春节特惠</view>
-  </view>
-  <image class="content-tab-arrow" src="{{imageArrow}}" />
-  <view class="content-tab-text-3"></view>
-</view> -->
 </block>

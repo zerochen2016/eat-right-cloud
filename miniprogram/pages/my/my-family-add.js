@@ -120,7 +120,7 @@ Page({
           success: function(res){
             if(res.confirm){
               wx.navigateTo({
-                url: '../my-family/my-family',
+                url: '../my/my-family',
               })
             }
           }

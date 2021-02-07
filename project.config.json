@@ -153,6 +153,18 @@
         {
           "name": "pages/test/test",
           "pathName": "pages/test/test",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/check/notfind",
+          "pathName": "pages/check/notfind",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/my/order",
+          "pathName": "pages/my/order",
           "scene": null
         }
       ]

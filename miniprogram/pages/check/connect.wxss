@@ -92,7 +92,7 @@
   float: left;
   z-index: 4;
   margin-left: 135rpx;
-  margin-top: 200rpx;
+  margin-top: 100rpx;
 }
 .check-linking-image-2{
   width: 520rpx;

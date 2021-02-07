@@ -1,4 +1,5 @@
 const app = getApp()
+const util = require("../../utils/util.js")
 let changeDotsNumberInterval = null//... 0，2，3
 let changePointAngerInterval = null//搜索扫描0
 let searchBluetoothInterval = null//搜索蓝牙
@@ -10,9 +11,10 @@ Page({
   data: {
     dots: '',
     devices: [{
-      name: 'd',
-      deviceId: 'p',
-      advertisServiceUUIDs: ['dd','dd','dd']
+      name: '',
+      deviceId: '',
+      mac: '',
+      advertisServiceUUIDs: []
     }],
     status: 0, //0搜索，1选择，2连接中，3检测中，4检测完成，5连接错误重新选择，6没有找到设备，7自动连接
     searchTime: 0,
@@ -124,16 +126,24 @@ Page({
                   let devices = [];
                   console.log('-----getBluetoothDevices success-----')
                   console.log(res)
+                  
                   if(res.devices[0]){
+                    let devicesList = res.devices
                     let hasConnect = false;
-                    for(let i = 0;i<res.devices.length;i++){
+                    for(let i = 0;i<devicesList.length;i++){
                       //找到上次连接过的设备
-                      if(res.devices[i].deviceId == app.getLastDevice().deviceId){
+                      if(devicesList[i].deviceId == app.getLastDevice().deviceId){
                         hasConnect = true
                       }
-                      const namePre = res.devices[i].name.substring(0,2)
+                      const namePre = devicesList[i].name.substring(0,2)
+
                       if(namePre == 'JT'|| namePre == 'jt'){
-                        devices.push(res.devices[i])
+                        if(app.globalData.isIos){
+                          devicesList[i].mac = that.getMacForIos(devicesList[i].advertisData)
+                        }else{
+                          devicesList[i].mac = util.replaceAll(devicesList[i].deviceId,":","")
+                        }
+                        devices.push(devicesList[i])
                       }
                     }
                     if(devices[0]){
@@ -189,12 +199,10 @@ Page({
       deviceName: e.currentTarget.dataset.devicename,
       serviceId: e.currentTarget.dataset.services[0],
       services: e.currentTarget.dataset.services,
+      mac: e.currentTarget.dataset.mac,
       characteristics: []
     }
-    app.setLastDevice(device)
-    wx.reLaunch({
-      url: '../main/main?index=1',
-    })
+    this.checkDeviceIsUsable(device)
   },
   stopBluetooth: function(){
     
@@ -218,5 +226,46 @@ Page({
         clearInterval(intervals[i])
       }
     }
+  },
+  checkDeviceIsUsable: function(device){
+    console.log("checkDeviceIsUsable",device)
+    let that = this
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "DeviceAPI.CheckDeviceIsUsable",
+        "service": "com.jt-health.api.app",
+        "request": {
+          "user_id": app.getUser().id,
+          "mac": device.mac
+        }
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log(res)
+        if(res.statusCode == 200){
+          if(res.data.is_usable){
+            app.setLastDevice(device)
+            wx.reLaunch({
+              url: '../main/main?index=1',
+            })
+          }else{
+            app.alert("温馨提示","设备不可用，请联系客服处理")
+          }
+        }
+        
+      },
+    })     
+  },
+  getMacForIos: function(advertisData){
+    let bf = advertisData.slice(2, 8);
+    let mac = Array.prototype.map.call(new Uint8Array(bf), (x) => ("00" + x.toString(16)).slice(-2)).join(":");
+    return util.replaceAll("00A0" + mac.toUpperCase(),":","")
   }
 })

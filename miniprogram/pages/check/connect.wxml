@@ -7,7 +7,7 @@
   <view class="check-linking-image-2"></view>
   <view class="check-linking-image-3"></view>
   <view class="check-linking-image-4"></view>
-  <image class="check-search-close" src="{{imageClose}}" bindtap="reLaTo" data-path="main/main" data-index="1" />
+  <image class="check-search-close" src="{{imageClose}}" bindtap="nTo" data-path="main/main" data-index="1" />
 </block>
 <!-- 连接中end -->
 <!-- 检测中start -->
@@ -29,7 +29,7 @@
     <view class="check-checking-tips-text-1"><image src="{{imageTips}}"/>小提示提醒您</view>
     <view class="check-checking-tips-text-2">{{tipsText}}</view>
   </view>
-  <image class="check-search-close" src="{{imageClose}}" bindtap="reLaTo" data-path="main/main" data-index="1" />
+  <image class="check-search-close" src="{{imageClose}}" bindtap="nTo" data-path="main/main" data-index="1" />
 </block>
 <!-- 检测中end -->
 <!-- 检测完成start -->
@@ -50,6 +50,6 @@
     <view class="check-checking-tips-text-1"><image src="{{imageTips}}"/>小提示提醒您</view>
     <view class="check-checking-tips-text-2">{{tipsText}}</view>
   </view>
-  <image class="check-search-close" src="{{imageClose}}" bindtap="reLaTo" data-path="main/main" data-index="1" />
+  <image class="check-search-close" src="{{imageClose}}" bindtap="nTo" data-path="main/main" data-index="1" />
 </block>
 <!-- 检测完成end -->

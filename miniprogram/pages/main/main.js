@@ -164,7 +164,7 @@ Page({
       if(user && user.id){
         dataDelayDoInterval = setTimeout(function(){
         //获取弹窗公共
-        that.getVersionUpdateInfo()
+        // that.getVersionUpdateInfo()
         // //获取专题菜单
         // that.listChannelMenus()
 
@@ -273,12 +273,9 @@ Page({
   
   getVersionUpdateInfo: function(){
     let that = this
-    const system = wx.getSystemInfoSync().system.toLowerCase().toString()
     let method = "UserAPI.GetAndroidUpdateInfo"
-    let isIos = false
-    if(system.indexOf('ios') != -1 || system.indexOf('macos') != -1){
+    if(app.globalData.isIos){
       method = "UserAPI.GetIOSUpdateInfo"
-      isIos = true
     }
     wx.request({
       url: app.globalData.apiHost, 
@@ -300,7 +297,7 @@ Page({
         if(res.statusCode == 200){
           let appLink, appSize, updateInfo, version = ''
           let showImportantNotice = 0
-          if(isIos){
+          if(app.globalData.isIos){
             appLink = res.data.app_store_link,
             appSize = res.data.app_size,
             updateInfo = res.data.update_info,
@@ -524,8 +521,12 @@ Page({
         if(res.statusCode == 200){
           if(res){
             if(res.data.has_record){
+              let lastCheckDate = res.data.last_report_time
+              if(lastCheckDate.indexOf("今天") != -1){
+                lastCheckDate = lastCheckDate.substring(2,lastCheckDate.length)
+              }
               that.setData({
-                lastCheckDate: res.data.last_report_time
+                lastCheckDate: lastCheckDate
               })
             }
             if(res.data.has_measurement_today){

@@ -1,0 +1,22 @@
+.message{
+  background-color: #F2F2F6;
+  z-index: 999;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.message-back{
+  background-color:white;
+  float: left;
+  font-size: 48rpx;
+  font-weight: 800;
+  color: rgba(0, 0, 0, 0.87);
+  line-height: 48rpx;
+  float: left;
+  text-align: center;
+  width: 750rpx;
+  line-height: 80rpx;
+  height: 300rpx;
+}

@@ -115,6 +115,8 @@ Page({
         }
       }
      })
+     console.log("-----------")
+     console.log(requestData)
     
     wx.request({
       url: app.globalData.apiHost, 

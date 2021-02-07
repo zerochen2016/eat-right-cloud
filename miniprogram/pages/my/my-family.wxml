@@ -1,8 +1,8 @@
 <header-navigate id="header" ></header-navigate>
 <view class="head" style="margin-top:{{statusHeight - 20}}px">
-  <image class="head-avatar" src="{{userProfile.avatar_url}}"/>
+  <image class="head-avatar" data-masterid="{{masterId}}" bindtap="nTo" data-path="my/my-family-member" data-id="{{userId}}" data-info="{{selfInfo}}" src="{{userProfile.avatar_url}}"/>
   <view class="head-info">
-    <text class="text52" style="display:block">我的名字</text>
+    <text class="text52" style="display:block" bindtap="nTo" data-path="my/my-family-member" data-id="{{userId}}" data-masterid="{{masterId}}" data-info="{{selfInfo}}">我的名字</text>
     <block wx:if="{{(vipInfo.isVipFamily) && (vipInfo.isVip)}}">
       <image class="head-info-image-1" src="{{imageVipFamily}}" />
       <image class="head-info-image-2" src="{{imageVip}}" />
@@ -29,7 +29,7 @@
 <block wx:if="{{familys.length > 0 }}">
 <block wx:for="{{familys}}" wx:key="true">
   <block wx:if="{{item.family_member_id != userId}}"> 
-    <view class="family-view" bindtap="nTo" data-path="my/my-family-member" data-id="{{item.family_member_id}}" data-info="{{item.json}}">
+    <view class="family-view" bindtap="nTo" data-path="my/my-family-member" data-id="{{item.family_member_id}}" data-masterid="{{masterId}}" data-info="{{item.json}}">
       <image class="family-view-avatar" src="{{item.user_profile.avatar_url}}" />
       <view class="family-view-text">
         <text class="text38">{{item.user_profile.nickname}}</text>

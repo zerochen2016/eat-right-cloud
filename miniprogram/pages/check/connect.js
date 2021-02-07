@@ -31,7 +31,8 @@ Page({
       deviceName: '',
       serviceId: '',
       services: [],
-      characteristics: []
+      characteristics: [],
+      mac: ''
     },
     checkPercentage: 0,
     volumnStatus:0,
@@ -208,7 +209,8 @@ Page({
                   deviceName: deviceName,
                   serviceId: services[0],
                   services: services,
-                  characteristics: characteristics
+                  characteristics: characteristics,
+                  mac: device.mac
                 }
                 that.setData({
                   deviceConnected: deviceConnected
@@ -440,6 +442,13 @@ Page({
           console.log(res)
         }
       })
+      wx.onBackgroundAudioStop((res) => {
+        console.log("onBackgroundAudioStop")
+        app.setVolumnStatus(0)
+        that.setData({
+          volumnStatus: 0
+        })
+      })
     }else if(status == 0){
       wx.stopBackgroundAudio({
         success: (res) => {
@@ -480,7 +489,7 @@ Page({
           "sample_device":{
             "sample_rate": 200,
             "device_model": "JM1300",
-            "device_mac": util.replaceAll(that.data.deviceConnected.deviceId,":",""),
+            "device_mac": that.data.deviceConnected.mac,
             "device_params":{}
           },
           "sample_data":{
@@ -494,7 +503,7 @@ Page({
         }
       }
      })
-    
+    console.log("requestData-------------",requestData)
     wx.request({
       url: app.globalData.apiHost, 
       data: requestData,

@@ -9,7 +9,7 @@
   <view class="check-linking-image-2"></view>
   <view class="check-linking-image-3"></view>
   <view class="check-linking-image-4"></view>
-  <image class="check-search-close" src="{{imageClose}}" bindtap="reLaTo" data-path="main/main" data-index="1" />
+  <image class="check-search-close" src="{{imageClose}}" bindtap="nTo" data-path="main/main" data-index="1" />
 </block>
 <!-- 搜索设备end -->
 <!-- 选择设备start -->
@@ -17,9 +17,9 @@
   <view class="check-search-title" style="margin-top:{{statusHeight}}px">选择设备</view>
   <view style="margin:0 auto;margin-top:24rpx;float:left;width:100%">
   <block wx:for="{{devices}}" wx:key="true">
-    <view class="check-search-device" data-devicename="{{item.name}}" data-deviceid="{{item.deviceId}}" data-services="{{item.advertisServiceUUIDs}}" bindtap="selectDeviceTap">
+    <view class="check-search-device" data-devicename="{{item.name}}" data-deviceid="{{item.deviceId}}" data-services="{{item.advertisServiceUUIDs}}" data-mac="{{item.mac}}" bindtap="selectDeviceTap">
       <image class="check-search-device-image-1" src="{{imageEquip}}"/>
-      <text class="check-search-device-text">MAC: {{item.deviceId}}</text>
+      <text class="check-search-device-text">MAC: {{item.mac}}</text>
       <image class="check-search-device-image-2" src="{{imageArrow}}"/>
     </view>
   </block>

@@ -54,13 +54,6 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    // redirectTo: function (e) {
-    //   var page = e.currentTarget.dataset.page;
-    //   wx.navigateTo({
-    //     url: '../' + page + '/' + page
-    //   })
-      
-    // },  
     setActiveIndex: function(index){
       this.setData({
         activeIndex: index

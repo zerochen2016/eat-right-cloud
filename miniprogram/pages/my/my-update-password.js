@@ -221,7 +221,7 @@ Page({
   reLogin: function(){
     wx.clearStorageSync()
     getApp().updateRequestSign('')
-    wx.redirectTo({
+    wx.navigateTo({
       url: '../login/login',
     })
   },
