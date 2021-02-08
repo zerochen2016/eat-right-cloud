@@ -150,7 +150,7 @@ Page({
       if(e.currentTarget.dataset.productid == array[i].product_id){
         wx.navigateToMiniProgram({
           appId: 'wx6deb54e571e86e3c',
-          path: 'packages/goods/detail/index?alias=' + array[i].alias + '&shopAutoEnter=1',
+          path: 'packages/goods/detail/index?alias=' + array[i].product_id + '&shopAutoEnter=1',
           extraData: {},
           envVersion: 'release',
           success(res) {

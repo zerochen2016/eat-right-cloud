@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    allNull: false
   },
 
   /**
@@ -28,6 +28,12 @@ Page({
       reportAfter = JSON.parse(options.reportAfterJson)
       this.setData({
         reportAfter: reportAfter
+      })
+    }
+    //都空
+    if(!(options.reportBeforeJson) && !(options.reportAfterJson)){
+      this.setData({
+        allNull: true
       })
     }
     this.setDate(reportBefore,reportAfter)
@@ -288,8 +294,11 @@ Page({
       reportAfter: reportAfter ? reportAfter: null,
     })
     this.setDate(reportBefore,reportAfter)
-    wx.reLaunch({
-      url: '../main/main?index=2&sback=1&reportAfter='+ (reportAfter ? JSON.stringify(reportAfter) : "") + "&reportBefore=" + (reportBefore ? JSON.stringify(reportBefore) : "") + "&do=" + (doComparison ? 1 : 0),
-    })
+    if(reportBefore && reportAfter){
+      wx.reLaunch({
+        url: '../main/main?index=2&sback=1&reportAfter='+ (reportAfter ? JSON.stringify(reportAfter) : "") + "&reportBefore=" + (reportBefore ? JSON.stringify(reportBefore) : "") + "&do=" + (doComparison ? 1 : 0),
+      })
+    }
+
   },
 })

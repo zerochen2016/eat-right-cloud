@@ -9,7 +9,7 @@
   <view class="check-linking-image-2"></view>
   <view class="check-linking-image-3"></view>
   <view class="check-linking-image-4"></view>
-  <image class="check-search-close" src="{{imageClose}}" bindtap="nTo" data-path="main/main" data-index="1" />
+  <image class="check-search-close" src="{{imageClose}}" bindtap="rTo" data-path="main/main" data-index="1" />
 </block>
 <!-- 搜索设备end -->
 <!-- 选择设备start -->

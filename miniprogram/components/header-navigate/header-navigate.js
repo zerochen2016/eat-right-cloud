@@ -25,7 +25,9 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    back: function(e){wx.navigateBack({delta: 0,})
+    back: function(e){
+      
+      wx.navigateBack({delta: 0,})
     },
     showAll: function(title){
       this.setData({showAll: true,title: title})

@@ -125,6 +125,14 @@ Page({
           if(res.data.on_site_messages){
             familyMessageArray = res.data.on_site_messages
             for(let i = 0; i < familyMessageArray.length; i++){
+              for(let j = 0; j < familyMessageArray[i].plugins.length;j++){
+                let action = familyMessageArray[i].plugins[j].action
+                if(action == 'acknowledge' || action == 'cancelInvite' || action == 'acceptInvite'){
+                  familyMessageArray[i].unRead = true
+                }else{
+                  familyMessageArray[i].unRead = false
+                }
+              }
               familyMessageArray[i].info = JSON.stringify(familyMessageArray[i])
             }
           } 

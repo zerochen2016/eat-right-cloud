@@ -140,6 +140,10 @@ Page({
             wx.reLaunch({
               url: '../main/main',
             })
+          }else{
+            if(res.data.detail){
+              app.alert("温馨提示",res.data.detail)
+            }
           }
         
         },

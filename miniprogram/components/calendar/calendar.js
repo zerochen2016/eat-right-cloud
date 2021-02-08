@@ -128,7 +128,7 @@ Component({
       headEndY = e.touches[0].pageY; // 获取触摸时的原点
       if (headMoveFlag) {
         if (headEndX - headStartX > 40) {
-          this.dateChange(1,this.data.nowDate)
+          this.dateChange(0,this.data.nowDate)
           console.log("日历右滑")
           headMoveFlag = false;
         }
@@ -139,7 +139,7 @@ Component({
           }
         }
         if (headStartX - headEndX > 40) {
-          this.dateChange(0,this.data.nowDate)
+          this.dateChange(1,this.data.nowDate)
           headMoveFlag = false;
           console.log("日历左滑")
         }

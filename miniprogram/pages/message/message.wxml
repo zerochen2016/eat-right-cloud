@@ -9,7 +9,7 @@
       </view>
     </view>
     <image class="content-tab-arrow" src="{{imageArrow}}" />
-    <block wx:if="{{item.unReadCount}}">
+    <block wx:if="{{item.unRead}}">
       <view class="content-tab-text-3" ></view>
     </block>
     <block wx:if="{{(item.plugins[0].plugin_type == 'text') && (item.plugins[0].label)}}">

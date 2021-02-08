@@ -34,7 +34,7 @@
 <view class="risk-line"></view>
 <view class="risk-index-title">风险数值趋势</view>
 <!-- 是否会员start1 -->
-<block wx:if="{{vipInfo.isVip}}">
+<block wx:if="{{(vipInfo.isVip) || (vipInfo.isVipFamily)}}">
 <view class="risk-index2">
   <view class="linear-regression">
     <view class="linear-regression-lineback">
@@ -63,7 +63,7 @@
 </block>
 <!-- 是否会员end1 -->
 <!-- 非会员解锁start -->
-<block wx:if="{{!(vipInfo.isVip)}}">
+<block wx:if="{{!(vipInfo.isVip) && !(vipInfo.isVipFamily)}}">
     <view class="lock" bindtap="nTo" data-path="member/member" >
       <image class="lock-image" src="{{imageLock}}" />
       <view class="lock-text-1 text40">解锁完整月分析</view>
@@ -73,7 +73,7 @@
 <!-- 非会员解锁end -->
 </view>
   <!-- 是否会员start2 -->
-  <block wx:if="{{vipInfo.isVip}}">
+  <block wx:if="{{(vipInfo.isVip) || (vipInfo.isVipFamily)}}">
   <view style="width:750;height:120rpx;background-color:rgba(242, 242, 246, 1)">
     <view class="text40" style="margin-top:60rpx;margin-left:40rpx;width:500rpx;text-align:left;float:left">指标数据表</view>
   </view>

@@ -78,22 +78,23 @@ const pageExtend = Page => {
       }
     }
 
-    
-    object.go = (e) => {
-      var page = e.currentTarget.dataset.page;
-      let paramsStr = '?page=' + page
+    object.rTo = (e) => {
+      var path = e.currentTarget.dataset.path;
+      let paramsStr = '?nTo=1'
       if(e.currentTarget.dataset){
         for (let [key, value] of Object.entries(e.currentTarget.dataset)) {
-          if(key == 'page'){
+          if(key == 'path'){
             continue
           }
           paramsStr += '&' + key + '=' + value
         }
+        console.log('go--' + paramsStr)
       }
-      wx.navigateTo({
-        url: '../' + page + '/' + page + paramsStr
+      wx.relaunch({
+        url: '../' + path + paramsStr
       })
-    }
+    }    
+    
     object.nTo = (e) => {
       var path = e.currentTarget.dataset.path;
       let paramsStr = '?nTo=1'
