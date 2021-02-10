@@ -31,17 +31,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoaded: function (options) {
+    // options.device = {
+    //   name: 'ddd',
+    //   deviceId: 'ddd',
+    //   mac: 'ddd',
+    //   advertisServiceUUIDs: ['ddd']
+    // }
     if(options.status == 1){
       this.setData({
         status: 1,
-        devices: app.getLastDevices()
+        devices: app.getLastDevices(),
+        deviceSelected: JSON.parse(options.device) 
       })
       this.stopBluetooth()
     }else{
       this.changePointAnger()
       this.searchBluetooth()
       this.changeDotsNumber()
-      this.selectComponent("#header").showAll("检测")
+      
     }
   },
 

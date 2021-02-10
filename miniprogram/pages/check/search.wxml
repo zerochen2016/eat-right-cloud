@@ -1,4 +1,4 @@
-<header-navigate id="header"></header-navigate>
+
 <!-- 搜索设备start -->
 <block wx:if="{{status == 0}}">
   <view class="check-search-title" style="margin-top:{{statusHeight}}px">正在搜索附近设备{{dots}}</view>
@@ -23,6 +23,6 @@
       <image class="check-search-device-image-2" src="{{imageArrow}}"/>
     </view>
   </block>
-</view>
+  </view>
 </block>
 <!-- 选择设备end -->

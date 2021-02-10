@@ -78,9 +78,9 @@
   <view class="check-link-equip text24">
 
       <block wx:if="{{connectStatus == 1}}">
-        <view style="background-color: #00B567" bindtap="nTo" data-path="check/search" data-status="1"></view>
-        <image src="{{imageEquip}}" bindtap="nTo" data-path="check/search" data-status="1" />
-        <text style="line-height: 66rpx;margin-left: 8rpx;" bindtap="nTo" data-path="check/search" data-status="1" >已连接</text>  
+        <view style="background-color: #00B567" bindtap="nTo" data-path="check/search" data-status="1" data-device="{{deviceConnectedJson}}"  ></view>
+        <image src="{{imageEquip}}" bindtap="nTo" data-path="check/search" data-status="1" data-device="{{deviceConnectedJson}}"  />
+        <text style="line-height: 66rpx;margin-left: 8rpx;" bindtap="nTo" data-path="check/search" data-status="1" data-device="{{deviceConnectedJson}}" >已连接</text>  
       </block>
       <block wx:elif="{{connectStatus == 0}}">
         <view style="background-color: #E86452" bindtap="nTo" data-path="check/search" ></view>

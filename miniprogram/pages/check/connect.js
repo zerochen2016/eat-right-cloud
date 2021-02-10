@@ -276,8 +276,7 @@ Page({
     this.checkResult()
     this.changeTipsText()
     this.changeDotsNumber()
-    //标题
-    this.selectComponent("#header").showAll("检测")
+    
   },
 
   /**

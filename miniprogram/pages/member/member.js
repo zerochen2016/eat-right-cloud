@@ -148,16 +148,7 @@ Page({
     }
     for(let i = 0; i < array.length; i++){
       if(e.currentTarget.dataset.productid == array[i].product_id){
-        wx.navigateToMiniProgram({
-          appId: 'wx6deb54e571e86e3c',
-          path: 'packages/goods/detail/index?alias=' + array[i].product_id + '&shopAutoEnter=1',
-          extraData: {},
-          envVersion: 'release',
-          success(res) {
-            // 打开成功
-            console.log('navigateToMiniProgram youzan')
-          }
-        })
+        this.getGoodsLink(array[i].product_id)
       }
     }
     
@@ -319,5 +310,47 @@ Page({
         
       },
     })     
-  }
+  },
+  getGoodsLink: function(productId){
+    const that = this
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "MallAPI.GetOrderLink",
+        "service": "com.jt-health.api.app",
+        "request": {
+          "product_id": productId
+        }
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log(res)
+        if(res.statusCode == 200){
+          if(res.data.yz_place_order_url){
+            let url = res.data.yz_place_order_url
+            let last = url.lastIndexOf("/")
+            let alias = url.substring(last + 1, url.length)
+            console.log(alias)
+            wx.navigateToMiniProgram({
+              appId: 'wx6deb54e571e86e3c',
+              path: 'packages/goods/detail/index?alias=' + alias + '&shopAutoEnter=1',
+              extraData: {},
+              envVersion: 'release',
+              success(res) {
+                // 打开成功
+                console.log('navigateToMiniProgram youzan')
+              }
+            })
+          }
+        }
+        
+      },
+    })     
+  },
 })
