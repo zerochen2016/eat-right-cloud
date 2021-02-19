@@ -71,6 +71,18 @@
   text-overflow: ellipsis;
   width: 500rpx;
 }
+.check-search-device-text-select{
+  height: 30rpx;
+  font-size: 22rpx;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 30rpx;
+  border-radius: 4rpx;
+  background-color: rgba(50, 195, 132, 1);
+  float: left;
+  margin-top: 105rpx;
+  margin-left: -500rpx;
+}
 .check-search-device-text-connected{
   width: 120rpx;
   height: 32rpx;

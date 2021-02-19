@@ -197,6 +197,13 @@ Page({
   },
   changeActiveIndex: function(e){
     let index = e.detail.activeIndex
+    if(index > 0){
+      if(!app.getUser()){
+        wx.navigateTo({
+          url: '../login/login',
+        })
+      }
+    }
     this.setData({
       activeIndex: index
     })

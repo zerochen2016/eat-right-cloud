@@ -1,4 +1,4 @@
-
+<header-navigate id="header"></header-navigate>
 <!-- 连接中start -->
 <block wx:if="{{status == 2}}">
   <view class="check-search-title" style="margin-top:{{statusHeight - 20}}px" >正在连接中{{dots}}</view>

@@ -31,17 +31,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoaded: function (options) {
-    // options.device = {
-    //   name: 'ddd',
-    //   deviceId: 'ddd',
-    //   mac: 'ddd',
-    //   advertisServiceUUIDs: ['ddd']
-    // }
     if(options.status == 1){
+      let devices = []
+      let deviceSelected = JSON.parse(options.device)
+      for(let i = 0; i < app.getLastDevices().length; i++){
+        if(app.getLastDevices()[i].deviceId != deviceSelected.deviceId){
+          devices.push(app.getLastDevices()[i])
+        }
+      }
       this.setData({
         status: 1,
-        devices: app.getLastDevices(),
-        deviceSelected: JSON.parse(options.device) 
+        devices: devices,
+        hasSelect: true,
+        deviceSelected: deviceSelected
+      //   deviceSelected: {
+      //     deviceId: 'ss',
+      // deviceName: 'dd',
+      // serviceId: 'dd',
+      // services: ['s','s'],
+      // mac: 'd',
+      // characteristics: []
+      //   }
       })
       this.stopBluetooth()
     }else{
@@ -63,7 +73,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    this.selectComponent("#header").onlyBack('#F2F2F6')
   },
 
   /**

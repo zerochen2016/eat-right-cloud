@@ -2,7 +2,7 @@
   "miniprogramRoot": "miniprogram/",
   "cloudbaseRoot": "cloudbase/",
   "setting": {
-    "urlCheck": false,
+    "urlCheck": true,
     "es6": true,
     "enhance": true,
     "postcss": true,
@@ -60,113 +60,6 @@
     },
     "miniprogram": {
       "list": [
-        {
-          "name": "pages/my/my-update-password",
-          "pathName": "pages/my/my-update-password",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/my/my",
-          "pathName": "pages/my/my",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/policy/policy-member",
-          "pathName": "pages/policy/policy-member",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/report/report-record",
-          "pathName": "pages/report/report-record",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/help-feedback/help-feedback",
-          "pathName": "pages/help-feedback/help-feedback",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/test3/test3",
-          "pathName": "pages/test3/test3",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/article/theory-wangweigong",
-          "pathName": "pages/article/theory-wangweigong",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/member/member",
-          "pathName": "pages/member/member",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/my/my-family",
-          "pathName": "pages/my/my-family",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/my/my-family-add",
-          "pathName": "pages/my/my-family-add",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/setup/setup",
-          "pathName": "pages/setup/setup",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/my/my-update-mobile",
-          "pathName": "pages/my/my-update-mobile",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/message/message",
-          "pathName": "pages/message/message",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/check/search",
-          "pathName": "pages/check/search",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/check/connect",
-          "pathName": "pages/check/connect",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/test/test",
-          "pathName": "pages/test/test",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/check/notfind",
-          "pathName": "pages/check/notfind",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/my/order",
-          "pathName": "pages/my/order",
-          "scene": null
-        }
       ]
     }
   }

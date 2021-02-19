@@ -7,7 +7,7 @@
   float: left;
 }
 .content-tab-text-1-view-1{
-  width: 400rpx;
+  width: 300rpx;
   font-size: 38rpx;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.87);
@@ -23,7 +23,7 @@
   font-weight: 400;
   color: rgba(0, 0, 0, 0.4);
   line-height: 34rpx;
-  margin-left: -400rpx;
+  margin-left: -300rpx;
   margin-top: 94rpx;
   float: left;
 }
@@ -68,6 +68,6 @@
   color: #009591;
   text-align: center;
   line-height: 50rpx;
-  margin-top: -50rpx;
-  margin-right: 80rpx;
+  margin-top: 60rpx;
+  margin-right: 8rpx;
 }

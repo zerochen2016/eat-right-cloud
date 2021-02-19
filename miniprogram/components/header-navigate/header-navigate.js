@@ -18,7 +18,8 @@ Component({
     imageHeight: 0,
     imageTop: 0,
     showAll: false,
-    arrowNotBack: false
+    arrowNotBack: false,
+    backgroundColor: 'white'
   },
 
   /**
@@ -31,6 +32,9 @@ Component({
     },
     showAll: function(title){
       this.setData({showAll: true,title: title})
+    },
+    onlyBack: function(color){
+      this.setData({showAll: true,title: '',backgroundColor: color})
     },
     showAllFalse: function(){
       this.setData({showAll: false,arrowNotBack: false})

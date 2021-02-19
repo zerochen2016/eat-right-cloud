@@ -29,7 +29,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.selectComponent("#header").showAll("检测")
+    this.selectComponent("#header").onlyBack('#F2F2F6')
   },
 
   /**

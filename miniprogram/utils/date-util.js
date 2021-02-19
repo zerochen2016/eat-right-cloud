@@ -32,7 +32,7 @@ function getTimeDetail(inputDate){
   if(today.getTime() == date.getTime()){
     return result
   }else {
-    return date.getDate() + "/" +(date.getMonth() + 1)
+    return (date.getMonth() + 1) + "/" + date.getDate() + " " + result
   }
 }
 /**

@@ -1,5 +1,5 @@
 <block wx:if="{{showAll}}">
-  <view class="title" style="height:{{height}}px;line-height:{{lineHeight}}px;" >
+  <view class="title" style="height:{{height}}px;line-height:{{lineHeight}}px;background-color:{{backgroundColor}}" >
     <block wx:if="{{arrowNotBack}}">
       <image src="{{imageBack}}" class="back" style="height:{{imageHeight}}px;width:{{imageHeight}}px;top:{{imageTop}}px" bindtap="clickArrow" />
     </block>
@@ -10,7 +10,7 @@
 </view>
 </block>
 <block wx:else>
-  <view class="title" style="height:{{height}}px;line-height:{{lineHeight}}px;opacity: 0;" animation="{{animationData}}">
+  <view class="title" style="height:{{height}}px;line-height:{{lineHeight}}px;opacity: 0;background-color:{{backgroundColor}}" animation="{{animationData}}">
   <text style="opacity: 0;" animation="{{animationData2}}">{{title}}</text>
 </view>
 </block>

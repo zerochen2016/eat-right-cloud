@@ -21,10 +21,10 @@ const pageExtend = Page => {
       const route = getCurrentPages()[0].route
       console.log("-----route-----")
       console.log(route)
-      if(route.indexOf('login') == -1 && route.indexOf('third-webview/third-webview') == -1 && route.indexOf('setup/setup') == -1){
+      if(route.indexOf('login') == -1 && route.indexOf('third-webview/third-webview') == -1 && route.indexOf('setup/setup') == -1 && route.indexOf('main/main') == -1){
         let user = app.getUser()
         if(!user||!user.id){
-          wx.redirectTo({
+          wx.navigateTO({
             url: '../login/login',
           })
         }else{
@@ -33,6 +33,7 @@ const pageExtend = Page => {
           })
         }
       }
+
 
       this.setData({
         scrollTop: 0,
@@ -90,7 +91,7 @@ const pageExtend = Page => {
         }
         console.log('go--' + paramsStr)
       }
-      wx.relaunch({
+      wx.reLaunch({
         url: '../' + path + paramsStr
       })
     }    

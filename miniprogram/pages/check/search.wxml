@@ -1,4 +1,4 @@
-
+<header-navigate id="header"></header-navigate>
 <!-- 搜索设备start -->
 <block wx:if="{{status == 0}}">
   <view class="check-search-title" style="margin-top:{{statusHeight}}px">正在搜索附近设备{{dots}}</view>
@@ -15,6 +15,17 @@
 <!-- 选择设备start -->
 <block wx:elif="{{status == 1}}">
   <view class="check-search-title" style="margin-top:{{statusHeight}}px">选择设备</view>
+  <block wx:if="{{hasSelect}}">
+    <view class="check-search-device" data-devicename="{{deviceSelected.name}}" data-deviceid="{{deviceSelected.deviceId}}" data-services="{{deviceSelected.services}}" data-mac="{{deviceSelected.mac}}" bindtap="selectDeviceTap">
+      <image class="check-search-device-image-1" src="{{imageEquip}}"/>
+      <text class="check-search-device-text" style="margin-top:-20rpx">MAC: {{deviceSelected.mac}}</text>
+      <text class="check-search-device-text-select">当前已连接</text>
+      <image class="check-search-device-image-2" src="{{imageArrow}}"/>
+    </view>
+  <block wx:if="{{devices.length > 0}}">
+    <view class="text32" style="margin-left: 40rpx;margin-top:60rpx;margin-bottom:-30rpx;font-weight: 500;">选择在用设备</view>
+  </block>
+  </block>
   <view style="margin:0 auto;margin-top:24rpx;float:left;width:100%">
   <block wx:for="{{devices}}" wx:key="true">
     <view class="check-search-device" data-devicename="{{item.name}}" data-deviceid="{{item.deviceId}}" data-services="{{item.advertisServiceUUIDs}}" data-mac="{{item.mac}}" bindtap="selectDeviceTap">

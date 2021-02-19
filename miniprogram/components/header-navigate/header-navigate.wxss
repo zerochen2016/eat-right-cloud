@@ -8,8 +8,8 @@
   font-weight: 500;
   color: black;
   text-align: center;
-  background-color: white;
   z-index: 999;
+  
 }
 .back{
   float: left;

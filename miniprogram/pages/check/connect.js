@@ -276,7 +276,7 @@ Page({
     this.checkResult()
     this.changeTipsText()
     this.changeDotsNumber()
-    
+    this.selectComponent("#header").onlyBack('#F2F2F6')
   },
 
   /**

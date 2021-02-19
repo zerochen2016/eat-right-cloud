@@ -232,6 +232,11 @@ Page({
     const ori = this.data.ori
     let reportBefore = this.data.reportBefore
     let reportAfter = this.data.reportAfter
+    
+    if((reportBefore && reportBefore.id == id) || (reportAfter && reportAfter.id == ie)){
+      return
+    }
+
     if(ori == 1){
       console.log("选中吃前")
       if(reportBefore && !reportAfter){

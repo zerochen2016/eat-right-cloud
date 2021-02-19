@@ -18,8 +18,7 @@
     </block>
     <block wx:if="{{vipInfo.isVip}}">
       <view class="head-text-vip">VIP会员剩余天数：{{vipInfo.vipRemainDay}}天
-        <!-- TODO问号有什么作用 -->
-        <image src="{{imageQuestion}}" />
+        
       </view>
     </block>      
   </view>
