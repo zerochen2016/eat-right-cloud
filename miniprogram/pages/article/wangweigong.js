@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imageWangweigong2: app.globalData.resourcesHost + 'article/wangweigong2.png'
+    imageWangweigong2: app.globalData.resourcesHost + 'article/wangweigong2.png',
+    imageW1: app.globalData.resourcesHost + 'w1.jpg',
+    imageW2: app.globalData.resourcesHost + 'w2.jpg'
   },
 
   /**

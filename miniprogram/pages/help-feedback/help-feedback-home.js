@@ -5,12 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imageLamp: app.globalData.resourcesHost + 'my/lamp@2x.png',
-    imageSensor: app.globalData.resourcesHost + 'my/sensor@2x.png',
-    imageMiniProgram: app.globalData.resourcesHost + 'my/miniprogram@2x.png',
-    imageLampCheck: app.globalData.resourcesHost + 'my/lamp-check@2x.png',
-    imageArrow: app.globalData.resourcesHost + 'arrow@2x.png',
-    imageFeedback: app.globalData.resourcesHost + 'my/feedback@2x.png'
+    imageArrow: app.globalData.resourcesHost + 'arrow@2x.png'
   },
 
   /**
@@ -31,7 +26,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.selectComponent("#header").showAll("反馈")
+    this.selectComponent("#header").showAll("帮助与反馈")
   },
 
   /**
@@ -62,4 +57,10 @@ Page({
 
   },
 
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
 })

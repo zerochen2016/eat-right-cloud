@@ -11,7 +11,7 @@
   </view>
 </view>
 <!-- 报告数据start -->
-<block wx:if="{{reportCount > 0}}">
+<block wx:if="{{monthlyDays > 10}}">
 
 <view style="background-color:white">
   <view class="menu">
@@ -30,7 +30,52 @@
     </image>
   </view>
 <view class="risk-index-title">风险系数</view>
-<brokeline id="brokeline"></brokeline>
+<!-- 折线图start -->
+<view class="line-broke" >
+  <!-- y轴 -->
+  <view class="line-left">
+    <view class="line-left-text">100</view>
+    <view class="line-left-text">90</view>
+    <view class="line-left-text">80</view>
+    <view class="line-left-text">70</view>
+    <view class="line-left-text">60</view>
+    <view class="line-left-text">50</view>
+    <view class="line-left-text">40</view>
+    <view class="line-left-text">30</view>
+    <view class="line-left-text">20</view>
+    <view class="line-left-text">10</view>
+    <view class="line-left-text">0</view>
+  </view>
+  <!-- 线 -->
+  <view class="line-main">
+    <view class="line-main-display">
+      <block wx:for="{{points}}" wx:key="true">
+        <view style="float:left;width:100rpx;">
+          <view class="{{lineClass}}" style="margin-top:{{item.lineHeight}}rpx;transform: rotate({{item.anger}}deg);width:{{item.z}}rpx;"></view>
+        </view>
+      </block>
+    </view>
+    <view class="line-main-display2">
+      <block wx:for="{{points}}" wx:key="true">
+        <view class="{{pointClass}}" style="margin-top:{{item.pointHeight}}rpx"><view class="point-white"></view></view>
+      </block>
+    </view>
+    <view class="line-main-back">
+      <block wx:for="{{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70]}}" wx:key="true">
+        <view class="line-main-back-sub"></view>
+      </block>
+    </view>
+  </view>
+  <!-- x轴 -->
+  <view class="bottom">
+    <block wx:for="{{points}}" wx:key="true">
+      <view class="bottom-text">
+        {{item.date}}
+      </view>
+    </block>
+  </view>
+</view>
+<!-- 折线图end -->
 <view class="risk-line"></view>
 <view class="risk-index-title">风险数值趋势</view>
 <!-- 是否会员start1 -->
@@ -145,7 +190,7 @@
 <!-- 报告数据end -->
 <!-- 无报告数据start -->
 <block wx:else>
-  <view class="none-text-1 text136"><text style="color:rgba(0, 149, 145, 1)">{{reportCount}}</text>/30</view>
+  <view class="none-text-1 text136"><text style="color:rgba(0, 149, 145, 1)">{{monthlyDays}}</text>/30</view>
   <view class="none-text-2 text32" style="margin-top:30rpx">测量天数不足10天</view>
   <view class="none-text-2 text32">无法得出有效分析</view>
   <view class="button-success" style="margin-top:120rpx;float:left;margin-left:72rpx" bindtap="nTo" data-path="check/check">去检测</view>

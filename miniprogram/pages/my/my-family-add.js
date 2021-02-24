@@ -75,7 +75,7 @@ Page({
     this.confirmStyle()
   },
   confirmStyle: function(){
-    if(util.isMobile(this.data.inputMobile)){
+    if(this.data.inputMobile.length > 9){
       this.setData({
         confirmStyle: true
       })

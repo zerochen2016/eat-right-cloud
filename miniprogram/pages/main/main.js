@@ -62,11 +62,12 @@ Page({
     imageGender2Grey: app.globalData.resourcesHost + 'newbook/gender2-grey@2x.png',
     imageRecommend: app.globalData.resourcesHost + 'my/recommend@3x.png',
     imageDevice: app.globalData.resourcesHost + 'check/device.png',
-    imageStep1: app.globalData.resourcesHost + 'newbook/step1.png',
     imageStep2G1: app.globalData.resourcesHost + 'newbook/step2-1.png',
     imageStep2G2: app.globalData.resourcesHost + 'newbook/step2-2.png',
     imageStep3G1: app.globalData.resourcesHost + 'newbook/step3-1.png',
     imageStep3G2: app.globalData.resourcesHost + 'newbook/step3-2.png',
+    imageHandLeft: app.globalData.resourcesHost + 'newbook/hand-left2x.png',
+    imageHandRight: app.globalData.resourcesHost + 'newbook/hand-right2x.png',
     step: 1,
     step2: 0,
     // check end
@@ -101,6 +102,7 @@ Page({
     imageArrow: app.globalData.resourcesHost + 'arrow@2x.png',
     imageVipFamily: app.globalData.resourcesHost + 'my/vip-family@2x.png',
     imageVip: app.globalData.resourcesHost + 'my/vip@2x.png',
+    imageAvatarDefault: app.globalData.resourcesHost + 'avatar-default.png',
     // my end
   },
 
@@ -178,6 +180,7 @@ Page({
       this.checkHasGuide()
       //标题
       this.selectComponent("#header").setTitle("检测")
+      this.getUserProfile()
     }else if(index == 2){
       this.selectComponent("#header").setTitle("吃对了么")
     }else if(index == 3){
@@ -395,7 +398,7 @@ Page({
   // home end
   // check start
   checkHasGuide: function(){
-    if(app.gethasGuide() == 1){
+    if(app.gethasGuide() == 1 || this.data.userProfile.is_profile_completed){
       this.setData({
         hasGuide: true
       })
@@ -664,6 +667,11 @@ Page({
       })
     }
   },
+  showDeviceGuide: function(e){
+    this.setData({
+      showDeviceGuide: true
+    })
+  },
   updateUserProfile: function(){
     let that = this
     wx.request({
@@ -882,11 +890,28 @@ Page({
         "Authorization": 'Bearer ' + app.getRequestSign()
       },
       success(res) {
-        console.log(res)
+        console.log("userProfile",res)
         if(res.statusCode == 200){
           let userProfile = res.data.profile
+          if(!(userProfile.nickname)){
+            userProfile.nickname = '昵称未设置'
+          }
+          if(!(userProfile.avatar_url)){
+            userProfile.avatar_url = that.data.imageAvatarDefault
+          }
+          let useHand = 1
+          if(userProfile.hand == 'HAND_RIGHT'){
+            useHand = 2
+          }
+          let nowDate = '1980-1-1'
+          app.setUserProfile(userProfile)
+          if(userProfile.birthday.year){
+            nowDate = userProfile.birthday.year + '-' + userProfile.birthday.month + '-' + userProfile.birthday.day
+          }
           that.setData({
-            userProfile: userProfile
+            userProfile: userProfile,
+            useHand: useHand,
+            nowDate: nowDate
           })
         }
 

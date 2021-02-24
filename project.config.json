@@ -60,6 +60,23 @@
     },
     "miniprogram": {
       "list": [
+        {
+          "name": "pages/check/connect",
+          "pathName": "pages/check/connect",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/article/theory-wangweigong",
+          "pathName": "pages/article/theory-wangweigong",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/article/wangweigong",
+          "pathName": "pages/article/wangweigong",
+          "scene": null
+        }
       ]
     }
   }

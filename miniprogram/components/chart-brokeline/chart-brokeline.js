@@ -1,4 +1,4 @@
-// components/chart-brokeline/chart-brokeline.js
+const app = getApp()
 Component({
   /**
    * 组件的属性列表
@@ -37,6 +37,9 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    test: function(){
+      console.log("test success")
+    },
     changeStyle: function(points, colorType){
       if(points.length > 8){
         let interval = (points.length - 1) / 7

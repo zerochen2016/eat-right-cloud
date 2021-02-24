@@ -13,7 +13,8 @@ Page({
     weightIndex: 25,
     genderArr: ['男','女'],
     genderIndex: 0,
-    imageRecommend: app.globalData.resourcesHost + 'my/recommend@3x.png'
+    imageRecommend: app.globalData.resourcesHost + 'my/recommend@3x.png',
+    imageAvatarDefault: app.globalData.resourcesHost + 'avatar-default.png',
   },
 
   /**
@@ -268,12 +269,18 @@ Page({
         console.log(res)
         if(res.statusCode == 200){
           let userProfile = res.data.profile
-          let nowDate = new Date()
+          let nowDate = '1980-1-1'
+          if(!(userProfile.nickname)){
+            userProfile.nickname = '昵称未设置'
+          }
+          if(!(userProfile.avatar_url)){
+            userProfile.avatar_url = that.data.imageAvatarDefault
+          }
           app.setUserProfile(userProfile)
           if(userProfile.birthday.year){
-            let dateStr = userProfile.birthday.year + '-' + userProfile.birthday.month + '-' + userProfile.birthday.day
-            nowDate = new Date(dateStr)
+            nowDate = userProfile.birthday.year + '-' + userProfile.birthday.month + '-' + userProfile.birthday.day
           }
+          
           that.setData({
             userProfile: userProfile,
             nowDate: nowDate

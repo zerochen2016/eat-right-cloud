@@ -95,7 +95,7 @@ Page({
     this.checkLoginStyle()
   },
   checkLoginStyle: function(){
-    if(util.isMobile(this.data.inputMobile) && this.data.verifyCode.length == 6){
+    if(this.data.inputMobile.length > 9 && this.data.verifyCode.length == 6){
       this.setData({
         loginStyle: true
       })
@@ -104,7 +104,7 @@ Page({
         loginStyle: false
       })
     }
-    if(util.isMobile(this.data.inputMobile)){
+    if(this.data.inputMobile.length > 9){
       this.setData({
         verifyStyle: true
       })
@@ -119,7 +119,7 @@ Page({
     console.log(e)
     var that = this
     console.log(this.data.verifyCode)
-    if(util.isMobile(this.data.inputMobile) && this.data.verifyCode.length == 6 && loginLock == 0){
+    if(this.data.inputMobile.length > 9 && this.data.verifyCode.length == 6 && loginLock == 0){
       loginLock = 1
       wx.request({
         url: app.globalData.apiHost, 

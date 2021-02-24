@@ -283,7 +283,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    this.playBackgroundAudio(0)  
   },
 
   /**
@@ -300,7 +300,8 @@ Page({
         console.log('-----closeBluetoothAdapter:fail-----')
         console.log(res)
       }
-    })          
+    })        
+    this.playBackgroundAudio(0)  
   },
 
   /**
@@ -502,7 +503,7 @@ Page({
         }
       }
      })
-    console.log("requestData-------------",requestData)
+    // console.log("requestData-------------",requestData)
     wx.request({
       url: app.globalData.apiHost, 
       data: requestData,

@@ -104,7 +104,7 @@ Page({
   },
   checkButtonStyle: function(step){
     if(step == 1){
-      if(util.isMobile(this.data.inputMobile)){
+      if(this.data.inputMobile.length > 9){
         this.setData({
           nextStyle: true
         })

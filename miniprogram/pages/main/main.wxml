@@ -69,7 +69,7 @@
 </view>
 
 <view class="new">
-  <view class="text30 new-text-1" bindtap="showNewBook" data-status="1">
+  <view class="text30 new-text-1" bindtap="showDeviceGuide" data-status="1">
     <image class="new-image" src="{{imageNotice}}"/>新手必读
   </view>
   <view class="text26 new-text-2" bindtap="nTo" data-path="article/theory-wangweigong">王唯工《气血共振理论》</view>
@@ -192,7 +192,7 @@
       </view>
       <view class="new-book-select" >
         <view class="new-book-select-view-1">生日</view>
-        <picker class="new-book-select-picker" mode="date" value="{{userProfile.birthday.year}}-{{userProfile.birthday.month}}-{{userProfile.birthday.day}}" bindchange="birthdayChange" >{{userProfile.birthday.year}}-{{userProfile.birthday.month}}-{{userProfile.birthday.day}}</picker>
+        <picker class="new-book-select-picker" mode="date" value="{{nowDate}}" bindchange="birthdayChange" >{{userProfile.birthday.year}}-{{userProfile.birthday.month}}-{{userProfile.birthday.day}}</picker>
         <view class="line" style="width:544rpx;margin-left:48rpx;float:left;margin-top:24rpx"></view>
       </view>
       <view class="step-button-last" data-step="{{step}}" style="width:256rpx" bindtap="lastStep" >上一步</view>
@@ -294,9 +294,20 @@
     </block>
   <block wx:if="{{step2 == 1}}">
     <view class="new-device-title-d text48">
-      ①将设置的左手食指充分置入感测器尽头
+      <block wx:if="{{useHand == 1}}">
+        ①将设置的左手食指充分置入感测器尽头
+      </block>
+      <block wx:else>
+        ①将设置的右手食指充分置入感测器尽头
+      </block>
     </view>
-    <image class="new-device-step1-image" src="{{imageStep1}}" />
+      <block wx:if="{{useHand == 1}}">
+        <image class="new-device-step1-image" src="{{imageHandLeft}}" />
+      </block>
+      <block wx:else>
+        <image class="new-device-step1-image" src="{{imageHandRight}}" />
+      </block>
+    
     <view class="step-button-success" style="margin-top:60rpx" bindtap="nextStep2" data-step="{{step2}}">下一步{{step2}}/3</view>
   </block>
   <block wx:if="{{step2 == 2}}">
@@ -589,7 +600,7 @@
   <wechat-subscription style="float:left;margin-top:40rpx"></wechat-subscription>
 </view>
 <view class="content-tab-2">
-  <view class="content-tab-2-view" data-url="https://res.jt-health.cn/app-dev/v1/index.html#/help" bindtap="goThirdWeb" data-title="帮助与反馈">
+  <view class="content-tab-2-view" bindtap="nTo" data-path="help-feedback/help-feedback-home" >
     <view>帮助与反馈</view>
     <image src="{{imageArrow}}"/>
   </view>
@@ -597,7 +608,7 @@
     <view>关于我们</view>
     <image src="{{imageArrow}}"/>
   </view>
-  <view class="content-tab-2-view" bindtap="nTo" data-path="/setup/setup">
+  <view class="content-tab-2-view" bindtap="nTo" data-path="setup/setup">
     <view>设置</view>
     <image src="{{imageArrow}}"/>
   </view>

@@ -318,3 +318,127 @@ page{
   float: left;
   margin-top: 20rpx;
 }
+/* 折线图start */
+.line-broke{
+  width: 1000rpx;
+  height: 500rpx;
+  margin-left: 0rpx;
+  margin-top: 50rpx;
+  font-size: 24rpx;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.4);
+}
+.line-left{
+  text-align: right;
+  width: 72rpx;
+  height: 500rpx;
+  float: left;
+  line-height: 48rpx;
+  margin-top: -20rpx;
+}
+.line-main{
+  margin-left: 16rpx;
+  width: 850rpx;
+  height: 500rpx;
+  float: left;
+}
+.line-main-display{
+  width: 710rpx;
+  height: 500rpx;
+  float: left;
+  position: relative;
+  z-index: 2;
+  
+}
+.line{
+  height: 6rpx;
+  width: 100rpx;
+  background: linear-gradient(360deg, #00A29E 0%, #65E1C5 100%) #00A29E;
+  float: left;
+  box-shadow: 0 32rpx 12rpx 4rpx #E2F4F0;
+  transform-origin: left top;
+}
+.line-up{
+  height: 6rpx;
+  width: 100rpx;
+  background: linear-gradient(360deg, #FF8C75 0%, #F4664A 100%) #FF8C75;
+  float: left;
+  box-shadow: 0 32rpx 12rpx 4rpx rgba(239, 230, 228, 1);
+  transform-origin: left top;
+}
+.line-down{
+  height: 6rpx;
+  width: 100rpx;
+  background: linear-gradient(360deg, #5AD8A6 0%, #008D50 100%) #5AD8A6;
+  float: left;
+  box-shadow: 0 32rpx 12rpx 4rpx #D6EFE5;
+  transform-origin: left top;
+  margin-top: 12rpx;
+}
+.point{
+  height: 24rpx;
+  width: 24rpx;
+  border-radius: 50%;
+  background: #00A29E;
+  float: left;
+  margin-left: 76rpx;
+}
+.point-up{
+  height: 24rpx;
+  width: 24rpx;
+  border-radius: 50%;
+  background: #F4664A;
+  float: left;
+  margin-left: 76rpx;
+}
+.point-down{
+  height: 24rpx;
+  width: 24rpx;
+  background: #008D50;
+  border-radius: 50%;
+  float: left;
+  margin-left: 76rpx;
+}
+.point-white{
+  width: 12rpx;
+  height: 12rpx;
+  margin-left:7rpx;
+  margin-top: 7rpx;
+  float: left;
+  background-color: white;
+  border-radius: 50%;
+  
+}
+.line-main-display2{
+  width: 900rpx;
+  height: 500rpx;
+  float: left;
+  position: relative;
+  z-index: 3;
+  margin-top: -500rpx;
+  margin-left: -86rpx;
+}
+.line-main-back{
+  width: 710rpx;
+  height: 500rpx;
+  float: left;
+  margin-top: -500rpx;
+}
+.line-main-back-sub{
+  width: 96rpx;
+  height: 46rpx;
+  float: left;
+  border: 2rpx dotted #DFE6E9
+}
+.bottom{
+  float: left;
+  width: 710rpx;
+  margin-left: 40rpx;
+  text-align: center;
+  margin-top: 16rpx;
+}
+.bottom-text{
+  width: 100rpx;
+  float: left;
+}
+/* 折线图end */

@@ -85,7 +85,7 @@ Page({
     this.checkLoginStyle()
   },
   checkLoginStyle: function(){
-    if(util.isMobile(this.data.inputMobile) && this.data.password.length >= 6){
+    if(this.data.inputMobile.length > 9 && this.data.password.length >= 6){
       this.setData({
         loginStyle: 1
       })
@@ -97,7 +97,7 @@ Page({
   },
   doLogin: function(){
     let that = this
-    if(util.isMobile(this.data.inputMobile)&& this.data.password.length >= 6 && loginLock == 0){
+    if(this.data.inputMobile.length > 9 && this.data.password.length >= 6 && loginLock == 0){
       loginLock = 1
       wx.request({
         url: app.globalData.apiHost, 

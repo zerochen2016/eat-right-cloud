@@ -1,12 +1,21 @@
 const app = getApp()
 const dateUtil = require("../../utils/date-util.js")
-
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    points:[
+      {value: 0,date: '0'},
+      {value: 0,date: '0'},
+      {value: 0,date: '0'},
+      {value: 0,date: '0'},
+      {value: 0,date: '0'},
+      {value: 0,date: '0'},
+      {value: 0,date: '0'},
+      {value: 0,date: '0'},
+      ],
     reportCount: 0,
     showChoose: false,
     activeIndex: 0,
@@ -64,7 +73,9 @@ Page({
   onShow: function () {
     //获取Vip信息
     this.getVipInfo()
-    this.selectComponent("#header").showAll("报告")
+    this.selectComponent("#header").showAll("周分析")
+    this.getMeasurementDays()
+    let a = this.selectComponent("#header")
     
   },
 
@@ -162,8 +173,11 @@ Page({
   changeRiskTrend: function(dataArray,dataArray2){
     let start = dataArray[0]
     let end = dataArray[1]
-    let dateStart = dataArray[0].date.split("T")[0].split("2020-")[1]
-    let dateEnd = dataArray[1].date.split("T")[0].split("2020-")[1]
+    let dateStartArr = dataArray[0].date.split("T")[0].split("-")
+    let dateStart = dateStartArr[1] + "-" + dateStartArr[2]
+    let dateEndArr = dataArray[1].date.split("T")[0].split("-")
+    let dateEnd = dateEndArr[1] + "-" + dateEndArr[2]
+        
     let angle = parseInt((start.avg - end.avg) * 20 / 50)
     let trend = 2
     if(end.avg - start.avg > 5){
@@ -206,16 +220,19 @@ Page({
         angle: angle
       })
     }
+    
     this.changeRiskIndex(dataArray2,trend)
   },
   changeRiskIndex: function(dataArray,trend){
-
+    
     let riskIndexData = []
     for(let i = 0; i < dataArray.length; i++){
       let content = dataArray[i]
       if((content.avg)){
         let avg = content.avg
-        let date = content.date.split("T")[0].split("2020-")[1]
+        let dateArr = content.date.split("T")[0].split("-")
+        let date = dateArr[1] + "-" + dateArr[2]
+        
         let data = {
           value: avg,
           date: date
@@ -223,7 +240,8 @@ Page({
         riskIndexData.push(data)
       }
     }
-    this.selectComponent("#brokeline").changeStyle(riskIndexData,trend)
+    console.log("changeRiskIndex",riskIndexData,trend)
+    this.changeStyle(riskIndexData,trend)
   },
   changeMonth: function(e){
     let that = this
@@ -287,19 +305,108 @@ Page({
             }
             that.setData({
               monthlyReport: res.data.weekly_report,
-              reportCount: 1,
               riskArray: riskArray
             })
             that.changeRiskTrend(res.data.weekly_report.chart_content[19].content.slice(0,2),res.data.weekly_report.chart_content[0].content)
             
-          }else{
-            that.setData({
-              reportCount: 0
-            })
           }
         }
         
       },
     })     
+  },
+  getMeasurementDays: function(){
+    let that = this
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "ReportAPI.GetMeasurementDays",
+        "service": "com.jt-health.api.app",
+        "request": {
+          "user_profile_id": app.getUser().id
+        }
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log("getMeasurementDays",res)
+        if(res.statusCode == 200){
+          let weeklyDays = 0
+          let monthlyDays = 0
+          if(res.data.monthly_days){
+            monthlyDays = res.data.monthly_days
+          }
+          if(res.data.weekly_days){
+            weeklyDays = res.data.weekly_days
+          }
+          that.setData({
+            weeklyDays: weeklyDays,
+            monthlyDays: monthlyDays
+          })
+        }
+        
+      },
+    })     
+  },
+  changeStyle: function(points, colorType){
+    if(points.length > 8){
+      let interval = (points.length - 1) / 7
+      let usePoints = []
+      for(let i = 0; i * interval < points.length; i++){
+        usePoints.push(points[parseInt(i * interval)])
+        usePoints.push(points[points.length - 1])
+      } 
+      points = usePoints
+    }
+    for(let i = 0; i < points.length; i++){
+      let y = parseInt(points[i].value * 4.9)
+      let x = i * 100
+      points[i].lineHeight = 490 - y
+      points[i].pointHeight = 480 - y
+      points[i].y = y
+      points[i].x = x
+    }
+    for(let j = 0; j < points.length; j ++){
+      if(j < points.length - 1){
+        let y1 = points[j].y
+        let y2 = points[(j + 1)].y
+        let x = 100
+        let h = y1 - y2
+        let z = Math.sqrt(h * h + x * x)
+        let anger = Math.asin(h / z) * 180 / Math.PI
+        points[j].z = parseInt(z)
+        points[j].anger = anger
+        points[j].left = parseInt(z - 100)
+      }
+      
+      
+    }
+    console.log(points)
+    this.changeColor(colorType)
+    this.setData({
+      points: points.length > 7 ? points.slice(0,7): points
+    })
+    
+  },
+  changeColor: function(colorType){
+    let lineClass = 'line'
+    let pointClass = 'point'
+    if(colorType == 1){
+      lineClass = 'line-down'
+      pointClass = 'point-down'
+    }else if(colorType == 3){
+      lineClass = 'line-up'
+      pointClass = 'point-up'
+    }
+    this.setData({
+      lineClass: lineClass,
+      pointClass: pointClass
+    })
   }
+
 })

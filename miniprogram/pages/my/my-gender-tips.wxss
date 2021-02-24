@@ -1,0 +1,49 @@
+.feedback-head{
+  width: 100%;
+  height: 324rpx;
+}
+.feedback-head image{
+  width: 510rpx;
+  height: 109rpx;
+  margin-left: 120rpx;
+  margin-top: 80rpx;
+}
+.feedback-head view{
+  width: 100%;
+  font-size: 24rpx;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.54);
+  line-height: 36rpx;
+  margin-top: 24rpx;
+  text-align: center;
+}
+
+.content{
+  width: 100%;
+  height: 128rpx;
+  background: #FFFFFF;
+}
+.content view{
+  width: 710rpx;
+  height: 128rpx;
+  border-bottom: 2rpx solid #DFE6E9;
+  margin-left: 40rpx;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.87);
+  line-height: 128rpx;
+  text-align: left;
+  float: left;
+}
+.ttips{
+  text-align:left;
+  background-color:white;
+  height:150rpx;
+  width:100%;
+}
+.ttips view{
+  float: left;
+  margin-left: 40rpx;
+  margin-top: 10rpx;
+}
+

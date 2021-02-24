@@ -11,7 +11,8 @@ Page({
     imageVip: app.globalData.resourcesHost + 'my/vip@2x.png',
     imageAdd: app.globalData.resourcesHost + 'add@2x.png',
     imageArrow: app.globalData.resourcesHost + 'arrow@2x.png',
-    imageTips: app.globalData.resourcesHost + 'tips@2x.png'
+    imageTips: app.globalData.resourcesHost + 'tips@2x.png',
+    imageAvatarDefault: app.globalData.resourcesHost + 'avatar-default.png',
   },
 
   /**
@@ -38,6 +39,7 @@ Page({
       userId: app.getUser().id
     })
     this.selectComponent("#header").showAll("我的家庭")
+    this.getUserProfile()
   },
 
   /**
@@ -159,6 +161,44 @@ Page({
           console.log(vipInfo)
         }
         
+      },
+    })     
+  },
+  getUserProfile: function(){
+    let that = this
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "UserProfileAPI.GetUserProfile",
+        "service": "com.jt-health.api.app",
+        "request": {
+         "user_id": app.getUser().id,
+         "user_profile_id": app.getUser().id
+        }
+        
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log(res)
+        if(res.statusCode == 200){
+          let userProfile = res.data.profile
+          if(!(userProfile.nickname)){
+            userProfile.nickname = '昵称未设置'
+          }
+          if(!(userProfile.avatar_url)){
+            userProfile.avatar_url = that.data.imageAvatarDefault
+          }
+          that.setData({
+            userProfile: userProfile
+          })
+        }
+
       },
     })     
   }

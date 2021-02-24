@@ -2,7 +2,7 @@
 <view class="head" style="margin-top:{{statusHeight - 20}}px">
   <image class="head-avatar" data-masterid="{{masterId}}" bindtap="nTo" data-path="my/my-family-member" data-id="{{userId}}" data-info="{{selfInfo}}" src="{{userProfile.avatar_url}}"/>
   <view class="head-info">
-    <text class="text52" style="display:block" bindtap="nTo" data-path="my/my-family-member" data-id="{{userId}}" data-masterid="{{masterId}}" data-info="{{selfInfo}}">我的名字</text>
+    <text class="text52" style="display:block" bindtap="nTo" data-path="my/my-family-member" data-id="{{userId}}" data-masterid="{{masterId}}" data-info="{{selfInfo}}">{{userProfile.nickname}}</text>
     <block wx:if="{{(vipInfo.isVipFamily) && (vipInfo.isVip)}}">
       <image class="head-info-image-1" src="{{imageVipFamily}}" />
       <image class="head-info-image-2" src="{{imageVip}}" />

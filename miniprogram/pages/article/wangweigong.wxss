@@ -44,3 +44,8 @@ page{
   line-height: 60rpx;
   margin-top: -40rpx;
 }
+.text-image{
+  margin-left: 30rpx; 
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}

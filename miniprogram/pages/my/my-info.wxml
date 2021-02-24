@@ -8,7 +8,7 @@
   <input class="info-text-2" style="{{userProfile.nickname?userProfile.nickname:'color: rgba(0, 0, 0, 0.4);'}}" value="{{userProfile.nickname?userProfile.nickname:''}}" bindblur="nicknameChange" placeholder="请输入" />
   <view class="line" style="float:left;margin-left:40rpx;width:710rpx"></view>
 </view>
-<view class="info-view">
+<view class="info-view" bindtap="nTo" data-path="my/my-gender-tips">
   <view class="text36 info-text-1">性别</view>
   
     <block wx:if="{{userProfile.gender == 'GENDER_MALE'}}">

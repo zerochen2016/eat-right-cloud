@@ -197,14 +197,14 @@
   float: left;
 }
 .check-checking-tips-text-2{
-  width: 400rpx;
+  width: 600rpx;
   height: 144rpx;
   font-size: 40rpx;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.87);
   line-height: 60rpx;
   text-align: center;
-  margin-left: -75rpx;
+  margin-left: -150rpx;
   margin-top: 16rpx;
   float: left;
 }

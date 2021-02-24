@@ -83,16 +83,7 @@ Component({
         days: days
       })
     },
-    selectDay: function(e){
-      let dateArr = e.currentTarget.dataset.date.toString().split("-")
-      
-      let y = parseInt(dateArr[0])
-      let m = parseInt(dateArr[1])
-      let d = parseInt(dateArr[2])
-      let selectDay = new Date()
-      selectDay.setFullYear(y)
-      selectDay.setMonth(m - 1)
-      selectDay.setDate(d)
+    doSelectDay: function(selectDay){
       
       let days = this.data.days
 
@@ -115,6 +106,19 @@ Component({
       })
       let item = {date: selectDay}//要传给父组件的参数
       this.triggerEvent('selectDay',item)//通过triggerEvent将参数传给父组件
+    },
+    selectDay: function(e){
+      let dateArr = e.currentTarget.dataset.date.toString().split("-")
+      
+      let y = parseInt(dateArr[0])
+      let m = parseInt(dateArr[1])
+      let d = parseInt(dateArr[2])
+      let selectDay = new Date()
+      selectDay.setFullYear(y)
+      selectDay.setMonth(m - 1)
+      selectDay.setDate(d)
+      
+      this.doSelectDay(selectDay)
     },
     //页面左右滑动start
     headTouchStart: function (e) {
@@ -286,7 +290,7 @@ Component({
             "id": id, "value": i + "", "type": 1
           }
           if(input.getFullYear() == today.getFullYear() && m == today.getMonth() + 1 && i == today.getDate()){
-            day.type = 3
+            day.type = 1
             day.text = "今天"
           }
 
@@ -301,7 +305,7 @@ Component({
                 "id": id, "value": i + "", "type": (id == today) ? 3 : 1
               }
               if(input.getFullYear() == today.getFullYear() && m == today.getMonth() + 1 && i == today.getDate()){
-                day.type = 3
+                day.type = 1
                 day.text = "今天"
               }
               days.push(day)
@@ -314,7 +318,7 @@ Component({
                 "id": id, "value": i + "", "type": (id == today) ? 3 : 1
               }
               if(input.getFullYear() == today.getFullYear() && m == today.getMonth() + 1 && i == today.getDate()){
-                day.type = 3
+                day.type = 1
                 day.text = "今天"
               }
               days.push(day)
@@ -329,7 +333,7 @@ Component({
             "id": id, "value": i + "", "type": (id == today) ? 3 : 1
           }
           if(input.getFullYear() == today.getFullYear() && m == today.getMonth() + 1 && i == today.getDate()){
-            day.type = 3
+            day.type = 1
             day.text = "今天"
           }
           days.push(day)

@@ -1,0 +1,8 @@
+<header-navigate id="header"></header-navigate>
+<view class="text52 ttips" style="margin-top:{{statusHeight - 20}}px;">
+  <view style="margin-top: 20rpx;">性别不能自行更改，</view>
+  <view >如需更改请联系客服！</view>
+</view>
+<view class="content" style="margin-top:40rpx"><view>联系邮箱：sales@jt-healthech.com</view></view>
+<view class="content" ><view>客服电话：400-8235-998</view></view>
+<view class="content" ><view>官方网站：www.jt-healthtech.com</view></view>

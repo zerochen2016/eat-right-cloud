@@ -7,7 +7,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    reportCount: 0,
+    points:[
+      {value: 0,date: '0'},
+      {value: 0,date: '0'},
+      {value: 0,date: '0'},
+      {value: 0,date: '0'},
+      {value: 0,date: '0'},
+      {value: 0,date: '0'},
+      {value: 0,date: '0'},
+      {value: 0,date: '0'},
+      ],
     showChoose: false,
     activeIndex: 0,
     imageMore: app.globalData.resourcesHost + 'more@2x.png',
@@ -65,7 +74,8 @@ Page({
   onShow: function () {
     //获取Vip信息
     this.getVipInfo()
-    this.selectComponent("#header").showAll("报告")
+    this.selectComponent("#header").showAll("月分析")
+    this.getMeasurementDays()
   },
 
   /**
@@ -277,7 +287,8 @@ Page({
       let content = dataArray[i]
       if((content.avg)){
         let avg = content.avg
-        let date = content.date.split("T")[0].split("2020-")[1]
+        let dateArr = content.date.split("T")[0].split("-")
+        let date = dateArr[1] + "-" + dateArr[2]
         let data = {
           value: avg,
           date: date
@@ -285,7 +296,7 @@ Page({
         riskIndexData.push(data)
       }
     }
-    this.selectComponent("#brokeline").changeStyle(riskIndexData,trend)
+    this.changeStyle(riskIndexData,trend)
   },
   listMonthlyReport: function(profileId,endTime){
     let that = this
@@ -329,20 +340,108 @@ Page({
               res.data.monthly_report.risk[i].avg = res.data.monthly_report.risk[i].avg ? res.data.monthly_report.risk[i].avg.toFixed(1) : '--'
             }
             that.setData({
-              monthlyReport: res.data.monthly_report,
-              reportCount: 1
+              monthlyReport: res.data.monthly_report
             })
             that.changeRiskTrend(res.data.monthly_report.chart_content[19].content.slice(0,2),res.data.monthly_report.chart_content[0].content)
             
             
-          }else{
-            that.setData({
-              reportCount: 0
-            })
           }
         }
         
       },
     })     
+  },
+  getMeasurementDays: function(){
+    let that = this
+    wx.request({
+      url: app.globalData.apiHost, 
+      data: 
+      JSON.stringify({
+        "method": "ReportAPI.GetMeasurementDays",
+        "service": "com.jt-health.api.app",
+        "request": {
+          "user_profile_id": app.getUser().id
+        }
+       }),
+      dataType: 'json',
+      method: "POST",
+      header: {
+        'content-type': 'application/json',
+        "Authorization": 'Bearer ' + app.getRequestSign()
+      },
+      success(res) {
+        console.log("getMeasurementDays",res)
+        if(res.statusCode == 200){
+          let weeklyDays = 0
+          let monthlyDays = 0
+          if(res.data.monthly_days){
+            monthlyDays = res.data.monthly_days
+          }
+          if(res.data.weekly_days){
+            weeklyDays = res.data.weekly_days
+          }
+          that.setData({
+            weeklyDays: weeklyDays,
+            monthlyDays: monthlyDays
+          })
+        }
+        
+      },
+    })     
+  },
+  changeStyle: function(points, colorType){
+    if(points.length > 8){
+      let interval = (points.length - 1) / 7
+      let usePoints = []
+      for(let i = 0; i * interval < points.length; i++){
+        usePoints.push(points[parseInt(i * interval)])
+        usePoints.push(points[points.length - 1])
+      } 
+      points = usePoints
+    }
+    for(let i = 0; i < points.length; i++){
+      let y = parseInt(points[i].value * 4.9)
+      let x = i * 100
+      points[i].lineHeight = 490 - y
+      points[i].pointHeight = 480 - y
+      points[i].y = y
+      points[i].x = x
+    }
+    for(let j = 0; j < points.length; j ++){
+      if(j < points.length - 1){
+        let y1 = points[j].y
+        let y2 = points[(j + 1)].y
+        let x = 100
+        let h = y1 - y2
+        let z = Math.sqrt(h * h + x * x)
+        let anger = Math.asin(h / z) * 180 / Math.PI
+        points[j].z = parseInt(z)
+        points[j].anger = anger
+        points[j].left = parseInt(z - 100)
+      }
+      
+      
+    }
+    console.log(points)
+    this.changeColor(colorType)
+    this.setData({
+      points: points.length > 7 ? points.slice(0,7): points
+    })
+    
+  },
+  changeColor: function(colorType){
+    let lineClass = 'line'
+    let pointClass = 'point'
+    if(colorType == 1){
+      lineClass = 'line-down'
+      pointClass = 'point-down'
+    }else if(colorType == 3){
+      lineClass = 'line-up'
+      pointClass = 'point-up'
+    }
+    this.setData({
+      lineClass: lineClass,
+      pointClass: pointClass
+    })
   }
 })

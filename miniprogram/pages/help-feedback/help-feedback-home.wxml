@@ -1,0 +1,13 @@
+<header-navigate id="header"></header-navigate>
+<view class="content" style="margin-top:{{statusHeight - 20}}px" data-url="https://res.jt-health.cn/app/v1/index.html#/help" bindtap="goThirdWeb" data-title="帮助中心" >
+  <view class="content-text-1">
+    <view class="content-text-1-view-1">帮助中心</view>
+  </view>
+  <image class="content-arrow" src="{{imageArrow}}" />
+</view>
+<view class="content" bindtap="nTo" data-path="help-feedback/help-feedback-feedback">
+  <view class="content-text-1">
+    <view class="content-text-1-view-1">反馈</view>
+  </view>
+  <image class="content-arrow" src="{{imageArrow}}" />
+</view>

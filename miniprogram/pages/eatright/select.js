@@ -51,18 +51,20 @@ Page({
    */
   onShow: function () {
       //底部导航选中
-      let endDate = new Date()
-      endDate.setHours(23)
-      endDate.setMinutes(59)
-      endDate.setSeconds(59)
-      let startDate = new Date()
-      startDate.setDate(1)
-      startDate.setHours(0)
-      startDate.setMinutes(0)
-      startDate.setSeconds(0)
+      // let endDate = new Date()
+      // endDate.setHours(23)
+      // endDate.setMinutes(59)
+      // endDate.setSeconds(59)
+      // let startDate = new Date()
+      // startDate.setDate(1)
+      // startDate.setHours(0)
+      // startDate.setMinutes(0)
+      // startDate.setSeconds(0)
       //获取报告记录
-      this.listReports(startDate,endDate)
+      // this.listReports(startDate,endDate)
+      // this.doSelectDay(new Date())
       this.selectComponent("#header").showAll("选择报告")
+      this.selectComponent(".calendar").doSelectDay(new Date());
   },
 
   /**
@@ -93,8 +95,7 @@ Page({
 
   },
 
-  selectDay: function(e){
-    let date = e.detail.date
+  doSelectDay: function(date){
     let endDate = new Date(date)
     endDate.setHours(23)
     endDate.setMinutes(59)
@@ -104,6 +105,11 @@ Page({
     startDate.setMinutes(0)
     startDate.setSeconds(0)
     this.listReports(startDate,endDate)
+  },
+
+  selectDay: function(e){
+    let date = e.detail.date
+    this.doSelectDay(date)
   },
   dateChangeTap: function(e){
     this.dateChange(e.detail.date)
