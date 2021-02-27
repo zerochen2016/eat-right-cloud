@@ -96,6 +96,7 @@ Page({
   },
 
   doSelectDay: function(date){
+    
     let endDate = new Date(date)
     endDate.setHours(23)
     endDate.setMinutes(59)
@@ -112,6 +113,7 @@ Page({
     this.doSelectDay(date)
   },
   dateChangeTap: function(e){
+    console.log("dateChange",e.detail.date)
     this.dateChange(e.detail.date)
   },
   dateChange: function(inputDate){
@@ -120,7 +122,7 @@ Page({
     let m = dateArr.getMonth() + 1
     let date = new Date()
     date.setFullYear(y)
-    date.setMonth(m)
+    date.setMonth(m - 1)
     if(m == 1||m==3||m==5||m==7||m==8||m==10||m==12){
       date.setDate(31)
     }else if(m==2){
@@ -176,7 +178,7 @@ Page({
         "Authorization": 'Bearer ' + app.getRequestSign()
       },
       success(res) {
-        console.log(res)
+        console.log("listReports",res)
         if(res.statusCode == 200){
           let reports = []
           let reportTime = []
@@ -239,7 +241,7 @@ Page({
     let reportBefore = this.data.reportBefore
     let reportAfter = this.data.reportAfter
     
-    if((reportBefore && reportBefore.id == id) || (reportAfter && reportAfter.id == ie)){
+    if((reportBefore && reportBefore.id == id) || (reportAfter && reportAfter.id == id)){
       return
     }
 

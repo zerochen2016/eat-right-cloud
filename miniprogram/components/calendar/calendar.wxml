@@ -19,21 +19,31 @@
     </view>
     <view class="cal-body-week-days" style="height:{{dayHeight}}" animation="{{animationData}}">
     <block wx:for="{{days}}" wx:key="true">
+      <!-- 上一个月 -->
       <block wx:if="{{item.type == 0}}">
         <view class="cal-body-week cal-body-week-grey" style="{{(index % 7 == 0) ? 'margin-left:25rpx' :''}}">{{item.value}}<text>{{(item.text)?item.text:''}}</text></view>
       </block>
+      <!-- 本月 -->
       <block wx:elif="{{item.type == 1}}"> 
-        <view class="cal-body-week" data-date="{{item.id}}" bindtap="selectDay" style="{{(index % 7 == 0) ? 'margin-left:25rpx' :''}}">{{item.value}}<text>{{(item.text)?item.text:''}}</text></view>
+        <block wx:if="{{item.select == 1}}">
+          <view class="cal-body-week cal-body-week-select" data-date="{{item.id}}" bindtap="selectDay" style="{{(index % 7 == 0) ? 'margin-left:25rpx' :''}}">{{item.value}}<text>{{(item.text)?item.text:''}}</text></view>
+        </block>
+        <block wx:elif="{{item.report == 1}}">
+          <view class="cal-body-week cal-body-week-report" data-date="{{item.id}}" bindtap="selectDay" style="{{(index % 7 == 0) ? 'margin-left:25rpx' :''}}">{{item.value}}<text>{{(item.text)?item.text:''}}</text></view>
+        </block>
+        <block wx:else>
+          <view class="cal-body-week" data-date="{{item.id}}" bindtap="selectDay" style="{{(index % 7 == 0) ? 'margin-left:25rpx' :''}}">{{item.value}}<text>{{(item.text)?item.text:''}}</text></view>
+        </block>
       </block>
-      <block wx:elif="{{item.type == 2}}"> 
+      <!-- <block wx:elif="{{item.type == 2}}"> 
         <view class="cal-body-week cal-body-week-report" data-date="{{item.id}}" bindtap="selectDay" style="{{(index % 7 == 0) ? 'margin-left:25rpx' :''}}">{{item.value}}<text>{{(item.text)?item.text:''}}</text></view>
-      </block>
-      <block wx:elif="{{item.type == 3}}"> 
+      </block> -->
+      <!-- <block wx:elif="{{item.type == 3}}"> 
         <view class="cal-body-week cal-body-week-report" data-date="{{item.id}}" bindtap="selectDay" style="{{(index % 7 == 0) ? 'margin-left:25rpx' :''}}">{{item.value}}<text>{{(item.text)?item.text:''}}</text></view>
-      </block>
-      <block wx:else="{{item.type == 4}}"> 
+      </block> -->
+      <!-- <block wx:else="{{item.type == 4}}"> 
         <view class="cal-body-week cal-body-week-select" data-date="{{item.id}}" bindtap="selectDay" style="{{(index % 7 == 0) ? 'margin-left:25rpx' :''}}">{{item.value}}<text>{{(item.text)?item.text:''}}</text></view>
-      </block>
+      </block> -->
     </block>
     </view>
   </view>

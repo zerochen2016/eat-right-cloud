@@ -320,7 +320,7 @@ page{
 }
 /* 折线图start */
 .line-broke{
-  width: 1000rpx;
+  width: 750rpx;
   height: 500rpx;
   margin-left: 0rpx;
   margin-top: 50rpx;
@@ -338,17 +338,17 @@ page{
 }
 .line-main{
   margin-left: 16rpx;
-  width: 850rpx;
+  width: 650rpx;
   height: 500rpx;
   float: left;
+  overflow-x:hidden;
 }
 .line-main-display{
-  width: 710rpx;
+  width: 600rpx;
   height: 500rpx;
   float: left;
   position: relative;
   z-index: 2;
-  
 }
 .line{
   height: 6rpx;
@@ -410,16 +410,17 @@ page{
   
 }
 .line-main-display2{
-  width: 900rpx;
+  width: 600rpx;
   height: 500rpx;
   float: left;
   position: relative;
   z-index: 3;
   margin-top: -500rpx;
   margin-left: -86rpx;
+  overflow-x:hidden;
 }
 .line-main-back{
-  width: 710rpx;
+  width: 650rpx;
   height: 500rpx;
   float: left;
   margin-top: -500rpx;
@@ -432,7 +433,7 @@ page{
 }
 .bottom{
   float: left;
-  width: 710rpx;
+  width: 650rpx;
   margin-left: 40rpx;
   text-align: center;
   margin-top: 16rpx;

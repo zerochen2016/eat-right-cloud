@@ -5,8 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    serviceArray: ['《会员服务协议》','《用户服务协议及隐私政策》'],
-    servicePath: ['../policy/policy-member','../policy/policy-user'],
+    serviceArray: ['《用户服务协议》','《会员服务协议》'],
+    servicePath: ['../policy/policy-user','../policy/policy-member'],
     serviceIndex: 0,
     languageArray: ['简体中文'],
     languageIndex: 0,

@@ -908,6 +908,12 @@ Page({
           if(userProfile.birthday.year){
             nowDate = userProfile.birthday.year + '-' + userProfile.birthday.month + '-' + userProfile.birthday.day
           }
+          if(userProfile.gender == "GENDER_FEMALE"){
+            that.setData({
+              heightIndex: 20,
+              weightIndex: 15
+            })
+          }
           that.setData({
             userProfile: userProfile,
             useHand: useHand,

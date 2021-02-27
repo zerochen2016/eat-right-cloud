@@ -154,7 +154,7 @@ Page({
   chooseMenu: function(e){
     console.log(e)
     this.setData({
-      showChoose: e.currentTarget.dataset.type
+      showChoose: e.currentTarget.dataset.type == 1 ? true : false
     })
   },
   changeMenu: function(e){
@@ -164,7 +164,7 @@ Page({
     const currentMenuId = e.currentTarget.dataset.id
     this.setData({
       activeIndex: index,
-      showChoose: 0,
+      showChoose: false,
       currentMenuId: currentMenuId,
       currentMenu: that.data.menus[currentMenuId]
     })
@@ -354,8 +354,8 @@ Page({
     })     
   },
   changeStyle: function(points, colorType){
-    if(points.length > 8){
-      let interval = (points.length - 1) / 7
+    if(points.length > 7){
+      let interval = (points.length - 1) / 6
       let usePoints = []
       for(let i = 0; i * interval < points.length; i++){
         usePoints.push(points[parseInt(i * interval)])
@@ -389,7 +389,7 @@ Page({
     console.log(points)
     this.changeColor(colorType)
     this.setData({
-      points: points.length > 7 ? points.slice(0,7): points
+      points: points.length > 6 ? points.slice(0,6): points
     })
     
   },

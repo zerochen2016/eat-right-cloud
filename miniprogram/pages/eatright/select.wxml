@@ -26,7 +26,7 @@
   </block>
   <block wx:if="{{reports.length < 1}}">
     <view class="text48" style="color:rgba(0, 0, 0, 0.4);margin-top:180rpx;width:100%;text-align:center;float:left">当前无报告</view>
-    <view class="button-success" style="float:left;margin-top:60rpx;margin-left:72rpx" bindtap="nTo" data-path="check/check">去检测</view>
+    <view class="button-success" style="float:left;margin-top:60rpx;margin-left:72rpx" bindtap="rTo" data-path="main/main" data-index="1">去检测</view>
   </block>
 </view>
 <!-- 选择end -->

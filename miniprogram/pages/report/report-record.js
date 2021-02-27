@@ -93,7 +93,7 @@ Page({
     let m = dateArr.getMonth() + 1
     let date = new Date()
     date.setFullYear(y)
-    date.setMonth(m)
+    date.setMonth(m - 1)
     if(m == 1||m==3||m==5||m==7||m==8||m==10||m==12){
       date.setDate(31)
     }else if(m==2){

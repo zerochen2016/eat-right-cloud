@@ -26,7 +26,7 @@ Component({
     nowDate: dateUtil.dateToYYMMTodayString(),
     nowDateChinese: dateUtil.dateToYYMMTodayString('chinese'),
     dayAll: true,
-    dayHeight: "660rpx",
+    dayHeight: "660rpx"
   },
   lifetimes: {
     attached: function() {
@@ -84,9 +84,8 @@ Component({
       })
     },
     doSelectDay: function(selectDay){
-      
+      const that = this
       let days = this.data.days
-
       for(let i = 0; i < days.length; i++){
         let dayDate = days[i].id.toString().split("-")
         let date = new Date()
@@ -94,11 +93,10 @@ Component({
         date.setMonth(parseInt(dayDate[1]) - 1)
         date.setDate(parseInt(dayDate[2]))
         if(selectDay.getFullYear() == date.getFullYear() && selectDay.getMonth() == date.getMonth() && selectDay.getDate() == date.getDate()){
-          days[i].type = 4
+          that.setData({dayLastSelect: days[i]})
+          days[i].select = 1//选中
         }else{
-          if(days[i].type == 4){
-            days[i].type = 1
-          }
+          days[i].select = 0//选中
         }
       }
       this.setData({
@@ -162,6 +160,7 @@ Component({
     dateChangeTap: function(e){
       const ori = e.currentTarget.dataset.ori
       let date = e.currentTarget.dataset.date
+      console.log("dateChangeTap",date)
       if(ori != 0 && ori != 1){
         date = e.detail.value
       }
@@ -178,17 +177,16 @@ Component({
         y = m == 12 ? (y + 1) : y
         m = m == 12 ? 1 : (m + 1)        
       }
-      
+      let nowDate = y + '-' + m
       this.setData({
-        nowDate: y + '-' + m,
+        nowDate: nowDate,
         nowDateChinese: y + '年' + m + '月'
       })
       
-      this.initDays(date)
-      let item = {date: date}//要传给父组件的参数
-      this.triggerEvent('dateChange',item)//通过triggerEvent将参数传给父组件
+      this.initDays(nowDate)
     },
     initDays: function(inputDate){
+      let that = this
       let y = 0
       let m = 0
       if(inputDate.toString().indexOf("-") != -1){
@@ -198,15 +196,14 @@ Component({
       }else {
         let dateInput = new Date(inputDate)
         y = dateInput.getFullYear()
-        m = dateInput.getMonth()
+        m = dateInput.getMonth() + 1
         
       }
       
-      const that = this
       let days = []
       let date = new Date()
       date.setFullYear(y)
-      date.setMonth(m)
+      date.setMonth(m - 1)
       days = that.pushThisMonth(date,days)
       days = that.pushLastMonth(date,days)
       days = that.pushNextMonth(date,days)
@@ -218,11 +215,17 @@ Component({
         this.setData({
           days: days,
           dayHeight: height,
+        },function(){
+          let item = {date: inputDate}//要传给父组件的参数
+          that.triggerEvent('dateChange',item)//通过triggerEvent将参数传给父组件
         })
       }else{
         this.setData({
           days: days.slice(0,7),
           dayHeight: "110rpx"
+        },function(){
+          let item = {date: inputDate}//要传给父组件的参数
+          that.triggerEvent('dateChange',item)//通过triggerEvent将参数传给父组件
         })
       }
     },
@@ -362,6 +365,7 @@ Component({
       return days
     },
     setReportData: function(reportData){
+      
       let days = this.data.days
       if(reportData.length > 0){
         for(let i = 0; i < reportData.length; i++){
@@ -378,10 +382,7 @@ Component({
             dayDate.setMonth(parseInt(dayArr[1]) - 1)
             dayDate.setDate(parseInt(dayArr[2]))
             if(date.getFullYear() == dayDate.getFullYear() && date.getMonth() == dayDate.getMonth() && date.getDate() == dayDate.getDate()){
-              if(days[j].type != 4){
-                days[j].type = 2
-              }
-              
+              days[j].report = 1
             }
           }
         }
