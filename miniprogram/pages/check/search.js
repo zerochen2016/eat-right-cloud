@@ -3,6 +3,7 @@ const util = require("../../utils/util.js")
 let changeDotsNumberInterval = null//... 0，2，3
 let changePointAngerInterval = null//搜索扫描0
 let searchBluetoothInterval = null//搜索蓝牙
+let notfindTime = null //搜索超时
 Page({
 
   /**
@@ -10,12 +11,13 @@ Page({
    */
   data: {
     dots: '',
-    devices: [{
-      name: '',
-      deviceId: '',
-      mac: '',
-      advertisServiceUUIDs: []
-    }],
+    devices: [],
+    // devices: [{
+    //   name: '',
+    //   deviceId: '',
+    //   mac: '',
+    //   advertisServiceUUIDs: []
+    // }],
     status: 0, //0搜索，1选择，2连接中，3检测中，4检测完成，5连接错误重新选择，6没有找到设备，7自动连接
     searchTime: 0,
     pointerAnger: 0,
@@ -87,7 +89,8 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    this.clearAnyTimeInterval(changeDotsNumberInterval,changePointAngerInterval,searchBluetoothInterval)
+    this.clearAnyTimeInterval(changeDotsNumberInterval,changePointAngerInterval,searchBluetoothInterval,notfindTime)
+    notfindTime = null
     this.stopSearch()
   },
 
@@ -134,6 +137,17 @@ Page({
   searchBluetooth: function (e) {
     let that = this
     if(that.data.searchTime <= 10){
+      if(!notfindTime){
+        notfindTime = setTimeout(function(){
+          console.log("超时")
+          if(that.data.devices.length < 1){
+            wx.redirectTo({
+              url: '../check/notfind',
+            })
+          }
+        },6000)
+      }
+      
       wx.openBluetoothAdapter({
         success: function (res) {
           wx.startBluetoothDevicesDiscovery({

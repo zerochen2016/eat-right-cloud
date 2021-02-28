@@ -10,10 +10,10 @@
     <!-- <block wx:for="{{channelMenus}}" wx:key="true">
       <image data-id="{{item.channel_id}}" data-title="{{item.topic}}" class="special-scroll-image scroll-image" src="{{item.image.public_access_url}}" bindtap="nTo" data-path="special/special" />
     </block>         -->
-    <image  data-title="健康" class="special-scroll-image scroll-image" src="{{imageJiankang}}" bindtap="goThirdWeb" data-url="https://res.jt-health.cn/app-dev/v1/index.html#/channel/bs9vjtbipt36qd0r90b0"  />
-    <image  data-title="营养" class="special-scroll-image scroll-image" src="{{imageYingyang}}" bindtap="goThirdWeb" data-url="https://res.jt-health.cn/app-dev/v1/index.html#/channel/bs9vjuript36qjgmmclg"  />
-    <image  data-title="减脂" class="special-scroll-image scroll-image" src="{{imageJianzhi}}" bindtap="goThirdWeb" data-url="https://res.jt-health.cn/app-dev/v1/index.html#/channel/bs9vj0ript36pvsr37i0"  />
-    <image  data-title="膳食" class="special-scroll-image scroll-image" src="{{imageShanshi}}" bindtap="goThirdWeb" data-url="https://res.jt-health.cn/app-dev/v1/index.html#/channel/bs9vjj3ipt36q6mpaqn0"  />
+    <image  data-title="健康" class="special-scroll-image scroll-image" src="{{imageJiankang}}" bindtap="goThirdWeb" data-url="{{webUrlJianKang}}"  />
+    <image  data-title="营养" class="special-scroll-image scroll-image" src="{{imageYingyang}}" bindtap="goThirdWeb" data-url="{{webUrlYingYang}}"  />
+    <image  data-title="减脂" class="special-scroll-image scroll-image" src="{{imageJianzhi}}" bindtap="goThirdWeb" data-url="{{webUrlJianZhi}}"  />
+    <image  data-title="膳食" class="special-scroll-image scroll-image" src="{{imageShanshi}}" bindtap="goThirdWeb" data-url="{{webUrlShanShi}}"  />
   </scroll-view>
 </view>
 
@@ -339,7 +339,7 @@
 
 <!-- eatright start -->
 <block wx:elif="{{activeIndex == 2}}">
-<view name="eatright" style="background: #F2F2F6">
+<view name="eatright" style="background: #F2F2F6;height: 1600rpx;width:750rpx">
 <view class="text72 eat-title" style="margin-top:{{statusHeight}}px">吃对了么</view>
 <view class="eat-main">
   <view class="{{hasResult ? 'eat-main-left-result' :'eat-main-left'}}" bindtap="openSelectReport" data-ori="1">
@@ -461,6 +461,9 @@
       </view>
     </view>
     <!-- 风险改善end -->
+  </view>
+  <view style="width:750rpx;height:400rpx;float:left;background-color:#F2F2F6;">
+
   </view>
 </block>
 <!-- 对比结果end -->

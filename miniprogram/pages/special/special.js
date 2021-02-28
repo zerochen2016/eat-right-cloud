@@ -21,6 +21,9 @@ Page({
     console.log(options)
     this.selectComponent("#header").setTitle(options.title)
     this.listEntryMenus(options.id)
+    wx.setNavigationBarTitle({
+      title: options.title,
+    })
   },
 
   /**

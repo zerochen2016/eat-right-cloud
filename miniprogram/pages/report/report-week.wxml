@@ -12,7 +12,7 @@
   </view>
 </view>
 <!-- 报告数据start -->
-<block wx:if="{{weeklyDays > 2}}">
+<block wx:if="{{showResult}}">
 
 <view style="background-color:white">
   <view class="menu">
@@ -51,9 +51,11 @@
   <view class="line-main">
     <view class="line-main-display">
       <block wx:for="{{points}}" wx:key="true">
-        <view style="float:left;width:100rpx;">
-          <view class="{{lineClass}}" style="margin-top:{{item.lineHeight}}rpx;transform: rotate({{item.anger}}deg);width:{{item.z}}rpx;"></view>
-        </view>
+        <block wx:if="{{points.length - 1 > index}}">
+          <view style="float:left;width:100rpx;">
+            <view class="{{lineClass}}" style="margin-top:{{item.lineHeight}}rpx;transform: rotate({{item.anger}}deg);width:{{item.z}}rpx;"></view>
+          </view>
+        </block>
       </block>
     </view>
     <view class="line-main-display2">

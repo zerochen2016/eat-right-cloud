@@ -16,6 +16,7 @@ Page({
       {value: 0,date: '0'},
       {value: 0,date: '0'},
       ],
+    showResult: false,
     reportCount: 0,
     showChoose: false,
     activeIndex: 0,
@@ -292,7 +293,7 @@ Page({
         "Authorization": 'Bearer ' + app.getRequestSign()
       },
       success(res) {
-        console.log(res)
+        console.log("ReportAPI.GetWeeklyReport",startTimeReq,endTimeReq,res)
         if(res.statusCode == 200){
           if(res.data.weekly_report.chart_content){
             let riskArray = res.data.weekly_report.risk
@@ -305,10 +306,16 @@ Page({
             }
             that.setData({
               monthlyReport: res.data.weekly_report,
-              riskArray: riskArray
+              riskArray: riskArray,
+              showResult: true
             })
             that.changeRiskTrend(res.data.weekly_report.chart_content[19].content.slice(0,2),res.data.weekly_report.chart_content[0].content)
             
+          }else{
+            that.setData({
+              showResult: false,
+              weeklyDays: 1
+            })
           }
         }
         

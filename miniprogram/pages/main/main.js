@@ -29,6 +29,10 @@ Page({
     imageProduct5:  app.globalData.resourcesHost + 'home/product5-new.jpg',
     imageProduct6:  app.globalData.resourcesHost + 'home/product6-new.jpg',
     imageProduct7:  app.globalData.resourcesHost + 'home/product7-new.jpg',
+    webUrlJianKang: app.globalData.h5Host + "channel/bs9vjtbipt36qd0r90b0",
+    webUrlYingYang: app.globalData.h5Host + "channel/bs9vjuript36qjgmmclg",
+    webUrlJianZhi: app.globalData.h5Host + "channel/bs9vj0ript36pvsr37i0",
+    webUrlShanShi: app.globalData.h5Host + "channel/bs9vjj3ipt36q6mpaqn0",
     // home end
     // check start 
     heightArray: ['140CM', '141CM', '142CM', '143CM', '144CM', '145CM', '146CM', '147CM', '148CM', '149CM', '150CM', '151CM', '152CM', '153CM', '154CM', '155CM', '156CM', '157CM', '158CM', '159CM', '160CM', '161CM', '162CM', '163CM', '164CM', '165CM', '166CM', '167CM', '168CM', '169CM', '170CM', '171CM', '172CM', '173CM', '174CM', '175CM', '176CM', '177CM', '178CM', '179CM', '180CM', '181CM', '182CM', '183CM', '184CM', '185CM', '186CM', '187CM', '188CM', '189CM', '190CM', '191CM', '192CM', '193CM', '194CM', '195CM', '196CM', '197CM', '198CM', '199CM', '200CM', '201CM', '202CM', '203CM', '204CM', '205CM', '206CM', '207CM', '208CM', '209CM', '210CM', '211CM', '212CM', '213CM', '214CM', '215CM', '216CM', '217CM', '218CM', '219CM', '220CM', '221CM', '222CM', '223CM', '224CM', '225CM', '226CM', '227CM', '228CM', '229CM', '230CM'],

@@ -17,6 +17,7 @@ Page({
       {value: 0,date: '0'},
       {value: 0,date: '0'},
       ],
+    showResult: false,
     showChoose: false,
     activeIndex: 0,
     imageMore: app.globalData.resourcesHost + 'more@2x.png',
@@ -340,11 +341,17 @@ Page({
               res.data.monthly_report.risk[i].avg = res.data.monthly_report.risk[i].avg ? res.data.monthly_report.risk[i].avg.toFixed(1) : '--'
             }
             that.setData({
-              monthlyReport: res.data.monthly_report
+              monthlyReport: res.data.monthly_report,
+              showResult: true
             })
             that.changeRiskTrend(res.data.monthly_report.chart_content[19].content.slice(0,2),res.data.monthly_report.chart_content[0].content)
             
             
+          }else{
+            that.setData({
+              showResult: false,
+              monthlyDays: 9
+            })
           }
         }
         

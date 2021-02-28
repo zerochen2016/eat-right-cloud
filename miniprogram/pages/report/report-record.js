@@ -28,6 +28,7 @@ Page({
       profileId: options.id
     })
     this.listReports(options.id,startDate,endDate)
+    this.selectComponent(".calendar").doSelectDay(new Date());
   },
 
   /**
@@ -74,6 +75,9 @@ Page({
   },
   selectDay: function(e){
     let date = e.detail.date
+    this.doSelectDay(date)
+  },
+  doSelectDay: function(date){
     let endDate = new Date(date)
     endDate.setHours(23)
     endDate.setMinutes(59)
@@ -148,7 +152,7 @@ Page({
         "Authorization": 'Bearer ' + app.getRequestSign()
       },
       success(res) {
-        console.log("ReportAPI.ListReports",res)
+        console.log("ReportAPI.ListReports",profileId,startTimeReq,endTimeReq, res)
         if(res.statusCode == 200){
           let reports = []
           let reportTime = []
