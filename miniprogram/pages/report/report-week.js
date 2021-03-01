@@ -362,13 +362,14 @@ Page({
   },
   changeStyle: function(points, colorType){
     if(points.length > 7){
-      let interval = (points.length - 1) / 6
-      let usePoints = []
-      for(let i = 0; i * interval < points.length; i++){
-        usePoints.push(points[parseInt(i * interval)])
-        usePoints.push(points[points.length - 1])
-      } 
-      points = usePoints
+      // let interval = (points.length - 1) / 6
+      // let usePoints = []
+      // for(let i = 0; i * interval < points.length; i++){
+      //   usePoints.push(points[parseInt(i * interval)])
+      //   usePoints.push(points[points.length - 1])
+      // } 
+      // points = usePoints
+      points = points.slice(0,7)
     }
     for(let i = 0; i < points.length; i++){
       let y = parseInt(points[i].value * 4.9)

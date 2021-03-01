@@ -282,7 +282,7 @@ Page({
     this.changeRiskIndex(dataArray2,trend)
   },
   changeRiskIndex: function(dataArray,trend){
-
+    console.log("dataArray",dataArray)
     let riskIndexData = []
     for(let i = 0; i < dataArray.length; i++){
       let content = dataArray[i]
@@ -297,6 +297,7 @@ Page({
         riskIndexData.push(data)
       }
     }
+    console.log(riskIndexData)
     this.changeStyle(riskIndexData,trend)
   },
   listMonthlyReport: function(profileId,endTime){
@@ -397,14 +398,15 @@ Page({
     })     
   },
   changeStyle: function(points, colorType){
+    console.log(points)
     if(points.length > 7){
-      let interval = (points.length - 1) / 6
-      let usePoints = []
-      for(let i = 0; i * interval < points.length; i++){
-        usePoints.push(points[parseInt(i * interval)])
-        usePoints.push(points[points.length - 1])
-      } 
-      points = usePoints
+      // let interval = (points.length - 1) / 6
+      // let usePoints = []
+      // for(let i = 0; i * interval < points.length; i++){
+      //   usePoints.push(points[parseInt(i * interval)])
+      //   usePoints.push(points[points.length - 1])
+      // } 
+      points = points.slice(0,7)
     }
     for(let i = 0; i < points.length; i++){
       let y = parseInt(points[i].value * 4.9)
